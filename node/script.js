@@ -1,5 +1,6 @@
-const largeNumber = require('./script2.js');
+const script2 = require('./script2');
+const fs = require('fs');
 
-const c = require('fs');
+// console.log(script2.exportedNum + 1000);
 
-console.log(c);
+console.log(fs);
