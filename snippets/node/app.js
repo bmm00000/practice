@@ -2,12 +2,17 @@
 
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const port = 3000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 //express checks the 'view' directory authomatically, but not the 'public' directory
 app.set('view engine', 'ejs');
 //authomatically renders files as ejs, so you don't need to add the extension '.ejs' to the files
+
+// our proto-database:
+const friends = [ 'Sergio', 'Miranda', 'Estefania', 'Yola' ];
 
 app.get('/', (req, res) => res.send('Home page'));
 
@@ -27,12 +32,23 @@ app.get('/dynamic/:something', (req, res) => {
 //dynamic-page.ejs is stored in the 'views' folder (it's dynamic because we are also using js, not only html; you need to download ejs from npm)
 
 app.get('/posts', (req, res) => {
-	let posts = [
+	const posts = [
 		{ title: 'The problem with time', author: 'Colt' },
 		{ title: 'The great stagnation', author: 'Helen' },
 		{ title: 'Absolute beauty', author: 'Dua' }
 	];
 	res.render('posts', { posts: posts });
+});
+
+app.get('/friends', (req, res) => {
+	res.render('friends', { friends: friends });
+});
+
+app.post('/addfriend', (req, res) => {
+	//you need to install body-parser from npm (middleware to allow us to access info from the req), 'require' it and 'use' it (see the top of the file)
+	let newFriend = req.body.newfriend;
+	friends.push(newFriend);
+	res.redirect('/friends');
 });
 
 app.get('*', (req, res) => res.send('url contains anything'));
