@@ -10,7 +10,8 @@ const catSchema = new mongoose.Schema({
 	temperament: String
 });
 
-const Cat = mongoose.model('Cat', catSchema); // 'Cat' is the singular of the name of the collection: 'cats'
+const Cat = mongoose.model('Cat', catSchema); // 'Cat' is the singular of the name of the collection that will be assigned authomatically: 'cats'
+//we do this, because '.model' returns an object with a bunch of methods, such as create, find, etc.
 
 // const george = new Cat({
 // 	name: 'Harris',
