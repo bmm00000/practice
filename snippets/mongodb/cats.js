@@ -1,3 +1,22 @@
+// mongo shell is used to test, learn, etc (like the javascript console), but we won't be using it to add things, update things, etc. since we will do that through a file written in js and use mongoose instead.
+
+// mongo shell commands (CRUD are the most important ones):
+
+// mongod (or:
+// brew services start mongodb-community@4.2
+// brew services stop mongodb-community@4.2
+//)
+// mongo (to open the shell)
+// help
+// show dbs (dbs will only appear if they have collections)
+// use (we make a db for every app that we create)
+// insert
+// show collections
+// find
+// update
+// remove
+// https://gist.github.com/bradtraversy/f407d642bdc3b31681bc7e56d95485b6
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/cat_app', {
 	useNewUrlParser: true,
