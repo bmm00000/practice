@@ -17,6 +17,11 @@
 // remove
 // https://gist.github.com/bradtraversy/f407d642bdc3b31681bc7e56d95485b6
 
+// https://mongoosejs.com/
+// https://www.npmjs.com/package/mongoose
+// https://docs.mongodb.com/manual/
+// https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+
 // before the following, you have to have the db running, so you can connect to it:
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/cat_app', {
