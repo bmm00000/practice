@@ -17,11 +17,13 @@
 // remove
 // https://gist.github.com/bradtraversy/f407d642bdc3b31681bc7e56d95485b6
 
+// before the following, you have to have the db running, so you can connect to it:
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/cat_app', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
+//if there is not a db named 'cat_app', it will create it for you (otherwise it will find it and connect to it)
 
 const catSchema = new mongoose.Schema({
 	name: String,
@@ -29,8 +31,9 @@ const catSchema = new mongoose.Schema({
 	temperament: String
 });
 
-const Cat = mongoose.model('Cat', catSchema); // 'Cat' is the singular of the name of the collection that will be assigned authomatically: 'cats'
-//we do this, because '.model' returns an object with a bunch of methods, such as create, find, etc.
+const Cat = mongoose.model('Cat', catSchema);
+// we do this, because '.model' returns an object with a bunch of methods, such as create, find, etc. (Schema is only the pattern of the data).
+// 'Cat' (parameter of .model) is the singular of the name of the collection that will be assigned authomatically: 'cats'
 
 // const george = new Cat({
 // 	name: 'Harris',
@@ -40,7 +43,20 @@ const Cat = mongoose.model('Cat', catSchema); // 'Cat' is the singular of the na
 
 // george.save().then((cat) => console.log(cat));
 
-//everytime you run the code above with node, you will get a new cat
+// or:
+
+// george.save(function(err, cat) {
+// 	if (err) {
+// 		console.log('Something went wrong!');
+// 	} else {
+// 		console.log('We just saved a cat to the db:');
+// 		console.log(cat);
+// 	}
+// });
+
+// the same pattern with find(function(){...}), remove(function(){...}), create(function(){...}), etc. becuase save, find, remove, etc take time, hence we need call back or promise.
+
+//everytime you run the code above with node ('node cats.js'), you will get a new cat
 
 //'george' is what we have in js that we are trying to save to the database. 'cat' is what's coming from the database.
 
@@ -70,3 +86,5 @@ Cat.find({}, function(err, cats) {
 		console.log(cats);
 	}
 });
+
+// in the empty object you pass to the 'find' method ('{}'), you can specify the properties of the cats that you are looking for.
