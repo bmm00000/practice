@@ -1,7 +1,9 @@
 // https://cs.slides.com/colt_steele/big-o-notation#/12/0/1
 // https://cs.slides.com/colt_steele/big-o-notation#/6/0/2
 
-function sumUp1(n) {
+//cs.slides.com/colt_steele/
+
+https: function sumUp1(n) {
 	let total = 0;
 	for (let i = 1; i <= n; i++) {
 		total += n;
