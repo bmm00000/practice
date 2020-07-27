@@ -20,21 +20,25 @@ const campgroundSchema = new mongoose.Schema({
 
 const Campground = mongoose.model('Campground', campgroundSchema);
 
-Campground.create(
-	{
-		name: 'Granite Hill',
-		image: 'https://www.photosforclass.com/download/px_699558',
-		description: 'This is a huge beautiful camp.'
-	},
-	function(err, campground) {
-		if (err) {
-			console.log(err);
-		} else {
-			console.log('New campground created');
-			console.log(campground);
-		}
-	}
-);
+// Campground.create(
+// 	{
+// 		name: 'Granite Hill',
+// 		image: 'https://www.photosforclass.com/download/px_699558',
+// 		description: 'This is a huge beautiful camp.'
+// 	},
+// 	function(err, campground) {
+// 		if (err) {
+// 			console.log(err);
+// 		} else {
+// 			console.log('New campground created');
+// 			console.log(campground);
+// 		}
+// 	}
+// );
+
+// db.collection.drop()
+// this is a mongo command, you have to type 'mongo' to get into the mongo console.
+// when you want to eliminate all previous data from one collection, as we did before adding 'description' to our schema
 
 app.get('/', (req, res) => {
 	res.render('landing');
@@ -45,7 +49,7 @@ app.get('/campgrounds', (req, res) => {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('campgrounds', { campgrounds });
+			res.render('index', { campgrounds });
 		}
 	});
 });
@@ -70,7 +74,13 @@ app.get('/campgrounds/new', (req, res) => {
 
 //watch out! the show route has to be after the new route, otherwise the new route will be triggered when you type an id in the url:
 app.get('/campgrounds/:id', (req, res) => {
-	console.log('This will be the show page');
+	Campground.findById(req.params.id, function(err, foundCampground) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render('show', { campground: foundCampground });
+		}
+	});
 });
 
 app.listen(port, () => {
