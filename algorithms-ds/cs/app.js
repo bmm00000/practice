@@ -1,6 +1,4 @@
 // https://cs.slides.com/colt_steele/big-o-notation#/12/0/1
-// https://cs.slides.com/colt_steele/big-o-notation#/6/0/2
-
 //cs.slides.com/colt_steele/
 
 https: function sumUp1(n) {
