@@ -3,7 +3,6 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const { urlencoded } = require('body-parser');
 
 mongoose.connect('mongodb://localhost/yelp_camp', {
 	useNewUrlParser: true,
@@ -11,6 +10,7 @@ mongoose.connect('mongodb://localhost/yelp_camp', {
 });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 const campgroundSchema = new mongoose.Schema({
 	name: String,
