@@ -57,7 +57,8 @@ app.get('/campgrounds', (req, res) => {
 app.post('/campgrounds', (req, res) => {
 	let name = req.body.name;
 	let image = req.body.image;
-	let newCampground = { name: name, image: image };
+	let descr = req.body.description;
+	let newCampground = { name: name, image: image, description: descr };
 	Campground.create(newCampground, function(err, newlyCreated) {
 		if (err) {
 			console.log(err);
@@ -87,11 +88,14 @@ app.listen(port, () => {
 	console.log(`Server listening: http://localhost:${port}`);
 });
 
-// RESTFUL ROUTES
+// RESTFUL ROUTES (convention to map http routes to CRUD functionality)
 
-// name			url 			verb 			description
+// name			url 			http verb 			description
 // ===============================================================================
 // INDEX 			/dogs			GET				Display a list of all dogs.
 // NEW 			/dogs/new 			GET 			Displays form to make a new dog
 // CREATE			/dogs			POST 			Add new dog to db
 // SHOW			/dogs/:id			GET				Shows info about one dog.
+// EDIT			/dogs/:id/edit		GET				Show edit form for one dog.
+// UPDATE		/dogs/:id			PUT				Update a dog, then redirect somewhere.
+// DESTROY		/dogs/:id			DELETE			Delete a dog, then redirect somewhere.
