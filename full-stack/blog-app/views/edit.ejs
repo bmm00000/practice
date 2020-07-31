@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">Edit <%= blog.title %></div>
+    <form class="ui form" action="/blogs/<%= blog._id %>?_method=PUT" method="POST">
+        <!-- if you use the 'put' method, it will default to a 'get' request, and all the new info will appear on a long query string. turns out you cannot use 'put' and 'delete' methods in html forms, unbelievable!, but there's a way around this: method override:::: you use the 'post' method, and add '?_method=PUT' to the action. The same applies to 'delete' method. YOU NEED TO INSTALL IT, REQUIRE IT, AND USE IT IN app.js: npm i method-override-->
+        <div class="field">
+            <label>Title</label>
+            <input type="text" name="blog[title]" value="<%= blog.title %>">
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <input type="text" name="blog[image]" value="<%= blog.image %>">
+        </div>
+        <div class="field">
+            <label>Post Content</label>
+            <textarea name="blog[body]" cols="30" rows="10"><%= blog.body %></textarea>
+        </div>
+        <input type="submit" class="ui inverted purple big button">
+    </form>
+</div>
+
+<%- include("partials/footer") %>
