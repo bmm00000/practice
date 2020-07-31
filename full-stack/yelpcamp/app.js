@@ -3,6 +3,9 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const Campground = require('./models/campground');
+const Comment = require('./models/comment');
+const User = require('./models/user');
 
 mongoose.connect('mongodb://localhost/yelp_camp', {
 	useNewUrlParser: true,
@@ -11,14 +14,6 @@ mongoose.connect('mongodb://localhost/yelp_camp', {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-
-const campgroundSchema = new mongoose.Schema({
-	name: String,
-	image: String,
-	description: String
-});
-
-const Campground = mongoose.model('Campground', campgroundSchema);
 
 // Campground.create(
 // 	{
@@ -90,12 +85,12 @@ app.listen(port, () => {
 
 // RESTFUL ROUTES (convention to map http routes to CRUD functionality)
 
-// name			url 			http verb 			description
-// ===============================================================================
-// INDEX 			/dogs			GET				Display a list of all dogs.
-// NEW 			/dogs/new 			GET 			Displays form to make a new dog
-// CREATE			/dogs			POST 			Add new dog to db
-// SHOW			/dogs/:id			GET				Shows info about one dog.
-// EDIT			/dogs/:id/edit		GET				Show edit form for one dog.
-// UPDATE		/dogs/:id			PUT				Update a dog, then redirect somewhere.
-// DESTROY		/dogs/:id			DELETE			Delete a dog, then redirect somewhere.
+// name			url 			http verb 			description									mongoose method
+// =====================================================================================================================
+// INDEX 			/dogs			GET				Display a list of all dogs.					Dog.find()
+// NEW 			/dogs/new 			GET 			Displays form to make a new dog				N/A
+// CREATE			/dogs			POST 			Add new dog to db							Dog.create()
+// SHOW			/dogs/:id			GET				Shows info about one dog.					Dog.findById()
+// EDIT			/dogs/:id/edit		GET				Show edit form for one dog.					Dog.findById()
+// UPDATE		/dogs/:id			PUT				Update a dog, then redirect somewhere.		Dog.findByIdAndUpdate()
+// DESTROY		/dogs/:id			DELETE			Delete a dog, then redirect somewhere.		Dog.findByIdAndRemove()
