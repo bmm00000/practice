@@ -61,7 +61,6 @@ app.get('/blogs/new', (req, res) => {
 //create route
 app.post('/blogs', (req, res) => {
 	req.body.blog.body = req.sanitize(req.body.blog.body);
-	console.log(req.body);
 	//req.body is for body-parser, and blog.body is for what the user writes
 	Blog.create(req.body.blog, function(err, newBlog) {
 		if (err) {
