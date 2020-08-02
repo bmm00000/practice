@@ -45,7 +45,7 @@ app.get('/friends', (req, res) => {
 });
 
 app.post('/addfriend', (req, res) => {
-	//you need to install body-parser from npm (middleware to allow us to access info from the req), 'require' it and 'use' it (see the top of the file)
+	//you need to install body-parser from npm (to allow us to access info from the req), 'require' it and 'use' it (see the top of the file)
 	let newFriend = req.body.newfriend;
 	friends.push(newFriend);
 	res.redirect('/friends');
