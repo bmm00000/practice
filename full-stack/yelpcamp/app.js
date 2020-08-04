@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Campground = require('./models/campground');
 const Comment = require('./models/comment');
-const User = require('./models/user');
+const seedDB = require('./seeds');
+// const User = require('./models/user');
 
 mongoose.connect('mongodb://localhost/yelp_camp', {
 	useNewUrlParser: true,
@@ -13,7 +14,8 @@ mongoose.connect('mongodb://localhost/yelp_camp', {
 });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+seedDB();
 
 // Campground.create(
 // 	{
@@ -44,7 +46,7 @@ app.get('/campgrounds', (req, res) => {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('index', { campgrounds });
+			res.render('campgrounds/index', { campgrounds });
 		}
 	});
 });
@@ -58,23 +60,57 @@ app.post('/campgrounds', (req, res) => {
 		if (err) {
 			console.log(err);
 		} else {
-			res.redirect('/campgrounds');
+			res.redirect('campgrounds/campgrounds');
 			//we have two 'campgrounds' routes, but the default is to redirect to the GET route
 		}
 	});
 });
 
 app.get('/campgrounds/new', (req, res) => {
-	res.render('new');
+	res.render('campgrounds/new');
 });
 
 //watch out! the show route has to be after the new route, otherwise the new route will be triggered when you type an id in the url:
 app.get('/campgrounds/:id', (req, res) => {
-	Campground.findById(req.params.id, function(err, foundCampground) {
+	Campground.findById(req.params.id).populate('comments').exec(function(err, foundCampground) {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('show', { campground: foundCampground });
+			console.log(foundCampground);
+			res.render('campgrounds/show', { campground: foundCampground });
+		}
+	});
+});
+
+// ===========================================
+// comments routes
+// ===========================================
+
+app.get('/campgrounds/:id/comments/new', (req, res) => {
+	Campground.findById(req.params.id, function(err, campground) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render('comments/new', { campground: campground });
+		}
+	});
+});
+
+app.post('/campgrounds/:id/comments', (req, res) => {
+	Campground.findById(req.params.id, function(err, campground) {
+		if (err) {
+			console.log(err);
+			res.redirect('/campgrounds');
+		} else {
+			Comment.create(req.body.comment, function(err, comment) {
+				if (err) {
+					console.log(err);
+				} else {
+					campground.comments.push(comment);
+					campground.save();
+					res.redirect('/campgrounds/' + campground._id);
+				}
+			});
 		}
 	});
 });
@@ -94,3 +130,7 @@ app.listen(port, () => {
 // EDIT			/dogs/:id/edit		GET				Show edit form for one dog.					Dog.findById()
 // UPDATE		/dogs/:id			PUT				Update a dog, then redirect somewhere.		Dog.findByIdAndUpdate()
 // DESTROY		/dogs/:id			DELETE			Delete a dog, then redirect somewhere.		Dog.findByIdAndRemove()
+
+// NESTED ROUTES (comments routes)::
+// NEW		campgrounds/:id/comments/new		GET
+// CREATE	campgrounds/:id/comments			POST
