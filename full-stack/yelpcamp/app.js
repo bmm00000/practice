@@ -1,12 +1,19 @@
-const express = require('express');
-const app = express();
-const port = 3000;
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const Campground = require('./models/campground');
-const Comment = require('./models/comment');
-const seedDB = require('./seeds');
-// const User = require('./models/user');
+const express = require('express'),
+	app = express(),
+	port = 3000,
+	bodyParser = require('body-parser'),
+	mongoose = require('mongoose'),
+	passport = require('passport'),
+	LocalStrategy = require('passport-local'),
+	Campground = require('./models/campground'),
+	Comment = require('./models/comment'),
+	User = require('./models/user'),
+	seedDB = require('./seeds');
+
+// requiring routes
+const commentRoutes = require('./routes/comments'),
+	campgroundRoutes = require('./routes/campgrounds'),
+	indexRoutes = require('./routes/index');
 
 mongoose.connect('mongodb://localhost/yelp_camp', {
 	useNewUrlParser: true,
@@ -15,7 +22,28 @@ mongoose.connect('mongodb://localhost/yelp_camp', {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
-seedDB();
+// seedDB(); // seed the database.
+
+// PASSPORT CONFIGURATION
+app.use(
+	require('express-session')({
+		secret: 'Once again Rusty win cutest dog!',
+		resave: false,
+		saveUninitialized: false
+	})
+);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+// 'User.authenticate/serializeUser/deserializeUser' methods come from 'passportLocalMongoose'
+
+app.use(function(req, res, next) {
+	res.locals.currentUser = req.user;
+	next();
+});
+// we use this middleware to define 'currentUser' in all our routes. Everytime we use middleware, we need 'next()', otherwise it will stop.
 
 // Campground.create(
 // 	{
@@ -33,91 +61,18 @@ seedDB();
 // 	}
 // );
 
-// db.collection.drop()
-// this is a mongo command, you have to type 'mongo' to get into the mongo console.
-// when you want to eliminate all previous data from one collection, as we did before adding 'description' to our schema
-
-app.get('/', (req, res) => {
-	res.render('landing');
-});
-
-app.get('/campgrounds', (req, res) => {
-	Campground.find({}, function(err, campgrounds) {
-		if (err) {
-			console.log(err);
-		} else {
-			res.render('campgrounds/index', { campgrounds });
-		}
-	});
-});
-
-app.post('/campgrounds', (req, res) => {
-	let name = req.body.name;
-	let image = req.body.image;
-	let descr = req.body.description;
-	let newCampground = { name: name, image: image, description: descr };
-	Campground.create(newCampground, function(err, newlyCreated) {
-		if (err) {
-			console.log(err);
-		} else {
-			res.redirect('campgrounds/campgrounds');
-			//we have two 'campgrounds' routes, but the default is to redirect to the GET route
-		}
-	});
-});
-
-app.get('/campgrounds/new', (req, res) => {
-	res.render('campgrounds/new');
-});
-
-//watch out! the show route has to be after the new route, otherwise the new route will be triggered when you type an id in the url:
-app.get('/campgrounds/:id', (req, res) => {
-	Campground.findById(req.params.id).populate('comments').exec(function(err, foundCampground) {
-		if (err) {
-			console.log(err);
-		} else {
-			console.log(foundCampground);
-			res.render('campgrounds/show', { campground: foundCampground });
-		}
-	});
-});
-
-// ===========================================
-// comments routes
-// ===========================================
-
-app.get('/campgrounds/:id/comments/new', (req, res) => {
-	Campground.findById(req.params.id, function(err, campground) {
-		if (err) {
-			console.log(err);
-		} else {
-			res.render('comments/new', { campground: campground });
-		}
-	});
-});
-
-app.post('/campgrounds/:id/comments', (req, res) => {
-	Campground.findById(req.params.id, function(err, campground) {
-		if (err) {
-			console.log(err);
-			res.redirect('/campgrounds');
-		} else {
-			Comment.create(req.body.comment, function(err, comment) {
-				if (err) {
-					console.log(err);
-				} else {
-					campground.comments.push(comment);
-					campground.save();
-					res.redirect('/campgrounds/' + campground._id);
-				}
-			});
-		}
-	});
-});
+app.use('/', indexRoutes);
+app.use('/campgrounds', campgroundRoutes);
+app.use('/campgrounds/:id/comments', commentRoutes);
+// it means that all routes will start with, for example, '/campgrounds', so you delete '/campgrounds' in the routes of 'campgrounds.js'
 
 app.listen(port, () => {
 	console.log(`Server listening: http://localhost:${port}`);
 });
+
+// db.collection.drop()
+// this is a mongo command, you have to type 'mongo' to get into the mongo console.
+// when you want to eliminate all previous data from one collection, as we did before adding 'description' to our schema
 
 // RESTFUL ROUTES (convention to map http routes to CRUD functionality)
 
