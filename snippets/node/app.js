@@ -5,6 +5,12 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = 3000;
 
+// the following 'app.use' is just a model to understand middleware, don't copy it!!
+app.use((req, res, next) => {
+	console.log('hello!');
+	next();
+});
+// that's middleware, it happens every time you go through a route. you need 'next' to let it do what's in the route.
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 //express checks the 'view' directory authomatically, but not the 'public' directory
@@ -14,7 +20,17 @@ app.set('view engine', 'ejs');
 // our proto-database:
 const friends = [ 'Sergio', 'Miranda', 'Estefania', 'Yola' ];
 
+// req.query
+// req.body
+// req.header
+// req.params
+
 app.get('/', (req, res) => res.send('Home page'));
+
+// the following (environmental variable), will render the file ('index.html') that is located in the same location is this file ('app.js') is.
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/index.html');
+});
 
 app.get('/dogs', (req, res) => res.send('Dogs page'));
 
