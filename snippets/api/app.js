@@ -12,7 +12,6 @@ const https = require('https');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -44,6 +43,7 @@ app.post('/', (req, res) => {
 	});
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
 	console.log('The server is working...');
 });
+// we add 'process.env.PORT' when we deploy to heroku, or 3000, so we can also test our app locally.
