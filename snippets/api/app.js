@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
 	const city = req.body.cityName;
-	const apiKey = 'a814111a3946d5f78cebe1c028bed917';
+	const apiKey = 'xxx';
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 	// you have to include 'https://' in the url!!
 	https.get(url, (response) => {
