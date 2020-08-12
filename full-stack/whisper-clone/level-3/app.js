@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
-const encrypt = require('mongoose-encryption');
+const md5 = require('md5');
 
 const app = express();
 
@@ -25,8 +25,6 @@ const userSchema = new mongoose.Schema({
 	password: String
 });
 
-userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: [ 'password' ] });
-
 const User = new mongoose.model('User', userSchema);
 
 app.get('/', (req, res) => {
@@ -44,7 +42,7 @@ app.get('/login', (req, res) => {
 app.post('/register', (req, res) => {
 	const newUser = new User({
 		email: req.body.username,
-		password: req.body.password
+		password: md5(req.body.password)
 	});
 
 	newUser.save((err) => {
@@ -58,7 +56,7 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
 	const username = req.body.username;
-	const password = req.body.password;
+	const password = md5(req.body.password);
 
 	User.findOne({ email: username }, (err, foundUser) => {
 		if (err) {
@@ -83,7 +81,11 @@ app.listen(3000, () => {
 
 // Level 2: Using encryption. Download package from npm: mongoose-encription. However, if a hacker accesses 'app.js', he could see the 'secret' variable, and use the same package to find out about the passwords.
 
-// Level 3: we use environment variables to avoid pushing encryption keys, api keys/passwords, etc. (for example, AWS) to github or similar. Download package from npm: dotenv.
+// Also, we use environment variables to avoid pushing encryption keys, api keys/passwords, etc. (for example, AWS) to github or similar. Download package from npm: dotenv.
+
+// Level 3: with encryption, you need a key (moving letters by one space, for example). With hashing, you don't need key. Hash functions make it almost impossible to go back from hash (to the actual password). The way it works is: when the user registers, the hash function turns the password into a hash, and the hash is stored in the database. When the user logs in, this happens again, and both hashes are compared to see if they are equal. If so, then the user logs in. Hence, the only person who knows the password is the user himself.
+
+// For hashing, you need to download a npm package: md5
 
 // If you would like to see the completed source code for each lesson, be sure to head over to the GitHub repository for this module and git clone the repo.
 
