@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
-const encrypt = require('mongoose-encryption');
 
 const app = express();
 
@@ -74,7 +73,8 @@ app.listen(3000, () => {
 // Authentication/security
 // =======================
 // Level 1: User's email and password in database, but the password is a string in the database, so your employees or a potential hacker could see it.
-// Level 2: Using encryption. Download package: npm mongoose-encription.
+
+//
 
 // If you would like to see the completed source code for each lesson, be sure to head over to the GitHub repository for this module and git clone the repo.
 

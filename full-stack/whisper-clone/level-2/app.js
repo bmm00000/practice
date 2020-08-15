@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
 	email: String,
 	password: String
 });
+// we need to add 'new mongoose.Schema' becuase we are going to use the plugin for password.
 
 const secret = 'Thisisourlittlesecret.';
 userSchema.plugin(encrypt, { secret: secret, encryptedFields: [ 'password' ] });
@@ -70,6 +71,8 @@ app.post('/login', (req, res) => {
 	});
 });
 
+//mongoose-encryption encrypts when you 'save' and decrypts when you 'find'. Therefore, architecture in Level 2 is basically very similar to Level 1.
+
 app.listen(3000, () => {
 	console.log('Server started on port 3000');
 });
@@ -78,7 +81,9 @@ app.listen(3000, () => {
 // =======================
 // Level 1: User's email and password in database, but the password is a string in the database, so your employees or a potential hacker could see it.
 
-// Level 2: Using encryption. Download package: npm mongoose-encription. However, if a hacker accesses 'app.js', he could see the 'secret' variable, and use the same package to find out about the passwords.
+// Level 2: Using encryption (scrable the passport with a key; if you know the key, then you can un-scramble it). Download package: npm mongoose-encryption. However, if a hacker accesses 'app.js', he could see the 'secret' variable, and use the same package to find out about the passwords.
+
+//
 
 // If you would like to see the completed source code for each lesson, be sure to head over to the GitHub repository for this module and git clone the repo.
 
