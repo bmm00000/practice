@@ -82,8 +82,10 @@ app.listen(3000, () => {
 // Level 1: User's email and password in database, but the password is a string in the database, so your employees or a potential hacker could see it.
 
 // Level 2: Using encryption. Download package from npm: mongoose-encription. However, if a hacker accesses 'app.js', he could see the 'secret' variable, and use the same package to find out about the passwords.
+// Also, we use environment variables to avoid pushing encryption keys, api keys/passwords, etc. (for example, AWS) to github or similar. Download package from npm: dotenv. Make sure you include your .env file in .gitignore (if you google 'github gitignore', you can access templates of .gitignore documents).
+// Create .env and .gitignore at the beginning of the project!! Otherwise, the keys may be visible in github! (the past commits).
 
-// Also, we use environment variables to avoid pushing encryption keys, api keys/passwords, etc. (for example, AWS) to github or similar. Download package from npm: dotenv.
+//
 
 // If you would like to see the completed source code for each lesson, be sure to head over to the GitHub repository for this module and git clone the repo.
 
