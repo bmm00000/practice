@@ -7,9 +7,6 @@ const md5 = require('md5');
 
 const app = express();
 
-// you can access at any moment your env variables, for example:
-// console.log(process.env.API_KEY)
-
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(
@@ -80,12 +77,15 @@ app.listen(3000, () => {
 // Level 1: User's email and password in database, but the password is a string in the database, so your employees or a potential hacker could see it.
 
 // Level 2: Using encryption. Download package from npm: mongoose-encription. However, if a hacker accesses 'app.js', he could see the 'secret' variable, and use the same package to find out about the passwords.
-
 // Also, we use environment variables to avoid pushing encryption keys, api keys/passwords, etc. (for example, AWS) to github or similar. Download package from npm: dotenv.
 
-// Level 3: with encryption, you need a key (moving letters by one space, for example). With hashing, you don't need key. Hash functions make it almost impossible to go back from hash (to the actual password). The way it works is: when the user registers, the hash function turns the password into a hash, and the hash is stored in the database. When the user logs in, this happens again, and both hashes are compared to see if they are equal. If so, then the user logs in. Hence, the only person who knows the password is the user himself.
-
+// Level 3: with encryption, you need a key (moving letters by one space, for example). Therefore, if a hacker finds out your key, then you are done. With hashing, you don't need key. Hash functions make it almost impossible to go back from hash (to the actual password). The way it works is: when the user registers, the hash function turns the password into a hash, and the hash is stored in the database. When the user logs in, this happens again, and both hashes are compared to see if they are equal. If so, then the user logs in. Hence, the only person who knows the password is the user himself.
+// However, hash tables can be generated (hashes of most usual passwords, combinations of characters, dictionary words, etc.). Therefore, if a hacker access your database with all the hashes of passwords, then he can compare the hashes with his hash tables and find out some passwords.
+// By brute force, GPUs or botnets can generate 20 billion + hashes per second. If they get your hash, you are probably fucked.
+// The longer the password, the time a brute force attack needs to crack it grows exponentially.
 // For hashing, you need to download a npm package: md5
+
+//
 
 // If you would like to see the completed source code for each lesson, be sure to head over to the GitHub repository for this module and git clone the repo.
 
