@@ -41,6 +41,7 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
+	// the following line is copied from the bcrypt documentation:
 	bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
 		const newUser = new User({
 			email: req.body.username,
@@ -62,12 +63,17 @@ app.post('/login', (req, res) => {
 	const password = req.body.password;
 
 	User.findOne({ email: username }, (err, foundUser) => {
-		if (foundUser) {
-			bcrypt.compare(password, foundUser.password, function(err, result) {
-				if (result === true) {
-					res.render('secrets');
-				}
-			});
+		if (err) {
+			console.log(err);
+		} else {
+			if (foundUser) {
+				// the following line is copied from bcrypt documentation in npm:
+				bcrypt.compare(password, foundUser.password, function(err, result) {
+					if (result === true) {
+						res.render('secrets');
+					}
+				});
+			}
 		}
 	});
 });
@@ -88,7 +94,11 @@ app.listen(3000, () => {
 
 // For hashing, you need to download a npm package: md5
 
-// Level 4: Then you can use salting (adding a bunch of characters to your password), so the resulting hashing is more complex, even with equal passwords, hashes would be different (you can use many salt rounds). Also, bcrypt makes it much slower for hackers to generate hash tables. Download package from npm: bcrypt (check version is compatible with version of node.js).
+// Level 4: Then you can use salting (adding a bunch of characters to your password), so the resulting hashing is more complex, even with equal passwords, hashes would be different (you can use many salt rounds:::: you add salting to your original password, then hash, then take that hash and add salting round, then obtain a new hash... the number of times you do this is the number of salt rounds (you determine the number of salt rounds after you require bcrypt. For 2020, recommended number of rounds is 10). For every salting round, the time it takes to hash your password doubles.). Also, bcrypt makes it much slower for hackers to generate hash tables, you can only generate around 17k bcrypt hashes per second with the lastest GPUs. Download package from npm: bcrypt (check in documentation in npm that version is compatible with version of node.js. if you need to change your version of node.js, you can download 'nvm' (node version manager) package from npm).
+// The salt is stored in the database, along with the hash, and the user doesn't have to know about it.
+// Note that bcrypt is a new, industry standard for hashing, not related with salting.
+
+//
 
 // If you would like to see the completed source code for each lesson, be sure to head over to the GitHub repository for this module and git clone the repo.
 
