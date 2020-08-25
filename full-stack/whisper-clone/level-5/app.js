@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
+// we don't need to require passport-local, it will be included in 'passport-local-mongoose
 
 const app = express();
 
@@ -40,6 +41,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.plugin(passportLocalMongoose);
+// we use that to hash and salt our passwords and to save our users into our mongodb database.
 
 const User = new mongoose.model('User', userSchema);
 
@@ -47,6 +49,7 @@ passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+// 'serialize' means that we create a cookie to store in the browser, so the user is on session. 'deserilize' means the cookie is destroyed
 
 app.get('/', (req, res) => {
 	res.render('home');
@@ -122,6 +125,14 @@ app.listen(3000, () => {
 // Level 4: Then you can use salting (adding a bunch of characters to your password), so the resulting hashing is more complex, even with equal passwords, hashes would be different (you can use many salt rounds). Also, bcrypt makes it much slower for hackers to generate hash tables. Download package from npm: bcrypt (check version is compatible with version of node.js).
 
 // Level 5: cookies and sessions. Download 'passport', 'passport-local', 'passport-local-mongoose', 'express-session' form npm. In this file, thanks to express-session, our site will send a cookie to the browser, so we don't need to login again if we try to access 'localhost:3000/secrets'. The cookie expires when the sessions ends. When you restart the server, the cookie gets deleted.
+
+// when you add an item in the shopping cart in amazon, amazon sends a cookie to your browser, so you still have the item in the shopping cart if you leave the site and come back later (you can find the cooking in the settings of your browser). Also, if you go to facebook, you still have the items you selected (or similar) in facebook adds, etc.
+
+// There are many types of cookies, but the ones that we are going to cover are the ones responsible for esblishing and maintaining a session. A session is a period of time when the browser interacts with the server. When you login in a website, your session starts and the cookie gets created (it contains your user credentials), then you don't need to login again after you leave the site, since you have the cookie in your browser that says you are logged in. when you log out, the cookie gets destroyed and the session ends.
+
+// we use 'passport' to add cookies and sessions to our app. Download from npm 'passport', 'passport-local', 'passport-local-mongoose', 'express-session'.
+
+//
 
 // If you would like to see the completed source code for each lesson, be sure to head over to the GitHub repository for this module and git clone the repo.
 
