@@ -130,7 +130,7 @@ app.listen(3000, () => {
 
 // There are many types of cookies, but the ones that we are going to cover are the ones responsible for esblishing and maintaining a session. A session is a period of time when the browser interacts with the server. When you login in a website, your session starts and the cookie gets created (it contains your user credentials), then you don't need to login again after you leave the site, since you have the cookie in your browser that says you are logged in. when you log out, the cookie gets destroyed and the session ends.
 
-// we use 'passport' to add cookies and sessions to our app. Download from npm 'passport', 'passport-local', 'passport-local-mongoose', 'express-session'.
+// we use 'passport' to add cookies and sessions to our app. Download from npm 'passport', 'passport-local', 'passport-local-mongoose', 'express-session'. 'password-local-mongoose' adds salt and hash to the passwords.
 
 //
 
