@@ -1,5 +1,20 @@
 [
-	{
-		"email": "test@test.com"
-	}
+  {
+    "email": "test@test.com"
+  },
+  {
+    "email": "test1@test.com",
+    "password": "12345",
+    "id": "16dbd717"
+  },
+  {
+    "email": "test2@test2.com",
+    "password": "1234",
+    "id": "90559406"
+  },
+  {
+    "email": "jose@jose.com",
+    "password": "1234",
+    "id": "b8d97ea8"
+  }
 ]
