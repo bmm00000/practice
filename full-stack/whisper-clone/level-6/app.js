@@ -101,7 +101,6 @@ app.get('/login', (req, res) => {
 	res.render('login');
 });
 
-//IS THIS CORRECT???
 app.get('/secrets', (req, res) => {
 	User.find({ secret: { $ne: null } }, function(err, foundUsers) {
 		if (err) {
