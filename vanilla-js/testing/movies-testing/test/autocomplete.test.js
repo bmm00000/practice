@@ -13,3 +13,5 @@ it('Shows an autocomplete', () => {
 
 	expect(dropdown.className).not.to.include('is-active');
 });
+
+it('After searching, dropdown opens up', () => {});
