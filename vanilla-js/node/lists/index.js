@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
+const fs = require('fs'); // module from node standard library
 const util = require('util');
 const chalk = require('chalk');
 const path = require('path');
@@ -11,11 +11,12 @@ const path = require('path');
 // Method 3
 const { lstat } = fs.promises;
 
-const targetDir = process.argv[2] || process.cwd();
+const targetDir = process.argv[2] || process.cwd(); // the process module is added to the global scope of every project, so we don't have to require it.
 
 fs.readdir(targetDir, async (err, filenames) => {
 	if (err) {
 		console.log(err);
+		// we have to decide whether to console.log the error, or to 'throw new Error(err)'. if you don't want the program to continue executing when there's an error, use the second (or console.log(err); return). otherwise, if you want to run the other code inside this function, you can use the first.
 	}
 
 	const statPromises = filenames.map((filename) => {
