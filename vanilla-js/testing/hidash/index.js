@@ -1,4 +1,4 @@
-// se are using functions from this library: https://lodash.com/ (it was before JS incorporated built-in funcitons like the following ones):
+// se are using functions from this library: https://lodash.com/ (it was created before JS incorporated built-in funcitons like the following ones):
 
 module.exports = {
 	forEach(arr, fn) {

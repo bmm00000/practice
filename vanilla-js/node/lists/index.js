@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs'); // module from node standard library
+const fs = require('fs'); // file system module from node standard library
 const util = require('util');
 const chalk = require('chalk');
 const path = require('path');
