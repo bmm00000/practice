@@ -6,6 +6,8 @@ module.exports = {
 			const value = arr[i];
 			fn(value, i);
 		}
+		// once you have your test in place, you can refactor the function above, and you will be sure not to mess things up, since you can run the test again.
+		// for example, you can refactor like this:
 		// 	for (let index in arr) {
 		// 		fn(arr[index], index);
 		// }

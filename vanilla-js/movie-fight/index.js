@@ -9,6 +9,7 @@ const autoCompleteConfig = {
 	inputValue(movie) {
 		return movie.Title;
 	},
+	// to make network requests, we can use fetch (built-in function, included in the browser) or a third-party library like axios (which makes life a bit easier)
 	async fetchData(searchTerm) {
 		const response = await axios.get('http://www.omdbapi.com/', {
 			params: {
@@ -17,7 +18,7 @@ const autoCompleteConfig = {
 			}
 		});
 		if (response.data.Error) {
-			return [];
+			return []; // this 'Error' is the property that the API gives us when there is no movie.
 		}
 		return response.data.Search;
 	}
@@ -136,3 +137,4 @@ const movieTemplate = (movieDetail) => {
 
 	`;
 };
+// when you do multiline in JS, you always use back ticks: ``
