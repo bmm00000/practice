@@ -7,10 +7,10 @@ const path = require('path'); // this is another module from node standard libra
 
 // in order to change file permissions for index.js, you have to type the following in the CLI (in the directory of the project): chmod +x index.js
 // next, you add a comment at the top to be able to run the file as an executable (look at the top of this file)
-// next, you go to the terminal and link your project typing this: npm link (this is going to enable you to execute the command from any directory in your computer)
+// next, you go to the terminal and link your project typing this: npm link (this is going to enable you to execute the command from any directory in your computer, maybe you need to use 'sudo')
 
 // method 2:
-// we require util from node standard library (look above)
+// we require 'util' from node standard library (look above)
 // const lstat = util.promisify(fs.lstat);
 
 // method 3:
