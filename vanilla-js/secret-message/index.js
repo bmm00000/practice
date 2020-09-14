@@ -13,7 +13,7 @@ if (message) {
 
 document.querySelector('form').addEventListener('submit', (event) => {
 	event.preventDefault();
-	// by default, the browser will attempt to send the info from the form to a backend server. we don't have backend server, that's why we prevent that from happening. once we prevent it, when we submit, the page doesn't refresh or anything (if it does, the browser is still attempting to submit the form)
+	// by default, the browser will attempt to send the info from the form to a backend server. we don't have backend server, that's why we prevent that from happening. once we prevent it, when we submit, the page doesn't refresh or anything
 
 	// we are toggling visibility here:
 	document.querySelector('#message-form').classList.add('hide');
@@ -36,4 +36,4 @@ document.querySelector('form').addEventListener('submit', (event) => {
 
 // we want to save our encrypted string in the hash. but how to get the rest of the url (domain, path, query string)? go to the console of the application and type 'window.location' (this is an object that has properties inside of it that describe the url that we are looking at). also, if you type in the console `${window.location}`, it will give you not the object, but the current url inside of a string (look at the screenshots), so we can add the hash to that string.
 
-// we deploy our project using a service called 'now'. we type in the terminal 'npx now', you confirm the email that you receive, and then again you type in the terminal 'npx now'. then all the files will be put together and deployed in the address that you will get (see the screenshot)
+// we deploy our project using a service called 'now'. we type in the terminal 'npx now', you confirm the email that you receive, and then again you type in the terminal 'npx now'. then all the files of the current project will be put together and deployed in the address that you will get in the terminal (see the screenshot)
