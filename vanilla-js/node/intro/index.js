@@ -1,4 +1,4 @@
-const message = require('./myscript.js');
+const message = require('./myscript');
 
 console.log(message);
 

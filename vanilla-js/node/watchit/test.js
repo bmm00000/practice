@@ -1,5 +1,5 @@
-console.log('hsdlfjlks there');
+console.log('hs there');
 
-setInterval(() => {
-	console.log('hellooo..');
-}, 500);
+// setInterval(() => {
+// 	console.log('hellooo..');
+// }, 500);

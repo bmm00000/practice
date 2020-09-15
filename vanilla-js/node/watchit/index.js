@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+// #!/usr/bin/env node
 
 const debounce = require('lodash.debounce');
 const chokidar = require('chokidar');
@@ -32,6 +32,7 @@ program.version('0.0.1').argument('[filename]', 'Name of a file to execute').act
 	// look at 'kill()' in documentation for child processes. we do this, or the old processes will still run as we create new ones (for example, if we use 'setInterval()' in 'test.js').
 
 	// we use debounce from npm, or the function will be called many times (look at the screenshots)
+
 	// 'spawn' is a child (or secondary process) we are running. it's as if we run 'node index.js' in the terminal. 'stdio: inherit' means that all the resulting errors, consolelogs, etc from this process will be inherited in our program.
 	// in order to test this, we create 'test.js' and run 'watchit test.js', then the 'start' function will be run every time we change and save the code there.
 
