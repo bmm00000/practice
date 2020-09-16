@@ -1,3 +1,5 @@
+// we use this file just for the class. the rest of the code will be in 'index.js'
+
 class Timer {
 	constructor(durationInput, startButton, pauseButton, callbacks) {
 		this.durationInput = durationInput;
@@ -47,6 +49,7 @@ class Timer {
 	set timeRemaining(time) {
 		this.durationInput.value = time.toFixed(2);
 	}
+	// we use getters and setters (the keywords 'get' and 'set'), since we are going to get and set this.durationInput many times. otherwise we would repeat the same code many times (look at the screenshots). With these keywords, we can use 'this.timeRemaining' as if it was an instance variable, not a method. We use getters and setters to hide away some complexity, so it's easier for other engineers to understand. we also access getters and setters with 'this', ie. 'this.timeRemaining'
 }
 
 // // when we use 'call', or 'apply' we specify the value of 'this' that we want, as follows:

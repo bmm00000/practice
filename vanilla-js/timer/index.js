@@ -24,3 +24,6 @@ const timer = new Timer(durationInput, startButton, pauseButton, {
 		console.log('Timer completed');
 	}
 });
+// when we instantiate the class, the callbacks we send to the constructor are optional, and they are the ones that will manage the border).
+
+// SVG elements (scalable vector graphics): html elements that we use to draw arbitrary shapes on the screen (look at the screenshot): the SVG element is like a canvas, so we can draw shapes inside of it. 'cy' and 'cx' determine where the center of the circle is.

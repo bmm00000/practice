@@ -16,6 +16,7 @@ const autoCompleteConfig = {
 				apikey: '79a0b990',
 				s: searchTerm
 			}
+			// we could write the query strings of the request as usual, but axios allows us to do it more neatly with the params object.
 		});
 		if (response.data.Error) {
 			return []; // this 'Error' is the property that the API gives us when there is no movie.
