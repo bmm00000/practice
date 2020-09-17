@@ -9,3 +9,5 @@ const debounce = (func, delay = 1000) => {
 		}, delay);
 	};
 };
+
+// our debounce function is returning a new function that acts like a wrapper (see screenshot)
