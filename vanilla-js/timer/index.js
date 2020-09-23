@@ -1,5 +1,4 @@
 // EVENT - BASED ARCHITECTURE: look at the screenshots. The reason we separate the code for the timer and the code for the border is that we can reuse the code for the timer in any other situation when we don't have border in our timer but some other effect that we want to trigger. Also, we can reuse the code for the border in other projects that have no timer involved, for example, a progress circle when we are downloading a file, etc.
-
 // in order to do this, we are going to implement a class for the timer (we could do it in many different ways, but a class is very suitable here)
 
 const durationInput = document.querySelector('#duration');
