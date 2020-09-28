@@ -1,4 +1,4 @@
-// #!/usr/bin/env node
+#!/usr/bin/env node
 
 const debounce = require('lodash.debounce');
 const chokidar = require('chokidar');
