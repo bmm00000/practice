@@ -83,8 +83,8 @@ const runComparison = () => {
 
 		// we use 'dataset' to extract the values of the 'data-value' properties:
 		// https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/dataset
-		const leftSideValue = leftStat.dataset.value;
-		const rightSideValue = rightStat.dataset.value;
+		const leftSideValue = parseInt(leftStat.dataset.value);
+		const rightSideValue = parseInt(rightStat.dataset.value);
 
 		if (rightSideValue > leftSideValue) {
 			leftStat.classList.remove('is-primary');
@@ -132,7 +132,7 @@ const movieTemplate = (movieDetail) => {
 			<p class="title">${movieDetail.Awards}</p>
 			<p class="subtitle">Awards</p>
 		</article>
-		
+	
 		<article data-value=${metascore} class="notification is-primary">
 			<p class="title">${movieDetail.Metascore}</p>
 			<p class="subtitle">Metascore</p>
@@ -147,3 +147,5 @@ const movieTemplate = (movieDetail) => {
 		</article>
 	`;
 };
+
+// we don't use dollars to avoid problems, since it was always 'N/A'

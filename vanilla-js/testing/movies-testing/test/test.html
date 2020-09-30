@@ -9,6 +9,7 @@
   <body>
     <div id="mocha"></div>
 
+    <!-- this is what we add to place the autocomplete here (it will be without css, we just want to check tha our stuff works): -->
     <div id="target"></div>
 
     <script src="https://unpkg.com/chai/chai.js"></script>
@@ -17,6 +18,7 @@
     <script class="mocha-init">
       mocha.setup('bdd');
       mocha.checkLeaks();
+      // we add the following to use chai (see chai documentation) (you don't need to write this, but it saves us from having to type 'chai.expect' every time we use expect):
       const expect = chai.expect;
     </script>
     <script src="../utils.js"></script>
