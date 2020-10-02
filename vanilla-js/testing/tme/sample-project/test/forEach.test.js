@@ -1,9 +1,12 @@
 const assert = require('assert');
 const { forEach } = require('../index');
 
-it('Should sum an array', () => {
-	const numbers = [ 1, 2, 3 ];
+let numbers;
+beforeEach(() => {
+	numbers = [ 1, 2, 3 ];
+});
 
+it('Should sum an array', () => {
 	let total = 0;
 	forEach(numbers, (value) => {
 		total += value;
