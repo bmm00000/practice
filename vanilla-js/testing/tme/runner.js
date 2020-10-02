@@ -13,7 +13,7 @@ class Runner {
 
 	async runTests() {
 		for (let file of this.testFiles) {
-			// global is a special keyword in node.js, similar to the window in the browser. if 'it' is not defined in this file, node is going to look for 'it' in the properties of the 'global' variable (again, like windown in the browser). the 'global' object is shared between all different files (this is how mocha does it with 'it', btw)
+			// global is a special keyword in node.js, similar to the window in the browser. if 'it' is not defined in this file, node is going to look for 'it' in the properties of the 'global' variable (again, like window in the browser). the 'global' object is shared between all different files (this is how mocha does it with 'it', btw)
 			global.it = (desc, fn) => {
 				console.log(desc);
 			};

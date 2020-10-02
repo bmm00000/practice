@@ -73,7 +73,7 @@ const runComparison = () => {
 	// find the first 'article' element for each movie
 	// run a comparison on the number of awards
 	// apply some styling to that article element
-	// (if we follow the aproach above, the code will depend on the order of the articles below, that's why we are going to do a different thing):
+	// (if we follow the aproach above, the code will depend on the order of the articles below (for example, we will assume that the first article is for 'awards', etc.), so if you change the order of the articles, then you would need to modify the runComparison function. that's why we are going to do a different thing):
 
 	const leftSideStats = document.querySelectorAll('#left-summary .notification');
 	const rightSideStats = document.querySelectorAll('#right-summary .notification');

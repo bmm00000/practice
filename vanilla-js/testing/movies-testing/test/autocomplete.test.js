@@ -21,6 +21,7 @@ const waitFor = (selector) => {
 		const timeout = setTimeout(() => {
 			clearInterval(interval);
 			reject();
+			// if the promise is rejected, the test will fail
 		}, 2000);
 	});
 };
@@ -73,5 +74,5 @@ it('After searching, displays some results', async () => {
 	expect(items.length).to.equal(3);
 });
 
-// as we can see, this approach works, but it took a lot of code to test only the autocomplete (so we tested just a widget, not the whole application)...
+// as we can see, this approach works, but it took a lot of code to test only the autocomplete (so we tested just a widget, not the whole application), and we didn't even get real data from the api...
 // that's why we are going to build now our own testing framework: see next project
