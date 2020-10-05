@@ -1,6 +1,6 @@
 // WE ARE JUST GOING TO FOCUS ON TESTING THE AUTOCOMPLETE, NOT THE COMPARISON COLUMNS
 
-// people spend more time setting up tests than writting tests: as we see in this project, to set up this is a nightmare (different files, etc...). That's because of the environment. In the former lesson, we set it up fast becuase we were in node (we were executing mocha from the command line so it runs the tests in the node.js environment). Testing code in node is very straightforward, but testing code in the browser is a nightmare (we need to do it, since our 'autocomplete' has methods that operate in the browser, addeventlistener, appenchild, etc. that doesn't work in node). So we are going to see how to get mocha to work inside of a browser.
+// people spend more time setting up tests than writting tests: as we see in this project, to set up this is a nightmare (different files, etc...). That's because of the environment. In the former lesson, we set it up fast becuase we were in node (we were executing mocha from the command line so it runs the tests in the node.js environment). Testing code in node is very straightforward, but testing code in the browser is a nightmare (we need to do it, since our 'autocomplete' has methods that operate in the browser, addeventlistener, appenchild, etc. that doesn't work in node). So we are going to see how to get mocha to work inside of a browser. we are going to run browser-based code with node.
 
 // in mocha's documentation, go to 'features' and then to 'browser support'. there you can see the html document that you will use to test with mocha in the browser. This is the platform that we will use to test our browser code.
 
@@ -21,7 +21,7 @@ const waitFor = (selector) => {
 		const timeout = setTimeout(() => {
 			clearInterval(interval);
 			reject();
-			// if the promise is rejected, the test will fail
+			// if the promise is rejected, it will throw and error and the test will fail
 		}, 2000);
 	});
 };

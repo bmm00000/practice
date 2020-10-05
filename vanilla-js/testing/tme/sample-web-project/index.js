@@ -10,3 +10,5 @@ document.querySelector('form').addEventListener('submit', (event) => {
 		header.innerHTML = 'Invalid email';
 	}
 });
+
+// it would be very challenging to test this project inside of the browser the same way that we did with the autocomplete (see why in screenshot 'mocha in the browser')

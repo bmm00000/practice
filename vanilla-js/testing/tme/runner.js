@@ -25,10 +25,10 @@ class Runner {
 			global.beforeEach((fn) => {
 				beforeEaches.push(fn);
 			});
-			global.it = (desc, fn) => {
+			global.it = async (desc, fn) => {
 				beforeEaches.forEach((fn) => fn());
 				try {
-					fn();
+					await fn();
 					console.log(chalk.green(`\tOk - ${desc}`));
 				} catch (err) {
 					// we replace every new line with a new line and two indentations:
@@ -46,7 +46,6 @@ class Runner {
 			} catch (err) {
 				console.log(chalk.red(err));
 			}
-
 			// we use 'require' and not childProcess becuase we want to execute the files in the same process, not as a different process (with 'require', node finds and executes the file)
 		}
 	}
@@ -84,4 +83,4 @@ module.exports = Runner;
 
 // we are going to modify our Breath First traversal: we will only add folders to the array, not files. if it's a file and it ends in 'test.js', we will add that file to our 'this.test.Files'.
 
-// even though we are running code based on node.js, we are going to make sure we can test a browser-based js application (with node.js we don't have access to the browser, but a browser-based app is going to try to access the dom, using methods built into the browser, etc.). that's why we are going to use a library that is going to simulate a browser inside of node.js (a reimplementation of a lot of the code that runs inside of the browser): JSDOM (see documentation and screenshot to see how to simulate a browser and access it)
+// even though we are running code based on node.js, we are going to make sure we can test a browser-based js application (with node.js we don't have access to the browser, but a browser-based app is going to try to access the dom, using methods built into the browser, etc.). that's why we are going to use a library that is going to simulate a browser inside of node.js (a reimplementation of a lot of the code that runs inside of the browser): JSDOM (see documentation and screenshot to see how to simulate a browser and access it). jsdom gives us a copy of a running browser inside of node.js, so we can pretend that we are accessing a browser. So we are going to load up our browser-based code to jsdom, and then we can mess around with some browser-based code.
