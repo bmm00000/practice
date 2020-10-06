@@ -6,10 +6,12 @@ const scrypt = util.promisify(crypto.scrypt);
 
 class UsersRepository {
 	constructor(filename) {
+		// we make sure that a filename for the repo was provided:
 		if (!filename) {
 			throw new Error('Creating a repository requires a filename');
 		}
 
+		// we store the filename in an instance variable, and then check to see if the file exists.
 		this.filename = filename;
 		try {
 			fs.accessSync(this.filename);
