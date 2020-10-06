@@ -21,6 +21,10 @@ it('shows a success message with a valid email', async () => {
 
 	const h1 = dom.window.document.querySelector('h1');
 
+	// the following 'h1.innerHTML' will not execute if we don't delay the return of the dom until all js files linked to the html file have been loaded. that's why we are using a promise in the render function.
+	// console.log('Contents of h1', h1.innerHTML);
+
+	// thanks to the delay in the render function (the promise), the following will work as well:
 	assert.strictEqual(h1.innerHTML, 'Looks good!');
 });
 

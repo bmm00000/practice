@@ -15,6 +15,7 @@ const render = async (filename) => {
 	});
 	// 'dangerously' because we are going to run some js code (the one linked to the html file) in the node.js environment, node has access to the file system of our computer, so things could get deleted, etc.
 
+	// we need to delay the return of the 'dom' until all linked js files have been loaded (see screenshot), otherwise we will have issues since the js files take more time to be executed
 	return new Promise((resolve, reject) => {
 		dom.window.document.addEventListener('DOMContentLoaded', () => {
 			resolve(dom);
