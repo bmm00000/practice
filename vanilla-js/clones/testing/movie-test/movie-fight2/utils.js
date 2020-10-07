@@ -5,9 +5,7 @@ const debounce = (func, delay = 1000) => {
 			clearTimeout(timeoutId);
 		}
 		timeoutId = setTimeout(() => {
-			func.apply(null, args); // we use 'apply' to send as many arguments as we have.
+			func.apply(null, args);
 		}, delay);
 	};
 };
-
-// our debounce function is returning a new function that acts like a wrapper (see screenshot)

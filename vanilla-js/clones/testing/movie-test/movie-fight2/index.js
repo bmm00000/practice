@@ -1,26 +1,28 @@
 const autoCompleteConfig = {
 	renderOption(movie) {
+		// now we make sure that nothing appears if there is no image poster:
 		const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
 		return `
-			<img src="${imgSrc}" />
-			${movie.Title} ${movie.Year}
+			<img src="${imgSrc}">
+			${movie.Title} (${movie.Year})
 		`;
 	},
 	inputValue(movie) {
 		return movie.Title;
 	},
-	// to make network requests, we can use fetch (built-in function, included in the browser) or a third-party library like axios (which makes life a bit easier)
 	async fetchData(searchTerm) {
 		const response = await axios.get('http://www.omdbapi.com/', {
 			params: {
 				apikey: '79a0b990',
 				s: searchTerm
 			}
-			// we could write the query strings of the request as usual, but axios allows us to do it more neatly with the params object.
 		});
+
+		// we do the following to avoid an error if there is no movie with the name that we are looking for
 		if (response.data.Error) {
-			return []; // this 'Error' is the property that the API gives us when there is no movie.
+			return [];
 		}
+
 		return response.data.Search;
 	}
 };
@@ -33,6 +35,7 @@ createAutoComplete({
 		onMovieSelect(movie, document.querySelector('#left-summary'), 'left');
 	}
 });
+
 createAutoComplete({
 	...autoCompleteConfig,
 	root: document.querySelector('#right-autocomplete'),
@@ -42,6 +45,7 @@ createAutoComplete({
 	}
 });
 
+// when we click on a movie, we have to get all the info about it:
 let leftMovie;
 let rightMovie;
 const onMovieSelect = async (movie, summaryElement, side) => {
@@ -51,6 +55,7 @@ const onMovieSelect = async (movie, summaryElement, side) => {
 			i: movie.imdbID
 		}
 	});
+	// and then we can render the info about the movie:
 	summaryElement.innerHTML = movieTemplate(response.data);
 
 	if (side === 'left') {
@@ -65,29 +70,37 @@ const onMovieSelect = async (movie, summaryElement, side) => {
 };
 
 const runComparison = () => {
+	// find the first 'article' element for each movie
+	// run a comparison on the number of awards
+	// apply some styling to that article element
+	// (if we follow the aproach above, the code will depend on the order of the articles below (for example, we will assume that the first article is for 'awards', etc.), so if you change the order of the articles, then you would need to modify the runComparison function. that's why we are going to do a different thing):
+
 	const leftSideStats = document.querySelectorAll('#left-summary .notification');
 	const rightSideStats = document.querySelectorAll('#right-summary .notification');
 
 	leftSideStats.forEach((leftStat, index) => {
 		const rightStat = rightSideStats[index];
 
+		// we use 'dataset' to extract the values of the 'data-value' properties:
+		// https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/dataset
 		const leftSideValue = parseInt(leftStat.dataset.value);
 		const rightSideValue = parseInt(rightStat.dataset.value);
 
 		if (rightSideValue > leftSideValue) {
 			leftStat.classList.remove('is-primary');
-			leftStat.classList.add('is-warning'); // these classes are about colors
+			leftStat.classList.add('is-warning');
 		} else {
 			rightStat.classList.remove('is-primary');
-			rightStat.classList.remove('is-warning');
+			rightStat.classList.add('is-warning');
 		}
 	});
 };
 
 const movieTemplate = (movieDetail) => {
-	const dollars = parseInt(movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
+	// we replace the dollar sign with an empty string (keep in mind that the dollar sign is a protected value, so we have to escape it with '\'), and ditto with commas, then we convert the string into a number with 'parseInt':
+	// const dollars = parseInt(movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
 	const metascore = parseInt(movieDetail.Metascore);
-	const imdbRating = parseFloat(movieDetail.imdbRating);
+	const imdbRating = parseInt(movieDetail.imdbRating);
 	const imdbVotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ''));
 
 	const awards = movieDetail.Awards.split(' ').reduce((prev, word) => {
@@ -119,10 +132,7 @@ const movieTemplate = (movieDetail) => {
 			<p class="title">${movieDetail.Awards}</p>
 			<p class="subtitle">Awards</p>
 		</article>
-		<article data-value=${dollars} class="notification is-primary">
-			<p class="title">${movieDetail.BoxOffice}</p>
-			<p class="subtitle">BoxOffice</p>
-		</article>
+	
 		<article data-value=${metascore} class="notification is-primary">
 			<p class="title">${movieDetail.Metascore}</p>
 			<p class="subtitle">Metascore</p>
@@ -135,7 +145,7 @@ const movieTemplate = (movieDetail) => {
 			<p class="title">${movieDetail.imdbVotes}</p>
 			<p class="subtitle">IMDB Votes</p>
 		</article>
-
 	`;
 };
-// when you do multiline in JS, you always use back ticks: ``
+
+// we don't use dollars to avoid problems, since it was always 'N/A'
