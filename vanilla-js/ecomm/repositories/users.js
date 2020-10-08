@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const util = require('util');
 
 const scrypt = util.promisify(crypto.scrypt);
+// look in node standard library 'util.promisify(original)': you can pass a function that usually receives a callback, and it's going to give us a new version of that function that returns a promise (see screenshot). any function that returns a promised can be used with the async await syntax, that's what we want.
 
 class UsersRepository {
 	constructor(filename) {
@@ -44,12 +45,18 @@ class UsersRepository {
 		// we generate an id when we create a record:
 		attrs.id = this.randomId();
 
+		// we are going to add the hashing and salting code here. We will use functions from the node standard library, crypto module (you need to require it at the top):
+		// we use the randomBytes function to generate a random series of characters (our salt):
+		// we use scrypt for the hashing:
+
 		const salt = crypto.randomBytes(8).toString('hex');
 		const buf = await scrypt(attrs.password, salt, 64);
+		// '64' is not relevant for now
 
 		// we load up our users.json file:
 		const records = await this.getAll();
 		const record = {
+			// with this syntax, we override attrs with the new properties below ('password'), so we replace the password that was provided before.
 			...attrs,
 			password: `${buf.toString('hex')}.${salt}`
 		};

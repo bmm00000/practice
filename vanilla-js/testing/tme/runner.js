@@ -22,9 +22,9 @@ class Runner {
 			// global is a special keyword in node.js, similar to the window in the browser. if 'it' is not defined in this file, node is going to look for 'it' in the properties of the 'global' variable (again, like window in the browser). the 'global' object is shared between all different files (this is how mocha does it with 'it', btw)
 			const beforeEaches = [];
 			global.render = render;
-			global.beforeEach((fn) => {
+			global.beforeEach = (fn) => {
 				beforeEaches.push(fn);
-			});
+			};
 			global.it = async (desc, fn) => {
 				beforeEaches.forEach((fn) => fn());
 				try {

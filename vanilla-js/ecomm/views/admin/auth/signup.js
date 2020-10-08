@@ -1,5 +1,6 @@
 const layout = require('../layout');
 
+// we are using an object as a parameter, because we will need many arguments to display in our html, that's why it's convenient to group them all in an object:
 module.exports = ({ req, errors }) => {
 	return layout({
 		content: `

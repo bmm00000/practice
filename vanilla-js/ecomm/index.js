@@ -1,17 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
-const authRouter = require('./routes/admin/auth');
+const authRouter = require('./routes/admin/auth'); // we are hooking up the router to the 'app'
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+// the cookie-session library is a middleware function, like body-parser:
 app.use(
 	cookieSession({
 		keys: [ 'al;sjdflasjflajsl' ]
+		// 'keys' is the encryption key to encrypt our cookies data, therefore it will not be possible to modify a cookie and pretend to be someone else
 	})
 );
-app.use(authRouter);
+app.use(authRouter); // we are connecting the router to the 'app'. Very important that we place this middleware after the other middleware functions
 
 app.listen(3000, () => {
 	console.log('Listening');
