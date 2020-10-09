@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const util = require('util');
 
 const scrypt = util.promisify(crypto.scrypt);
-// look in node standard library 'util.promisify(original)': you can pass a function that usually receives a callback, and it's going to give us a new version of that function that returns a promise (see screenshot). any function that returns a promised can be used with the async await syntax, that's what we want.
+// look in node standard library 'util.promisify(original)': you can pass a function that usually receives a callback, and it's going to give us a new version of that function that returns a promise (see screenshot). any function that returns a promise can be used with the async await syntax, that's what we want.
 
 class UsersRepository {
 	constructor(filename) {
@@ -166,3 +166,5 @@ module.exports = new UsersRepository('users.json');
 // repo.getAll();
 
 // remember that 'users.json' is created in the directory where we create the instance of the class. We are going to do it all from the main directory ('ecomm')
+
+// we use the repository approach here (as opposed to the active record approach), becuase in the second some methods can be very hairy (for example, the getAll method would not be very easy to implement in the active record approach)

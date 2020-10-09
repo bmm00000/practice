@@ -16,3 +16,4 @@ module.exports = ({ req, errors }) => {
         `
 	});
 };
+// if we send only this div, the browser will add the doctype, header, etc. of a typical html document, but this is not that great, that's why we will add all those elemnents using the 'layout' function.
