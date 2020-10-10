@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const usersRepo = require('./repositories/users');
 
 const app = express();
 
@@ -34,12 +35,21 @@ app.get('/', (req, res) => {
 // 		next();
 // 	}
 // };
+// this callback is run before we have all the additional information about email, passowrd, passowrd-confirmation (see timeline in screenshot). that's why we have to write some code to stop the execution until we have all the info (in order to parse the body by hand, without any libraries)
 
-app.post('/', (req, res) => {
-	console.log(req.body);
+app.post('/', async (req, res) => {
+	const { email, password, passwordConfirmation } = req.body;
+
+	const existingUser = await usersRepo.getOneBy({ email });
+	if (existingUser) {
+		return res.send('A user with this email already exists');
+	}
+
+	if (password !== passwordConfirmation) {
+		return res.send('Passwords do not match');
+	}
+
 	res.send('Account created!');
-
-	// this callback is run before we have all the additional information about email, passowrd, passowrd-confirmation (see timeline in screenshot). that's why we have to write some code to stop the execution until we have all the info (in order to parse the body by hand, without any libraries)
 });
 
 app.listen(3000, () => {
