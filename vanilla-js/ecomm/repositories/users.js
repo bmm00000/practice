@@ -50,6 +50,13 @@ class UsersRepository {
 		// we use scrypt for the hashing:
 
 		const salt = crypto.randomBytes(8).toString('hex');
+
+		// scrypt(attrs.password, salt, 64, (err, buf) => {
+		// 	const hashed = buf.toString('hex');
+		// 	// the resulting hash is called 'derivedKey' in the documentation, it's a buffered hash that has some raw data.
+		// but we will need to paste a lot of code inside the callback, here, so we do the following: WE WILL USE THE PROMISIFY FUNCTION FROM THE UTILITIES MODULE (UTIL) IN NODE STANDARD LIBRARY, THEN WE WON'T NEED THE CALLBACK, AS THE PROMISIFIED FUNCTION WILL RETURN A PROMISE, AND WE CAN USE ASYNC AWAIT SYNTAX, AS FOLLOWS (LOOK AT 'SCRYPT' AT THE TOP OF THIS PAGE):
+		// });
+
 		const buf = await scrypt(attrs.password, salt, 64);
 		// '64' is not relevant for now
 
