@@ -12,7 +12,7 @@ class UsersRepository {
 			throw new Error('Creating a repository requires a filename');
 		}
 
-		// we store the filename in an instance variable, and then check to see if the file exists in the hard drive (otherwise, we will create it). in node standard library, we go to the file system module, and look for a function called 'access'. we have different version of this function: with callback, promised based, and sync (it executes syncronously, so no callback involved, so with 'sync' we are going to sit and wait until node checks that the file exists). from a performance standpoint, we don't want to use the 'sync' version, but in this case we are only going to create one instance of the UsersRepository. the other reason is that we are going to use 'assess' in the constructor function, and constructor functions are not allowed to be async. so we use the 'sync' version
+		// we store the filename in an instance variable, and then check to see if the file exists in the hard drive (otherwise, we will create it). in node standard library, we go to the file system module, and look for a function called 'access'. we have different versions of this function: with callback, promised based, and sync (it executes syncronously, so no callback involved, so with 'sync' we are going to sit and wait until node checks that the file exists). from a performance standpoint, we don't want to use the 'sync' version, but in this case we are only going to create one instance of the UsersRepository. the other reason is that we are going to use 'access' in the constructor function, and constructor functions are not allowed to be async. so we use the 'sync' version
 		this.filename = filename;
 		try {
 			fs.accessSync(this.filename);

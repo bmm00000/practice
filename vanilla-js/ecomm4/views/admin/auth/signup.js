@@ -1,7 +1,13 @@
 const layout = require('../layout');
 
+const getError = (errors, prop) => {
+	// we want to find the errors that refer to either the email, password or passwordConfirmation, that's why we need to add the 'prop':
+	// prop === 'email' || 'password' || 'passwordConfirmation'
+};
+
 // we are using an object as a parameter, because we will need many arguments to display in our html, that's why it's convenient to group them all in an object:
 module.exports = ({ req, errors }) => {
+	// 'errors' may be undefined (in case we hit the signup GET route), that's why we have to write some code here defensively, to make sure we cover this possibility, that's why we are using the helper function above 'getError':
 	return layout({
 		content: `
             <div>

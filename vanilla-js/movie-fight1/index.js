@@ -1,5 +1,6 @@
 const fetchData = async (searchTerm) => {
 	const response = await axios.get('http://www.omdbapi.com/', {
+		// we can write the request more neatly thanks to the axios library:
 		params: {
 			apikey: '79a0b990',
 			s: searchTerm
