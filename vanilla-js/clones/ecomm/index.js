@@ -1,27 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
+const authRouter = require('./routes/admin/auth');
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get('/', (req, res) => {
-	res.send(`
-        <div>
-            <form action="" method="POST">
-                <input type="text" name="email" placeholder="Email">
-                <input type="text" name="password" placeholder="Password">
-                <input type="text" name="passwordConfirmation" placeholder="Password confirmation">
-                <button>Sign Up</button>
-            </form>
-        </div>
-    `);
-});
-
-app.post('/', (req, res) => {
-	console.log(req.body);
-	res.send('Account created!');
-});
+app.use(
+	cookieSession({
+		keys: [ 'jlas;fjlsad;jlf' ]
+	})
+);
+app.use(authRouter);
 
 app.listen(3000, () => {
 	console.log('Listening...');

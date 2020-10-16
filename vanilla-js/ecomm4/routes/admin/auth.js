@@ -42,26 +42,43 @@ router.get('/signin', (req, res) => {
 	res.send(signinTemplate());
 });
 
-router.post('/signin', async (req, res) => {
-	const { email, password } = req.body;
+router.post(
+	'/signin',
+	[
+		check('email')
+			.trim()
+			.normalizeEmail()
+			.isEmail()
+			.withMessage('Must provide a valid email')
+			.custom(async (email) => {
+				const user = await usersRepo.getOneBy({ email });
 
-	const user = await usersRepo.getOneBy({ email });
+				if (!user) {
+					throw new Error('Email not found');
+				}
+			}),
+		check('password').trim()
+		// for the password we don't check now for length, since we may change the requirements for signup in the future, so we would need to change here as well, and maybe we don't do it...
+	],
+	async (req, res) => {
+		const errors = validationResult(req);
+		console.log(errors);
 
-	if (!user) {
-		return res.send('Email not found');
+		const user = await usersRepo.getOneBy({ email });
+		const { email, password } = req.body;
+
+		const validPassword = await usersRepo.comparePasswords(user.password, password);
+
+		if (!validPassword) {
+			return res.send('Invalid password');
+		}
+
+		req.session.userId = user.id;
+		// this is what makes the user authenticated so the user can come back without signing in again.
+
+		res.send('You are signed in!');
 	}
-
-	const validPassword = await usersRepo.comparePasswords(user.password, password);
-
-	if (!validPassword) {
-		return res.send('Invalid password');
-	}
-
-	req.session.userId = user.id;
-	// this is what makes the user authenticated so the user can come back without signing in again.
-
-	res.send('You are signed in!');
-});
+);
 
 module.exports = router;
 

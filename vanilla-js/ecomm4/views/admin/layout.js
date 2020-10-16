@@ -1,6 +1,6 @@
 module.exports = ({ content }) => {
 	return `
-        <!DOCTYPE htlm>
+        <!DOCTYPE html>
         <html>
             <head>
             </head>
