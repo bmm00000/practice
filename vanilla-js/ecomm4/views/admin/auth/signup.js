@@ -1,32 +1,33 @@
 const layout = require('../layout');
+const { getError } = require('../../helpers');
 
-const getError = (errors, prop) => {
-	// we want to find the errors that refer to either the email, password or passwordConfirmation, that's why we need to add the 'prop':
-	// prop === 'email' || 'password' || 'passwordConfirmation'
-	// if (errors) {
-	// 	return errors.mapped()[prop].msg;
-	// }
-	// errors.mapped() will convert the array of errors into an object, and then we will only be interested in [prop].msg, for example:
-	// errors.mapped() === {
-	//     email: {
-	//         msg: 'Invalid email'
-	//     },
-	//     password: {
-	//         msg: 'Password too short'
-	//     },
-	//     passwordConfirmation: {
-	//         msg: 'Passwords must match
-	//     }
-	// }
+// const getError = (errors, prop) => {
+// 	// we want to find the errors that refer to either the email, password or passwordConfirmation, that's why we need to add the 'prop':
+// 	// prop === 'email' || 'password' || 'passwordConfirmation'
+// 	// if (errors) {
+// 	// 	return errors.mapped()[prop].msg;
+// 	// }
+// 	// errors.mapped() will convert the array of errors into an object, and then we will only be interested in [prop].msg, for example:
+// 	// errors.mapped() === {
+// 	//     email: {
+// 	//         msg: 'Invalid email'
+// 	//     },
+// 	//     password: {
+// 	//         msg: 'Password too short'
+// 	//     },
+// 	//     passwordConfirmation: {
+// 	//         msg: 'Passwords must match
+// 	//     }
+// 	// }
 
-	// but if there is no error with, for example, the email, the 'email' property will not appear the the object above, and if we look for it, it will give us an error (cannot find property of undefined). how to solve this?:
-	try {
-		return errors.mapped()[prop].msg;
-		// this statement can blow up either if there are no errors, or if there is no error for a particular property that we are looking for (for example, 'email'): that means that we are looking for an error message that doesn't even exist. therefore, we return an empty string in 'catch':
-	} catch (err) {
-		return '';
-	}
-};
+// 	// but if there is no error with, for example, the email, the 'email' property will not appear the the object above, and if we look for it, it will give us an error (cannot find property of undefined). how to solve this?:
+// 	try {
+// 		return errors.mapped()[prop].msg;
+// 		// this statement can blow up either if there are no errors, or if there is no error for a particular property that we are looking for (for example, 'email'): that means that we are looking for an error message that doesn't even exist. therefore, we return an empty string in 'catch':
+// 	} catch (err) {
+// 		return '';
+// 	}
+// };
 
 // we are using an object as a parameter, because we will need many arguments to display in our html, that's why it's convenient to group them all in an object:
 module.exports = ({ req, errors }) => {

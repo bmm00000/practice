@@ -1,0 +1,55 @@
+[
+  {
+    "email": "test@test.com"
+  },
+  {
+    "email": "test1@test.com",
+    "password": "12345",
+    "id": "16dbd717"
+  },
+  {
+    "email": "test2@test2.com",
+    "password": "1234",
+    "id": "90559406"
+  },
+  {
+    "email": "jose@jose.com",
+    "password": "1234",
+    "id": "b8d97ea8"
+  },
+  {
+    "email": "jose1@gmail.com",
+    "password": "858c9b8a9ff81654816c2ad1f67861b6bf947c480a889b555fb372adce8f5c28a806260ad6cab4aa5bf0cdc57b29ae9c6a44a3f8ed3fbfc0a74fc7ac2992924a.533f4f1ac316d12f",
+    "id": "fe2642a3"
+  },
+  {
+    "email": "jose2@gmail.com",
+    "password": "f0af6bacf574b2e263ec1a7a5ff9930d4c6e7c290edc72d97c115db9947ea5152ba7c04925129099f15f466fb8bd729aa94d8025b337bdcddff1dce6a79ec404.17fea9e6fc1950c2",
+    "id": "d8897423"
+  },
+  {
+    "email": "jose2@gmail.com",
+    "password": "02f045af300664aacb55898304cbfdb7f49ee83e408c69d51536741036e76d3a61f457a81e9b64222e10b38f94c82e5134a2736ecd12752450c68f92be79498c.08c1140a38b2c9d9",
+    "id": "aa212106"
+  },
+  {
+    "email": "jose2@gmail.com",
+    "password": "5e2b7b6d1aa6dee2147e3c2c4e275935437f9e8220598d22698f5afd8c019a7d8967b63d59d7e8c3c0f538649cb81e322c07b2bd84a32f6b058748e1aaedd70d.3a8d573170f72e4b",
+    "id": "24350768"
+  },
+  {
+    "email": "jose2@gmail.com",
+    "password": "d0cf49f197a1afb458ae006381c7f412c1152311b9a2ade00432b65c0506e076f79094a0f995ae0cb2af0649a5d7e68c4c162f8109215da58fb85a73668a64e8.0861434145e2d30e",
+    "id": "3fc250e8"
+  },
+  {
+    "email": "jose2@gmail.com",
+    "password": "437aaed6fb1cb6bedf72d0b0c7e4457c6dcc695aab42b705218e4fb91caf62aae7f52c0e3b9f5dacec3ee80e50085ab6f06f2abb18ef916034c05d838d5d59d3.7929b8ab82df500d",
+    "id": "3154dd75"
+  },
+  {
+    "email": "jose2@gmail.com",
+    "password": "4d339a7209f35e44359d66e9c055809420a5b5cd36c875851436dee6b22fc944d6d56c4ad6f971211459d402d330a5ae092c671d0ee6d49c39eaefbd7f4aaf27.e1b85e7556b1d88f",
+    "id": "09b360fd"
+  }
+]
