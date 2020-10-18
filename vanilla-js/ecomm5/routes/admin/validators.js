@@ -2,6 +2,16 @@ const { check } = require('express-validator');
 const usersRepo = require('../../repositories/users');
 
 module.exports = {
+	requireTitle: check('title')
+		.trim()
+		.isLength({ min: 5, max: 40 })
+		.withMessage('Must be between 5 and 40 characters'),
+	requirePrice: check('price')
+		.trim()
+		.toFloat()
+		.isFloat({ min: 1 })
+		.withMessage('Must be greater than 1'),
+	// toFloat converts a string into numbers. isFloat makes sure that it's a float (just in case the user typed letters, for example), and the minimum number is 1
 	requireEmail: check('email')
 		.trim()
 		.normalizeEmail()
@@ -41,17 +51,22 @@ module.exports = {
 				throw new Error('Email not found');
 			}
 		}),
-	requireValidPasswordForUser: check('password').trim().custom(async (password, { req }) => {
-		// for the password we don't check now for length, since we may change the requirements for signup in the future, so we would need to change here as well, so it will create dependency and potential for bugs...
-		const user = await usersRepo.getOneBy({ email: req.body.email });
-		if (!user) {
-			// even though we are checking the password, the throw the following message, since it will be next to our password input.
-			throw new Error('Invalid password');
-		}
-		const validPassword = await usersRepo.comparePasswords(user.password, password);
+	requireValidPasswordForUser: check('password')
+		.trim()
+		.custom(async (password, { req }) => {
+			// for the password we don't check now for length, since we may change the requirements for signup in the future, so we would need to change here as well, so it will create dependency and potential for bugs...
+			const user = await usersRepo.getOneBy({ email: req.body.email });
+			if (!user) {
+				// even though we are checking the password, the throw the following message, since it will be next to our password input.
+				throw new Error('Invalid password');
+			}
+			const validPassword = await usersRepo.comparePasswords(
+				user.password,
+				password
+			);
 
-		if (!validPassword) {
-			throw new Error('Invalid password');
-		}
-	})
+			if (!validPassword) {
+				throw new Error('Invalid password');
+			}
+		}),
 };
