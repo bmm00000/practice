@@ -13,6 +13,7 @@ class UsersRepository extends Repository {
 		return hashed === hashedSuppliedBuf.toString('hex');
 	}
 
+	// WILL THE FOLLOWING METHOD REPLACE THE 'CREATE' METHOD FROM 'REPOSITORY'?
 	async create(attrs) {
 		attrs.id = this.randomId();
 		const salt = crypto.randomBytes(8).toString('hex');
