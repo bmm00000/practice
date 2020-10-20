@@ -33,7 +33,7 @@ module.exports = {
 		.isLength({ min: 4, max: 20 })
 		.withMessage('Must be between 4 and 20 characters')
 		// we add in here in the 'cumstom' function the validations that we had before, so all the validation is located in the same place:
-		.custom((passwordConfirmation, { req }) => {
+		.custom(async (passwordConfirmation, { req }) => {
 			// custom functions can take a second argument that revceives the req object (see screenshots and documentation), to do things such as comparing passwords :)
 			if (passwordConfirmation !== req.body.password) {
 				throw new Error('Passwords must match');
