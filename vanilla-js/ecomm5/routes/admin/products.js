@@ -60,6 +60,31 @@ router.get('/admin/products/:id/edit', requireAuth, async (req, res) => {
 	res.send(productsEditTemplate({ product }));
 });
 
-router.post('/admin/products/:id/edit', requireAuth, async (req, res) => {});
+router.post(
+	'/admin/products/:id/edit',
+	requireAuth,
+	upload.single('image'),
+	[requireTitle, requireTitle],
+	// handleErrors(productsEditTemplate), // keep in mind that this template requires to receive a product object (and now we are sending only an errors object), therefore if there are errors, it will crash, since product is undefined, and it wants to render products.title, and products.price in the template. That's why we do the following:
+	handleErrors(productsEditTemplate, async (req) => {
+		const product = await productsRepo.getOne(req.params.id);
+		return { product }; // same as {product: product}
+	}),
+	async (req, res) => {
+		const changes = req.body;
+
+		if (req.file) {
+			changes.image = req.file.buffer.toString('base64');
+		}
+		// since 'update' can throw an error, we cover this possibility with try and catch
+		try {
+			await productsRepo.update(req.params.id, changes);
+		} catch (err) {
+			return res.send('Could not find item');
+		}
+
+		res.redirect('/admin/products');
+	}
+);
 
 module.exports = router;
