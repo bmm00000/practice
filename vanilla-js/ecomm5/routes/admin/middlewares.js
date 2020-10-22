@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 
 module.exports = {
 	handleErrors(templateFunc, dataCb) {
+		// the second parameter (dataCb) is optional, if you don't include anything when you call the function it's ok.
 		// we return a function because in express all middlewares must be functions (this will be executed every single time that a req comes in)
 		return async (req, res, next) => {
 			const errors = validationResult(req);

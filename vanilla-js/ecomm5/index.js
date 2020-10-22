@@ -2,21 +2,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const authRouter = require('./routes/admin/auth'); // we are hooking up the router to the 'app'
-const productsRouter = require('./routes/admin/products');
+const adminProductsRouter = require('./routes/admin/products');
+const productsRouter = require('./routes/products');
+const cartsRouter = require('./routes/carts');
 
 const app = express();
 
-app.use(express.static('public')) // this has to be the first 'use' line, to the express that we make public the 'public' folder. Every request will be checked and see if it requires a file in the 'public folder
+app.use(express.static('public')); // this has to be the first 'use' line, to the express that we make public the 'public' folder. Every request will be checked and see if it requires a file in the 'public folder
 app.use(bodyParser.urlencoded({ extended: true }));
 // the cookie-session library is a middleware function, like body-parser:
 app.use(
 	cookieSession({
-		keys: [ 'al;sjdflasjflajsl' ]
+		keys: ['al;sjdflasjflajsl'],
 		// 'keys' is the encryption key to encrypt our cookies data, therefore it will not be possible to modify a cookie and pretend to be someone else
 	})
 );
 app.use(authRouter); // we are connecting the router to the 'app'. Very important that we place this middleware after the other middleware functions
 app.use(productsRouter);
+app.use(adminProductsRouter);
+app.use(cartsRouter);
 
 app.listen(3000, () => {
 	console.log('Listening');

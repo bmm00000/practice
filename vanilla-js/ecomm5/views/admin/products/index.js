@@ -15,13 +15,17 @@ module.exports = ({ products }) => {
           </a>
         </td>
         <td>
+        <form method="POST" action="/admin/products/${product.id}/delete">
           <button class="button is-danger">Delete</button>
+        </form>
         </td>
       </tr>
     `;
 		})
 		.join('');
 	// we use join to have one single string, and not an array of strings
+
+	// we wrap the delete button in a post request, because we want to change data and post it. action refers to the url that we want to make the post request to. the default action is whatever the current url is.
 
 	return layout({
 		content: `
