@@ -26,6 +26,8 @@ module.exports = ({ products }) => {
       `;
 		})
 		.join('\n');
+	// you could also do the following in the form to add a product to the cart:
+	// <form action="/cart/products/${product.id}" method="POST"> and then access req.params.id in the routes file to find about the product
 
 	return layout({
 		content: `
