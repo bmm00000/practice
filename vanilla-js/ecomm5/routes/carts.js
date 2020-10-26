@@ -23,7 +23,7 @@ router.post('/cart/products', async (req, res) => {
 		(item) => item.id === req.body.productId
 	);
 	if (existingItem) {
-		// increment quantity and save cart
+		// increment quantity
 		existingItem.quantity++;
 	} else {
 		// add new product id to items array
