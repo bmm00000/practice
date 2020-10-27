@@ -43,5 +43,5 @@ it('This is the map test', () => {
 	const result = map([1, 2, 3], (num) => {
 		return num * 2;
 	});
-	assert.deepStrictEqual(result, [2, 5, 6]);
+	assert.deepStrictEqual(result, [2, 4, 6]);
 });
