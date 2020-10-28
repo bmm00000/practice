@@ -33,12 +33,16 @@ beforeEach(() => {
 		root: document.querySelector('#target'),
 		// you can decide whether to test the api request or just to include some dummy data to test the other aspects of the autocomplete (you can choose the later, for example, when they charge you to use the api, or when the api is very slow, etc.). in our case, we are going to return some fake data when we type in our fake autocomplete:
 		fetchData() {
-			return [ { Title: 'Avengers' }, { Title: 'Not Avengers' }, { Title: 'Another Avengers' } ];
+			return [
+				{ Title: 'Avengers' },
+				{ Title: 'Not Avengers' },
+				{ Title: 'Another Avengers' },
+			];
 		},
 		renderOption(movie) {
 			// we included only 'Title' as a property of the fake movies
 			return movie.Title;
-		}
+		},
 	});
 });
 
@@ -51,7 +55,7 @@ it('Dropdown starts closed', () => {
 	expect(dropdown.className).not.to.include('is-active');
 });
 
-// now we are testing that when we type something, the dropdown opens up. we are going to fake some text written inside the input, and then manually fake an event (see screenshot). if we don't do anything else, our test will still fail becuase of the debouncer function, the event takes some time to be triggered. therefore, the dropdown is not active yet when the 'expect' function is run. how to fix this? you can use a 'setTimeout' function, but this is not good because if you change the delay of the debouncer, you will need to change the delay of the setTimeout as well. What we are going to do is to use a helper function: 'waitFor' (until the dropdown items don't appear, the files does not continue running):
+// now we are testing that when we type something, the dropdown opens up. we are going to fake some text written inside the input, and then manually fake an event (see screenshot). if we don't do anything else, our test will still fail becuase of the debouncer function, the event takes some time to be triggered. therefore, the dropdown is not active yet when the 'expect' function is run. how to fix this? you can use a 'setTimeout' function, but this is not good because if you change the delay of the debouncer, you will need to change the delay of the setTimeout as well. What we are going to do is to use a helper function: 'waitFor' (until the dropdown items don't appear, the file does not continue running):
 it('After searching, dropdown opens up', async () => {
 	const input = document.querySelector('input');
 	input.value = 'avengers';
