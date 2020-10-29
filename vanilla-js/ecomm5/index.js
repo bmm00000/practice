@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
+
 const authRouter = require('./routes/admin/auth'); // we are hooking up the router to the 'app'
 const adminProductsRouter = require('./routes/admin/products');
 const productsRouter = require('./routes/products');
@@ -33,7 +34,7 @@ app.listen(3000, () => {
 // static sites vs dynamic sites> in static sites you access the html page and that's what you get. in dynamic sites the server gives you different things depending on your request.
 // just with node standard library you can create a server, but with express you can do it more conveniently.
 
-// the browser is not responsible for issuing the network request; it handles it to the operating system (see screenshot), the operating system then accesses some network device conected to the computer, and and sends the request over the internet. if you make a request to other than 'localhost', the operating system is going to reach out to a DNS server, the DND server will send back to my computer the IP address of the url that I typed in, and my machine will make a second request (the actual request) to that IP address. Otherwise, if you use 'localhost', the operating system will look at the port that you specified, and then express will receive that incoming request at that port. when the request gets to express, then it doesn't care about the host or the port anymore. What express cares about is the path that we are trying to access and the method.
+// the browser is not responsible for issuing the network request; it handles it to the operating system (see screenshot), the operating system then accesses some network device conected to the computer, and and sends the request over the internet. if you make a request to other than 'localhost', the operating system is going to reach out to a DNS server, the DNS server will send back to my computer the IP address of the url that I typed in, and my machine will make a second request (the actual request) to that IP address. Otherwise, if you use 'localhost', the operating system will look at the port that you specified, and then express will receive that incoming request at that port. when the request gets to express, then it doesn't care about the host or the port anymore. What express cares about is the path that we are trying to access and the method.
 // if you go to google.com and you put http at the start of the url, the default port is 80, if you put https the default port is 443. that's why when we do a normal request to a website we want to visit, we don't include the port number because there is default value being used.
 
 // keywords: network request, root route, route handler
