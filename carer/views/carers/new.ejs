@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Add your profile</title>
+	</head>
+	<body>
+		<form action="/carers" method="POST">
+			<div>
+				<label for="title">Title</label>
+				<input type="text" name="carer[title]" id="title" />
+			</div>
+			<div>
+				<label for="location">Location</label>
+				<input type="text" name="carer[location]" id="location" />
+			</div>
+			<button>Add profile</button>
+		</form>
+		<a href="/carers">All carers</a>
+	</body>
+</html>

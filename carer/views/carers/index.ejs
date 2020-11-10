@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Carers</title>
+	</head>
+	<body>
+		<h1>All carers</h1>
+		<div>
+			<a href="/carers/new">Add your profile</a>
+		</div>
+		<ul>
+			<% for(let carer of carers){ %>
+			<li><a href="/carers/<%= carer._id %> "><%= carer.title %></a></li>
+			<% } %>
+		</ul>
+	</body>
+</html>
