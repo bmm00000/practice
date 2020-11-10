@@ -88,14 +88,20 @@ function anagrams(stringA, stringB) {
 	// return true;
 
 	// another solution:
-	const strA = stringA.replace(/[^\w]/g, '').toLowerCase();
-	const strB = stringB.replace(/[^\w]/g, '').toLowerCase();
+	// const strA = stringA.replace(/[^\w]/g, '').toLowerCase();
+	// const strB = stringB.replace(/[^\w]/g, '').toLowerCase();
 
-	const strAsorted = strA.split('').sort().join('');
-	const strBsorted = strB.split('').sort().join('');
+	// const strAsorted = strA.split('').sort().join('');
+	// const strBsorted = strB.split('').sort().join('');
 
-	if (strAsorted === strBsorted) {
-		return true;
+	// if (strAsorted === strBsorted) {
+	// 	return true;
+	// }
+
+	return cleanString(stringA) === cleanString(stringB);
+
+	function cleanString(str) {
+		return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
 	}
 }
 
