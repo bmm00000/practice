@@ -22,9 +22,14 @@ const seedDB = async () => {
 	await Carer.deleteMany({});
 	for (let i = 0; i < 50; i++) {
 		const random1000 = Math.floor(Math.random() * 1000);
+		const price = Math.floor(Math.random() * 20 + 10);
 		const c = new Carer({
 			location: `${cities[random1000].city}, ${cities[random1000].state}`,
 			title: `${sample(descriptors)} ${sample(professions)}`,
+			image: 'https://source.unsplash.com/collection/1419103',
+			description:
+				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex esse expedita qui provident nobis eveniet commodi iure repudiandae, accusantium veritatis, fuga reprehenderit in tempora enim amet recusandae blanditiis illum tempore!',
+			price,
 		});
 		await c.save();
 	}
