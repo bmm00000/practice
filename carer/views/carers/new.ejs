@@ -11,8 +11,8 @@
 					name="carer[title]"
 					id="title"
 				/>
-			</div class="mb-3">
-			<div>
+			</div>
+			<div class="mb-3">
 				<label class="form-label" for="location">Location</label>
 				<input
 					class="form-control"
@@ -20,6 +20,39 @@
 					name="carer[location]"
 					id="location"
 				/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="image">Image URL</label>
+				<input
+					class="form-control"
+					type="text"
+					name="carer[image]"
+					id="image"
+				/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="price">Hourly rate</label>
+				<div class="input-group">
+					<span class="input-group-text" id="price-label">$</span>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="0.00"
+						aria-label="price"
+						aria-describedby="price-label"
+						id="price"
+						name="carer[price]"
+					/>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="description">Description</label>
+				<textarea
+					class="form-control"
+					type="text"
+					name="carer[description]"
+					id="description"
+				></textarea>
 			</div>
 			<div class="mb-3">
 				<button class="btn btn-success">Add profile</button>
