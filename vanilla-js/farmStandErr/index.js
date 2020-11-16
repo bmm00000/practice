@@ -3,11 +3,10 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
-const AppError = require('./AppError');
-
 const app = express();
 
 const Product = require('./models/product');
+const AppError = require('./AppError');
 
 mongoose
 	.connect('mongodb://localhost:27017/farmStandErr', {
@@ -30,56 +29,96 @@ app.use(methodOverride('_method'));
 
 const categories = ['fruit', 'vegetable', 'dairy', 'fingi'];
 
-app.get('/products', async (req, res) => {
-	const { category } = req.query;
-	if (category) {
-		const products = await Product.find({ category });
-		res.render('products/index', { products, category });
-	} else {
-		const products = await Product.find({});
-		res.render('products/index', { products, category: 'All' });
-	}
-});
+function wrapAsync(fn) {
+	return function (req, res, next) {
+		fn(req, res, next).catch((err) => next(err));
+	};
+}
+
+app.get(
+	'/products',
+	wrapAsync(async (req, res, next) => {
+		try {
+			const { category } = req.query;
+			if (category) {
+				const products = await Product.find({ category });
+				res.render('products/index', { products, category });
+			} else {
+				const products = await Product.find({});
+				res.render('products/index', { products, category: 'All' });
+			}
+		} catch (err) {
+			next(err);
+		}
+	})
+);
 
 app.get('/products/new', (req, res) => {
-	throw new AppError('not allowweddd', 404);
 	res.render('products/new', { categories });
 });
 
-app.post('/products', async (req, res) => {
-	const newProduct = new Product(req.body);
-	await newProduct.save();
-	res.redirect(`/products/${newProduct._id}`);
-});
+app.post(
+	'/products',
+	wrapAsync(async (req, res, next) => {
+		const newProduct = new Product(req.body);
+		await newProduct.save();
+		res.redirect(`/products/${newProduct._id}`);
+	})
+);
 
-app.get('/products/:id', async (req, res, next) => {
-	const { id } = req.params;
-	const product = await Product.findById(id);
-	if (!product) {
-		next(new AppError('Error here', 401));
+app.get(
+	'/products/:id',
+	wrapAsync(async (req, res, next) => {
+		const { id } = req.params;
+		const product = await Product.findById(id);
+		// if (!product) {
+		// 	throw new AppError('prrrroduct not foundd', 404);
+		// }
+		res.render('products/show', { product });
+	})
+);
+
+app.get(
+	'/products/:id/edit',
+	wrapAsync(async (req, res, next) => {
+		const { id } = req.params;
+		const product = await Product.findById(id);
+		res.render('products/edit', { product, categories });
+	})
+);
+
+app.put(
+	'/products/:id',
+	wrapAsync(async (req, res, next) => {
+		const { id } = req.params;
+		const product = await Product.findByIdAndUpdate(id, req.body, {
+			runValidators: true,
+			new: true,
+		});
+		res.redirect(`/products/${product._id}`);
+	})
+);
+
+app.delete(
+	'/products/:id',
+	wrapAsync(async (req, res) => {
+		const { id } = req.params;
+		const deletedProduct = await Product.findByIdAndDelete(id);
+		res.redirect('/products');
+	})
+);
+
+const handleValidationError = (err) => {
+	console.log(err);
+	return new AppError(`Validation failed... ${err.message}`, 400);
+};
+
+app.use((err, req, res, next) => {
+	console.log(err.name);
+	if (err.name === 'ValidationError') {
+		err = handleValidationError(err);
 	}
-	res.render('products/show', { product });
-});
-
-app.get('/products/:id/edit', async (req, res) => {
-	const { id } = req.params;
-	const product = await Product.findById(id);
-	res.render('products/edit', { product, categories });
-});
-
-app.put('/products/:id', async (req, res) => {
-	const { id } = req.params;
-	const product = await Product.findByIdAndUpdate(id, req.body, {
-		runValidators: true,
-		new: true,
-	});
-	res.redirect(`/products/${product._id}`);
-});
-
-app.delete('/products/:id', async (req, res) => {
-	const { id } = req.params;
-	const deletedProduct = await Product.findByIdAndDelete(id);
-	res.redirect('/products');
+	next(err);
 });
 
 app.use((err, req, res, next) => {
