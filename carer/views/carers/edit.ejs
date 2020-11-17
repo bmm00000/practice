@@ -3,7 +3,12 @@
 <div class="row">
 	<h1 class="text-center">Edit your profile</h1>
 	<div class="col-6 offset-3">
-		<form action="/carers/<%= carer._id %>?_method=PUT" method="POST">
+		<form
+			action="/carers/<%= carer._id %>?_method=PUT"
+			method="POST"
+			novalidate
+			class="validated-form"
+		>
 			<div class="mb-3">
 				<label class="form-label" for="title">Title</label>
 				<input
@@ -12,7 +17,9 @@
 					name="carer[title]"
 					id="title"
 					value="<%= carer.title %> "
+					required
 				/>
+				<div class="valid-feedback">Looks good!</div>
 			</div>
 			<div class="mb-3">
 				<label class="form-label" for="location">Location</label>
@@ -22,7 +29,9 @@
 					name="carer[location]"
 					id="location"
 					value="<%= carer.location %> "
+					required
 				/>
+				<div class="valid-feedback">Looks good!</div>
 			</div>
 			<div class="mb-3">
 				<label class="form-label" for="image">Image URL</label>
@@ -32,7 +41,9 @@
 					name="carer[image]"
 					id="image"
 					value="<%= carer.image %> "
+					required
 				/>
+				<div class="valid-feedback">Looks good!</div>
 			</div>
 			<div class="mb-3">
 				<label class="form-label" for="price">Hourly rate</label>
@@ -47,7 +58,9 @@
 						id="price"
 						name="carer[price]"
 						value="<%= carer.price %> "
+						required
 					/>
+					<div class="valid-feedback">Looks good!</div>
 				</div>
 			</div>
 			<div class="mb-3">
@@ -57,9 +70,11 @@
 					type="text"
 					name="carer[description]"
 					id="description"
+					required
 				>
 <%= carer.description %></textarea
 				>
+				<div class="valid-feedback">Looks good!</div>
 			</div>
 			<div class="mb-3">
 				<button class="btn btn-info">Update profile</button>
