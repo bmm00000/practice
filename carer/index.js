@@ -2,12 +2,13 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
-const { carerSchema } = require('./schemas');
+const { carerSchema, reviewSchema } = require('./schemas');
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 
 const Carer = require('./models/carer');
+const Review = require('./models/review');
 
 mongoose.connect('mongodb://localhost:27017/carer', {
 	useNewUrlParser: true,
@@ -32,6 +33,16 @@ app.use(methodOverride('_method'));
 
 const validateCarer = (req, res, next) => {
 	const { error } = carerSchema.validate(req.body);
+	if (error) {
+		const msg = error.details.map((el) => el.message).join(',');
+		throw new ExpressError(msg, 400);
+	} else {
+		next();
+	}
+};
+
+const validateReview = (req, res, next) => {
+	const { error } = reviewSchema.validate(req.body);
 	if (error) {
 		const msg = error.details.map((el) => el.message).join(',');
 		throw new ExpressError(msg, 400);
@@ -100,6 +111,19 @@ app.delete(
 		const { id } = req.params;
 		await Carer.findByIdAndDelete(id);
 		res.redirect('/carers');
+	})
+);
+
+app.post(
+	'/carers/:id/reviews',
+	validateReview,
+	catchAsync(async (req, res) => {
+		const carer = await Carer.findById(req.params.id);
+		const review = new Review(req.body.review);
+		carer.reviews.push(review);
+		await review.save();
+		await carer.save();
+		res.redirect(`/carers/${carer._id}`);
 	})
 );
 
