@@ -2,13 +2,13 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
-const { carerSchema, reviewSchema } = require('./schemas');
-const catchAsync = require('./utils/catchAsync');
+const session = require('express-session');
+const flash = require('connect-flash');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 
-const Carer = require('./models/carer');
-const Review = require('./models/review');
+const carers = require('./routes/carers');
+const reviews = require('./routes/reviews');
 
 mongoose.connect('mongodb://localhost:27017/carer', {
 	useNewUrlParser: true,
@@ -31,112 +31,33 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')));
 
-const validateCarer = (req, res, next) => {
-	const { error } = carerSchema.validate(req.body);
-	if (error) {
-		const msg = error.details.map((el) => el.message).join(',');
-		throw new ExpressError(msg, 400);
-	} else {
-		next();
-	}
+const sessionConfig = {
+	secret: 'thisismysecret',
+	resave: false,
+	saveUninitialized: true,
+	cookie: {
+		httpOnly: true,
+		expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+		maxAge: 1000 * 60 * 60 * 24 * 7,
+	},
 };
+app.use(session(sessionConfig));
+app.use(flash());
 
-const validateReview = (req, res, next) => {
-	const { error } = reviewSchema.validate(req.body);
-	if (error) {
-		const msg = error.details.map((el) => el.message).join(',');
-		throw new ExpressError(msg, 400);
-	} else {
-		next();
-	}
-};
+app.use((req, res, next) => {
+	res.locals.success = req.flash('success');
+	res.locals.error = req.flash('error');
+	next();
+});
+
+app.use('/carers', carers);
+app.use('/carers/:id/reviews', reviews);
 
 app.get('/', (req, res) => {
 	res.render('home');
 });
-
-app.get(
-	'/carers',
-	catchAsync(async (req, res) => {
-		const carers = await Carer.find({});
-		res.render('carers/index', { carers });
-	})
-);
-
-app.get('/carers/new', (req, res) => {
-	res.render('carers/new');
-});
-
-app.post(
-	'/carers',
-	validateCarer,
-	catchAsync(async (req, res, next) => {
-		// if (!req.body.carer) throw new ExpressError('Invalid carer data...', 400);
-
-		const carer = new Carer(req.body.carer);
-		await carer.save();
-		res.redirect(`/carers/${carer._id}`);
-	})
-);
-
-app.get(
-	'/carers/:id',
-	catchAsync(async (req, res) => {
-		const carer = await Carer.findById(req.params.id).populate('reviews');
-		res.render('carers/show', { carer });
-	})
-);
-
-app.get(
-	'/carers/:id/edit',
-	catchAsync(async (req, res) => {
-		const carer = await Carer.findById(req.params.id);
-		res.render('carers/edit', { carer });
-	})
-);
-
-app.put(
-	'/carers/:id',
-	validateCarer,
-	catchAsync(async (req, res) => {
-		const { id } = req.params;
-		const carer = await Carer.findByIdAndUpdate(id, { ...req.body.carer });
-		res.redirect(`/carers/${carer._id}`);
-	})
-);
-
-app.delete(
-	'/carers/:id',
-	catchAsync(async (req, res) => {
-		const { id } = req.params;
-		await Carer.findByIdAndDelete(id);
-		res.redirect('/carers');
-	})
-);
-
-app.post(
-	'/carers/:id/reviews',
-	validateReview,
-	catchAsync(async (req, res) => {
-		const carer = await Carer.findById(req.params.id);
-		const review = new Review(req.body.review);
-		carer.reviews.push(review);
-		await review.save();
-		await carer.save();
-		res.redirect(`/carers/${carer._id}`);
-	})
-);
-
-app.delete(
-	'/carers/:id/reviews/:reviewId',
-	catchAsync(async (req, res) => {
-		const { id, reviewId } = req.params;
-		await Carer.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-		await Review.findByIdAndDelete(req.params.reviewId);
-		res.redirect(`/carers/${id}`);
-	})
-);
 
 app.all('*', (req, res, next) => {
 	next(new ExpressError('Page not found...', 404));
