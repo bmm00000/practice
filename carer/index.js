@@ -14,6 +14,7 @@ mongoose.connect('mongodb://localhost:27017/carer', {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true,
+	useFindAndModify: false,
 });
 
 const db = mongoose.connection;
@@ -82,7 +83,7 @@ app.post(
 app.get(
 	'/carers/:id',
 	catchAsync(async (req, res) => {
-		const carer = await Carer.findById(req.params.id);
+		const carer = await Carer.findById(req.params.id).populate('reviews');
 		res.render('carers/show', { carer });
 	})
 );
@@ -124,6 +125,16 @@ app.post(
 		await review.save();
 		await carer.save();
 		res.redirect(`/carers/${carer._id}`);
+	})
+);
+
+app.delete(
+	'/carers/:id/reviews/:reviewId',
+	catchAsync(async (req, res) => {
+		const { id, reviewId } = req.params;
+		await Carer.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+		await Review.findByIdAndDelete(req.params.reviewId);
+		res.redirect(`/carers/${id}`);
 	})
 );
 
