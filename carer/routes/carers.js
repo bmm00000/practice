@@ -44,6 +44,10 @@ router.get(
 	'/:id',
 	catchAsync(async (req, res) => {
 		const carer = await Carer.findById(req.params.id).populate('reviews');
+		if (!carer) {
+			req.flash('error', 'Cannot find that carer');
+			return res.redirect('/carers');
+		}
 		res.render('carers/show', { carer });
 	})
 );
@@ -52,6 +56,10 @@ router.get(
 	'/:id/edit',
 	catchAsync(async (req, res) => {
 		const carer = await Carer.findById(req.params.id);
+		if (!carer) {
+			req.flash('error', 'Cannot find that carer');
+			return res.redirect('/carers');
+		}
 		res.render('carers/edit', { carer });
 	})
 );
@@ -62,6 +70,7 @@ router.put(
 	catchAsync(async (req, res) => {
 		const { id } = req.params;
 		const carer = await Carer.findByIdAndUpdate(id, { ...req.body.carer });
+		req.flash('success', 'Profile updated successfully');
 		res.redirect(`/carers/${carer._id}`);
 	})
 );
@@ -71,6 +80,7 @@ router.delete(
 	catchAsync(async (req, res) => {
 		const { id } = req.params;
 		await Carer.findByIdAndDelete(id);
+		req.flash('success', 'Profile deleted sucessfully');
 		res.redirect('/carers');
 	})
 );

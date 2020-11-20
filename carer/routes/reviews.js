@@ -28,6 +28,7 @@ router.post(
 		carer.reviews.push(review);
 		await review.save();
 		await carer.save();
+		req.flash('success', 'Review created successfully');
 		res.redirect(`/carers/${carer._id}`);
 	})
 );
@@ -38,6 +39,7 @@ router.delete(
 		const { id, reviewId } = req.params;
 		await Carer.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
 		await Review.findByIdAndDelete(req.params.reviewId);
+		req.flash('success', 'Review deleted sucessfully');
 		res.redirect(`/carers/${id}`);
 	})
 );
