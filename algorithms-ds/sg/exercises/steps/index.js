@@ -18,11 +18,16 @@
 //       '####'
 
 function steps(n) {
-	let sharp = '';
-	for (let i = 1; i <= n; i++) {
-		sharp += '#';
-		const result = sharp + new Array(n - i).join(' ');
-		console.log(result);
+	for (let row = 0; row < n; row++) {
+		let string = '';
+		for (let column = 0; column < n; column++) {
+			if (row >= column) {
+				string += '#';
+			} else {
+				string += ' ';
+			}
+		}
+		console.log(string);
 	}
 }
 
