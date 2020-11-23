@@ -11,7 +11,6 @@
 function reverseInt(n) {
 	// my solution:
 	// const str = n.toString();
-
 	// let reversedStr = '';
 	// for (let char of str) {
 	// 	reversedStr = char + reversedStr;
@@ -22,18 +21,14 @@ function reverseInt(n) {
 	// if (Math.sign(n) === -1) {
 	// 	return -parseInt(reversedStr);
 	// }
-
 	// first solution:
 	// const reversedStr = n.toString().split('').reverse().join('');
-
 	// if (n < 0) {
 	// 	return parseInt(reversedStr) * -1;
 	// }
 	// return parseInt(reversedStr);
-
 	// second solution:
 	const reversedStr = n.toString().split('').reverse().join('');
-
 	return parseInt(reversedStr) * Math.sign(n);
 }
 
