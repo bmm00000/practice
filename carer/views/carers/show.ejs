@@ -14,8 +14,12 @@
 			</div>
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item text-muted"><%= carer.location %></li>
+				<li class="list-group-item">
+					Submitted by <%= carer.author.username %>
+				</li>
 				<li class="list-group-item">$<%= carer.price %> per hour</li>
 			</ul>
+			<% if(currentUser && carer.author.equals(currentUser._id)){ %>
 			<div class="card-body">
 				<a class="card-link btn btn-info" href="/carers/<%= carer._id %>/edit "
 					>Edit profile</a
@@ -28,6 +32,7 @@
 					<button class="btn btn-danger">Delete profile</button>
 				</form>
 			</div>
+			<% } %>
 			<div class="card-footer text-muted">2 days ago</div>
 		</div>
 	</div>
