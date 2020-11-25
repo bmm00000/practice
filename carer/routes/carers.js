@@ -4,13 +4,19 @@ const carers = require('../controllers/carers');
 
 const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn, validateCarer, isAuthor } = require('../middleware');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const Carer = require('../models/carer');
 
 router
 	.route('/')
 	.get(catchAsync(carers.index))
-	.post(isLoggedIn, validateCarer, catchAsync(carers.createCarer));
+	// .post(isLoggedIn, validateCarer, catchAsync(carers.createCarer));
+	.post(upload.array('image'), (req, res) => {
+		console.log(req.body, req.files);
+		res.send('done');
+	});
 
 router.get('/new', isLoggedIn, carers.renderNewForm);
 
