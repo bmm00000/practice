@@ -28,8 +28,15 @@ function reverseInt(n) {
 	// }
 	// return parseInt(reversedStr);
 	// second solution:
-	const reversedStr = n.toString().split('').reverse().join('');
-	return parseInt(reversedStr) * Math.sign(n);
+	// const reversedStr = n.toString().split('').reverse().join('');
+	// return parseInt(reversedStr) * Math.sign(n);
+
+	const revnStr = n.toString().split('').reverse().join('');
+	if (n < 0) {
+		return parseInt(revnStr) * -1;
+	} else {
+		return parseInt(revnStr);
+	}
 }
 
 module.exports = reverseInt;
