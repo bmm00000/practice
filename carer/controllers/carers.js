@@ -10,8 +10,8 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCarer = async (req, res, next) => {
-	// if (!req.body.carer) throw new ExpressError('Invalid carer data...', 400);
 	const carer = new Carer(req.body.carer);
+	carer.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
 	carer.author = req.user._id;
 	await carer.save();
 	req.flash('success', 'Profile added successfully!');
