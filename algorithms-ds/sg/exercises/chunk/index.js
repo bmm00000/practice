@@ -56,12 +56,30 @@ function chunk(array, size) {
 	// return chuncked;
 
 	// refactored:
+	// const chuncked = [];
+	// let index = 0;
+	// while (index < array.length) {
+	// 	chuncked.push(array.slice(index, index + size));
+	// 	index += size;
+	// }
+
+	//REVISION:
+	// const chuncked = [];
+	// for (let item of array) {
+	// 	const last = chuncked[chuncked.length - 1];
+	// 	if (!last || last.length === size) {
+	// 		chuncked.push([item]);
+	// 	} else {
+	// 		last.push(item);
+	// 	}
+	// }
+
 	const chuncked = [];
-	let index = 0;
-	while (index < array.length) {
-		chuncked.push(array.slice(index, index + size));
-		index += size;
+	for (let i = 0; i < array.length; i += size) {
+		const chunk = array.slice(i, i + size);
+		chuncked.push(chunk);
 	}
+
 	return chuncked;
 }
 
