@@ -98,10 +98,37 @@ function anagrams(stringA, stringB) {
 	// 	return true;
 	// }
 
-	return cleanString(stringA) === cleanString(stringB);
+	// return cleanString(stringA) === cleanString(stringB);
 
-	function cleanString(str) {
-		return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+	// function cleanString(str) {
+	// 	return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+	// }
+
+	const mapA = mapper(cleaner(stringA));
+	const mapB = mapper(cleaner(stringB));
+
+	for (let key in mapA) {
+		if (mapA[key] !== mapB[key]) {
+			return false;
+		}
+	}
+	for (let key in mapB) {
+		if (mapB[key] !== mapA[key]) {
+			return false;
+		}
+	}
+	return true;
+
+	function cleaner(str) {
+		return str.replace(/[^\w]/g, '').toLowerCase();
+	}
+
+	function mapper(str) {
+		const map = {};
+		for (let char of str) {
+			map[char] = map[char] + 1 || 1;
+		}
+		return map;
 	}
 }
 
