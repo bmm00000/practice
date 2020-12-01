@@ -16,16 +16,25 @@ function capitalize(str) {
 	// }
 	// return resArr.join(' ');
 
-	let result = str[0].toUpperCase();
+	//another solution:
+	// let result = str[0].toUpperCase();
 
-	for (let i = 1; i < str.length; i++) {
-		if (str[i - 1] === ' ') {
-			result += str[i].toUpperCase();
-		} else {
-			result += str[i];
-		}
+	// for (let i = 1; i < str.length; i++) {
+	// 	if (str[i - 1] === ' ') {
+	// 		result += str[i].toUpperCase();
+	// 	} else {
+	// 		result += str[i];
+	// 	}
+	// }
+	// return result;
+
+	const splitSen = str.split(' ');
+	const newSen = [];
+	for (let word of splitSen) {
+		const capWord = word[0].toUpperCase() + word.slice(1);
+		newSen.push(capWord);
 	}
-	return result;
+	return newSen.join(' ');
 }
 
 module.exports = capitalize;
