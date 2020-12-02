@@ -94,11 +94,46 @@
 
 // anagram('anagram', 'nagaram');
 
-function sumZero(arr) {
-	for (let i = 0; i < arr.length; i++) {
-		if (arr[i] - arr[arr.length - 1 - i] === 0) {
-			return [arr[i], arr[arr.length - 1 - i]];
+// function sumZero(arr) {
+// 	let left = 0;
+// 	let right = arr.length - 1;
+//  if(arr.length === 0) return 0
+// 	while (left < right) {
+// 		if (arr[left] - arr[right] === 0) {
+// 			return arr[left], arr[right];
+// 		} else if (arr[left] - arr[right] < 0) {
+// 			left++;
+// 		} else {
+// 			right--;
+// 		}
+// 	}
+// }
+
+// function countUniqueValues(arr) {
+// 	let left = 0;
+// 	let right = 1;
+// 	let count = 1;
+// 	for (let i = 0; i < arr.length - 1; i++) {
+// 		if (arr[left] !== arr[right]) {
+// 			count++;
+// 			left++;
+// 			right++;
+// 		} else {
+// 			left++;
+// 			right++;
+// 		}
+// 	}
+// 	return count;
+// }
+
+function countUniqueValues(arr) {
+	if (arr.length === 0) return 0;
+	let l = 0;
+	for (let r = 1; r < arr.length; r++) {
+		if (arr[l] !== arr[r]) {
+			l++;
+			arr[l] = arr[r];
 		}
 	}
-	return undefined;
+	return l + 1;
 }
