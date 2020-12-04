@@ -8,8 +8,6 @@ const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 
-const Carer = require('../models/carer');
-
 router
 	.route('/')
 	.get(catchAsync(carers.index))
@@ -25,7 +23,13 @@ router.get('/new', isLoggedIn, carers.renderNewForm);
 router
 	.route('/:id')
 	.get(catchAsync(carers.showCarer))
-	.put(isLoggedIn, isAuthor, validateCarer, catchAsync(carers.updateCarer))
+	.put(
+		isLoggedIn,
+		isAuthor,
+		upload.array('image'),
+		validateCarer,
+		catchAsync(carers.updateCarer)
+	)
 	.delete(isLoggedIn, isAuthor, catchAsync(carers.deleteCarer));
 
 router.get(

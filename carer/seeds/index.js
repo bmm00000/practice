@@ -27,10 +27,21 @@ const seedDB = async () => {
 			author: '5fbd6796f73d818aa727f7ea',
 			location: `${cities[random1000].city}, ${cities[random1000].state}`,
 			title: `${sample(descriptors)} ${sample(professions)}`,
-			image: 'https://source.unsplash.com/collection/1419103',
 			description:
 				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex esse expedita qui provident nobis eveniet commodi iure repudiandae, accusantium veritatis, fuga reprehenderit in tempora enim amet recusandae blanditiis illum tempore!',
 			price,
+			images: [
+				{
+					url:
+						'https://res.cloudinary.com/dmgkrtebm/image/upload/v1606419899/Carer/ixchyhnomkfv2vpnbcb7.png',
+					filename: 'Carer/ixchyhnomkfv2vpnbcb7',
+				},
+				{
+					url:
+						'https://res.cloudinary.com/dmgkrtebm/image/upload/v1606419919/Carer/yvyd5jmjotucwavttrfw.png',
+					filename: 'Carer/yvyd5jmjotucwavttrfw',
+				},
+			],
 		});
 		await c.save();
 	}
