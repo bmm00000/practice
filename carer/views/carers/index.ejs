@@ -1,17 +1,25 @@
 <% layout('layouts/boilerplate') %>
 <h1>All carers</h1>
 <div>
-	<a href="/carers/new">Add your profile</a>
+	<a href="/carers/new">I'm a carer</a>
 </div>
 <% for(let carer of carers){ %>
 <div class="card" mb-3>
 	<div class="row">
 		<div class="col-md-4">
+			<% if(carer.images.length){ %>
 			<img
 				class="img-fluid"
 				alt="Healthcare related image"
 				src="<%= carer.images[0].url %> "
 			/>
+			<% } else { %>
+			<img
+				class="img-fluid"
+				src="https://res.cloudinary.com/dmgkrtebm/image/upload/v1607192446/Carer/rr0pbwayv03wqun1ccoo.jpg"
+				alt="Healthcare freelancer with a computer"
+			/>
+			<% } %>
 		</div>
 		<div class="col-md-8">
 			<div class="card-body">
