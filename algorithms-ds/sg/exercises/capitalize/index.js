@@ -28,13 +28,23 @@ function capitalize(str) {
 	// }
 	// return result;
 
-	const splitSen = str.split(' ');
-	const newSen = [];
-	for (let word of splitSen) {
-		const capWord = word[0].toUpperCase() + word.slice(1);
-		newSen.push(capWord);
+	// const splitSen = str.split(' ');
+	// const newSen = [];
+	// for (let word of splitSen) {
+	// 	const capWord = word[0].toUpperCase() + word.slice(1);
+	// 	newSen.push(capWord);
+	// }
+	// return newSen.join(' ');
+
+	let newStr = '';
+	for (let i = 0; i < str.length; i++) {
+		if (str[i - 1] === ' ' || !str[i - 1]) {
+			newStr += str[i].toUpperCase();
+		} else {
+			newStr += str[i];
+		}
 	}
-	return newSen.join(' ');
+	return newStr;
 }
 
 module.exports = capitalize;

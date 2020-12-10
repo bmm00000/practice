@@ -18,16 +18,28 @@
 //       '####'
 
 function steps(n) {
-	for (let row = 0; row < n; row++) {
-		let string = '';
-		for (let column = 0; column < n; column++) {
-			if (row >= column) {
-				string += '#';
+	// for (let row = 0; row < n; row++) {
+	// 	let string = '';
+	// 	for (let column = 0; column < n; column++) {
+	// 		if (row >= column) {
+	// 			string += '#';
+	// 		} else {
+	// 			string += ' ';
+	// 		}
+	// 	}
+	// 	console.log(string);
+	// }
+
+	for (let i = 0; i < n; i++) {
+		let str = '';
+		for (let j = 0; j < n; j++) {
+			if (i >= j) {
+				str += '#';
 			} else {
-				string += ' ';
+				str += ' ';
 			}
 		}
-		console.log(string);
+		console.log(str);
 	}
 }
 
