@@ -1,0 +1,20 @@
+html {
+    box-sizing: border-box;
+}
+
+*, 
+*:before, 
+*:after {
+    box-sizing: inherit;
+}
+
+.swiper-slide {
+    text-align: center;
+}
+
+img {
+    max-height: 35rem;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 0.5rem;
+}
