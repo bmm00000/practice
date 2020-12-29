@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>submit content</title>
+    <link rel="stylesheet" href="./css/posts.css">
+</head>
+<body>
+    <p><a href="./index.html">back to blog</a></p>
+    <h2>We are always looking for contributors</h2>
+    <form method="POST" action="index.php">
+        <fieldset>
+            <legend>Contact info</legend>
+            <div class="contact">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" autofocus>
+            </div>
+            <div class="contact">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="contact">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Your work with us</legend>
+            <div class="contact">
+                <label for="topic">Choose your preferred topic</label>
+                <select id="topic" name="topic">
+                    <option selected>Select one...</option>
+                    <option value="nutrition">Nutrition</option>
+                    <option value="exercise">Exercise</option>
+                    <option value="business">Business</option>
+                    <option value="creativity">Creativity</option>
+                </select>
+            </div>
+            <div class="contact">
+                <label for="comments">Additional comments</label>
+                <textarea id="comments" name="comments" placeholder="Tell us something unique about yourself..."></textarea>
+            </div>
+            <div class="contact">
+                <label>
+                    <input type="checkbox" name="subscribe" value="subscribe">Send me opportunities from your partners
+                </label>
+            </div>
+        </fieldset>
+        <button type="submit">Submit</button>
+    </form>
+    <p>Feel free to visit us in Berlin</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19432.08098774438!2d13.38784161948927!3d52.49705633203015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84e373f035901%3A0x42120465b5e3b70!2sBerlin%2C%20Germany!5e0!3m2!1sen!2ses!4v1590095453851!5m2!1sen!2ses" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <address>
+        Kreuzberg<br>
+        Berlin<br>
+        Germany
+    </address>
+    <footer>
+        <p>Copyright 2020</p>
+    </footer>
+</body>
+</html>

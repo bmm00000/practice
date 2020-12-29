@@ -1,0 +1,81 @@
+html {
+    box-sizing: border-box;
+}
+
+*, 
+*:before, 
+*:after {
+    box-sizing: inherit;
+}
+
+h2,
+h3,
+p,
+form,
+address {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 1.5rem;
+}
+
+fieldset {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.contact {
+    display: inline-block;
+    padding: 3rem;
+}
+
+iframe {
+    width: 90%;
+    margin: 0.5rem 5%;
+    border-radius: 0.3rem;
+}
+
+.author {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.author p {
+    font-weight: normal;
+    font-size: 0.8em;
+}
+
+blockquote {
+    width: 90%;
+    margin: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    text-align: right;
+}
+
+figure {
+    margin: 0;
+}
+
+figcaption {
+    width: 90%;
+    margin: auto;
+    text-align: right;
+    font-size: 0.7em;
+    font-weight: lighter;
+}
+
+.post-img {
+    display: block;
+    width: 90%;
+    margin: auto;
+    border-radius: 0.3rem;
+}
+
+footer p {
+    padding-top: 3rem;
+    padding-bottom: 0;
+}
