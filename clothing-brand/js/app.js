@@ -29,10 +29,16 @@ const makeManufList = (array) => {
 };
 
 const getAvailability = async (manufacturer) => {
-	const res = await axios.get(
-		`https://cors-anywhere.herokuapp.com/https://bad-api-assignment.reaktor.com/v2/availability/${manufacturer}`
-	);
-	return res.data.response;
+	try {
+		const res = await axios.get(
+			`https://cors-anywhere.herokuapp.com/https://bad-api-assignment.reaktor.com/v2/availability/${manufacturer}`
+		);
+		return res.data.response;
+	} catch (e) {
+		console.log('Error!', e);
+		const p = document.querySelector('#error-message');
+		p.innerHTML = 'Our apologies, there is a problem. Check later please.';
+	}
 };
 
 const renderData = async (products) => {
