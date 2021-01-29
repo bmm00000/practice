@@ -2,7 +2,7 @@ import React from 'react';
 
 const CommentDetail = (props) => {
 	return (
-		<div className='ui comments'>
+		<div class='ui comments'>
 			<div class='comment'>
 				<a class='avatar'>
 					<img src={props.imgSrc} />

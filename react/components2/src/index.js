@@ -6,39 +6,25 @@ import Card from './Card';
 
 const App = () => {
 	return (
-		<div class='ui cards'>
-			<Card>
-				<h2>Hey!</h2>
-				<p>Are you sure?</p>
-			</Card>
+		<>
+			<Card>Hello!</Card>
 			<Card>
 				<CommentDetail
-					author={faker.name.firstName()}
-					timeAgo='2 days'
-					faves='2 Faves'
-					text='Good article!'
 					imgSrc={faker.image.image()}
+					author={faker.name.firstName()}
+					timeAgo='2 days ago'
+					faves={faker.random.number()}
+					text='This book is great!'
 				/>
 			</Card>
-			<Card>
-				<CommentDetail
-					author={faker.name.firstName()}
-					timeAgo='3 days'
-					faves='12 Faves'
-					text='Not that great...'
-					imgSrc={faker.image.image()}
-				/>
-			</Card>
-			<Card>
-				<CommentDetail
-					author={faker.name.firstName()}
-					timeAgo='5 days'
-					faves='23 Faves'
-					text='hmmmm...'
-					imgSrc={faker.image.image()}
-				/>
-			</Card>
-		</div>
+			<CommentDetail
+				imgSrc={faker.image.image()}
+				author={faker.name.firstName()}
+				timeAgo='2 days ago'
+				faves={faker.random.number()}
+				text='This book is great!'
+			/>
+		</>
 	);
 };
 
