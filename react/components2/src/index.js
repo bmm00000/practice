@@ -7,23 +7,16 @@ import Card from './Card';
 const App = () => {
 	return (
 		<>
-			<Card>Hello!</Card>
+			<Card>
+				<h1>Hi there</h1>
+				<p>Do you want to do this?</p>
+			</Card>
 			<Card>
 				<CommentDetail
-					imgSrc={faker.image.image()}
 					author={faker.name.firstName()}
-					timeAgo='2 days ago'
-					faves={faker.random.number()}
-					text='This book is great!'
+					imgSrc={faker.image.image()}
 				/>
 			</Card>
-			<CommentDetail
-				imgSrc={faker.image.image()}
-				author={faker.name.firstName()}
-				timeAgo='2 days ago'
-				faves={faker.random.number()}
-				text='This book is great!'
-			/>
 		</>
 	);
 };
