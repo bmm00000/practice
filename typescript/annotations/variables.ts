@@ -23,7 +23,7 @@ let point: { x: number; y: number } = {
 	y: 20,
 };
 
-//function
+//function (annotation for the variable)
 const logNum: (i: number) => void = (i: number) => {
 	console.log(i);
 };
