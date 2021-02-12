@@ -17,7 +17,7 @@ const logger = (message: string): void => {
 const throwErr = (message: string): never => {
 	throw new Error(message);
 };
-// we only use 'never' when we expect the function to never return anything.
+// we only use 'never' when we expect the function to never complete, for example due to an error.
 // otherwise:
 const thrownErr = (message: string): string => {
 	if (!message) {
