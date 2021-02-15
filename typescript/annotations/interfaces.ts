@@ -1,7 +1,4 @@
-interface Car {
-	name: string;
-	year: Date;
-	broken: boolean;
+interface Reportable {
 	summary(): string;
 }
 
@@ -14,8 +11,17 @@ const fastCar = {
 	},
 };
 
-const describeCar = (car: Car): void => {
-	console.log(car.summary());
+const cocaCola = {
+	color: 'brown',
+	sugar: 33,
+	summary(): string {
+		return `Coke is ${this.color}`;
+	},
 };
 
-describeCar(fastCar);
+const describeItem = (item: Reportable): void => {
+	console.log(item.summary());
+};
+
+describeItem(fastCar);
+describeItem(cocaCola);
