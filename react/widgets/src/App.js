@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
+import Translate from './components/Translate';
 
 const items = [
 	{ title: 'What is React', content: 'React is a JS library' },
@@ -16,16 +17,9 @@ const options = [
 ];
 
 export default () => {
-	const [selected, setSelected] = useState(options[0]);
 	return (
 		<div>
-			{/* <Accordion items={items} /> */}
-			{/* <Search /> */}
-			<Dropdown
-				selected={selected}
-				onSelectChange={setSelected}
-				options={options}
-			/>
+			<Translate />
 		</div>
 	);
 };
