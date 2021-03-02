@@ -1,0 +1,19 @@
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+#hero h1,
+.cards h2 {
+	font-weight: 900;
+}
+
+nav a,
+#hero a,
+.item-card h3,
+.item-card a {
+	font-weight: 700;
+}
+
+p {
+	font-weight: 400;
+}
