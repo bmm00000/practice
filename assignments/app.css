@@ -2,6 +2,16 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+body {
+	margin: 0%;
+}
+
+#hero {
+	background-image: url('imgs/notebook.jpg');
+	height: 100vh;
+	background-size: cover;
+}
+
 #hero h1,
 .cards h2 {
 	font-weight: 900;
@@ -14,6 +24,24 @@ nav a,
 	font-weight: 700;
 }
 
+nav,
+footer,
+.nav-links,
+.footer-links {
+	display: flex;
+	justify-content: space-between;
+}
+
+a {
+	text-decoration: none;
+	padding: 2rem;
+}
+
 p {
 	font-weight: 400;
+}
+
+footer p {
+	margin: 0;
+	padding: 2rem;
 }
