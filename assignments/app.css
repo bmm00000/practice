@@ -2,8 +2,13 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+html,
 body {
-	margin: 0%;
+	overflow-x: hidden;
+}
+
+body {
+	margin: 0;
 }
 
 #hero {
@@ -13,6 +18,7 @@ body {
 	background-size: cover;
 	background-position: right;
 	color: white;
+	min-width: 280px;
 }
 
 #hero a {
@@ -24,7 +30,7 @@ body {
 #hero h1 {
 	font-size: 5rem;
 	text-align: center;
-	margin: 7rem 0rem 3rem 0rem;
+	margin: 6rem 0rem 3rem 0rem;
 }
 
 #hero p {
@@ -53,6 +59,10 @@ body {
 #hero h1,
 .cards h2 {
 	font-weight: 900;
+}
+
+.cards {
+	min-width: 280px;
 }
 
 nav {
@@ -121,10 +131,6 @@ footer,
 }
 
 footer {
-	flex-wrap: wrap;
-}
-
-footer {
 	background-color: rgba(0, 0, 0, 0.85);
 }
 
@@ -134,7 +140,7 @@ footer p {
 
 a {
 	text-decoration: none;
-	padding: 2rem;
+	margin: 2rem;
 }
 
 p {
@@ -156,4 +162,54 @@ footer p {
 
 .fa-twitter-square {
 	color: #1da1f2;
+}
+
+.nav-menu {
+	display: none;
+}
+
+@media (max-width: 850px) {
+	.nav-link {
+		display: none;
+	}
+
+	.nav-menu {
+		display: inline-block;
+	}
+
+	#hero h1 {
+		font-weight: 700;
+		font-size: 3rem;
+		margin-top: 2rem;
+	}
+
+	#hide {
+		display: none;
+	}
+
+	#hero p {
+		text-align: center;
+		font-size: 1rem;
+		margin: 0rem 3rem 3rem 3rem;
+	}
+
+	footer {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.footer-links a {
+		margin: 2rem 1.3rem 1rem 1.3rem;
+	}
+}
+
+@media (max-width: 321px) {
+	#hero h1 {
+		font-size: 2rem;
+	}
+
+	#hero p {
+		font-size: 0.7rem;
+	}
 }
