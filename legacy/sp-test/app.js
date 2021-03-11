@@ -68,11 +68,9 @@ try {
 		for (let path in views) {
 			sorting.push([path, views[path]]);
 		}
-
 		sorting.sort(function (a, b) {
 			return b[1] - a[1];
 		});
-
 		return sorting;
 	};
 
