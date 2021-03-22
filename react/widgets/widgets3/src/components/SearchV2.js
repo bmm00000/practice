@@ -2,8 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Search = () => {
-	const [term, setTerm] = useState('programming');
+	const [term, setTerm] = useState('Helsinki');
+	const [debouncedTerm, setDebouncedTerm] = useState(term);
 	const [results, setResults] = useState([]);
+
+	useEffect(() => {
+		const timeoutId = setTimeout(() => {
+			setDebouncedTerm(term);
+		}, 500);
+		return () => {
+			clearTimeout(timeoutId);
+		};
+	}, [term]);
 
 	useEffect(() => {
 		const search = async () => {
@@ -13,27 +23,16 @@ const Search = () => {
 					list: 'search',
 					origin: '*',
 					format: 'json',
-					srsearch: term,
+					srsearch: debouncedTerm,
 				},
 			});
-
 			setResults(data.query.search);
 		};
 
-		if (term && !results.length) {
+		if (debouncedTerm) {
 			search();
-		} else {
-			const timeoutId = setTimeout(() => {
-				if (term) {
-					search();
-				}
-			}, 500);
-
-			return () => {
-				clearTimeout(timeoutId);
-			};
 		}
-	}, [term]);
+	}, [debouncedTerm]);
 
 	const renderedResults = results.map((result) => {
 		return (
@@ -58,13 +57,12 @@ const Search = () => {
 		<div>
 			<div className='ui form'>
 				<div className='field'>
-					<label htmlFor='input'>Search</label>
+					<label htmlFor='term'>Search:</label>
 					<input
 						type='text'
-						className='input'
-						id='input'
-						value={term}
+						id='term'
 						onChange={(e) => setTerm(e.target.value)}
+						value={term}
 					/>
 				</div>
 			</div>

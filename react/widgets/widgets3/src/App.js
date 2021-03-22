@@ -1,6 +1,6 @@
 import React from 'react';
 import AccordionOne from './components/AccordionOne';
-import Search from './components/Search';
+import Search from './components/SearchV2';
 
 export default () => {
 	const items = [
