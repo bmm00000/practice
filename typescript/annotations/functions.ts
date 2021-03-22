@@ -1,11 +1,13 @@
 const add = (a: number, b: number): number => {
 	return a + b;
 };
+// we get type inference for return value, but we will never use it, we always annotate the return type (or it won't tell us if we miss the 'return' keyword, for example)
 
 function divide(a: number, b: number): number {
 	return a / b;
 }
 
+// syntax for annonymous functions:
 const multiply = function (a: number, b: number): number {
 	return a * b;
 };

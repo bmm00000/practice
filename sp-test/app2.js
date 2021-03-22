@@ -71,10 +71,9 @@ try {
 
 	const printReport = (message, orderedArr) => {
 		console.log(message);
-		orderedArr.forEach((entry) => {
-			const [path, views] = entry;
-			console.log(`${path}: ${views} views.`);
-		});
+		for (let entry of orderedArr) {
+			console.log(`${entry[0]}: ${entry[1]} views`);
+		}
 	};
 
 	const data = parseData(rawData);
@@ -83,11 +82,11 @@ try {
 	const uniqueUsersByPath = getUniqueUsersByPath(usersByPath);
 	const uniqueViews = getUniqueViews(uniqueUsersByPath);
 
-	const orderedUnique = order(uniqueViews);
 	const orderedTotal = order(totalViews);
+	const orderedUnique = order(uniqueViews);
 
-	printReport('Total views!', orderedTotal);
-	printReport('Unique views!', orderedUnique);
+	printReport('TOTAL VIEWS', orderedTotal);
+	printReport('UNIQUE VIEWS', orderedUnique);
 } catch (e) {
 	console.log(e);
 }
