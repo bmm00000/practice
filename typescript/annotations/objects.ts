@@ -11,7 +11,7 @@ const profile = {
 };
 
 // destructuring:
-const { name, age }: { name: string; age: number } = profile;
+const { age }: { age: number } = profile;
 
 const {
 	coords: { lat, lng },
