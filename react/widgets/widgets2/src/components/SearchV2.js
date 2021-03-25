@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Search = () => {
-	const [term, setTerm] = useState('Helsinki');
+	const [term, setTerm] = useState('lizard');
 	const [debouncedTerm, setDebouncedTerm] = useState(term);
 	const [results, setResults] = useState([]);
 
@@ -61,12 +61,12 @@ const Search = () => {
 					<input
 						type='text'
 						id='term'
-						onChange={(e) => setTerm(e.target.value)}
 						value={term}
+						onChange={(e) => setTerm(e.target.value)}
 					/>
 				</div>
 			</div>
-			<div className='ui celled list'>{renderedResults}</div>
+			<div className='ui celled list'>{renderedResults}</div>;
 		</div>
 	);
 };

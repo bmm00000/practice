@@ -1,16 +1,36 @@
-import React from 'react';
-import Accordion from './components/Accordion';
+import React, { useState } from 'react';
+import AccordionOne from './components/AccordionOne';
+import Search from './components/SearchV2';
+import Dropdown from './components/DropdownV22';
+
+const items = [
+	{ title: 'What is React?', content: 'React is a great JS library!' },
+	{ title: 'Why do we use it?', content: 'We use it because it is fast!' },
+	{ title: 'Who else uses it?', content: 'Good question!' },
+];
+
+const options = [
+	{ label: 'The color of love', value: 'red' },
+	{ label: 'The color of nature', value: 'green' },
+	{ label: 'The color of the sky', value: 'blue' },
+];
 
 export default () => {
-	const items = [
-		{ title: 'Title1', content: 'Content1...' },
-		{ title: 'Title2', content: 'Content2...' },
-		{ title: 'Title3', content: 'Content3...' },
-	];
+	const [selected, setSelected] = useState(options[0]);
+	const [show, setShow] = useState(true);
 
 	return (
-		<div className='ui container'>
-			<Accordion items={items} />
+		<div>
+			<button onClick={() => setShow(!show)}>Toggle</button>
+			{/* <AccordionOne items={items} /> */}
+			{/* <Search /> */}
+			{show ? (
+				<Dropdown
+					options={options}
+					selected={selected}
+					onSelectedChange={setSelected}
+				/>
+			) : null}
 		</div>
 	);
 };
