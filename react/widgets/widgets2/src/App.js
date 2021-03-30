@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import AccordionOne from './components/AccordionOne';
 import Search from './components/SearchV2';
-import Dropdown from './components/DropdownV22';
+import Dropdown from './components/DropdownV2';
+import Translate from './components/Translate';
 
 const items = [
 	{ title: 'What is React?', content: 'React is a great JS library!' },
@@ -16,21 +17,26 @@ const options = [
 ];
 
 export default () => {
-	const [selected, setSelected] = useState(options[0]);
-	const [show, setShow] = useState(true);
+	// const [selected, setSelected] = useState(options[0]);
+	// const [show, setShow] = useState(true);
 
 	return (
 		<div>
-			<button onClick={() => setShow(!show)}>Toggle</button>
+			{/* <button onClick={() => setShow(!show)}>Toggle</button> */}
 			{/* <AccordionOne items={items} /> */}
 			{/* <Search /> */}
-			{show ? (
+			{/* {show ? (
 				<Dropdown
+					label='Select color:'
 					options={options}
 					selected={selected}
 					onSelectedChange={setSelected}
 				/>
-			) : null}
+			) : null} */}
+			{/* <p style={{ color: selected.value }}>
+				This is the color {selected.value}
+			</p> */}
+			<Translate />
 		</div>
 	);
 };
