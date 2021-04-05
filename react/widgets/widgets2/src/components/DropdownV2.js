@@ -13,10 +13,12 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
 			setOpen(false);
 		};
 
-		document.body.addEventListener('click', onBodyClick);
+		document.body.addEventListener('click', onBodyClick, { capture: true });
 
 		return () => {
-			document.body.removeEventListener('click', onBodyClick);
+			document.body.removeEventListener('click', onBodyClick, {
+				capture: true,
+			});
 			// we remove it becuase it will give us an error if we toggle the dropdown component with a button (to show it or not; see screenshot) and we click somewhere, since the eventListener will remain after we toggle the dropdown (the cleanup function gets invoked right before the useEffect callback gets called again, OR when we are going to stop showing the component)
 		};
 	}, []);
@@ -45,7 +47,7 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
 					</label>
 					<div
 						className={`ui selection dropdown ${open ? 'visible active' : ''}`}
-						onClick={(e) => setOpen(!open)}
+						onClick={() => setOpen(!open)}
 					>
 						<i className='dropdown icon'></i>
 						<div className='text'>{selected.label}</div>

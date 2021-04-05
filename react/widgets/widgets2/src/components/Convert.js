@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Convert = ({ text, language }) => {
-	const [translated, setTranslated] = useState('');
 	const [debouncedText, setDebouncedText] = useState(text);
+	const [translated, setTranslated] = useState('');
 
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
@@ -31,7 +31,9 @@ const Convert = ({ text, language }) => {
 			setTranslated(data.data.translations[0].translatedText);
 			// data.data becuase the first one is for the axios response object, and the second one for the google api response.
 		};
-		doTranslation();
+		if (debouncedText) {
+			doTranslation();
+		}
 	}, [debouncedText, language]);
 
 	return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AccordionOne from './components/AccordionOne';
+import Accordion from './components/Accordion';
 import Search from './components/SearchV2';
 import Dropdown from './components/DropdownV2';
 import Translate from './components/Translate';
@@ -22,9 +22,9 @@ export default () => {
 
 	return (
 		<div>
-			{/* <button onClick={() => setShow(!show)}>Toggle</button> */}
-			{/* <AccordionOne items={items} /> */}
+			{/* <Accordion items={items} /> */}
 			{/* <Search /> */}
+			{/* <button onClick={() => setShow(!show)}>Toggle</button> */}
 			{/* {show ? (
 				<Dropdown
 					label='Select color:'

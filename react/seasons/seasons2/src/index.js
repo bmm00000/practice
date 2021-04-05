@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DisplaySeason from './DisplaySeason';
+import SeasonDisplay from './SeasonDisplay';
 import Spinner from './Spinner';
 
 class App extends React.Component {
@@ -13,18 +13,18 @@ class App extends React.Component {
 		);
 	}
 
-	contentToRender() {
+	renderResults() {
 		if (!this.state.lat && this.state.errMessage) {
 			return <div>Error: {this.state.errMessage}</div>;
 		}
 		if (this.state.lat && !this.state.errMessage) {
-			return <DisplaySeason lat={this.state.lat} />;
+			return <SeasonDisplay lat={this.state.lat} />;
 		}
-		return <Spinner message='Please let me get your location...' />;
+		return <Spinner message='This is the first message' />;
 	}
 
 	render() {
-		return <div>{this.contentToRender()}</div>;
+		return <div>{this.renderResults()}</div>;
 	}
 }
 

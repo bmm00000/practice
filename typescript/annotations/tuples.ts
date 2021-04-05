@@ -1,4 +1,4 @@
-const cocaCola = {
+const pepsiCola = {
 	color: 'brown',
 	carbonated: true,
 	sugar: 30,
