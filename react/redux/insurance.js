@@ -1,4 +1,5 @@
 console.clear();
+// we do this in order to clear any previous code in the console of the browser when we run our code in codepen. we do this using codepen, so we can access the redux library.
 
 // Action creator
 const createPolicy = (name, amount) => {
@@ -31,12 +32,18 @@ const createClaim = (name, amount) => {
 	};
 };
 
-// Reducer
+// 'dispatch' (the admin person/receiver of the form) is part of the Redux library itself, so we don't have to write it from scratch
+
+// Reducers
 const claimsHistory = (oldListOfClaims = [], action) => {
 	if (action.type === 'CREATE_CLAIM') {
+		// we care about this action (form)
 		return [...oldListOfClaims, action.payload];
+		// oldListOfClaims.push(action.payload) DON'T DO THIS!
+		// watch out! every time we change something inside of a reducer, we ALWAYS want to return a new array, not to modify the array that we have. we always avoid modifying existing data structures inside of a reducer.
 	}
 
+	// we don't care about this action (form)
 	return oldListOfClaims;
 };
 
@@ -59,6 +66,8 @@ const policies = (listOfPolicies = [], action) => {
 	return listOfPolicies;
 };
 
+// a 'store' in Redux is an object, the assembly of a collection of reducers and action creators.
+
 const { createStore, combineReducers } = Redux;
 
 const ourDepartments = combineReducers({
@@ -78,3 +87,6 @@ store.dispatch(createClaim('Pet', 10));
 store.dispatch(deletePolicy('Alex'));
 
 console.log(store.getState());
+// this will show the whole respository of data of our company
+
+// you can only modify the state by 'dispatch' an 'action' that has been return by an 'action creator' (you cannot say 'store.state.policies... = ...')
