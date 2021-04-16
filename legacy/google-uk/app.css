@@ -105,13 +105,6 @@ footer {
 	background-color: #f4f5f7;
 }
 
-.footer-links {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin: 1.2rem;
-}
-
 hr {
 	border: 1px solid #dfe1e5;
 }
@@ -125,7 +118,25 @@ footer p {
 	color: rgba(0, 0, 0, 0.54);
 }
 
+.footer-links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 1.2rem;
+}
+
 footer a {
 	color: rgba(0, 0, 0, 0.54);
 	margin: 0.7rem;
+}
+
+@media (max-width: 750px) {
+	#ecology {
+		order: -1;
+		padding: 0.3rem;
+	}
+
+	.links-batch {
+		padding: 0.5rem;
+	}
 }
