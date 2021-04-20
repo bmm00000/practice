@@ -89,4 +89,4 @@ store.dispatch(deletePolicy('Alex'));
 console.log(store.getState());
 // this will show the whole respository of data of our company
 
-// you can only modify the state by 'dispatch' an 'action' that has been return by an 'action creator' (you cannot say 'store.state.policies... = ...')
+// you can only modify the state by 'dispatch' an 'action' that has been returned by an 'action creator' (you cannot say 'store.state.policies... = ...')
