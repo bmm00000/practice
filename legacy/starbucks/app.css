@@ -165,3 +165,30 @@ header a {
 		padding: 5% 5%;
 	}
 }
+
+.blend {
+	font-size: 1rem;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+.bigger-banner-mobile {
+	display: none;
+}
+
+@media (max-width: 1000px) {
+	.bigger-banner {
+		display: none;
+	}
+
+	.bigger-banner-mobile {
+		display: block;
+	}
+
+	.bigger-banner-mobile .bigger-text {
+		padding: 5% 5%;
+	}
+}
+
+.blend-color {
+	background-color: #f2f0eb;
+}
