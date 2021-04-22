@@ -44,7 +44,7 @@ nav {
 	display: none;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 1000px) {
 	.hide-sm {
 		display: none;
 	}
@@ -73,7 +73,7 @@ header a {
 	color: #1e3932;
 }
 
-@media (max-width: 970px) {
+@media (max-width: 1000px) {
 	header {
 		padding: 1rem 1rem;
 	}
@@ -191,4 +191,30 @@ header a {
 
 .blend-color {
 	background-color: #f2f0eb;
+}
+
+.slogan {
+	text-align: center;
+	margin: 5rem;
+	color: #1e3932;
+	font-size: xxx-large;
+}
+
+@media (max-width: 1000px) {
+	.slogan {
+		font-size: xx-large;
+	}
+}
+
+.disclaimer {
+	font-size: small;
+	text-align: center;
+	margin: 3rem 20rem;
+	line-height: 1.5rem;
+}
+
+@media (max-width: 1000px) {
+	.disclaimer {
+		margin: 1rem;
+	}
 }
