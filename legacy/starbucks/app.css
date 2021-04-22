@@ -66,6 +66,7 @@ header {
 	line-height: 2.5rem;
 	font-weight: 400;
 	color: #1e3932;
+	box-shadow: 0px -0.1px 3px;
 }
 
 header a {
@@ -81,19 +82,86 @@ header a {
 .banner {
 	display: grid;
 	grid-template-columns: 50% 50%;
+	margin: 2rem 0rem;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 1000px) {
 	.banner {
 		display: block;
 	}
 }
 
-.banner img {
+.banner-img {
 	background-color: #d4e9e2;
+}
+
+.banner img {
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	width: 100%;
 	height: auto;
+}
+
+.banner-text {
+	background-color: #d4e9e2;
+	color: #006241;
+	font-size: 1.5rem;
+	line-height: 2.3rem;
+	padding: 30% 10%;
+	text-align: center;
+}
+
+.banner-text a {
+	text-decoration: none;
+	color: #006241;
+}
+
+@media (max-width: 1000px) {
+	.banner-text {
+		padding: 5% 10%;
+	}
+}
+
+.button {
+	border: 1px solid #006241;
+	border-radius: 25px;
+	width: fit-content;
+	padding: 0rem 1.5rem;
+	margin: auto;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.button:hover {
+	background-color: #c8e0d8;
+}
+
+.smaller-text {
+	max-height: 504px;
+	padding-top: 5%;
+	padding-bottom: 0px;
+}
+
+.smaller-text p {
+	font-size: 1.2rem;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+.smaller-banner-mobile {
+	display: none;
+}
+
+@media (max-width: 1000px) {
+	.smaller-banner {
+		display: none;
+	}
+
+	.smaller-banner-mobile {
+		display: block;
+	}
+
+	.smaller-banner-mobile .smaller-text {
+		padding: 5% 5%;
+	}
 }
