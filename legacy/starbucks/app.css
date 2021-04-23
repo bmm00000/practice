@@ -53,6 +53,36 @@ nav {
 	}
 }
 
+.sign-in {
+	border: 1px solid rgba(0, 0, 0, 0.87);
+	border-radius: 25px;
+	width: fit-content;
+	margin: auto;
+	font-size: 1rem;
+	font-weight: 600;
+	margin-left: 3rem;
+}
+
+.join-now {
+	background-color: rgba(0, 0, 0, 0.87);
+	border-radius: 25px;
+	width: fit-content;
+	margin: auto;
+	font-size: 1rem;
+	font-weight: 600;
+	margin-left: 1rem;
+}
+
+.sign-in a,
+.join-now a {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+}
+
+.join-now a {
+	color: white;
+}
+
 svg {
 	width: 3rem;
 }
