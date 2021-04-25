@@ -4,7 +4,16 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<meta
+			name="description"
+			content="Starbucks Coffee Company offers you the best selection of coffee types"
+		/>
+		<title>Starbucks Coffee Company</title>
+		<link
+			href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAMAAClGAQC2w6sAj6B6ADxcHgCQo3oALi4uAGqFRgAvTAEA0dXFAMDAtAAAGwAAAB4AADQuNwDBybQAACQAAMHNrgCEo2AASWgnAIifZgCJo2AAN1cQAAUzAAB2g20AycTSAI6dewCQjZMAQEBAAOLwzgC4y6kAa4BKAGyERACnp6oAvMevABM/AACVpoQAraqzAMHIuwBfeT8ArsCkAIqZcABzkFYAoZuiACZCAADJyccA8vDyAFBtLgC3v6oAanpLAC4mMwDP1ccA0cXfAKa6kwAHBgsAq7KWAH6YZQD89/4A09nKAMDRoQAzTgkA6vHbAJmmhQCFl2sAmKmFADZPDABeeD0A2NLiADdbDAAlHTQAiJ9xABQUEQBmfj0APEA5AHiNYAA/OkIAAAUAAKO0iwD1+/AAfoxmAFZWVgC9rMwAk6l0AL3AtwDm7N8Ak6aGAEdjGwCAgpAARmMkAP/9/wA1Ug0Aws60AEtLSABIbxsABikAAGFiXwCduH0ADS8AAA8vAABSUlQADTsAAPr5/QDVyt4AgphnAFx1NgDs7ewAxMTEAJ+skACLl38APTJHALjBoQB6enoAZ3tIAI6pbQB+h2sAqLt+AJGifABqf0sAV2s9AC9SBgCVpYUAMFYAAISUbgBKYx0ARmUjAK67ogDEy78AN1YSAHWFZgB3iF0A3eLWAIuidAC2scMAUWwvAAAHAAB8lloAABAAAKa0lwAAHwAACgoJAJemiQCaqIYA////AJuqgwDDw8MAXnc+AMXKvQDZ4dQAOjs3AIucdQB6eXkAZ31HAA8xAAARNAAAlKaBABs6AADByLgAwcu4AF5zPAAdPQAAh4eIAK3DmAB0dHQAYHFIAMXTtQCxxpgA7fHyACFJAACinp8AZHpIAI+cdgBCQjsA4+nbAENmDgAsVQAAREFKAFppTAD+/v4AcoJXAIWGhgDXyegAJBwlAHJzcgByiFcAxtKzAIifbgCgsX8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsbGOjo6OC3q5Gi2Ojo6OjrGOjo4DBX9hViyYl52Ojo6Ojo6RQY2sLpMPuJVeT46Ojo6yqT+kFCAIQh6DjhN4jo6CDFRNZ3IljiuAum6KmY6OngAXKlcADo61AKh5DYg3klpbI1NmlraOYxs0fUQoH1Wnj120AKuzjm+UAEOtRoVAEAGuUQCLoJCiAACEZIZ3bHucUhmOXFBqHF+OIaUwaCK3OocYRQeOaY42baM4JqqOWEoREkcAS2UyAEmhjpt0jn4vMY5xsACvAHZgSAqfjo6OgRamNR0VO3M9TokCBo5Zjo4pTCeOJI4zBHxia46OsY6Ojjk+cAmaPHWMjo6OjgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+			rel="icon"
+			type="image/x-icon"
+		/>
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -18,7 +27,7 @@
 		<nav>
 			<div class="left-links">
 				<div>
-					<a href="#"
+					<a href="#/"
 						><svg
 							class="block"
 							xmlns="http://www.w3.org/2000/svg"
@@ -40,12 +49,12 @@
 					></a>
 				</div>
 				<div class="hide-sm">
-					<a href="#">MENU</a>
+					<a href="#/">MENU</a>
 				</div>
-				<div class="hide-sm"><a href="#">REWARDS</a></div>
-				<div class="hide-sm"><a href="#">GIFT CARDS</a></div>
+				<div class="hide-sm"><a href="#/">REWARDS</a></div>
+				<div class="hide-sm"><a href="#/">GIFT CARDS</a></div>
 			</div>
-			<div class="right-links">
+			<div class="right-links" id="right-links">
 				<div class="hide-sm">
 					<svg
 						viewBox="0 0 24 24"
@@ -66,14 +75,14 @@
 					</svg>
 				</div>
 				<div class="hide-sm">
-					<a href="#" id="map">Find a store</a>
+					<a href="#/" id="map">Find a store</a>
 				</div>
 				<div class="hide-sm sign-in">
-					<a href="#">Sign in</a>
+					<a href="#/">Sign in</a>
 				</div>
 				<div class="hide-sm join-now"><a href="#">Join now</a></div>
-				<div class="show-sm">
-					<a href="#"
+				<div class="show-sm" id="hamburger">
+					<a href="#/"
 						><svg
 							viewBox="0 0 24 24"
 							class="valign-middle absoluteCenter"
@@ -111,10 +120,53 @@
 			</div>
 		</nav>
 		<header>
+			<div id="mobile-right-links">
+				<div class="mobile-right-links-box">
+					<div class="mobile-link">
+						<a href="#/">Menu</a>
+					</div>
+					<div class="mobile-link">
+						<a href="#/">Rewards</a>
+					</div>
+					<div class="mobile-link">
+						<a href="#/">Gift cards</a>
+					</div>
+				</div>
+				<div class="mobile-buttons">
+					<div class="sign-in">
+						<a href="#/">Sign in</a>
+					</div>
+					<div class="join-now"><a href="#">Join now</a></div>
+				</div>
+				<div class="mobile-buttons" id="find-store">
+					<div>
+						<svg
+							viewBox="0 0 24 24"
+							class="valign-middle pr2"
+							preserveAspectRatio="xMidYMid meet"
+							aria-hidden="true"
+							focusable="false"
+							style="
+								width: 32px;
+								height: 32px;
+								overflow: visible;
+								fill: currentColor;
+							"
+						>
+							<path
+								d="M12,11.475 C10.5214286,11.475 9.32142857,10.299 9.32142857,8.85 C9.32142857,7.401 10.5214286,6.225 12,6.225 C13.4785714,6.225 14.6785714,7.401 14.6785714,8.85 C14.6785714,10.299 13.4785714,11.475 12,11.475 M12,1.5 C7.85357143,1.5 4.5,4.7865 4.5,8.85 C4.5,14.3625 12,22.5 12,22.5 C12,22.5 19.5,14.3625 19.5,8.85 C19.5,4.7865 16.1464286,1.5 12,1.5"
+							></path>
+						</svg>
+					</div>
+					<div>
+						<a href="#/" id="map">Find a store</a>
+					</div>
+				</div>
+			</div>
 			<p>
 				We require facial coverings in all stores to protect the health of our
 				customers and partners (employees), and help stop the spread of
-				COVID-19. <a href="#">Learn more</a>
+				COVID-19. <a href="#/">Learn more</a>
 			</p>
 		</header>
 		<main>
@@ -130,7 +182,7 @@
 						We’re celebrating Earth Month with a new game—play for a chance to
 						win the grand prizes, Bonus Stars, free drinks and more.*
 					</p>
-					<a href="#"><div class="button">Let's play</div></a>
+					<a href="#/"><div class="button">Let's play</div></a>
 				</div>
 			</div>
 			<div class="banner smaller-banner">
@@ -140,7 +192,7 @@
 						We’re donating 100M disease-resistant coffee trees by 2025, and
 						committing to reduce our landfill waste by 50% by 2030.
 					</p>
-					<a href="#"><div class="button">Learn more</div></a>
+					<a href="#/"><div class="button">Learn more</div></a>
 				</div>
 				<div class="banner-img smaller-image">
 					<img
@@ -162,7 +214,7 @@
 						We’re donating 100M disease-resistant coffee trees by 2025, and
 						committing to reduce our landfill waste by 50% by 2030.
 					</p>
-					<a href="#"><div class="button">Learn more</div></a>
+					<a href="#/"><div class="button">Learn more</div></a>
 				</div>
 			</div>
 			<div class="banner bigger-banner">
@@ -173,7 +225,7 @@
 						trailblazing regions—highlighting our commitment to a sustainable
 						future.
 					</p>
-					<a href="#"><div class="button">Buy a bag</div></a>
+					<a href="#/"><div class="button">Buy a bag</div></a>
 				</div>
 				<div class="banner-img blend-color">
 					<img
@@ -196,7 +248,7 @@
 						trailblazing regions—highlighting our commitment to a sustainable
 						future.
 					</p>
-					<a href="#"><div class="button">Buy a bag</div></a>
+					<a href="#/"><div class="button">Buy a bag</div></a>
 				</div>
 			</div>
 			<div class="banner">
@@ -212,7 +264,7 @@
 						Enjoy Vanilla Sweet Cream and Salted Caramel Cream Cold Brews,
 						slow-steeped and topped with extra deliciousness.
 					</p>
-					<a href="#"><div class="button">Order cold brew</div></a>
+					<a href="#/"><div class="button">Order cold brew</div></a>
 				</div>
 			</div>
 			<h1 class="slogan">MORE WAYS TO DISCOVER</h1>
@@ -226,7 +278,7 @@
 				<div class="banner-text blend-color blend">
 					<h1>SPRING CHEER IS HERE</h1>
 					<p>A Starbucks® delivery on Uber Eats will brighten up any day.**</p>
-					<a href="#"><div class="button">Order now</div></a>
+					<a href="#/"><div class="button">Order now</div></a>
 				</div>
 			</div>
 			<div class="banner smaller-banner">
@@ -236,7 +288,7 @@
 						Stay up to date with what we’re doing to become a resource-positive
 						company, giving back more than we take from the planet.
 					</p>
-					<a href="#"><div class="button">Learn more</div></a>
+					<a href="#/"><div class="button">Learn more</div></a>
 				</div>
 				<div class="banner-img smaller-image">
 					<img
@@ -258,7 +310,7 @@
 						Stay up to date with what we’re doing to become a resource-positive
 						company, giving back more than we take from the planet.
 					</p>
-					<a href="#"><div class="button">Learn more</div></a>
+					<a href="#/"><div class="button">Learn more</div></a>
 				</div>
 			</div>
 			<div class="disclaimer">
@@ -295,7 +347,7 @@
 			<div class="links-container">
 				<div class="links-col">
 					<h4>
-						<a class="link" href="#"
+						<a class="link" id="about-us" href="#/"
 							>About us
 							<svg
 								class="dropdown"
@@ -323,17 +375,17 @@
 								></circle></svg
 						></a>
 					</h4>
-					<div class="links-group">
-						<div><a href="#">Our Heritage</a></div>
-						<div><a href="#">Our Coffee</a></div>
-						<div><a href="#">Stories and News</a></div>
-						<div><a href="#">Investor Relations</a></div>
-						<div><a href="#">Policies and Standards</a></div>
+					<div class="links-group" id="about-us-links">
+						<div><a href="#/">Our Heritage</a></div>
+						<div><a href="#/">Our Coffee</a></div>
+						<div><a href="#/">Stories and News</a></div>
+						<div><a href="#/">Investor Relations</a></div>
+						<div><a href="#/">Policies and Standards</a></div>
 					</div>
 				</div>
 				<div class="links-col">
 					<h4>
-						<a class="link" href="#"
+						<a class="link" id="careers" href="#/"
 							>Careers<svg
 								class="dropdown"
 								viewBox="0 0 24 24"
@@ -360,17 +412,17 @@
 								></circle></svg
 						></a>
 					</h4>
-					<div class="links-group">
-						<div><a href="#">Culture and Values</a></div>
-						<div><a href="#">Inclusion, Diversity, and Equity</a></div>
-						<div><a href="#">College Achievement Plan</a></div>
-						<div><a href="#">U.S. Careers</a></div>
-						<div><a href="#">International Careers</a></div>
+					<div class="links-group" id="careers-links">
+						<div><a href="#/">Culture and Values</a></div>
+						<div><a href="#/">Inclusion, Diversity, and Equity</a></div>
+						<div><a href="#/">College Achievement Plan</a></div>
+						<div><a href="#/">U.S. Careers</a></div>
+						<div><a href="#/">International Careers</a></div>
 					</div>
 				</div>
 				<div class="links-col">
 					<h4>
-						<a class="link" href="#"
+						<a class="link" id="social-impact" href="#/"
 							>Social Impact<svg
 								class="dropdown"
 								viewBox="0 0 24 24"
@@ -397,17 +449,17 @@
 								></circle></svg
 						></a>
 					</h4>
-					<div class="links-group">
-						<div><a href="#">Ethical Sourcing</a></div>
-						<div><a href="#">Leading in Sustainability</a></div>
-						<div><a href="#">Strengthening Communities</a></div>
-						<div><a href="#">Career Opportunities</a></div>
-						<div><a href="#">Global Social Impact Report</a></div>
+					<div class="links-group" id="social-impact-links">
+						<div><a href="#/">Ethical Sourcing</a></div>
+						<div><a href="#/">Leading in Sustainability</a></div>
+						<div><a href="#/">Strengthening Communities</a></div>
+						<div><a href="#/">Career Opportunities</a></div>
+						<div><a href="#/">Global Social Impact Report</a></div>
 					</div>
 				</div>
 				<div class="links-col">
 					<h4>
-						<a class="link" href="#"
+						<a class="link" id="business" href="#/"
 							>Business Partners<svg
 								class="dropdown"
 								viewBox="0 0 24 24"
@@ -434,16 +486,16 @@
 								></circle></svg
 						></a>
 					</h4>
-					<div class="links-group">
-						<div><a href="#">Landlord Support Center</a></div>
-						<div><a href="#">Suppliers</a></div>
-						<div><a href="#">Corporate Gift Card Sales</a></div>
-						<div><a href="#">Office and Foodservice Coffee</a></div>
+					<div class="links-group" id="business-links">
+						<div><a href="#/">Landlord Support Center</a></div>
+						<div><a href="#/">Suppliers</a></div>
+						<div><a href="#/">Corporate Gift Card Sales</a></div>
+						<div><a href="#/">Office and Foodservice Coffee</a></div>
 					</div>
 				</div>
 				<div class="links-col">
 					<h4>
-						<a class="link" href="#"
+						<a class="link" id="order" href="#/"
 							>Order and Pickup<svg
 								class="dropdown"
 								viewBox="0 0 24 24"
@@ -470,19 +522,19 @@
 								></circle></svg
 						></a>
 					</h4>
-					<div class="links-group">
-						<div><a href="#">Order on the App</a></div>
-						<div><a href="#">Order on the Web</a></div>
-						<div><a href="#">Delivery</a></div>
-						<div><a href="#">Order and Pickup Options</a></div>
-						<div><a href="#">Explore and Find Coffee for Home</a></div>
+					<div class="links-group" id="order-links">
+						<div><a href="#/">Order on the App</a></div>
+						<div><a href="#/">Order on the Web</a></div>
+						<div><a href="#/">Delivery</a></div>
+						<div><a href="#/">Order and Pickup Options</a></div>
+						<div><a href="#/">Explore and Find Coffee for Home</a></div>
 					</div>
 				</div>
 			</div>
 		</main>
 		<footer>
 			<div class="social-media-icons">
-				<a href="#"
+				<a href="#/"
 					><svg
 						viewBox="0 0 24 24"
 						class="valign-middle absoluteCenter"
@@ -507,7 +559,7 @@
 							r="75%"
 						></circle></svg
 				></a>
-				<a href="#"
+				<a href="#/"
 					><svg
 						viewBox="0 0 24 24"
 						class="valign-middle absoluteCenter"
@@ -532,7 +584,7 @@
 							r="75%"
 						></circle></svg
 				></a>
-				<a href="#"
+				<a href="#/"
 					><svg
 						viewBox="0 0 24 24"
 						class="valign-middle absoluteCenter"
@@ -557,7 +609,7 @@
 							r="75%"
 						></circle></svg
 				></a>
-				<a href="#"
+				<a href="#/"
 					><svg
 						viewBox="0 0 24 24"
 						class="valign-middle absoluteCenter"
@@ -582,7 +634,7 @@
 							r="75%"
 						></circle></svg
 				></a>
-				<a href="#"
+				<a href="#/"
 					><svg
 						viewBox="0 0 24 24"
 						class="valign-middle absoluteCenter"
@@ -607,7 +659,7 @@
 							r="75%"
 						></circle></svg
 				></a>
-				<a href="#"
+				<a href="#/"
 					><svg
 						viewBox="0 0 24 24"
 						class="valign-middle absoluteCenter"
@@ -634,19 +686,20 @@
 				></a>
 			</div>
 			<div class="footer-links">
-				<a href="#">Privacy Policy</a>
+				<a href="#/">Privacy Policy</a>
 				<span>|</span>
-				<a href="#">Terms of Use</a>
+				<a href="#/">Terms of Use</a>
 				<span>|</span>
-				<a href="#">CA Supply Chain Act</a>
+				<a href="#/">CA Supply Chain Act</a>
 				<span>|</span>
-				<a href="#">Submit Your Idea</a>
+				<a href="#/">Submit Your Idea</a>
 				<span>|</span>
-				<a href="#">Cookie Preferences</a>
+				<a href="#/">Cookie Preferences</a>
 			</div>
 			<div class="copyright">
 				<p>© 2021 Starbucks Coffee Company. All rights reserved.</p>
 			</div>
 		</footer>
+		<script src="app.js"></script>
 	</body>
 </html>
