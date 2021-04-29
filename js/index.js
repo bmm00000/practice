@@ -1,3 +1,7 @@
+// this course is organised as if it were interview questions about js: usually interview questions have an 'easy' quick answer but also deeper considerations that go into the deeper layers of js.
+
+// SECTION: MISCELLANEOUS
+
 // there is no company creating javascript, it's just an agreement, the tc39 committee meet up to discuss proposed features of js. therefore, js has evolved iteratively.
 
 // but browsers don't implement all features in one go, but bit by bit in the newer versions, that's why we use caniuse.com
@@ -60,8 +64,76 @@ sum(1); // NaN. Why?? because 'b' is undefined
 // when would you use a spread operator?? 1/manipulating arrays (adding, inserting, etc.), 2/ copying arrays (see example of screenshot), 3/ explode arguments in a function that accepts a variable number of arguments (see screnshot example)
 // WATCH OUT WITH THE EXAMPLE WITH method and options, in the first case it's printing an array inside of another array.
 
-// TEMPLATE STRINGS OR TEMPLATE LITERALS (new feature in ES6):
+// TEMPLATE STRINGS OR TEMPLATE LITERALS (backticks: ``) (new feature in ES6):
 //Use cases:
 //1/ multi-line strings: in the past, we used \n (see screenshot) but now we use template strings (screenshot)
-//2/ expresion interpolation/variable interpolation (sshot). what's inside ${} is not a variable, but an expression, and what the expression returns is what is printed in the console (see example of ${1} ${2} or math operations in screenshot).
-//another functionality of template strings: TEMPLATE TAGS or TEMPLATE STRING TAGS (they are just functions):
+//2/ expresion interpolation/variable interpolation (sshot). ${} is not a variable, but an expression, and what the expression returns is what is printed in the console (see example of ${1} ${2} or math operations in screenshot). Inside ${} you can place a variable or another expression.
+//another functionality of template strings: TEMPLATE TAGS or TEMPLATE STRING TAGS or TEMPLATE LITERAL TAGS (they are just functions, it's a way of adding some functionality which accepts a string): it allows you to have a tag before a string (see ss). Example of this: styled components in react (an element takes css in the form of a string) (ss), and it can even have nested template tags (ss). Another example: there's an npm package for accesibility (ss), and it allows internationalization (manipulate the string using euros, dollars, etc. depending on what you want).
+// how do you create template tags? first of all, a template tag is not just a function that accepts a string, since it gets called with the string broken up which allows for a lot of possibilities for formatting: see in ss examples of how strings are broken.
+
+// SECTION: TYPES AND EQUALITY
+
+// the different types in js have particularities becuase of how they have evolved over time, this is what we are going to study in this section.
+
+// see in ss 5 primitive types and 1 non-primitive type.
+// the non-primitive type (object) can be either an object literal ({}) or we can create it by instantiating an object (new Object())
+// to find out about the type, we can use the function 'typeof()' (see ss). WATCH OUT! the typeof(null) will give us an object, which is incorrect, but it cannot be reversed without causing problems, so that's the way it remains.
+// difference between dynamically typed language (eg. js) and a statically typed language (eg. java)? see ss. in the latter, you have the specify the types that a variable will hold. On the other hand, a dynamically typed language infers the type of a variable from the value that you initialize it with.:: in js, the type of the variables are determined dynamically at run time (when we dynamically run the application), whereas in java, the type of variables is defined statically when we write the code. Both have pros and cons: you can get up and running very quickly with js, but you only uncover problems in dynamically typed languages at runtime (when the applicaiton is executed), so you may have bugs that remain hidden and only create problems way down the road. On the other hand, with statically typed langauges, when we compile the application the compiler with throw an error if we made a variable hold the wrong type, so we can uncover problms very early on in our development cycle (but this comes at the cost of making our apps a little bit harder to write). Other advantages of static: some issues regarding memory management and perfomance.
+
+// difference between null and undefined.
+// undefined:
+var a;
+console.log(a);
+// 'a' has not been initialized.
+window.hello;
+// this is undefined because it's an unknowwn property
+// the other situation is when there'a paramenter that is missing from a function's parameter's list.
+// undefined is used by the js engine to inform you that this is either of these three situations.
+// on the other hand, null is used by programmers to indicate no value (the js engine will never set a value to null for you)
+// difference of null for static and dynamically type languages: for java:
+String a = null;
+// we know that 'a' is a string, but we don't know the value yet. Therefore in statically typed langauges 'null' is not a value in and of itself, but the concept of absence of value. On the other hand, in js 'null' is an actual value and type (the type of null is null, and the null type has only one value: null (the same is true about undefined, btw))
+null == undefined // returns true
+undefined == null // returns true
+// because the values are equivalent, BUT not the types.
+
+// difference between == (equality) and === (strict equality):
+// strict equality checks for both value and type equality, but equality checks for only the value equality.
+// when using == , we can get unexpected results (see ss). js tries to convert the values so both are of the same type. for example:
+0 = '0' // true
+// js will try to convert the number 0 into a string. How can you find what js will print out when converting the number 0 into a string?
+String(0) // returns '0'
+// in js, this is called type coersion. This is what js tries to do when you use == (tries to coerce both values so they are of the same type)
+// but sometimes this can be confusing, for example:
+false == 'false' // returns false
+String(false) // returns 'false'. WHAT???
+// WHY IS THIS HAPPENNING??
+// because in this case:
+false == 'false'
+// js is not trying to convert a boolean into a string, but a string into a boolean:
+Boolean('false') // returns true, since the string is truthy
+// the rules by which js uses coercion are complex, see ss, for == things get more messy than ===. As you can see in the ss table, what applies to === still applies to ===, but the complex behaviour comes with coercion (==).
+// Therefore, it's better to use ===, it's more predictable.
+
+// what is the type of NaN?
+typeof(NaN) // number
+// yes, Nan is of type 'number'. It's used to define a number that is not really a number, eg. the result of a bad calculation, for example:
+'abc'/3 // NaN
+// This is pretty straightforward, but there are a few characteristics of NaN that can result in bugs if you are not aware of them:
+// NaN == [anything, including NaN] // false
+NaN == NaN // false . Isn't this strange?? So this begs the question how to check if something is NaN? There an in-built function in js called 'isNaN()':
+isNaN(NaN) // true
+// but it has its own issues, for example:
+// the parameters that we pass are COERCED, for example:
+isNaN('a') // true, because:
+Number('a') // NaN. the same as:
+isNaN(Number('a'))
+// therefore, another example:
+isNaN('1') // false
+// THEREFORE, NaN IS NOT THAT USEFUL IN A DYNAMICALLY TYPED LANGUAGE, LIKE JS.
+// SO GIVEN THAT
+NaN == NaN // false
+// AND GIVEN THE ISSUES WITH isNaN, how can we consistenly check that a value is NaN?
+var a = NaN
+a !== a // if a is NaN, this will return true
+
