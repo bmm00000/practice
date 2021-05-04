@@ -1,0 +1,27 @@
+body {
+	width: 90%;
+	margin: 4rem auto;
+	font-family: 'Architects Daughter', cursive;
+	font-size: 2rem;
+}
+
+#task {
+	height: 1.5rem;
+	width: 20rem;
+}
+
+button {
+	background-color: #309430;
+	border: none;
+	color: white;
+	padding: 6px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+label,
+i {
+	margin-left: 1rem;
+}
