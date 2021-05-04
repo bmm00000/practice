@@ -7,19 +7,25 @@ inputForm.addEventListener('submit', (e) => {
 	}
 
 	const taskLi = document.createElement('li');
-	taskLi.style.listStyle = 'none';
 	const taskInput = document.createElement('input');
 	const taskLabel = document.createElement('label');
+	const icon = document.createElement('i');
 
+	taskLi.style.listStyle = 'none';
 	taskInput.setAttribute('type', 'checkbox');
 	taskInput.addEventListener('click', () => {
 		taskInput.setAttribute('disabled', 'true');
 		taskLabel.style.textDecoration = 'line-through';
 	});
 	taskLabel.innerText = task;
+	icon.setAttribute('class', 'far fa-window-close');
+	icon.addEventListener('click', () => {
+		taskLi.style.display = 'none';
+	});
 
 	taskLi.appendChild(taskInput);
 	taskLi.appendChild(taskLabel);
+	taskLi.appendChild(icon);
 	document.getElementById('tasks').appendChild(taskLi);
 
 	inputForm.reset();
