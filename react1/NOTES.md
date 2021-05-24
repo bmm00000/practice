@@ -1,0 +1,11 @@
+imperative approach: what we would do in js, since we need to code every single step in the interactivity of a site, so we are reinventing the wheel over and over again, since it's pretty much the same
+
+declarative approach: we define what we want to have on the screen (we create custom 'htmlish' (JSX) elements) and React does the rest. As a consequence, you can duplicate components and their functionality easily without writing as much code as you would need with just JS.
+
+while angular and vue separate html and js (typescript for angular), and instructions for interactivity are coded in the html, in react we don't have html and javascript separation. in react everything is JS and we use JSX to describe to React what html content it should render in the real dom.
+
+React, Angular and Vue have similar startup and runtime performance (don't use stupid metrics, see screenshot): the conclusion is that performance should not be your deciding factor when chosing a JS library/framework.
+
+All three frameworks are stable, ie. ready to be used in production.
+
+The evolution of the frameworks helps us to take advantage of new developments, patterns, new JS features, etc. (because these patterns and features will be incorporated under the hood by the frameworks), so the apps will work today and in the future. But you need to ocassionally be willing to adopt a new feature or drop an existing feature. Angular launches a new version every 6 months, although nothing much changes. The schedules for React and Vue new versions is not fixed, but in all 3 the versions are always backwards compatible.

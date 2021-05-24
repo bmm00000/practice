@@ -1,3 +1,7 @@
+imperative approach: what we would do in js, since we need to code every single step in the interactivity of a site, so we are reinventing the wheel over and over again, since it's pretty much the same
+
+declarative approach: we define what we want to have on the screen (we create custom 'htmlish' (JSX) elements) and React does the rest. As a consequence, you can duplicate components and their functionality easily without writing as much code as you would need with just JS.
+
 https://github.com/mschwarzmueller/nextjs-course-code/blob/01-getting-started-extra-files/slides/slides.pdf
 
 imperative approach: code every single action, for example, when you are coding all the interactivity in javascript, not using a library.
