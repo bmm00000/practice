@@ -8,7 +8,9 @@ imperative approach: code every single action, for example, when you are coding 
 
 declarative, component-focused approach: higher level syntax that you code when using a library.
 
-built step: the code that you write is not the code that will end up in the browser. the code that you write will be transformed behind the scenes before it reaches the browser. This is what happens behind the scenes with React (the browser does not render jsx)
+built step: the code that you write is not the code that will end up in the browser. the code that you write will be transformed behind the scenes before it reaches the browser. This is what happens behind the scenes with React (the browser does not render jsx).
+also, in react, a development server hosts our application locally in our machine, and updates the page in the browser as soon as we save changes in the code.
+that's why we use the tool create-react-app, so we can get all these functionalities.
 
 dynamic expressions: it will not be treated as plain text, it will be evaluated
 
