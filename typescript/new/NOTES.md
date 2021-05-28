@@ -1,1 +1,0 @@
-TS is both a language built up on JS, and a compiler that compiles TS into JS.

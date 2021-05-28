@@ -12,12 +12,15 @@ built step: the code that you write is not the code that will end up in the brow
 also, in react, a development server hosts our application locally in our machine, and updates the page in the browser as soon as we save changes in the code.
 that's why we use the tool create-react-app, so we can get all these functionalities.
 
-dynamic expressions: it will not be treated as plain text, it will be evaluated
+dynamic expressions: it will not be treated as plain text, it will be evaluated. For example, in JSX, {2 + 2}, but watch out! in JSX you can only use dinamic expressions of one line.
 
-in jsx, all html-like elements are components that have already been built into react, that's why you can add attributes to those components, like 'onClick', etc. (you are saying that you wanna react on a click on that element, etc.), but you can only add inline code to those attributes, not blocks of code (like if statement blocks, etc). You cannot use 'onClick' etc. in components created by us.
+in jsx, all html-like elements are components that have already been built into react, that's why you can add attributes to those components, like 'onClick', etc. (you are saying that you wanna react on a click on that element, etc.), but you can only add inline code to those attributes, not blocks of code (like if statement blocks, etc). You cannot use 'onClick' etc. in custom components, for example in our app: Modal, Backdrop, etc.
+
+convention: functions that are executed upon events are named ending in 'Handler', for example: 'deleteHandler'
 
 in html you cannot use self-closing elements, but you can in JSX.
 
-{modalIsOpen ? <Modal/> : null} can be refactored as {modalIsOpen && <Modal/>}
+you have new 'state' every time data changes in your app, even if it's not rendered in the screen yet (for example, if a variable change, you got new state, and when this new value is rendered or consoled.log, then you got new state again)
+when we useState, we register different states in our app, and react will react to changes in this state, and we will be able to render different output depending on which state is active.
 
-CSS modules is a built in feature of CRA that allows us to scope style to components, the name of the file should be: name-of-component.module.css
+{modalIsOpen ? <Modal/> : null} can be refactored as {modalIsOpen && <Modal/>}
