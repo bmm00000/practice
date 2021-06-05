@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import classes from './MainNavigation.module.css';
-// only imports an object with the classes (as properties) from this css file, and you can apply them in the JSX below:
+// only imports an object with the classes (as properties) from this css file, and you can apply them in the JSX below (you can call it 'classes' or an other name you want):
 
 function MainNavigation() {
 	return (
@@ -26,4 +26,4 @@ function MainNavigation() {
 
 export default MainNavigation;
 
-// we import the 'Link' component because if we use a an anchor element, when we click it we will make a request, and we want to avoid that (the 'Link' component is based on an anchor but prevents the default behaviour of sending a request)
+// we import the 'Link' component because if we use a an anchor element, when we click it we will make a request, and we want to avoid that, since we don't need it (remember we are in a SPA) (the 'Link' component is based on an anchor but prevents the default behaviour of sending a request, and instead parses the url you want to go to, changes it in the browser url bar, so it doesn't send request but loads the appropriate component in the screen)

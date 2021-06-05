@@ -32,4 +32,4 @@ function AllMeetupsPage() {
 
 export default AllMeetupsPage;
 
-// arrays of JSX elements are rendered automatically by React, for example, when a component returns {[<li>Item1</li>, <li>Item2</li>, <li>Item3</li>]}, the JSX inside the array are rendered, no problem. That's why we use the built-in function map, to map arrays or objects into arrays of JSX elements.
+// arrays of JSX elements are rendered automatically by React, for example, when a component returns {[<li>Item1</li>, <li>Item2</li>, <li>Item3</li>]}, the JSX inside the array are rendered, no problem. That's why we use the built-in function map, to map arrays of objects into arrays of JSX elements, as we do in the dummy data above.
