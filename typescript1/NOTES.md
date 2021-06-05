@@ -1,6 +1,6 @@
 TS is a superset to JS. it is both a language built up on JS (with new features and advantages), and a compiler that compiles TS into JS.
 
-TS cannot be executed in JS environments (browser or Node.js). That's why, TS is also a compiler, to convert TS code into JS code.
+TS cannot be executed in JS environments (browser or Node.js). That's why, TS is also a compiler, to compile TS code into JS code (so you take advantage of the features and advantages of TS, and end up with JS code)
 therefore, TS is a programming language that works because we have a tool (compiler) to compile it into JS. Therefore, when you install TS, what you are installing is the compiler (everything it needs to know to understand TS and convert it into JS)
 
 see screenshot: you may have unwanted behaviours in JS that will not throw errors necessarily. TS will help you avoid that.
