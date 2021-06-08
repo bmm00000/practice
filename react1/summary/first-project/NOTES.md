@@ -18,7 +18,7 @@ convention: functions that are executed upon events are named ending in 'Handler
 
 in html you cannot use self-closing elements, but you can in JSX.
 
-you have new 'state' every time data changes in your app, even if it's not rendered in the screen yet (for example, if a variable change, you got new state, and when this new value is rendered or consoled.log, then you got new state again)
+you have new 'state' every time data changes in your app, even if it's not rendered in the screen yet (for example, if a variable changes, you got new state, and when this new value is rendered or consoled.log, then you got new state again)
 when we useState, we register different states in our app, and react will react to changes in this state, and we will be able to render different output depending on which state is active.
 
 {modalIsOpen ? <Modal/> : null} can be refactored as {modalIsOpen && <Modal/>}
