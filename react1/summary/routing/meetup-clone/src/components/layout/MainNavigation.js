@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import classes from './MainNavigation.module.css';
-// only imports an object with the classes (as properties) from this css file, and you can apply them in the JSX below (you can call it 'classes' or an other name you want):
+// only imports an object with the classes (as properties) from this css file, and you can apply them in the JSX below (you can call it 'classes' or any other name you want):
 
 function MainNavigation() {
 	return (

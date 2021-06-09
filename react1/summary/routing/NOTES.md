@@ -5,3 +5,13 @@ npm install react-router-dom
 CSS modules is a built in feature of CRA that allows us to scope style to components, the name of the file should be: name-of-component.module.css
 
 the 'key' prop that React expects to render efficiently arrays of jsx elements, is one of the props that is built-in in any component, including in custom components, so you can use it anywhere.
+
+react will authomatically pass an 'event' object as an argument to the function that is executed for events, such as onClick, onSubmit, etc
+
+useRef: react allows us to set up references to dom elements, so we can get direct access to them. useRef() returns a reference object, so then you can use the 'ref' prop (another special prop that, like 'key' is built in all elements (including custom elements)) and assign the reference object to the prop. This will give you access to the element.
+
+with SPAs, you need a backend API to which you can send your requests, a backend that won't send back html, but which expects data in certain format (usually JSON) and which sends data in that format (usually JSON), and which typically expose two urls that you can send requests to, and depending on which one you send a request to, different things will happen. That's the type of backend that you typically connect to with SPAs. You don't connect the frontend app to a database itself because of security issues (all the react code that you write is visible to the visitors of your page, through the dev tools>sources, there you can read the js code of the frontend of your app, and database credentials would be there as well if you include them in your react code). That's why we need a backend server to which we can send requests, and that server is connected to a database and stores data. We could build a RESTful api with node, for example, but we are going to use Firebase as a dummy backend (in one of the services of Firebase ('Realtime Database'), you can use it as a backend that offers you urls to which you can send requests to, and it will store the data safely in a database.)
+
+'fetch' is the builtin javascript function to send http requests. we could install axios as well, but will stick to 'fetch'. however, fetch sends GET requests by default, that's why we add a second argument to configure the type of request we want to send.
+
+in the Firebase Realtime Database service, you can add segments to the url domain, and then the data will be stored in different 'folders' or tables with that name that you add (in our case, we add '/meetups' to the url), and you also need to add '.json' at the end of the url.
