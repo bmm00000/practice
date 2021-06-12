@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 
-// 'createContext' will return an object that will contain a React component, that's why we name it in capital letter. 'createContext' take an argument: the initial values for the context, as follows:
+// 'createContext' will return an object that will contain a React component, that's why we name it in capital letter. 'createContext' takes an argument: the initial values for the context, as follows:
 const FavoritesContext = createContext({
 	favorites: [],
 	totalFavorites: 0,
