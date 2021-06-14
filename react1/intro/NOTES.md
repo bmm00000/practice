@@ -9,3 +9,9 @@ React, Angular and Vue have similar startup and runtime performance (don't use s
 All three frameworks are stable, ie. ready to be used in production.
 
 The evolution of the frameworks helps us to take advantage of new developments, patterns, new JS features, etc. (because these patterns and features will be incorporated under the hood by the frameworks), so the apps will work today and in the future. But you need to ocassionally be willing to adopt a new feature or drop an existing feature. Angular launches a new version every 6 months, although nothing much changes. The schedules for React and Vue new versions is not fixed, but in all 3 the versions are always backwards compatible (everything you have coded in the past will still work).
+
+JS REVIEW:
+we will use the ES7 syntax (arrow functions to define methods in classes, etc), in order to avoid problems with the 'this' keyword.
+Also, we don't need to call constructor functions in classes in ES7 (we don't need 'super()' method either.) (see screenshots)
+
+see screenshots about reference types: avoiding errors by using spread operator when copying reference types (arrays, objects, etc.), otherwise, if you change the values, the change will affect to all the copies, and you don't necessarily want that. That's why we use the array method 'map' a lot in React (instead of 'forEach', for example), ditto with 'concat' (and not 'push') (because 'map' and 'concat' return new arrays, and don't change the existing arrays)
