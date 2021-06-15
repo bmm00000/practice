@@ -15,3 +15,9 @@ we will use the ES7 syntax (arrow functions to define methods in classes, etc), 
 Also, we don't need to call constructor functions in classes in ES7 (we don't need 'super()' method either.) (see screenshots)
 
 see screenshots about reference types: avoiding errors by using spread operator when copying reference types (arrays, objects, etc.), otherwise, if you change the values, the change will affect to all the copies, and you don't necessarily want that. That's why we use the array method 'map' a lot in React (instead of 'forEach', for example), ditto with 'concat' (and not 'push') (because 'map' and 'concat' return new arrays, and don't change the existing arrays)
+
+PRINCIPLES OF REACT:
+-reusability (don't repeat yourself)
+-separation of concerns (don't do too many things in one at the same place): react takes the concept of functions (we separate the code in functions to do specific things, so we can call them repeatedly), and applies it to the frontend world (components, that are made of html, css, js; although in react, components are mostly html and js, css is not that important)
+
+declarative approach: define the desired target state(s) and let React figure out the actual JS DOM updating instructions.
