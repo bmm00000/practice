@@ -1,4 +1,4 @@
-if you using unit testing, you can rest assured that your changes/refactoring won't break any other parts of the code base. if you don't do that, you would need to manually test every feature of your app after make any change, to make sure you don't break anything before you publish it. therefore, the development process is faster with unit testing.
+if you are using unit testing, you can rest assured that your changes/refactoring won't break any other parts of the code base. if you don't do that, you would need to manually test every feature of your app after making any change, to make sure you don't break anything before you publish it. therefore, the development process is faster with unit testing.
 
 code quality: since the code is defined in units in order to be tested, the quality improves.
 
