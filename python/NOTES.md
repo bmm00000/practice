@@ -7,3 +7,8 @@ Great documentation online:
 docs.python.org/3
 
 shift + enter ; runs the cell and creates new cell below
+
+in a jupyter notebook, when you execute a cell containing a string, it returns ('out' line) that string but only the last line. if you have several lines, you have to use 'print('line1')'
+'print('line2')'
+
+escape secuences: \n (new line) \t (tab)
