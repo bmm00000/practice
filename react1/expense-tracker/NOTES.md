@@ -3,4 +3,6 @@
 
 declarative approach: define the desired target state(s) and let React figure out the actual JS DOM updating instructions.
 
-create-react-app is a tool that will help us in the following ways: development server that allows us to preview our code and reflect changes on save, and also transform/optimize our code when we build it to be deployed in a production server (transform newest JS features to older syntax, so it will work in older browsers, minify css, etc...). In short, CRA allows you to preview the project locally in a development environment, and also later build it for production.
+create-react-app is a tool that will help us in the following ways: development server that allows us to preview our code and reflect changes on save, and also transform/optimize our code when we build it to be deployed in a production server (transform newest JS features to older syntax, so it will work in older browsers, minify css, etc...). In short, CRA allows you to preview the project locally in a development environment, and also later build it for production (if you want to view the transformed code in the development environment, go to 'source' in dev tools in the browser: you will find a static folder with chunk.js, bundle.js etc.)
+
+custom components have to start with capital letter, that's the way React differentiates them from built-in elements (the html-like elements in JSX)
