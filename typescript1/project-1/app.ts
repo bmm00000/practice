@@ -40,7 +40,7 @@ for (let sport of faveSports) {
 	// it gives us an error, because map() is for arrays, not strings
 }
 
-// TUPLES:
+// TUPLES (don't exist in JS):
 const jobStart = [2002, 'cleaner'];
 // we only want two values, and always the first a number and the second a string. Inference doesn't work here (hover the cursor to see), because we could do the following:
 // jobStart.push(22);
@@ -54,3 +54,6 @@ jobStart2 = [33, 'hi', 44];
 // BUT:
 jobStart2.push('hello');
 // 'push' is an exception, unfortunately TS can't catch this error.
+
+// ENUM (don't exist in JS):
+//
