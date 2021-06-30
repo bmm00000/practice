@@ -48,4 +48,9 @@ const jobStart = [2002, 'cleaner'];
 // and we don't want this. Therefore, what we do is:
 let jobStart2: [number, string];
 // we specify that we want only two elements, the first a number, and the second a string. Therefore, if you do the following, you get an error:
-jobStart2.push('hello'); // WHY IT DOESN'T TELL US????
+jobStart2 = [];
+jobStart2[0] = 'hello';
+jobStart2 = [33, 'hi', 44];
+// BUT:
+jobStart2.push('hello');
+// 'push' is an exception, unfortunately TS can't catch this error.
