@@ -22,3 +22,12 @@ open name-of-folder
 clear
 
 pwd (prints out the path, your location)
+
+rm purple.txt (deletes a file)
+rm -rf plants (deletes a folder; r=recursive, f=force)
+
+ls -a (lists all files, including hidden files)
+
+BASICS OF GIT
+
+https://www.canva.com/design/DAEPH_Lq4Wk/Wp_d5Rvk_OjVvgPH0xmzhg/view?utm_content=DAEPH_Lq4Wk&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
