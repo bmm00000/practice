@@ -1,12 +1,18 @@
 import './ExpenseForm.css';
 
 const ExpenseForm = () => {
+	const titleChangeHandler = (event) => {
+		console.log(event.target.value);
+	};
+	// we get an event as an argument by default when the event listener gets triggered.
+
 	return (
 		<form action=''>
 			<div className='new-expense__controls'>
 				<div className='new-expense__control'>
 					<label htmlFor=''>Title</label>
-					<input type='text' />
+					<input type='text' onChange={titleChangeHandler} />
+					{/* we could use 'onInput', but 'onChange' will work with any type of input */}
 				</div>
 				<div className='new-expense__control'>
 					<label htmlFor=''>Amount</label>

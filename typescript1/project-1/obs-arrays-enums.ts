@@ -109,3 +109,5 @@ enum Role2 {
 
 // ANY:
 // you want to avoid it, because you won't have with it the useful advantages of TS, it will be like vanilla JS, where everything is dynamically typed, and you have the 'any' type in everything.
+let faveActivities: any[];
+// it can be any type inside the array.
