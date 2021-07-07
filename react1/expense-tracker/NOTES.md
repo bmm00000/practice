@@ -23,3 +23,5 @@ therefore, we use state when we have data that might change and the changes must
 hooks must be called inside component functions (not outside, not in nested functions inside the component)
 
 useState works on a per component instance basis: the data will be managed separately for each specific instance of the component (for example, in our case, different titles for the different instances of the ExpenseItem component), so we will have different states, even though you used useState only once in your component. Also, when each state changes, it will only affect to that particular insance, so only that instance will be re-evaluated.
+
+when you are lifting state up, you don't do it always to the App.js level, just just high enough, to the component that has access to both the component that generates data, and the component that needs data. That might be the App.js component, but can also be another component. Also, you can lift state up several levels in the component tree, as we do in our expense-tracker app.
