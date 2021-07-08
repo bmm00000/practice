@@ -6,17 +6,20 @@ import ExpenseItem from './ExpenseItem';
 import './Expenses.css';
 
 const Expenses = ({ expenses }) => {
-	const [year, setYear] = useState('');
+	const [filteredYear, setFilteredYear] = useState('2021');
 
-	const selectYearHandler = (event) => {
-		setYear(event.target.value);
-		console.log(year);
+	const filterChangeHandler = (selectedYear) => {
+		setFilteredYear(selectedYear);
+		// if you console.log the year here, it will appear an old state because setState doesn't change the value striaghtaway, but schedules the state update
 	};
 
 	return (
 		<div>
 			<Card className='expenses'>
-				<ExpensesFilter onSelectYear={selectYearHandler} />
+				<ExpensesFilter
+					selected={filteredYear}
+					onChangeFilter={filterChangeHandler}
+				/>
 				<ExpenseItem
 					title={expenses[0].title}
 					amount={expenses[0].amount}

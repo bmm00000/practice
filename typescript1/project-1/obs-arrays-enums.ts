@@ -59,7 +59,7 @@ jobStart2.push('hello');
 const person1 = {
 	role: 'READ-ONLY-USER',
 };
-if (person.role === 'READ ONLY USER') {
+if (person1.role === 'READ ONLY USER') {
 }
 // to avoid this type of bugs, you can use numbers instead of long strings:
 const person3 = {
@@ -76,7 +76,7 @@ const AUTHOR = 2;
 const person4 = {
 	role: AUTHOR,
 };
-if (person3.role === AUTHOR) {
+if (person4.role === AUTHOR) {
 }
 // THIS APPROACH IS TOTALLY FINE. however, 'role' is typed as a number, and we could store by accident any number value in there without getting any warning by TS. Also, we would need to define all the global constants and manage them.
 // THAT'S WHY, WE CAN USE ENUMS: global constants/identifiers in your app that are assigned to numbers, and you refer to them with labels:
