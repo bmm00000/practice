@@ -19,7 +19,7 @@ open name-of-folder
 
 clear
 
-pwd (prints out the path, your location)
+pwd (prints out the path, your location)KLJLKJGFGFSHFDAHJ
 
 rm purple.txt (deletes a file)
 rm -rf plants (deletes a folder; r=recursive, f=force)
@@ -28,3 +28,11 @@ ls -a (lists all files, including hidden files)
 
 BASICS OF GIT
 https://www.canva.com/design/DAEPH_Lq4Wk/Wp_d5Rvk_OjVvgPH0xmzhg/view?utm_content=DAEPH_Lq4Wk&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+USE 'git status' TO MAKE SURE YOU ARE NOT ALREADY INSIDE OF A GIT REPO!!
+
+git log
+
+https://www.canva.com/design/DAEXMibkysc/4PgPWiQqZ5UwCxMruH6BmQ/view?utm_content=DAEXMibkysc&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+if you don't use atomic commits, and then needd to undo a commit, you can lose a lot of work made by others, that's why we use atomic commits.
