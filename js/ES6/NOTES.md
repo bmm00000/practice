@@ -40,3 +40,11 @@ const cow = undefined
 cow && cow.sound()
 this will not give us the 'cannot read property of undefined' error, because JS will short circuit when it finds cow is falsy.
 that happens because when we have: true && true, it runs the second true
+
+AUTHOMATIC GLOBAL SCOPE:
+if we assign a value to a variable that has not been declared, it becomes a global variable authomatically. For example, see screenshot. So WATCH OUT! you always need to declare the variables you are using inside your functions, or they will become global variables authomatically.
+
+IN THE BROWSER, THE GLOBAL OBJECT IS THE WINDOW OBJECT.
+any variables we create in the global scope will be attached to the window object (see screenshot)
+
+WHEN THE KEYWORD this IS USED INSIDE OF A DELCARED OBJECT, the value of 'this' is set to the closest parent object the method is called on.

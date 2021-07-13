@@ -1,4 +1,4 @@
-// this course is organised as if it were interview questions about js: usually interview questions have an 'easy' quick answer but also deeper considerations that go into the deeper layers of js.
+// this course is organised as if it were interview questions about js: usually interview questions have an 'easy' quick answer but also deeper considerations that go into the deeper layers, usually based on the history of JS. JS has evolved iteratively over two decades, so it hasn't been created like from scratch every time, but over small changes, which is good, becuase JS is backwards compatible, and what you write today will work in the future, but also it means that if you want to understand the newest stuff, you have to understand how the language has evolved, then everything will make sense.
 
 // SECTION: MISCELLANEOUS
 
