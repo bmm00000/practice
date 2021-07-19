@@ -1,7 +1,7 @@
 INTRO
 https://www.canva.com/design/DAETQyFE6pM/mLt1oYF8gP_mqBS3ghb-BA/view?utm_content=DAETQyFE6pM&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton#2
 
-stackshare.com: you can see the tech stack that companies use.
+stackshare.io: you can see the tech stack that companies use.
 
 INSTALLATION
 https://www.canva.com/design/DAEXMu7dx04/x1kkoUK-g_j6UtObmUwbDA/view?utm_content=DAEXMu7dx04&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
@@ -19,7 +19,7 @@ open name-of-folder
 
 clear
 
-pwd (prints out the path, your location)KLJLKJGFGFSHFDAHJ
+pwd (prints out the path, your location)
 
 rm purple.txt (deletes a file)
 rm -rf plants (deletes a folder; r=recursive, f=force)
@@ -35,4 +35,4 @@ git log
 
 https://www.canva.com/design/DAEXMibkysc/4PgPWiQqZ5UwCxMruH6BmQ/view?utm_content=DAEXMibkysc&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 
-if you don't use atomic commits, and then needd to undo a commit, you can lose a lot of work made by others, that's why we use atomic commits.
+if you don't use atomic commits, and then need to undo a commit, you can lose a lot of work made by others, that's why we use atomic commits.
