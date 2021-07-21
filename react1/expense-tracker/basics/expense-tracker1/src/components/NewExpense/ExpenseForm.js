@@ -7,7 +7,7 @@ const ExpenseForm = (props) => {
 	// we always initialize state with an empty string, even if we are using numbers, beause when we get event.target.value, it will get anything as a string.
 	const [enteredDate, setEnteredDate] = useState('');
 
-	// or your can also use just one state:
+	// or you can also use just one state:
 	// const [userInput, setUserInput] = useState({
 	// 	enteredTitle: '',
 	// 	enteredAmount: '',
@@ -56,6 +56,7 @@ const ExpenseForm = (props) => {
 
 		props.onSaveExpenseData(expenseData);
 		// and now we empty the inputs, that's why we are using state, and not global variables, so we can change the input when we want, for example, when we submit (this is called 'two way binding': it allows you to get the user input but also change it):
+		// CONTINUE WACHING VIDEO FROM TWO WAY BINDING!!
 		setEnteredTitle('');
 		setEnteredAmount('');
 		setEnteredDate('');
