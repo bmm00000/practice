@@ -36,3 +36,18 @@ git log
 https://www.canva.com/design/DAEXMibkysc/4PgPWiQqZ5UwCxMruH6BmQ/view?utm_content=DAEXMibkysc&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 
 if you don't use atomic commits, and then need to undo a commit, you can lose a lot of work made by others, that's why we use atomic commits.
+
+when we need to include a long message in the commit, we cannot use the -m flag. we need to open an editor. by default, VIM is very annoying. that's why we can configure any editor that will pop up by default when we 'git commit':
+https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config
+
+when we 'git log' and we want to avoid to see very long commit messages and commit codes, we use:
+git log --oneline
+
+that's why, when we use long messages, we have to summarize the commit IN THE FIRST LINE, then leave a space, and add the rest of the long message.
+
+'--amend' allows you to re-do ONLY the previous commit.
+
+when writing .gitignore, make sure you name the directories like this: ignore-this-directory/
+
+in this website, you type the language of your project, for example 'Python', and it gives you a template for a .gitignore file:
+https://www.toptal.com/developers/gitignore
