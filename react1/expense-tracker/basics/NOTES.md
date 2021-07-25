@@ -26,8 +26,8 @@ useState works on a per component instance basis: the data will be managed separ
 
 when you are lifting state up, you don't do it always to the App.js level, just just high enough, to the component that has access to both the component that generates data, and the component that needs data. That might be the App.js component, but can also be another component. Also, you can lift state up several levels in the component tree, as we do in our expense-tracker app.
 
-CONTROLLED COMPONENT: ExpensesFilter.js is a controlled component of Expenses.js, because the value that ExpensesFilter.js receives comes from Expenses.js, and the value selected in ExpensesFilter.js goes to the parent (Expenses.js) where there is the function that will take it as an input and change it.
+when you use two-way binding, you are controlling a component (the component that you are controlling can be built-in, like the 'input', or a custom component). CONTROLLED COMPONENT: ExpensesFilter.js is a controlled component of Expenses.js, because the value that ExpensesFilter.js receives comes from Expenses.js, and the value selected in ExpensesFilter.js goes to the parent (Expenses.js) where there is the function that will take it as an input and change it. both the value and the function to change the value are in the parent component
 
-PRESENTATIONAL (OR STATELESS) VS STATEFUL COMPONENTS (OR DUMB VS SMART COMPONENTS): those that don't have internal state (just focused on outputting some data) vs those that do. in most appliations you will have more dumb components that smart components.
+PRESENTATIONAL (OR STATELESS) VS STATEFUL COMPONENTS (OR DUMB VS SMART COMPONENTS): those that don't have internal state (just focused on outputting some data) vs those that do. in most appliations you will have more dumb components that smart components. in most applications, only a couple of components manage state, and then state is spread out and distributed through props.
 
 the value that useState receives as initial state value is optional.

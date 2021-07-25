@@ -4,7 +4,7 @@ import './ExpenseForm.css';
 const ExpenseForm = (props) => {
 	const [enteredTitle, setEnteredTitle] = useState('');
 	const [enteredAmount, setEnteredAmount] = useState('');
-	// we always initialize state with an empty string, even if we are using numbers, beause when we get event.target.value, it will get anything as a string.
+	// in this situation, we initialize state with an empty string, even if we are using numbers, beause when we get event.target.value, it will get anything as a string.
 	const [enteredDate, setEnteredDate] = useState('');
 
 	// or you can also use just one state:
@@ -15,6 +15,7 @@ const ExpenseForm = (props) => {
 	// });
 	// however, the most frequent approach is the first one: different states
 
+	// we get an event as an argument by default when the event listener gets triggered.
 	const titleChangeHandler = (event) => {
 		setEnteredTitle(event.target.value);
 		// or:
@@ -22,12 +23,11 @@ const ExpenseForm = (props) => {
 		// 	...userInput,
 		// 	enteredTitle: event.target.value,
 		// });
-		// however, the former approach may fail sometimes because your new state depends on a former state, and state updates are scheduled, so there's the possibility that you will be using an incorrect former state for the update. Every time our state update depends on a previous state, we use the following format to guarantee that we get the latest state: setUserInput((prevState)=> newState)':
-		// 	setUserInput((prevState) => {
-		// 		return { ...prevState, enteredTitle: event.target.value };
+		// however, the former approach may fail sometimes because your new state depends on a former state, and state updates are scheduled, so there's the possibility that you will be using an incorrect former state for the update. Every time our state update depends on a previous state, we use the following format to guarantee that we get the latest state: setState((prevState)=> newState)':
+		// 	setUserInput((prevUserState) => {
+		// 		return { ...prevUserState, enteredTitle: event.target.value };
 		// });
 	};
-	// we get an event as an argument by default when the event listener gets triggered.
 
 	const amountChangeHandler = (event) => {
 		setEnteredAmount(event.target.value);
@@ -55,8 +55,7 @@ const ExpenseForm = (props) => {
 		};
 
 		props.onSaveExpenseData(expenseData);
-		// and now we empty the inputs, that's why we are using state, and not global variables, so we can change the input when we want, for example, when we submit (this is called 'two way binding': it allows you to get the user input but also change it):
-		// CONTINUE WACHING VIDEO FROM TWO WAY BINDING!!
+		// and now we empty the inputs, that's why we are using state, and not global variables, so we can change the input when we want, for example, when we submit or just after every change in the input (that's why we use the 'value' attribute in every input, so it gets the right state when it re-renders) (this is called 'two way binding': it allows you to listen to changes in the user input, and also to pass a value to the input, so that we can re-set the input programatically):
 		setEnteredTitle('');
 		setEnteredAmount('');
 		setEnteredDate('');
