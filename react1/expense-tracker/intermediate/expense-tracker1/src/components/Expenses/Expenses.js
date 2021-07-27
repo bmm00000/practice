@@ -8,17 +8,27 @@ import './Expenses.css';
 const Expenses = ({ expenses }) => {
 	const [filteredYear, setFilteredYear] = useState('2021');
 
-	const [filteredExpenses, setFilteredExpenses] = useState(expenses);
-
 	const filterChangeHandler = (selectedYear) => {
 		setFilteredYear(selectedYear);
 		// if you console.log the year here, it will appear an old state because setState doesn't change the value striaghtaway, but schedules the state update
-		setFilteredExpenses((prevExpenses) => {
-			return prevExpenses.filter(
-				(expense) => expense.date.getFullYear() === filteredYear
-			);
-		});
 	};
+
+	const filteredExpenses = expenses.filter(
+		(expense) => expense.date.getFullYear().toString() === filteredYear
+	);
+
+	// you can use jsx content as value that is stored in a variable before you return:
+	let expensesContent = <p>No expenses found</p>;
+	if (filteredExpenses.length > 0) {
+		expensesContent = filteredExpenses.map((expense) => (
+			<ExpenseItem
+				key={expense.id}
+				title={expense.title}
+				amount={expense.amount}
+				date={expense.date}
+			/>
+		));
+	}
 
 	return (
 		<div>
@@ -27,14 +37,18 @@ const Expenses = ({ expenses }) => {
 					selected={filteredYear}
 					onChangeFilter={filterChangeHandler}
 				/>
-				{filteredExpenses.map((expense) => (
-					<ExpenseItem
-						key={expense.id}
-						title={expense.title}
-						amount={expense.amount}
-						date={expense.date}
-					/>
-				))}
+				{/* {filteredExpenses.length === 0 && <p>No expenses found</p>}
+				{filteredExpenses.length > 0 &&
+					filteredExpenses.map((expense) => (
+						<ExpenseItem
+							key={expense.id}
+							title={expense.title}
+							amount={expense.amount}
+							date={expense.date}
+						/>
+					))} */}
+				{/* we could do what we did just above, but it's better to have a lean jsx snippet in the return block. therefore, the following is the best approach: */}
+				{expensesContent}
 			</Card>
 		</div>
 	);
