@@ -12,11 +12,11 @@ const Expenses = ({ expenses }) => {
 		setYear(chosenYear);
 	};
 
-	const filteredExpenses = expenses.filter((expense) => {
-		return expense.date.getFullYear().toString() === year;
-	});
+	const filteredExpenses = expenses.filter(
+		(expense) => expense.date.getFullYear().toString() === year
+	);
 
-	let content = <p>There are no expenses</p>;
+	let content = <p>No expenses</p>;
 	if (filteredExpenses.length > 0) {
 		content = filteredExpenses.map((expense) => (
 			<ExpenseItem

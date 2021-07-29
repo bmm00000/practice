@@ -43,7 +43,7 @@ https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config
 when we 'git log' and we want to avoid to see very long commit messages and commit codes, we use:
 git log --oneline
 
-that's why, when we use long messages, we have to summarize the commit IN THE FIRST LINE, then leave a space, and add the rest of the long message.
+that's why, when we use long messages, we have to summarize the commit IN THE FIRST LINE, then leave an empty line, and add the rest of the long message.
 
 '--amend' allows you to re-do ONLY the previous commit.
 
