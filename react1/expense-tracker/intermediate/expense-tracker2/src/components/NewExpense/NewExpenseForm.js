@@ -22,9 +22,9 @@ const NewExpenseForm = (props) => {
 	const submitHandler = (event) => {
 		event.preventDefault();
 		props.onExpenseSave({
-			savedTitle: title,
-			savedAmount: amount,
-			savedDate: new Date(date),
+			title,
+			amount,
+			date: new Date(date),
 		});
 		setTitle('');
 		setAmount('');

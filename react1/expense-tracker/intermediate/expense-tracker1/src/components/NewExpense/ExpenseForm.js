@@ -59,6 +59,7 @@ const ExpenseForm = (props) => {
 		setEnteredTitle('');
 		setEnteredAmount('');
 		setEnteredDate('');
+		props.onCancel();
 	};
 
 	return (
@@ -95,6 +96,10 @@ const ExpenseForm = (props) => {
 				</div>
 			</div>
 			<div className='new-expense__actions'>
+				{/* we set the type of the cancel button to 'button', so it doesn't submit the form: */}
+				<button type='button' onClick={props.onCancel}>
+					Cancel
+				</button>
 				<button type='submit'>Add Expense</button>
 				{/* we add the type 'submit' so when the button gets clicked the form gets submitted (it emits the submit event). but keep in mind that when you submit, the default behaviour of the browser is to send another request to the server to reload the page. that's why we use preventDefault() */}
 			</div>
