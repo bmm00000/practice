@@ -7,7 +7,7 @@ const ExpenseForm = (props) => {
 	// we always initialize state with an empty string, even if we are using numbers, beause when we get event.target.value, it will get anything as a string.
 	const [enteredDate, setEnteredDate] = useState('');
 
-	// or your can also use just one state:
+	// or you can also use just one state:
 	// const [userInput, setUserInput] = useState({
 	// 	enteredTitle: '',
 	// 	enteredAmount: '',
@@ -26,6 +26,7 @@ const ExpenseForm = (props) => {
 		// 	setUserInput((prevState) => {
 		// 		return { ...prevState, enteredTitle: event.target.value };
 		// });
+		// this way, the new 'enteredTitle' will replace the old one
 	};
 	// we get an event as an argument by default when the event listener gets triggered.
 
@@ -60,6 +61,7 @@ const ExpenseForm = (props) => {
 		setEnteredAmount('');
 		setEnteredDate('');
 		props.onCancel();
+		// since we are calling 'props.onCancel()', we don't need to clean the inputs anymore, but still we are doing it to be clearer.
 	};
 
 	return (
@@ -96,7 +98,7 @@ const ExpenseForm = (props) => {
 				</div>
 			</div>
 			<div className='new-expense__actions'>
-				{/* we set the type of the cancel button to 'button', so it doesn't submit the form: */}
+				{/* we set the type of the cancel button to 'button', so it doesn't submit the form when we click it: */}
 				<button type='button' onClick={props.onCancel}>
 					Cancel
 				</button>
