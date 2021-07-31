@@ -4,3 +4,19 @@ https://www.canva.com/design/DAEPOwX2Zzs/90STrbMXNysYIkSsxUCu-g/view?utm_content
 the hash that we get on every commit is a unique identifier that is made out of a hashing function, and the hash corresponds to the contents of the commit, among other things.
 
 from git's perspective, there's nothing special about the master branch. however, many companies treat it as the ultimate source of truth (the main copy, where everything works), where the current ultimate version of the project is. it's up to you if you want to do that. that approach is commonly known as 'feature branching' (see slide where the experimental 'adding a new feature' branch is merged back into the main branch)
+
+the 'tip of the branch' is the last commit
+'head' points to the tip of the reference branch
+'head' is a reference to a branch pointer, and a branch pointer is where a branch currently is (bookmark in a book).
+we can have many branches, and each one has a branch reference, that refers to where the branch is.
+
+look at the slide: the branch pointer (or branch reference) updates to new commits as you create new commits (and 'head' points to that branch pointer), but when you create a new branch, the new branch pointer still refers to the same commit (the last commit you did under master), these are two branch references pointing at the same commit, but 'head' now points to 'DarkMode' which indicates that now you are on that branch. in a nutshell, 'head' indicates what you are currently checking out in your repo.
+each branch has a branch reference, pointing where we left off (the last commit of that branch): a branch is a reference to some commit, when you create a new commit, it updates to the new commit. BUT in which branch are we?where are we?? 'head' will tell you in which branch we are (like a bookmark in a book), ie. which branch we are checking out.
+You can see the 'head' when you type 'git log'
+
+see screenshot: we are in the master branch, but we just created the new 'oldies' branch, that's why head points to master, but the branch reference 'oldies' is also at the same commit, because we just created it out of the master branch (two branch references pointing to the same commit, although head points to master, ie. we are on master)
+next screenshot: after we switch branch to oldies, head points to oldies.
+next screenshot: we are in the oldies branch, but you can see that the branch reference for master is pointing to an older commit, if we switch to the master branch, we go to that commit, since that's the last commit of the master branch
+
+this is how to add all and commit at the same time:
+git commit -a -m "our message"
