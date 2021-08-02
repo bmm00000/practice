@@ -17,7 +17,7 @@ const ExpensesChart = (props) => {
 	];
 
 	for (let expense of props.expenses) {
-		const expenseMonth = expense.date.getMonth(); // getMonth() starts at 0 for Jan. This will be useful since we can use it to get our months in our 'chartDataPoints' array.
+		const expenseMonth = expense.date.getMonth(); // getMonth() starts at 0 for Jan. This will be useful since we can use it as index to access the right month in our 'chartDataPoints' array.
 		chartDataPoints[expenseMonth].value += expense.amount;
 	}
 	// after this loop, you can pass the array to the 'Chart' component and it will have all the right values:

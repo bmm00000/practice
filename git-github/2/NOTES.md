@@ -20,3 +20,9 @@ next screenshot: we are in the oldies branch, but you can see that the branch re
 
 this is how to add all and commit at the same time:
 git commit -a -m "our message"
+
+if you want to create a branch and switch to it in the same step, using git checkout:
+
+git checkout -b <branch-name>
+
+if you try to switch branches but have not committed your work, it will tell you to commit your changes (or to stash them, we will see later what this means), or your work will be lost. THIS ONLY HAPPENS WHEN YOUR UNSTAGED WORK AND THE CONTENT OF THE BRANCH YOU ARE TRYING TO SWITCH TO, ARE IN CONFLICT. IF THEY ARE NOT IN CONFLICT (FOR EXAMPLE, YOU JUST ADD A NEW FILE, AND SWITCH BRANCH), YOU WILL BE ABLE TO CHANGE BRANCH (AND YOU WILL BRING THE NEW FILE WITH YOU TO THE BRANCH THAT YOU SWITCHED TO)
