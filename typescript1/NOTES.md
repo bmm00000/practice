@@ -23,11 +23,18 @@ after you execute tsc, then you have to link the resulting JS file to the HTML d
 
 also, you can use the latest JS features, and they will get compiled down for older browsers (it's a little bit like Babel, this functionality is built in TS)
 
+screenshot: 'modern tooling that helps even in non TS projects': when you are using VS code, even in plain JS projects the code editor gives you some functionalities because it has some TS features running under the hood.
+
 WATCH OUT! make sure you don't have the same-name JS and TS files open at the same time, or the IDE will shout at you errors due to variable duplicates, etc.
 
-//
+you will need to run 'npm init' in the project folder, so you get the package.json file and you can install lite-server:
+npm install --save-dev lite-server
+(development only dependency: tool that helps us during development, and doesn't include any code that will be executed as the main code of the app)
+then you add the 'start' script in the package.json file (lite-server serves the index.html file next to the package.json file in the project)
 
-truthy and falsy values are things that JS does under the hood, they are not related to TS.
+js has types, but ts add many more, and allows you to create your own types.
+
+truthy and falsy values are not related to data types: these are things that JS does under the hood at runtime when it sees certain values in if conditions.
 
 TS does not block compilation if the code has type inconsistencies, it will still produce a JS file (although will throw errors in the terminal). TS DOES NOT THROW ERRORS AT RUN TIME, it will only shout at you during development through the IDE and terminal, that's all. if you want to validate certain inputs (and therefore throw errors) at runtime, then you have to use vanilla JS (typeof keyword, for example) and an error will be thrown if the error conditions are met, and that error will kill our running application (see screenshot). We use TS when we don't want to throw errors at runtime, since they will kill our running application, and we may not want that to happen (you can also have mechanisms to save the running application, but this will require more code...). Here we can see the difference between TS and JS when it comes to types: JS is dynamically typed (a given variable can change type at different moments, and that's why we have the typeof keyword to check type at runtime); TS is statically typed (we define the types during development, so if types don't match we will see it during development). The key point is that you can also check for types in JS, but you will only find out at runtime. On the other hand, it's using TS you can find out during development, which is generally better, since you'll be able to fix bugs earlier. (but keep in mind that with TS, you will ONLY get support during development, not at runtime because TS features and checks are not built into the JS engine, so that logic can't execute in the browser) Additionlly, JS only knows about a few types, whereas TS knows about many types, as we will see.
 THE KEY DIFFERENCE IS: JS uses 'dynamic types' to be resolved at runtime, whereas TS uses 'static types' set during development.
