@@ -7,10 +7,10 @@ from git's perspective, there's nothing special about the master branch. however
 
 the 'tip of the branch' is the last commit
 'head' points to the tip of the reference branch
-'head' is a reference to a branch pointer, and a branch pointer is where a branch currently is (bookmark in a book).
-we can have many branches, and each one has a branch reference, that refers to where the branch is.
+'head' is a reference to a branch pointer, and a branch pointer is where a branch currently is (last commit).
+we can have many branches, and each one has a branch reference, that refers to where the branch is (last commit).
 
-look at the slide: the branch pointer (or branch reference) updates to new commits as you create new commits (and 'head' points to that branch pointer), but when you create a new branch, the new branch pointer still refers to the same commit (the last commit you did under master), these are two branch references pointing at the same commit, but 'head' now points to 'DarkMode' which indicates that now you are on that branch. in a nutshell, 'head' indicates what you are currently checking out in your repo.
+look at the slide: the branch pointer (or branch reference) updates to new commits as you create new commits (and 'head' points to that branch pointer), but when you create a new branch, the new branch pointer still refers to the same commit (the last commit you did under master), these are two branch references pointing at the same commit, but 'head' now points to 'DarkMode' which indicates that now you are on that branch. in a nutshell, 'head' indicates where you are currently checking out in your repo.
 each branch has a branch reference, pointing where we left off (the last commit of that branch): a branch is a reference to some commit, when you create a new commit, it updates to the new commit. BUT in which branch are we?where are we?? 'head' will tell you in which branch we are (like a bookmark in a book), ie. which branch we are checking out.
 You can see the 'head' when you type 'git log'
 
@@ -26,3 +26,25 @@ if you want to create a branch and switch to it in the same step, using git chec
 git checkout -b <branch-name>
 
 if you try to switch branches but have not committed your work, it will tell you to commit your changes (or to stash them, we will see later what this means), or your work will be lost. THIS ONLY HAPPENS WHEN YOUR UNSTAGED WORK AND THE CONTENT OF THE BRANCH YOU ARE TRYING TO SWITCH TO, ARE IN CONFLICT. IF THEY ARE NOT IN CONFLICT (FOR EXAMPLE, YOU JUST ADD A NEW FILE, AND SWITCH BRANCH), YOU WILL BE ABLE TO CHANGE BRANCH (AND YOU WILL BRING THE NEW FILE WITH YOU TO THE BRANCH THAT YOU SWITCHED TO)
+
+MERGING AND DELETING BRANCHES
+after you merge a branch, you may not want to have this extra branch around, so you may want to delete it.
+
+TO DELETE A BRANCH:
+git branch -d <branch-name>
+
+BUT WATCH OUT! you can't delete the branch you are checked out at. you have to switch branch, but then, if the branch is not merged, then you would get a warning message (see screenshot) and then if you want to finally delete the branch:
+git branch -D <branch-name>
+
+TO RENAME A BRANCH:
+first you have to change to the branch that you want to rename (this is opposite to what happens with deleting a branch: to delete a branch you have to switch to another branch, but to rename a branch you have to be ON that branch). Then:
+git branch -m <new-name>
+
+REMINDER: HEAD REFERENCES TO A PARTICULAR BRANCH, AND THE BRANCH REFERENCES TO A PARTICULAR COMMIT (THE LAST COMMIT IN THAT BRANCH). YOU CAN SEE THIS IF YOU GO INSIDE THE .git FOLDER: INSIDE THE 'HEADS' FOLDER THERE ARE FILES NAMED AS THE DIFFERENT BRANCHES THAT YOU HAVE, AND IF YOU OPEN ANY OF THESE FILES, YOU WILL FIND THE REFERENCE OF THE LATEST COMMIT OF THAT BRANCH (SEE SCREENSHOT), SO THESE BRANCH REFERENCES (THE FILES) ARE LIKE BOOKMARKS. THE 'HEAD' FILE CHANGES DEPENDING ON WHICH BRANCH WE ARE IN.
+
+MERGING BRANCHES
+https://www.canva.com/design/DAEUZEra8W0/b4I77uG1YJAu4q6UOTIG6Q/view?utm_content=DAEUZEra8W0&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+if you follow the 'feature branching' workflow in your team, you will not do any experiments in the master/main branch since you don't want to screw things up there. people will work in feature branches, and that work will be merged in the master/main branch if it is deemed appropriate.
+
+a 'merge commit' has two parent commits, this is something that will come up later on
