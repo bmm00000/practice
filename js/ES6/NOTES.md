@@ -2,6 +2,8 @@ two kinds of data: primitives (not an object) and objects.
 
 primitives: boolean, number, string, null, undefined, symbol
 
+you get NaN when you are working with numbers and something goes wrong. for example: Math.sqrt(-1)
+
 remember difference between null and undefined (null is assigned, whereas undefined is what happens when you don't assign a value to a variable).
 
 objects: properties are key-value pairs
