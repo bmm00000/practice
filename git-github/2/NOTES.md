@@ -1,3 +1,5 @@
+(REWATCH DEMOS AND REDO EXERCISES OF EACH SECTION????)
+
 BRANCHING
 https://www.canva.com/design/DAEPOwX2Zzs/90STrbMXNysYIkSsxUCu-g/view?utm_content=DAEPOwX2Zzs&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton#1
 
@@ -33,7 +35,7 @@ after you merge a branch, you may not want to have this extra branch around, so 
 TO DELETE A BRANCH:
 git branch -d <branch-name>
 
-BUT WATCH OUT! you can't delete the branch you are checked out at. you have to switch branch, but then, if the branch is not merged, then you would get a warning message (see screenshot) and then if you want to finally delete the branch:
+BUT WATCH OUT! you can't delete the branch you are checked out at. you have to switch branch, but then, if the branch is not merged, then you would get a warning message since you work in this branch will be lost (see screenshot) and then if you want to finally delete the branch:
 git branch -D <branch-name>
 
 TO RENAME A BRANCH:
@@ -47,4 +49,13 @@ https://www.canva.com/design/DAEUZEra8W0/b4I77uG1YJAu4q6UOTIG6Q/view?utm_content
 
 if you follow the 'feature branching' workflow in your team, you will not do any experiments in the master/main branch since you don't want to screw things up there. people will work in feature branches, and that work will be merged in the master/main branch if it is deemed appropriate.
 
-a 'merge commit' has two parent commits, this is something that will come up later on
+a 'merge commit' is the first commit that we have seen that has two parent commits, this is something that will come up later on.
+
+imagine your colleage changed line 39 in the master branch, and you changed the same line in the bugfix branch. or another situation: your collague changed a file in the master branch, and you deleted that file in the bugfix branch. which one wins in the merge commit when we try to merge the branches? we have a conflict. you have to manually resolve conflicts: open the files where there are conflicts, fix them, and commit these changes. (the files where there are conflicts are decorated, they have new content to indicate where there are conflicts)
+
+in a conflict, vs code gives you some functionality (accept current change, accept incoming change, accept both changes, compare changes)
+BUT KEEP IN MIND, when you are resolving conflicts, you are not limited to either current or incoming, you can edit the file and write WHATEVER YOU WANT! (new comments to explain, code changes or whatever)
+
+in a team, you have to merge often, or you will end up having conflicts
+
+when you merge a brach into master, and then git log on master, you will see all the commits from master and also from the other merged branch, chronologically.
