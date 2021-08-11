@@ -57,7 +57,7 @@ const ExpenseForm = (props) => {
 		};
 
 		props.onSaveExpenseData(expenseData);
-		// and now we empty the inputs, that's why we are using state, and not global variables, so we can change the input when we want, for example, when we submit (this is called 'two way binding': it allows you to get the user input but also change it):
+		// and now we empty the inputs, that's why we are using state, and not global variables, so we can change the input when we want, for example, when we submit:
 		setEnteredTitle('');
 		setEnteredAmount('');
 		setEnteredDate('');
@@ -75,6 +75,7 @@ const ExpenseForm = (props) => {
 						onChange={titleChangeHandler}
 						value={enteredTitle}
 					/>
+					{/* this is called 'two way binding': it allows you to get the value for the user input but also change it */}
 					{/* we could use 'onInput', but 'onChange' will work with any type of input */}
 				</div>
 				<div className='new-expense__control'>

@@ -21,7 +21,7 @@ const ExpensesList = (props) => {
 
 	return (
 		<ul className='expenses-list'>
-			{/* we cannot use blocks inside {} in the return block, that's why we cannot use if statements or for loops when we are rendering conditionally. we could use a ternary expression, but long ternary expressions can be difficult to read, that's why we can restructure it as follows: */}
+			{/* we cannot use blocks inside {} in the return block, that's why we cannot use if statements or loops when we are rendering conditionally. we could use a ternary expression, but long ternary expressions can be difficult to read, that's why we can restructure it as follows: */}
 			{/* {filteredExpenses.length === 0 && <p>No expenses found</p>}
 				{filteredExpenses.length > 0 &&
 					filteredExpenses.map((expense) => (
