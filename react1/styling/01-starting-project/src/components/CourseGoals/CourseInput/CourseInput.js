@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 import Button from '../../UI/Button/Button';
 
-import './CourseInput.css';
+// import './CourseInput.css';
+import styles from './CourseInput.module.css';
 
 // as we did with the Button, we can paste here the styles from CourseInput.css, get rid of the class names, and add '&' as needed.
 // const FormControl = styled.div`
@@ -42,32 +43,32 @@ import './CourseInput.css';
 
 // can we do conditional styling inside a component from 'styled'? of course!! see what we do:
 // we are using the 'invalid' prop here. we have to use a function that receives props as a parameter, and returns the text that should be written there:
-const FormControl = styled.div`
-	margin: 0.5rem 0;
+// const FormControl = styled.div`
+// 	margin: 0.5rem 0;
 
-	& label {
-		font-weight: bold;
-		display: block;
-		margin-bottom: 0.5rem;
-		color: ${(props) => (props.invalid ? 'red' : 'black')};
-	}
+// 	& label {
+// 		font-weight: bold;
+// 		display: block;
+// 		margin-bottom: 0.5rem;
+// 		color: ${(props) => (props.invalid ? 'red' : 'black')};
+// 	}
 
-	& input {
-		display: block;
-		width: 100%;
-		border: 1px solid ${(props) => (props.invalid ? 'red' : '#ccc')};
-		background: ${(props) => (props.invalid ? 'salmon' : 'transparent')};
-		font: inherit;
-		line-height: 1.5rem;
-		padding: 0 0.25rem;
-	}
+// 	& input {
+// 		display: block;
+// 		width: 100%;
+// 		border: 1px solid ${(props) => (props.invalid ? 'red' : '#ccc')};
+// 		background: ${(props) => (props.invalid ? 'salmon' : 'transparent')};
+// 		font: inherit;
+// 		line-height: 1.5rem;
+// 		padding: 0 0.25rem;
+// 	}
 
-	& input:focus {
-		outline: none;
-		background: #fad0ec;
-		border-color: #8b005d;
-	}
-`;
+// 	& input:focus {
+// 		outline: none;
+// 		background: #fad0ec;
+// 		border-color: #8b005d;
+// 	}
+// `;
 
 const CourseInput = (props) => {
 	const [enteredValue, setEnteredValue] = useState('');
@@ -116,10 +117,18 @@ const CourseInput = (props) => {
 				<input type='text' onChange={goalInputChangeHandler} />
 			</FormControl> */}
 			{/* or, you can pass your props to the component, and utilize them inside of the `` of the component, so you can change styles dyanmically. In our example, we set up an 'invalid' prop that can be either true or false: */}
-			<FormControl invalid={!isValid}>
+			{/* <FormControl invalid={!isValid}>
 				<label>Course Goal</label>
 				<input type='text' onChange={goalInputChangeHandler} />
-			</FormControl>
+			</FormControl> */}
+			<div
+				// now we add dynamic classes with CSS modules:
+				className={`${styles['form-control']} ${!isValid && styles.invalid}`}
+			>
+				{/* since we have a dash in the name of the class (form-control), it's not a valid name for the traditional syntax, that's why we use styles['form-control'], this syntax is also valid to access properties in JS */}
+				<label>Course Goal</label>
+				<input type='text' onChange={goalInputChangeHandler} />
+			</div>
 			<Button type='submit'>Add Goal</Button>
 		</form>
 	);
