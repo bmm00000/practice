@@ -59,3 +59,5 @@ BUT KEEP IN MIND, when you are resolving conflicts, you are not limited to eithe
 in a team, you have to merge often, or you will end up having conflicts
 
 when you merge a brach into master, and then git log on master, you will see all the commits from master and also from the other merged branch, chronologically.
+
+if you merge two branches with commits in different files, there will not be conflict for sure, but even if they were in the same file, it doesn't necessarily mean that there would be a conflict (I need to understand under what circumstances there are no conflict is both commits are in the same file).
