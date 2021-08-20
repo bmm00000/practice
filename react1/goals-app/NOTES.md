@@ -1,6 +1,6 @@
 what we are going to cover:
 
-- conditional or dynamic styles: how to switch styles depending on certain conditions.
+- conditional or dynamic styles: how to switch styles depending on certain conditions: with regular css we have seen two ways to do it (inline, and adding classes conditionally). with Styled Components, we have done this in two ways: adding classes conditionally, and also with props. with CSS modules, you have done this in one way: adding classes conditionally.
 
 - two popular approaches for scoping styles to components (so far, even the styles that we set up in the .css files named after our components, affect the whole project, ie. are global)
 

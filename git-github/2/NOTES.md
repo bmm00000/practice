@@ -1,5 +1,3 @@
-(REWATCH DEMOS AND REDO EXERCISES OF EACH SECTION????)
-
 BRANCHING
 https://www.canva.com/design/DAEPOwX2Zzs/90STrbMXNysYIkSsxUCu-g/view?utm_content=DAEPOwX2Zzs&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton#1
 
@@ -22,6 +20,7 @@ next screenshot: we are in the oldies branch, but you can see that the branch re
 
 this is how to add all and commit at the same time:
 git commit -a -m "our message"
+(sometimes this doesn't work?)
 
 if you want to create a branch and switch to it in the same step, using git checkout:
 
@@ -35,7 +34,7 @@ after you merge a branch, you may not want to have this extra branch around, so 
 TO DELETE A BRANCH:
 git branch -d <branch-name>
 
-BUT WATCH OUT! you can't delete the branch you are checked out at. you have to switch branch, but then, if the branch is not merged, then you would get a warning message since you work in this branch will be lost (see screenshot) and then if you want to finally delete the branch:
+BUT WATCH OUT! you can't delete the branch you are checked out at. you have to switch branch, but then, if the branch is not merged, then you would get a warning message since your work in this branch will be lost (see screenshot) and then if you want to finally delete the branch:
 git branch -D <branch-name>
 
 TO RENAME A BRANCH:
@@ -50,6 +49,7 @@ https://www.canva.com/design/DAEUZEra8W0/b4I77uG1YJAu4q6UOTIG6Q/view?utm_content
 if you follow the 'feature branching' workflow in your team, you will not do any experiments in the master/main branch since you don't want to screw things up there. people will work in feature branches, and that work will be merged in the master/main branch if it is deemed appropriate.
 
 a 'merge commit' is the first commit that we have seen that has two parent commits, this is something that will come up later on.
+THE MERGE COMMIT WILL TAKE PLACE ON THE RECEIVING BRANCH (EG. MASTER)! THE OTHER BRANCH REFERENCE (EG. BUGFIX) WILL REMAIN IN THE FORMER COMMIT, NOT IN THE MERGE COMMIT!
 
 imagine your colleage changed line 39 in the master branch, and you changed the same line in the bugfix branch. or another situation: your collague changed a file in the master branch, and you deleted that file in the bugfix branch. which one wins in the merge commit when we try to merge the branches? we have a conflict. you have to manually resolve conflicts: open the files where there are conflicts, fix them, and commit these changes. (the files where there are conflicts are decorated, they have new content to indicate where there are conflicts)
 
@@ -58,6 +58,8 @@ BUT KEEP IN MIND, when you are resolving conflicts, you are not limited to eithe
 
 in a team, you have to merge often, or you will end up having conflicts
 
-when you merge a brach into master, and then git log on master, you will see all the commits from master and also from the other merged branch, chronologically.
+when you merge a branch into master, and then git log on master, you will see all the commits from master and also from the other merged branch, chronologically.
 
-if you merge two branches with commits in different files, there will not be conflict for sure, but even if they were in the same file, it doesn't necessarily mean that there would be a conflict (I need to understand under what circumstances there are no conflict is both commits are in the same file).
+if you merge two branches with commits in different files, there will not be conflict for sure, but even if they were in the same file, it doesn't necessarily mean that there would be a conflict (I need to understand under what circumstances there are no conflict if both commits are in the same file): if changes are in the same file, but the master branch just has to fast forward (catch up with the incoming branch), there will be no conflict.
+
+(REWATCH DEMOS AND REDO EXERCISES FROM SECTION 7?)
