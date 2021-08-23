@@ -25,6 +25,7 @@ IN A NUTSHELL, 'git diff' tells us only unstaged changes (difference between wor
 'git diff HEAD' will show you all staged and unstaged changes.
 
 when you diff specific files, you can add several files, eg: git diff HEAD index.html app.css
+you can also just 'git diff <file-name>' (this option is not included in the slides, but it works as well)
 
 when you are comparing branches, you can separate them by .. or just a space. the order that you type the branches matters for what the result of the comparison (it doesn't matter which branch you are in at the moment)
 
