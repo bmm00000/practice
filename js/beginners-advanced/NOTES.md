@@ -4,6 +4,7 @@ primitives: boolean, number, string, null, undefined, symbol
 
 you get NaN when you are working with numbers and something goes wrong. for example: Math.sqrt(-1)
 NaN is basically an error when you are working with numbers saying 'hey, there's no answer to this'
+typeof NaN => "number"
 
 the type 'null' has only one value, and it is 'null', which is explicitly nothing. you can only get a 'null' in JS if you assign a variable to 'null'.
 
