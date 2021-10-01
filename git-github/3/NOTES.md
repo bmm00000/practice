@@ -1,5 +1,7 @@
 https://www.canva.com/design/DAEVUT6HslA/tbdbyITzamUidWfk-HcSug/view?utm_content=DAEVUT6HslA&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 
+git diff is an informative command (like git status and git log), ie. it doesn't change anything.
+
 in the chunk header, there's a line from the provided context that is not technically part of the chunk. This is confusing, do not care about it. In reality, the chunk starts after the header.
 
 usually the symbols - and + (red and green) mean old vs new, but not always.

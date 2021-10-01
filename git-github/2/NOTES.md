@@ -3,6 +3,8 @@ https://www.canva.com/design/DAEPOwX2Zzs/90STrbMXNysYIkSsxUCu-g/view?utm_content
 
 the hash that we get on every commit is a unique identifier that is made out of a hashing function, and the hash corresponds to the contents of the commit, among other things.
 
+when we create a git repo (git init), there are no branches yet, but when we make the first commit, the default branch (master or main) is created by default.
+
 from git's perspective, there's nothing special about the master branch. however, many companies treat it as the ultimate source of truth (the main copy, where everything works), where the current ultimate version of the project is. it's up to you if you want to do that. that approach is commonly known as 'feature branching' (see slide where the experimental 'adding a new feature' branch is merged back into the main branch)
 
 the 'tip of the branch' is the last commit
