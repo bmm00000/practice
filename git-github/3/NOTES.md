@@ -6,21 +6,21 @@ in the chunk header, there's a line from the provided context that is not techni
 
 usually the symbols - and + (red and green) mean old vs new, but not always.
 
-git commit -am "message here" (this this work???)
+git commit -am "message here" (does this work??? I think it does only if the file was already created and we are commiting changes in the pre-existing file)
 
 staging area is also referred to as the index in the documentation, sometimes this is confusing.
 
 git diff compares staging area and working directory. another way to think about it: it tells us the changes that we could tell git to add to the staging area:: '-' is what the staging area last knew about (old version), and '+' is the new version with the changes that we currently have in our working directory (it doesn't always means that something is new, it just means that it came from file 'b', and in our case file 'b' are the new changes)
 
-remember, HEAD points to a branch reference, which points to the last commit of that branch. Therefore, 'git diff HEAD' lists all the changes in the working directory since your last commit: IT INCLUDES STAGED AND UNSTAGED CHANGES (everything new in the working directory since the HEAD commit)
+remember, HEAD points to a branch reference, which points to the last commit of that branch. Therefore, 'git diff HEAD' lists all the changes in the working directory since your last commit: IT INCLUDES STAGED AND UNSTAGED CHANGES (everything new in the working directory since the HEAD commit, it doesn't matter if the changes are staged or not)
 
 WATCH OUT! when you create a new file in the working directory, it's untracked (neither the staging area nor former commits never knew about it). therefore, if you 'git diff' or 'git diff HEAD' it will appear nothing. only when the staging area knows about it for the first time, THEN it will be able to compare it with future versions, and the changes start to appear when you 'git diff'.
-when you 'git add' the new file for the first time, and then you 'git diff' it will appear nothing (no difference between current working directory and staging area). but when you 'git add' the new file for the first time, and then you 'git diff HEAD', it appears what you get in the screenshot: (when we create a new file, git will tell us like this: --- /dev/null (see screenshot)).
+when you 'git add' the new file for the first time, and then you 'git diff' it will appear nothing (no difference between current working directory and staging area). but when you 'git add' the new file for the first time (now it's tracked), and then you 'git diff HEAD', it appears what you get in the screenshot: (when we create a new file, git will tell us like this: --- /dev/null (see screenshot)).
 rule of thumb: 'git status' shows you the new files, but 'git diff' shows you the difference between existing files in different moments.
 
-(VIEW AGAIN VIDEO 65, REPEAT THE DEMO)?
-
 IN A NUTSHELL, 'git diff' tells us only unstaged changes (difference between working directory and staging area). 'git diff HEAD' tells us all uncommited channges currently in the working directory (unstaged and staged: difference between working directory and last commit in current branch (HEAD))
+
+(VIEW AGAIN VIDEO 65, REPEAT THE DEMO)
 
 'git diff --staged' will show you only the staged changes.
 'git diff' will show you only the unstaged changes.
