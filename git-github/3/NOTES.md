@@ -41,3 +41,10 @@ git diff HEAD~1 HEAD
 
 if you want to compare the previous commit to the working directory (staged and unstaged changes):
 git diff HEAD~1
+
+STASHING:
+https://www.canva.com/design/DAEPsQa6BFE/uNs08sHSGN1XziSUt1BLHQ/view?utm_content=DAEPsQa6BFE&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+some people don't use stashing much, it's more of a convenient tool that can help you in certain situations, but there aren't situations when you have to use it.
+
+imagine that you have to change branches (for example, a co-worker asks for help), but you are not done with what you are doing and don't want to commit yet. when you are trying to change branches, if there's a conflict, git will not let you change branches. how to solve this problem? you don't need to wait until you commit on your current branch, because you can stash changes
