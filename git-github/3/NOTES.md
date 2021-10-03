@@ -31,6 +31,13 @@ you can also just 'git diff <file-name>' (this option is not included in the sli
 
 when you are comparing branches, you can separate them by .. or just a space. the order that you type the branches matters for what the result of the comparison (it doesn't matter which branch you are in at the moment)
 
-to compare commits, you only need the oneline hashes (short version) that you get when you 'git log --oneline' (the order also matters, the same as with comparing branches)
+to compare commits, you only need the oneline hashes (short version, or you can also copy part of the complete hash) that you get when you 'git log --oneline' (the order also matters, the same as with comparing branches). I have tried, and it is also POSSIBLE TO COMPARE COMMITS FROM DIFFERENT BRANCHES.
 
-QUESTION TO POST IN FORUMS: IS IT POSSIBLE TO COMPARE COMMITS FROM DIFFERENT BRANCHES?
+to compare the HEAD commit with the previous one (its parent commit):
+git diff HEAD HEAD~1
+
+if you want to compare the previous commit to the head:
+git diff HEAD~1 HEAD
+
+if you want to compare the previous commit to the working directory (staged and unstaged changes):
+git diff HEAD~1
