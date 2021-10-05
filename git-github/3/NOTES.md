@@ -56,3 +56,12 @@ YOU CAN USE STASH TO PAUSE OR 'SAVE' YOUR CHANGES BEFORE YOU COMMIT THEM
 git stash pop: you can use the stashed changes in any other branch, not only to the original one. if there's conflict, the following also applies:
 
 git stash apply: there may be a conflict when you are trying to apply the changes from one branch to another branch. in that case, you need to resolve the conflict manually, add and commit (the same as with merging)
+
+UNDOING CHANGES AND TIME TRAVELING:
+https://www.canva.com/design/DAEPZZHOafo/uagxrNdvbI_wDpjfNpK_4w/view?utm_content=DAEPZZHOafo&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+in 'detached head' state, HEAD points to a commmit, not to a branch reference (see screenshot)
+
+git checkout HEAD~1 consecutive times to go back further. since the head is detached, it will go back one more commit, and one more commit, etc.
+
+git switch - :when you are on detached head, this will take you back to whatever branch you were last, so you don't need to remember in which branch you were before.
