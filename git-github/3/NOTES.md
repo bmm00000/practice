@@ -45,16 +45,14 @@ git diff HEAD~1
 STASHING:
 https://www.canva.com/design/DAEPsQa6BFE/uNs08sHSGN1XziSUt1BLHQ/view?utm_content=DAEPsQa6BFE&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 
-some people don't use stashing much, it's more of a convenient tool that can help you in certain situations, but there aren't really situations when you have to use it.
+some people don't use stashing much, it's more of a convenient tool that can help you in certain situations
 
 imagine that you have to change branches (for example, a co-worker asks for help), but you are not done with what you are doing and don't want to commit yet (you never commit unnecessarily, since commits are the history of your project). when you are trying to change branches, if there's a conflict, git will not let you change branches. how to solve this problem? you don't need to wait until you commit on your current branch, because you can stash changes (or, git lets you switch branches because there is no conflict but you don't want to bring the changes with you to the other branch)
 
-(HOW TO THINK ABOUT CONFLICT IN GENERAL: if you were merging, would it be a fast-forward? if yes, THERE IS NO CONFLICT)
+(HOW TO THINK ABOUT CONFLICT IN GENERAL: if you were merging, would it be a fast-forward? if yes, THERE IS NO CONFLICT, otherwise, there's conflict.)
 
 YOU CAN USE STASH TO PAUSE OR 'SAVE' YOUR CHANGES BEFORE YOU COMMIT THEM
 
-git stash pop: you can apply the stashed changes to any other branch, not only to the original one
-
-you can stash more than 1 set of changes, we will get to that...
+git stash pop: you can use the stashed changes in any other branch, not only to the original one. if there's conflict, the following also applies:
 
 git stash apply: there may be a conflict when you are trying to apply the changes from one branch to another branch. in that case, you need to resolve the conflict manually, add and commit (the same as with merging)
