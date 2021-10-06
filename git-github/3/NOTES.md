@@ -65,3 +65,10 @@ in 'detached head' state, HEAD points to a commmit, not to a branch reference (s
 git checkout HEAD~1 consecutive times to go back further. since the head is detached, it will go back one more commit, and one more commit, etc.
 
 git switch - :when you are on detached head, this will take you back to whatever branch you were last, so you don't need to remember in which branch you were before.
+
+git restore --source: when you restore former commits, you don't go back in time, you are still in HEAD, your branch reference, and the latest commit. only that the file is modified copying what appears on that commit that you are restoring.
+
+you can restore several files, for example:
+git restore --source HEAD~2 cat.txt dog.txt
+
+git reset: with a basic or plain reset, the commits are eliminated but the content of your files remain the same as before the reset (the files remain as changed in the working directory)
