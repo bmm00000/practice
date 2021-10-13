@@ -74,3 +74,22 @@ git restore --source HEAD~2 cat.txt dog.txt
 git reset: with a basic or plain reset, the commits are eliminated but the content of your files remain the same as before the reset (the files remain as changed in the working directory). this is useful when you don't want to lose that work, eg. you made some commits on the wrong branch, you want to keep that work, but move it to another branch.
 
 sometimes, git revert can result in conflicts, where you need to go to the file and decide what to keep, like any other conflict when you merge. i still need to understand how this works. it's probably if you revert not the latest commit but a former one??
+
+QUESTIONS:
+
+1. The message says you can make commits in detached state. What I understand from the lecture is that, if you want to make commits, you have to create a new branch in that past commit, and then you can commit in that branch, but then you are not on detached head state anymore. Why does the message say that you can commit in detached head state?
+
+Good question! So you can technically make commits in detached HEAD, but those commits will not be associated with any branch. When you leave detached HEAD and go back to a branch, those commits are lost. They aren't attached to any branch. You'll see a message like this when you try to leave:
+
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+If you want to keep it by creating a new branch, this may be a good time
+to do so with...
+
+You can keep the commits if you create a new branch while in detached HEAD, as the message above mentions. Let me know if you have any other questions!
+
+2. 'Indigo' should be in black because it's common between both versions. Why is it colored?
+
+This is an issue with whitespace changes and line endings in Git. In the first version, the file ends with "indigo". In the second version, you added a return after "indigo" (even though we can't see it), so Git thinks it changed. You can prevent this behavior by running this in your terminal:
+
+git config --global core.autocrlf true
