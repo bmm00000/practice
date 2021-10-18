@@ -1,17 +1,22 @@
-TS is a superset to JS. it is both a language built up on JS (with new features and advantages), and a compiler that compiles TS into JS.
+TS is a superset to JS. it's not a new language. it is both a language built up on JS (with new features and advantages), and a compiler that compiles TS into JS.
 
 TS cannot be executed in JS environments (browser or Node.js). That's why, TS is also a compiler, to compile TS code into JS code (so you take advantage of the features and advantages of TS, and end up with JS code)
 therefore, TS is a programming language that works because we have a tool (compiler) to compile it into JS. Therefore, when you install TS, what you are installing is the compiler (everything it needs to know to understand TS and convert it into JS). When you type the 'tsc' command, it invokes the compiler, to compile a TS file to JS.
 
-installation: if you are using mac: sudo npm install -g typescript
-
-in a good IDE, eg. vscode, if you end a filename in .ts, you get great support in the IDE when working with TS files: it identifies some weaknesses and gives you some explanation.
+the TS features are compiled to JS workarounds, so you write 'easier' syntax, and then it gets compiled to 'more complicated' JS code. Therefore, there's nothing you can do in TS that you could not do with JS, but it's 'nicer' syntax. in addition, TS adds types, ie. it adds a feature to the JS language which you help you to identify errors during development, before your script runs and the error occurs at runtime in the browser.
 
 see screenshot: you may have unwanted behaviours in JS that will not throw errors necessarily. TS will help you avoid that.
 
 screenshot: when you access the value of an element, it's always a string, no matter if you predefined type='number'.
 in order to avoid this, you can write the code in the next screenshot (if statement with typeof, and then converting strings to numbers by placing a + before num1 and num2)
 However, with TS, you can avoid this even before it can possibly happen, by avoiding the possibility of introducing num1 and num2 as strings, so you don't need to check anything inside the function.
+
+installation: if you are using mac: sudo npm install -g typescript
+
+in a good IDE, eg. vscode, if you end a filename in .ts, you get great support in the IDE when working with TS files: it identifies some weaknesses and gives you some explanation.
+
+//
+//
 
 when you just name your file ended in .ts, it tells you what might be wrong, for example, in the screenshot, not all html elements have 'value' properties, only input elements, and TS doesn't check that what you selected is an input, that's why the warning message in the screenshot (even if the selected element was an input, there might be no value).
 
