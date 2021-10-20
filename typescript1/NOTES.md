@@ -15,16 +15,20 @@ installation: if you are using mac: sudo npm install -g typescript
 
 in a good IDE, eg. vscode, if you end a filename in .ts, you get great support in the IDE when working with TS files: it identifies some weaknesses and gives you some explanation.
 
-//
-//
-
 when you just name your file ended in .ts, it tells you what might be wrong, for example, in the screenshot, not all html elements have 'value' properties, only input elements, and TS doesn't check that what you selected is an input, that's why the warning message in the screenshot (even if the selected element was an input, there might be no value).
 
 if you use !, it means that you are sure that it will never be null. you can also let know what type of element it will be, by using typecasting (see screenshot)
 
-if you don't correct the errors that the IDE tells you (underlined) and you execute 'tsc file.ts', it will compile the TS file to JS, put the code in a new JS file, and the compiler will reflect the errors in the terminal as well
+but the biggest advantage we get from TS is the additional types; if you don't have any info about the types, when you hover over the parameters of the function, you will see 'any'
+
+if you don't correct the errors that the IDE tells you (underlined) and you execute 'tsc file.ts', it will compile the TS file to JS (we will see how to supress this later in the course), put the code in a new JS file, and the compiler will reflect the errors in the terminal as well
+
+in our example, we were able to add the + to input.value during development (before runtime) because we used the type annotations, that's the advantage of TS.
 
 after you execute tsc, then you have to link the resulting JS file to the HTML doc, because the browser can't run TS.
+
+//
+//
 
 also, you can use the latest JS features, and they will get compiled down for older browsers (it's a little bit like Babel, this functionality is built in TS)
 
