@@ -15,6 +15,10 @@ remember, a function inside of an object is a method.
 
 JS is loosely typed: don't need to declare a variable's type (JS authomatically determines it for you); variable type can change.
 
+this is the point of type coercion: when then operands of an operation are of different types, they can be converted into an equivalent type. we want to do an operation, but the type of the operands is different that's the point.
+
+question about type coertion in loose equality: 3 == '3' converts the string into a number, but when we 3 + '3', the number is converted into a string.
+
 //
 //
 

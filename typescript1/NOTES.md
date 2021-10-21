@@ -27,19 +27,25 @@ in our example, we were able to add the + to input.value during development (bef
 
 after you execute tsc, then you have to link the resulting JS file to the HTML doc, because the browser can't run TS.
 
-//
-//
-
 also, you can use the latest JS features, and they will get compiled down for older browsers (it's a little bit like Babel, this functionality is built in TS)
 
-screenshot: 'modern tooling that helps even in non TS projects': when you are using VS code, even in plain JS projects the code editor gives you some functionalities because it has some TS features running under the hood.
+non-js features like interfaces and generics are not compiled to JS, but help us during development to avoid potential errors.
+
+with configuration options, you can make it stricter or less strict.
+
+without you explicitly using TS, some modern tools (for example, IDEs like VS Code) use TS under the hood to give you better assistance when you write vanilla JS.
+
+'modern tooling that helps even in non TS projects': when you are using VS code, even in plain JS projects the code editor gives you some functionalities because it has some TS features running under the hood.
 
 WATCH OUT! make sure you don't have the same-name JS and TS files open at the same time, or the IDE will shout at you errors due to variable duplicates, etc.
 
 you will need to run 'npm init' in the project folder, so you get the package.json file and you can install lite-server:
 npm install --save-dev lite-server
 (development only dependency: tool that helps us during development, and doesn't include any code that will be executed as the main code of the app)
-then you add the 'start' script in the package.json file (lite-server serves the index.html file next to the package.json file in the project)
+then you add the 'start' script in the package.json file. when you run 'npm start', you run the 'start' script, and lite-server serves the index.html file in the project, and it will reload the page when anything changes.
+
+//
+//
 
 js has types, but ts add many more, and allows you to create your own types.
 
