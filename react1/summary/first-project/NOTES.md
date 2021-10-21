@@ -16,7 +16,7 @@ react components are functions that return JSX, which is made of other custom or
 
 dynamic expressions: it will not be treated as plain text, it will be evaluated. For example, in JSX, {2 + 2}, but watch out! in JSX you can only use dinamic expressions of one line.
 
-in jsx, all html-like elements are components that have already been built into react, that's why you can add attributes to those components, like 'onClick', etc. (you are saying that you wanna react on a click on that element, etc.), but you can only add inline code to those attributes, not blocks of code (like if statement blocks, etc). You cannot use 'onClick' etc. in custom components, for example in our app: Modal, Backdrop, etc., custom components have to be completely customized.
+in jsx, all html-like elements are components that have already been built into react, that's why you can add attributes to those components, like 'onClick', etc. (you are saying that you wanna react on a click on that element, etc.), but you can only add inline code to those attributes, not blocks of code (like if statement blocks, etc). You cannot use 'onClick' etc. in custom components, for example in our app: Modal, Backdrop, etc., custom components have to be completely customized, that's why we use event props (passing functions as props), so we pass the functions down until we have a built-in component, so then we can use onClick, and then call the function we passed.
 
 convention: functions that are executed upon events are named ending in 'Handler', for example: 'deleteHandler'
 
@@ -25,4 +25,9 @@ in html you cannot use self-closing elements, but you can in JSX.
 you have new 'state' every time data changes in your app, even if it's not rendered in the screen yet (for example, if a variable changes, you got new state, and when this new value is rendered or consoled.log, then you got new state again)
 when we useState, we register different states in our app, and react will react to changes in this state, and we will be able to render different output depending on which state is active.
 
+useState is a function that we can find in the 'react' library
+when we call useState(), we create a state that react is aware of, and every time we change this state, the component will be rendered again.
+useState() returns an array with two elements, the first element is the value that the state currently has (the value that you passed), and the select element is the function to change that state. you only change state by using that function, you never change state by reassigning the variable, only by using that function. that's because when you use that function ,react will call the component function, and render again the jsx with the new state.
+
 {modalIsOpen ? <Modal/> : null} can be refactored as {modalIsOpen && <Modal/>}
+{true && true} // true : in JS, if both conditions are true, the second value will be returned
