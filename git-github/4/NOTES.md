@@ -28,3 +28,5 @@ see screenshot: git log --oneline:
 learn how to read lattest commits for different branches in origin
 
 RE-DO VIDEO 105
+
+https://www.canva.com/design/DAEPyYicrxQ/EaXIXD_WWryEq7Z7YUSVlg/view?utm_content=DAEPyYicrxQ&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
