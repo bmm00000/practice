@@ -41,3 +41,15 @@ Because product management is responsible for the product’s success (or failur
 By contrast, program management requires taking more of an organization-wide view of any strategic initiative. This includes the development of a product. This means a program manager will be primarily concerned with “How?” and “When?” questions. How can we carve out enough time and personnel from customer support to conduct pre-launch product training? When do we need to start the marketing department working on collateral creation? How much budget can we allot to these initiatives?
 
 The Scrum Master doesn’t manage the team that produces the work, instead he supports the Product Owner, coaches the team and makes sure that Scrum processes are adhered to. The Scrum Master is responsible for the Scrum process, its correct implementation, and the maximization of its benefits.
+
+product manager: customer facing
+product owner: team facing
+
+Simply put, the product manager decides what products to build next, and the product owner helps the development team to build the products.
+
+The Scaled Agile Framework® (SAFe®) is a set of organizational and workflow patterns for implementing agile practices at an enterprise scale.
+
+Business analysts (BAs) are responsible for bridging the gap between IT and the business using data analytics to assess processes, determine requirements and deliver data-driven recommendations and reports to executives and stakeholders.
+the business analyst interviews stakeholders (functional/business users/actors, among other), and documents the requirements (deliverables)
+
+see in documents attached visual prototype and documented requirement.
