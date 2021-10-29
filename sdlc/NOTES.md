@@ -53,3 +53,26 @@ Business analysts (BAs) are responsible for bridging the gap between IT and the 
 the business analyst interviews stakeholders (functional/business users/actors, among other), and documents the requirements (deliverables)
 
 see in documents attached visual prototype and documented requirement.
+
+in the waterfall methodology, it goes one phase at a time.
+in the agile methodology, there's less design documentation, and more to show the actual functionality.
+
+a design pattern is a general, reusable solution to a common, recurring problem.
+
+database design has three parts: conceptual, logical, and physical.
+
+integration: for example, if you can access the bank account with your google credentials.
+
+application design: what programming languages will be used, what kind of databases will be used, which databases
+
+infrastructure design: configuration of the server required to provide the requirements...
+
+youtube:
+sdlc
+waterfall, agile, lean
+agile methodologies
+scrum kanban
+scrum
+ci cd
+
+agile starts with minimum viable product (or minimum feature set), and builds up the product from there iterating with feedback from customer
