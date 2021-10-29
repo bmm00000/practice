@@ -75,5 +75,6 @@ scrum kanban
 scrum
 ci cd
 jira
+(cover all keywords from my 'schedule' note)
 
 agile starts with minimum viable product (or minimum feature set), and builds up the product from there iterating with feedback from customer
