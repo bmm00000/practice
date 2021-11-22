@@ -12,6 +12,7 @@ in order to avoid this, you can write the code in the next screenshot (if statem
 However, with TS, you can avoid this even before it can possibly happen, by avoiding the possibility of introducing num1 and num2 as strings, so you don't need to check anything inside the function.
 
 installation: if you are using mac: sudo npm install -g typescript
+therefore, even though we are not going to use node, we still need to install node.js (in order to use the npm tool so we can install TS, and also because behind the scenes it will be used by some tools we will use)
 
 in a good IDE, eg. vscode, if you end a filename in .ts, you get great support in the IDE when working with TS files: it identifies some weaknesses and gives you some explanation.
 
