@@ -9,24 +9,29 @@ see screenshot: you may have unwanted behaviours in JS that will not throw error
 
 screenshot: when you access the value of an element, it's always a string, no matter if you predefined type='number'.
 in order to avoid this, you can write the code in the next screenshot (if statement with typeof, and then converting strings to numbers by placing a + before num1 and num2)
-However, with TS, you can avoid this even before it can possibly happen, by avoiding the possibility of introducing num1 and num2 as strings, so you don't need to check anything inside the function.
+However, with TS, you can avoid this even before it can possibly happen, by avoiding the possibility of introducing num1 and num2 as strings, so you don't need to check anything inside the function. (therefore, you avoid writting code to check for errors that don't ever want to happen)
 
 installation: if you are using mac: sudo npm install -g typescript
 therefore, even though we are not going to use node, we still need to install node.js (in order to use the npm tool so we can install TS, and also because behind the scenes it will be used by some tools we will use)
 
 in a good IDE, eg. vscode, if you end a filename in .ts, you get great support in the IDE when working with TS files: it identifies some weaknesses and gives you some explanation.
 
-when you just name your file ended in .ts, it tells you what might be wrong, for example, in the screenshot, not all html elements have 'value' properties, only input elements, and TS doesn't check that what you selected is an input, that's why the warning message in the screenshot (even if the selected element was an input, there might be no value).
+watch out, if you have a .ts file and another .js file with the same variables, the IDE will tell you!
+
+when you just name your file ended in .ts, it tells you what might be wrong, for example, in the screenshot, not all html elements have 'value' properties, only input elements, and TS doesn't check that what you selected is an input, that's why the warning message in the screenshot (even if the selected element was an input, there might be no value; or you could even have a typo when getting the element).
 
 if you use !, it means that you are sure that it will never be null. you can also let know what type of element it will be, by using typecasting (see screenshot)
 
 but the biggest advantage we get from TS is the additional types; if you don't have any info about the types, when you hover over the parameters of the function, you will see 'any'
 
-if you don't correct the errors that the IDE tells you (underlined) and you execute 'tsc file.ts', it will compile the TS file to JS (we will see how to supress this later in the course), put the code in a new JS file, and the compiler will reflect the errors in the terminal as well
+if you don't correct the errors that the IDE tells you (underlined) and you execute 'tsc file.ts', it will still compile the TS file to JS (we will see how to supress this later in the course), put the code in a new JS file, and the compiler will reflect the errors in the terminal as well
 
 in our example, we were able to add the + to input.value during development (before runtime) because we used the type annotations, that's the advantage of TS.
 
 after you execute tsc, then you have to link the resulting JS file to the HTML doc, because the browser can't run TS.
+
+//
+//
 
 also, you can use the latest JS features, and they will get compiled down for older browsers (it's a little bit like Babel, this functionality is built in TS)
 
