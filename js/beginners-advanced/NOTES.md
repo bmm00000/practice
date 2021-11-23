@@ -6,8 +6,6 @@ you get NaN when you are working with numbers and something goes wrong. for exam
 NaN is basically an error when you are working with numbers saying 'hey, there's no answer to this'
 typeof NaN => "number"
 
-//
-
 the type 'null' has only one value, and it is 'null', which is explicitly nothing. you can only get a 'null' in JS if you assign a variable to 'null'.
 
 remember difference between null and undefined (null is assigned, whereas undefined is what happens when you don't assign a value to a variable (you initialize a variable but you don't assign a value)).
@@ -16,7 +14,11 @@ remember, a function inside of an object is a method.
 
 JS is loosely typed: don't need to declare a variable's type (JS authomatically determines it for you); variable type can change.
 
+//
+
 this is the point of type coercion: when then operands of an operation are of different types, they can be converted into an equivalent type. we want to do an operation, but the type of the operands is different that's the point.
+
+//
 
 question about type coertion in loose equality: 3 == '3' converts the string into a number, but when we 3 + '3', the number is converted into a string.
 
