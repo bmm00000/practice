@@ -6,11 +6,19 @@ imperative approach: code every single action, for example, when you are coding 
 
 declarative, component-focused approach: higher level syntax that you code when using a library.
 
-build step: the code that you write is not the code that will end up in the browser. the code that you write will be transformed behind the scenes before it reaches the browser. This is what happens behind the scenes with React (the browser does not render jsx). (a big code bundle that the browser understands will be generated out of our code and the code from the third party dependencies (the dependencies are listed in package.json)) in the build steps brought by the 'react-script' package (listed in package.json)
+build step: the code that you write is not the code that will end up in the browser. the code that you write will be transformed behind the scenes before it reaches the browser. This is what happens behind the scenes with React (the browser does not render jsx). (a big code bundle that the browser understands will be generated out of our code and the code from the third party dependencies (the dependencies are listed in package.json)) in the build steps brought by the 'react-scripts' package (listed in package.json) (this is what we do when we execute 'npm start', etc.)
 also, in react, a development server hosts our application locally in our machine, and updates the page in the browser as soon as we save changes in the code (for these two functionalities, node.js will be used, that's why we need it in our system)
 that's why we use the tool create-react-app, so we can get all these functionalities. (to be able to use CRA, we need node.js in our system)
 npx create-react-app <app-name>
 npm start (this executes a script from the react project we downloaded, that starts our local server that we have in our development environment)
+
+when you are using CRA, make sure you don't have any firewall or antivirus that is interfering.
+
+if you download a react project, you have to execute 'npm install' in the location where the package.json file is. (the same applies to 'npm start', etc.)
+
+when you import, for example, 'ReactDom from 'react-dom'', you are importing the 'ReactDom' OBJECT from the 'react-dom' library (on that object, you will call methods...)
+
+the browser does not understand components, that's why we won't see them if we inspect them in the browser, we will only see the html that is rendered after the built-in step.
 
 react components are functions that return JSX, which is made of other custom or built-in components (which are JSX as well). Even the built-in components (that look like html) are JSX components that will have to be transformed to JS in the build step, so the browser can understand them (that's why the syntax changes, for example we use 'className', etc., because the property name of an html element object for assigning css classes in JS is 'className'. But 'className' is one of the very few cases where the attribute name (JS) differs from the property name (html). in most cases, we can use the property names as we would do with html)
 

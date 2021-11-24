@@ -65,7 +65,11 @@ integration: for example, if you can access the bank account with your google cr
 
 application design: what programming languages will be used, what kind of databases will be used, which databases
 
-infrastructure design: configuration of the server required to provide the requirements...
+infrastructure design: configuration of the server required to provide the functional and non-functional requirements...
+
+in the design phase, you have to make sure that what you design in IN SCOPE, ie. it's in the requirements, do not design anything that it's not in the requirements (do not do it just because it's 'cool').
+
+question: does unit testing have to be done in the development phase?
 
 youtube:
 sdlc
@@ -75,6 +79,8 @@ scrum kanban
 scrum
 ci cd
 jira
+different types of testing, in which phase
+code reviews (standards for the reviews, so it will be possible to maintain the code in future), peer programming, mob programming, etc. any other best practices in the development phase?
 (cover all keywords from my 'schedule' note)
 
 agile starts with minimum viable product (or minimum feature set), and builds up the product from there iterating with feedback from customer
