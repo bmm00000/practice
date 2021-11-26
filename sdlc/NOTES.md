@@ -71,6 +71,18 @@ in the design phase, you have to make sure that what you design in IN SCOPE, ie.
 
 question: does unit testing have to be done in the development phase?
 
+example of unit test: user inputs username and password and hits submit.
+ditto integration test: user accesses his bank account using his google account.
+ditto load and performance test: what happens when X number of users access the system at the same time, how is the system going to perform.
+
+difference between mission critical and non-mission critical applications: for example, if you go to your bank app and the system is down, it's critical, whereas with facebook, not so much. check this online?
+
+UAT: users will be given beta access (ie. not production, just for testing purposes), and they will check whether or not the requirements are met.
+
+Sometimes, if a test doesn't pass, it can be considered as a non-issue, then the case is documented with a plan to address it in the future, and move to production, so that in the next release it can be fixed.
+
+an example of a testing framework is Selenium. it automates the browser so you can perform tests.
+
 youtube:
 sdlc
 waterfall, agile, lean
@@ -81,6 +93,7 @@ ci cd
 jira
 different types of testing, in which phase
 code reviews (standards for the reviews, so it will be possible to maintain the code in future), peer programming, mob programming, etc. any other best practices in the development phase?
+alpha, beta phases, etc.
 (cover all keywords from my 'schedule' note)
 
 agile starts with minimum viable product (or minimum feature set), and builds up the product from there iterating with feedback from customer
