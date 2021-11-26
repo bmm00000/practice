@@ -21,8 +21,8 @@ next screenshot: after we switch branch to oldies, head points to oldies.
 next screenshot: we are in the oldies branch, but you can see that the branch reference for master is pointing to an older commit, if we switch to the master branch, we go to that commit, since that's the last commit of the master branch. if we add additional commits to master branch, and then we switch to oldies, the master branch reference will not appear anymore when we git log from the oldies branch, because the last commit from master is not anymore in the oldies history of commits.
 
 this is how to add all and commit at the same time:
-git commit -a -m "our message"
-(sometimes this doesn't work?)
+git commit -am "our message"
+(does not work if files are untracked)
 
 if you want to create a branch and switch to it in the same step, using git checkout:
 
