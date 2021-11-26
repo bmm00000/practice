@@ -23,15 +23,26 @@ this is the point of type coercion: when then operands of an operation are of di
 question about type coertion in loose equality: 3 == '3' converts the string into a number, but when we 3 + '3', the number is converted into a string.
 
 //
-//
 
-assignment operator has right to left associativity. for example:
+for now, we are going to take a look at the first two types of operators. Of these two types of operators, there are a bunch of different options (for now, we are going focus on arithmetic, assignment, and comparison operators)
+
+assignment operators assign a value to an operand.
+
+assignment operator has right to left associativity (the value is going to be assigned to the left operand based on the value of the right operand). for example:
 let x = 5
 let y = 3
 x = y = 2
 console.log(x), x will return 2
 
+shorthand addition assignment operator: x += y (works the same with substraction, multiplication, division).
+
+comparison operators are used to compare two operand (3===3). keep in mind that that with '<=' the less or greater have to be in the left, or we will get a reference error.
+
+arithmetic operators, for example 8 % 5 (remainder or modulo operator).
+
 with modulo operator: if left operand is lower than right operand, it returns the left operand: for example, console.log(1 % 5), returns 1
+
+increment arithmetic operator (++) adds 1 to its operand:
 
 let x = 3
 console.log(x++)
@@ -44,6 +55,11 @@ console.log(++x)
 (it returns the value after adding 1)
 console.log(x)
 this will return 4, and 4
+
+ditto with the decrement arithmetic operator (--).
+
+//
+//
 
 operators: precedence is the order, associativity is the direction.
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
