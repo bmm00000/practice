@@ -83,10 +83,12 @@ Sometimes, if a test doesn't pass, it can be considered as a non-issue, then the
 
 an example of a testing framework is Selenium. it automates the browser so you can perform tests.
 
+What Do Software Configuration Managers Do? The job duties of a software configuration manager involve overseeing the build and release of software. Your responsibilities in this career include version control to track revisions made to the source code of programs, and you may use a GIT system to track such changes.
+
 youtube:
 sdlc
 waterfall, agile, lean
-agile methodologies
+agile methodologies vs waterfall
 scrum kanban
 scrum
 ci cd
