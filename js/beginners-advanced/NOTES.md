@@ -59,15 +59,26 @@ this will return 4, and 4
 ditto with the decrement arithmetic operator (--).
 
 //
-//
 
-operators: precedence is the order, associativity is the direction.
+operator precedence is what determines the way in which operators are parsed with respect with each other.
+
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+
+operators: precedence is the order, associativity is the direction (for example, in an addition, associativity is left to right, whereas assignment is right to left; also, assignment has a very low precedence, so it happens at the end when we already did the other operations and we assign the result to the variable, for example.).
+
+let x = 1
+let y = 3
+x = y = 2
+console.log(x) // 2
 
 let x = 5
 let y = 3
 let z = x + 1 === y + 3
-console.log(z), z returns true
+console.log(z) // true
+if you look at the precedence table, we do first the addition, then the equality, then the assignment
+
+//
+//
 
 const cow = undefined
 cow && cow.sound()
