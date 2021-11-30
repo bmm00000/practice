@@ -20,7 +20,7 @@ when you import, for example, 'ReactDom from 'react-dom'', you are importing the
 
 the browser does not understand components, that's why we won't see them if we inspect them in the browser, we will only see the html that is rendered after the built-in step.
 
-react components are functions that return JSX, which is made of other custom or built-in components (which are JSX as well). Even the built-in components (that look like html) are JSX components that will have to be transformed to JS in the build step, so the browser can understand them (that's why the syntax changes, for example we use 'className', etc., because the property name of an html element object for assigning css classes in JS is 'className'. But 'className' is one of the very few cases where the attribute name (JS) differs from the property name (html). in most cases, we can use the property names as we would do with html)
+react components are functions that return JSX, which is made of other custom or built-in components (which are JSX as well). Even the built-in components (that look like html) are JSX components that will have to be transformed to JS in the build step, so the browser can understand them (that's why the syntax changes, for example we use 'className' (in vanilla js, the property name that we use to assign a class to an html element object is 'className'; ie. the html attribute name sometimes differs from the property name, but not always), etc., because the property name of an html element object for assigning css classes in JS is 'className'. But 'className' is one of the very few cases where the attribute name (html) differs from the property name (js). in most cases, we can use the property names as we would do with html)
 
 dynamic expressions: it will not be treated as plain text, it will be evaluated. For example, in JSX, {2 + 2}, but watch out! in JSX you can only use dinamic expressions of one line.
 
@@ -28,7 +28,7 @@ in jsx, all html-like elements are components that have already been built into 
 
 convention: functions that are executed upon events are named ending in 'Handler', for example: 'deleteHandler'
 
-in html you cannot use self-closing elements, but you can in JSX.
+in html you cannot use self-closing elements, but you can in JSX (if you have no content between the opening and closing tags).
 
 you have new 'state' every time data changes in your app, even if it's not rendered in the screen yet (for example, if a variable changes, you got new state, and when this new value is rendered or consoled.log, then you got new state again)
 when we useState, we register different states in our app, and react will react to changes in this state, and we will be able to render different output depending on which state is active.

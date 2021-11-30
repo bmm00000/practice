@@ -6,11 +6,11 @@ in the chunk header, there's a line from the provided context that is not techni
 
 usually the symbols - and + (red and green) mean old vs new, but not always.
 
-git commit -am "message here" (does this work??? I think it does only if the file was already created and we are commiting changes in the pre-existing file)
+git commit -am "message here" (does this work??? I think it does only if the file was already created and we are commiting changes in the pre-existing file, ie. all the files are tracked)
 
 staging area is also referred to as the index in the documentation, sometimes this is confusing.
 
-git diff compares staging area and working directory. another way to think about it: it tells us the changes that we could tell git to add to the staging area:: '-' is what the staging area last knew about (old version), and '+' is the new version with the changes that we currently have in our working directory (it doesn't always means that something is new, it just means that it came from file 'b', and in our case file 'b' are the new changes)
+'git diff' compares staging area and working directory. another way to think about it: it tells us the changes that we could tell git to add to the staging area:: '-' is what the staging area last knew about (old version), and '+' is the new version with the changes that we currently have in our working directory (it doesn't always mean that something is new, it just means that it came from file 'b', and in our case file 'b' are the new changes)
 
 remember, HEAD points to a branch reference, which points to the last commit of that branch. Therefore, 'git diff HEAD' lists all the changes in the working directory since your last commit: IT INCLUDES STAGED AND UNSTAGED CHANGES (everything new in the working directory since the HEAD commit, it doesn't matter if the changes are staged or not)
 
