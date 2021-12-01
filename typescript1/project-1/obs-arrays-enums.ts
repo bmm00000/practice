@@ -5,7 +5,9 @@ const me = {
 
 console.log(me.name);
 
-// when we use a JS object, it's type object in TS, but also it will tell us the object type, in this example, when we hover over 'me': const person = {name: string; age: number}.
+// when we use a JS object, it's type object in TS, but also it will tell us the object type, in this example, when we hover over 'me': const person = {name: string; age: number}. therefore, if we do the following:
+// console.log(me.nickname)
+// then ts will tell us that 'nickname' does not exist on our specific object type, ie. {name: string; age: number} (this is the object type that ts inferred when we initialized the object)
 
 // we shouln't do the following:
 
