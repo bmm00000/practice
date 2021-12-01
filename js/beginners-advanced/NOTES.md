@@ -78,12 +78,27 @@ console.log(z) // true
 if you look at the precedence table, we do first the addition, then the equality, then the assignment
 
 //
-//
+
+logical operators are typically used with boolean values, and when they are, they return a boolean value. but what is really happening is that the return value is one of the operands (this is because short-circuit evaluation). so that means that logical operators can work without boolean values as well.
+in order to save time, processing power, if js encounters something that it doesn't like, the operation stops right and there.
+
+false && (anything) // false (js will not even look at the second operand)
+true || (anything) // true (js will not even look at the second operand)
+
+! also works with non-bolean values:
+!0 // true
+!null // true
+!'hello' // false
+
+screenshot 21, in the console, you will see 'undefined'. if you want to call the function without passing an argument, you can use the || operator (screenshot 22), and the beauty of this is that you can also pass an argument and it will work (screenshot 23)
 
 const cow = undefined
-cow && cow.sound()
-this will not give us the 'cannot read property of undefined' error, because JS will short circuit when it finds cow is falsy.
-that happens because when we have: true && true, it runs the second true
+cow.sound() // 'cannot read property of undefined' error.
+cow && cow.sound() // nothing happens because 'cow' is falsy, so cow.sound() is not evaluated. therefore, we will avoid the 'cannot read property of undefined' error, because JS will short circuit when it finds cow is falsy.
+that happens because when we have: true && true, it runs the second true, but if the first operand is false, it doesn't continue evaluating.
+but if 'cow' is truthy (screenshot 24), then it still works as we want (the second operand is returned, which invokes the function).
+
+//
 
 AUTHOMATIC GLOBAL SCOPE:
 if we assign a value to a variable that has not been declared, it becomes a global variable authomatically. For example, see screenshot. So WATCH OUT! you always need to declare the variables you are using inside your functions, or they will become global variables authomatically.
