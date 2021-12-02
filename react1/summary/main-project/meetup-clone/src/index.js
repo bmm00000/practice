@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+// BrowserRounter is a component itself, that's why we include it as JSX below in ReactDOM.render (we initialize the router package, so we make sure it watches our url)
 
 import './index.css';
 import App from './App';

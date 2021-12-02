@@ -82,7 +82,9 @@ function AllMeetupsPage() {
 
 export default AllMeetupsPage;
 
-// arrays of JSX elements are rendered automatically by React, for example, when a component returns {[<li>Item1</li>, <li>Item2</li>, <li>Item3</li>]}, the JSX inside the array are rendered, no problem. That's why we use the built-in function map, to map arrays of objects into arrays of JSX elements, as we do in the data above.
+// how to transform a list of data into a list of JSX elements, and to render that list of JSX elements dynamically:
+// arrays of JSX elements are rendered automatically by React, for example, when a component returns {[<li>Item1</li>, <li>Item2</li>, <li>Item3</li>]}, the JSX inside the array are rendered, no problem. That's why we use the built-in function map, to transform arrays of objects into arrays of JSX elements, so we can render the latter.
+// the 'key' prop that React expects in order to render efficiently arrays of jsx elements, is one of the props that is built-in in any component, including in custom components, so you can use it anywhere.
 
 // the .json() method comes with the response from 'fetch', it converts JSON into JS, and it returns a promise, that's why we have to use '.then' again.
 // BUT  we have a problem: JS does not wait until the promise returned by 'fetch' gets resolved, therefore the data that we fetch will not be rendered. how can we  solve this? if we used async await, it wouldn't work, since then the component would return a promise (that's what the keyword 'async' does), and react components have to be synchronous (cannot return a promise, they have to return directly JSX). Therefore, what we can do is to return something provisional until we get the data (like a spinner), and then change what's rendered on the screen, that's why we use 'useState'.

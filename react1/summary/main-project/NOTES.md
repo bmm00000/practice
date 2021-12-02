@@ -1,10 +1,11 @@
-a router is a tool that watches for changes in the url, and changes what's visible on the screen based on the url.
+a router is a tool that watches for changes in the url, and changes what's visible on the screen based on the url (so we give the user the illusion of routing), so we don't need to fetch a new html page (therefore, the page is fast and reactive, since everything is handled by client side JS, which is faster than sending a new request to a server)
 
-npm install react-router-dom
+INSTALL THE RIGHT REACT ROUTER VERSION:
+npm install --save react-router-dom@5
 
-CSS modules is a built in feature of CRA that allows us to scope style to components, the name of the file should be: name-of-component.module.css
+once we have installed the router package, we create the 'pages' folder. This way, we separate the components that are embedded in other components ('components' folder) from the components that will be loaded as pages.
 
-the 'key' prop that React expects in order to render efficiently arrays of jsx elements, is one of the props that is built-in in any component, including in custom components, so you can use it anywhere.
+CSS modules is a built in feature of CRA (behind the scenes code transformation) that allows us to scope style to components, the name of the file should be: name-of-component.module.css
 
 react will authomatically pass an 'event' object as an argument to the function that is executed for events, such as onClick, onSubmit, etc
 

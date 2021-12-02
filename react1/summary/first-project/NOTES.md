@@ -46,4 +46,6 @@ useState() returns an array with two elements, the first element is the value th
 {modalIsOpen ? <Modal/> : null} can be refactored as {modalIsOpen && <Modal/>}
 {true && true} // true : in JS, if both conditions are true, the second value will be returned
 
-working with 'event props' (passing functions as props): we do this to close the modal, because we cannot use the built-in prop 'onClick' in a custom component (we only have )
+working with 'event props' (passing functions as props): we do this to close the modal, because we cannot use the built-in prop 'onClick' in a custom component (we only have a few built-in props in custom components, as we will see later ). that's why we need to pass the function, so we can access the JSX built-in component, so we can use the built-in prop 'onClick' there. (we can pass functions as props because in JS functions are first class objects, and we can pass them around as values, as we do with strings, numbers, etc.)
+
+REMINDER: PROPS ARE IMPORTANT FOR BUILDING RE-USABLE COMPONENTS, AND STATE IS IMPORTANT FOR changing what we see on the screen dynamically.
