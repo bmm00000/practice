@@ -30,12 +30,20 @@ convention: functions that are executed upon events are named ending in 'Handler
 
 in html you cannot use self-closing elements, but you can in JSX (if you have no content between the opening and closing tags).
 
-you have new 'state' every time data changes in your app, even if it's not rendered in the screen yet (for example, if a variable changes, you got new state, and when this new value is rendered or consoled.log, then you got new state again)
+in order to change what's visible on the screen, we need to change the state of the app: initially, we have 3 todos and the open modal. we also want to present another state, where the overlay is closed, and we want to change between states when we click on the buttons we have (delete, cancel, etc).
+
+(reminder, when we import from a library, we don't use './', eg. import {useState} from 'react'; here we are importing a function exposed by the react library).
+
+with useState, we register different states we want to support in our react application, react will react to changes in those states, and allow us to render different output depending on which state is active. (useState is a hook, and hooks can only be called directcly inside react component functions and in custom hooks). calling useState() creates a state that react is aware of. you can give that state a starting value (in our example, we give it 'false' because we don't want the modal to appear at the beginning). useState returns an array with two elements (current state (you can think of state as a variable that is managed for you by react), and a function that allows us to change that value. it's important that we use that function to change the state, and DO NOT reassign the state variable, because when we use that function, the whole component will be rendered again, and the new state value will be used to render whatever we want).
+
+you have new 'state' every time data changes in your app, even if it's not rendered in the screen yet (for example, if a variable changes, you got new state, and when this new value is rendered or consoled.log, then you got new state again; this is what happens in the counters of the screenshots: when the counter changes, the state changes (for example, counter is 2), and when the counter is rendered on the screen we have new state again (the counter is 2 and it is rendered in the screen or consoled log))
 when we useState, we register different states in our app, and react will react to changes in this state, and we will be able to render different output depending on which state is active.
 
 useState is a function that we can find in the 'react' library
 when we call useState(), we create a state that react is aware of, and every time we change this state, the component will be rendered again.
-useState() returns an array with two elements, the first element is the value that the state currently has (the value that you passed), and the select element is the function to change that state. you only change state by using that function, you never change state by reassigning the variable, only by using that function. that's because when you use that function ,react will call the component function, and render again the jsx with the new state.
+useState() returns an array with two elements, the first element is the value that the state currently has (the value that you passed), and the second element is the function to change that state. you only change state by using that function, you never change state by reassigning the variable, only by using that function. that's because when you use that function ,react will call the component function, and render again the jsx with the new state.
 
 {modalIsOpen ? <Modal/> : null} can be refactored as {modalIsOpen && <Modal/>}
 {true && true} // true : in JS, if both conditions are true, the second value will be returned
+
+working with 'event props' (passing functions as props): we do this to close the modal, because we cannot use the built-in prop 'onClick' in a custom component (we only have )
