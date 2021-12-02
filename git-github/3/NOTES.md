@@ -57,6 +57,11 @@ git stash pop: you can use the stashed changes in any other branch, not only to 
 
 git stash apply: there may be a conflict when you are trying to apply the changes from one branch to another branch. in that case, you need to resolve the conflict manually, add and commit (the same as with merging)
 
+staging area is also known as index
+WIP: work in progress
+
+when you are popping or applying stashes from the stash stack, the last stash pops up first: LIFO (last in first out)
+
 UNDOING CHANGES AND TIME TRAVELING:
 https://www.canva.com/design/DAEPZZHOafo/uagxrNdvbI_wDpjfNpK_4w/view?utm_content=DAEPZZHOafo&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 
