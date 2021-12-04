@@ -69,16 +69,16 @@ in 'detached head' state, HEAD points to a commmit, not to a branch reference (s
 
 you can 'git checkout HEAD~1' consecutive times to go back further. since the head is detached, it will go back one more commit, and one more commit, etc.
 
-git switch - :when you are on detached head, this will take you back to whatever branch you were last, so you don't need to remember in which branch you were before.
+git switch - : when you are on detached head, this will take you back to whatever branch you were last, so you don't need to remember in which branch you were before.
 
 git restore --source: when you restore former commits, you don't go back in time, you are still in HEAD, your branch reference, and the latest commit. only that the file is modified copying what appears on that commit that you are restoring.
 
 you can restore several files, for example:
 git restore --source HEAD~2 cat.txt dog.txt
 
-git reset: with a basic or plain reset, the commits are eliminated but the content of your files remain the same as before the reset (the files remain as changed in the working directory). this is useful when you don't want to lose that work, eg. you made some commits on the wrong branch, you want to keep that work, but move it to another branch.
+git reset: with a basic or plain reset, the commits are eliminated but the content of your files remains the same as before the reset (the files remain as changed in the working directory). this is useful when you don't want to lose that work, eg. you made some commits on the wrong branch, you want to keep that work, but commit it to another branch.
 
-sometimes, git revert can result in conflicts, where you need to go to the file and decide what to keep, like any other conflict when you merge. i still need to understand how this works. it's probably if you revert not the latest commit but a former one??
+sometimes, git revert can result in conflicts, where you need to go to the file and decide what to keep, like any other conflict when you merge. this happens if you revert not the latest commit but a former one.
 
 QUESTIONS:
 
@@ -95,6 +95,6 @@ You can keep the commits if you create a new branch while in detached HEAD, as t
 
 2. 'Indigo' should be in black because it's common between both versions. Why is it colored?
 
-This is an issue with whitespace changes and line endings in Git. In the first version, the file ends with "indigo". In the second version, you added a return after "indigo" (even though we can't see it), so Git thinks it changed. You can prevent this behavior by running this in your terminal:
+This is an issue with whitespace changes and line endings in Git. In the first version, the file ends with "indigo". In the second version, you added a return or some whitespaces after "indigo" (even though we can't see it), so Git thinks it changed. You can prevent this behavior by running this in your terminal:
 
 git config --global core.autocrlf true
