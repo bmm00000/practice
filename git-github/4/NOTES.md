@@ -18,30 +18,43 @@ in github, you can see the most recent commit that affected each one of the file
 
 usually, what we do is we work with different branches in our local environment, then we merge into master, and then we push master to github (we don't usually push many branches into github).
 
-git push origin cats (if the branch 'cats' doesn't exist yet in github, it will create it when we push our local 'cats' branch). the same will happen if we 'git push origin master' when the remote repo is empty (it will create the 'master' branch, and that will be the default branch in github, and the remote and local 'master' branches will be connected (see screenshot)). usually, we want to connect the remote and local branches with the same name, but we don't have to.
+git push origin cats (if the branch 'cats' doesn't exist yet in github, it will create it when we push our local 'cats' branch). the same will happen if we 'git push origin master' when the remote repo is empty (it will create the 'master' branch, and that will be the default branch in github(see screenshot)). usually, we want to connect the remote and local branches with the same name, but we don't have to.
 
-//
-//
+when you follow the instructions in github to rename your local 'master' branch to 'main' (git branch -M main), it's assuming that you are checkingout the local master branch, so you rename 'master' to 'main'.
+but you don't need to rename your 'master' branch. you can just 'git push origin master', and that branch will be pushed to the remote repo (and it will be the default branch)
 
-when you follow the instructions in github to rename your local 'master' branch to 'main' (git branch -M main), it's assuming that you are checkingout the master branch, so you rename 'master' to 'main'.
-but you don't need to rename your 'master' branch. you can just 'git push origin master', and the 'main' default branch in the remote called origin will be renamed to 'master'
-
-//
-//
+'git push -u origin dogs' will push the local branch 'dogs' to the origin 'dogs' branch (or create the origin 'dogs' branch if it doesn't exist yet), and connect these local and remote branches, so we can just use 'git push' and git will remember to what remote branch to push to, when whe push from the local 'dogs' branch.
 
 you can also set an upstream with a different name (although in reality we would very rarely do this):
 git push -u origin cats:dogs
 
+'git push --set-upstream origin dogs' is the same as 'git push -u origin dogs'
+
 WITH THE SECOND OPTION (CREATING A REPO ON GITHUB AND CLONING IT DOWN), you can add a .gitignore, README.md, and license, on github, and then clone it down and it will be done in your local.
 
-if you create a new repo in github and you initialize it with a readme, .gitignore, etc. the default branch will be called 'main' (this happens since 2020). this will not happen if you create an empty repo: since there is no content, there will be no branch.
+if you create a new repo in github and you initialize it with a readme, .gitignore, etc., it will authomatically make a commit (it will call it 'initial commit' by default) and the default branch will be called 'main' (this happens since 2020). this will not happen if you create a repo in github and leave it empty: since there is no content, there will be no branch.
 on the other hand, when you create a new repo in your local environment, and make the first commmit, the default branch is called 'master'
 
-when you have a local repo with a 'master' branch as default, but you want to change the name to 'main': you change the name of the local branch to 'main', you push it to origin, and github will create a new branch called 'main'. however, the old 'master' branch will still be on github as the default one. you can make 'main' the default branch by going to 'settings', 'branches', 'default branch'
+when you have a local repo with a 'master' branch as default (and it is also on github), but you want to change the name to 'main' to comply with the new naming convention: you change the name of the local branch to 'main', you push it to origin, and github will create a new branch called 'main'. however, the old 'master' branch will still be on github as the default one. you can make 'main' the default branch by going to 'settings', 'branches', 'default branch'
 
 see screenshot: git log --oneline:
 learn how to read lattest commits for different branches in origin
 
 RE-DO VIDEO 105
+observation doing the exercise: you can add the remote to your local repo even before you make the first commit in your local (github instructions tell you to make the first commit in your local first, and then add the remote, but you can add the remote before you make the first commit in local repo).
 
 https://www.canva.com/design/DAEPyYicrxQ/EaXIXD_WWryEq7Z7YUSVlg/view?utm_content=DAEPyYicrxQ&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+when you clone a repo, the default name of the remote repo will be 'origin'
+
+when you clone a repo, you will get the default ('main') branch in your local, BUT YOU WILL NOT GET THE OTHER BRANCHES (THAT YOU HAVE IN YOUR REMOTE REPO) IN YOUR LOCAL! but still, when you 'git branch -r', you will see that your local repo knows about the remote branches! but still you don't have the full-fledged branches in your local repo (you don't see them when you 'git branch')
+
+relationship between a full-fledged branch and a remote tracking branch: by default, when we clone a repo, the local master branch we get in our local repo is already tracking/connected to the origin/master branch
+
+but what if we want to work with another branch in our local repo? you can 'git checkout origin/puppies', but you will end up in detached head, and even if you create a new branch called 'puppies', this branch will not be connected to origin/puppies. how to solve this? EASY! 'git switch puppies' (this command will make the 'puppies' branch in your local and connect it to 'origin/puppies')
+
+REMINDER: remote branch references (for example, 'origin/master') are in your local, not in github (see slide on 'git fetch'). the only thing that will update when you 'fetch' is the remote branch references. then, you will be able to checkout 'origin/master' without an internet connection (when you 'fetch' and update the remote branch references, these remote branches are in your computer, even though they are not in your working directory/workspace), and you can also 'git log' and see all the commits of 'origin/master'
+
+after you create new commits on github, when you 'git status' in your local, it will still tell you that 'your branch is up to date with 'origin/movies', because you are up to date with WHAT YOUR LOCAL REPO KNOWS 'ORIGIN/MOVIES' WAS (from last time you connected to the remote repo), NOT EXACTLY WHAT IT IS AT THIS MOMENT IN TIME (your repo is not constantly updating from the repo on github; you have to do that with 'git fetch' (see screenshot))
+
+'git fetch' is not only about updating origin branches that were already in your local, also it will show you new branches that were created in your github
