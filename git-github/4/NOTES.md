@@ -58,3 +58,12 @@ REMINDER: remote branch references (for example, 'origin/master') are in your lo
 after you create new commits on github, when you 'git status' in your local, it will still tell you that 'your branch is up to date with 'origin/movies', because you are up to date with WHAT YOUR LOCAL REPO KNOWS 'ORIGIN/MOVIES' WAS (from last time you connected to the remote repo), NOT EXACTLY WHAT IT IS AT THIS MOMENT IN TIME (your repo is not constantly updating from the repo on github; you have to do that with 'git fetch' (see screenshot))
 
 'git fetch' is not only about updating origin branches that were already in your local, also it will show you new branches that were created in your github
+
+REPEAT GIT FETCH VIDEOS?
+
+as a good practice, before you push anything to github, you want to pull down and merge if any conflicts, (if there are conflicts and you make a commit to resolve them, then your local branch will be ahead respective the remote) and then you push (the only problem you may run into is that someone pushes something to github in the 30 seconds or so between the moment when you pull, and then push with your changes).
+
+in the slide where there's a conflict and branches are merged after the pull, the yellow circle is at the end because it was done in local after the green ones were done in the remote repo, so the resulting order is chronological.
+
+when you git pull, you merge the remote branch into your local branch (if you git log after you pull, you will see all the commits coming from the remote branch together with your pre-existing local commits, chronologically). if there's a conflict, you will need to resolve it manually and make a commit.
+QUESTION: if there's no conflict, but the merge is not a fast-forward, does git make a merge commit? TRY IT OUT MYSELF
