@@ -100,6 +100,13 @@ but if 'cow' is truthy (screenshot 24), then it still works as we want (the seco
 
 //
 
+"the variable double is being assigned to the returned value of this anonymous function." TYPO!! IT'S THE OTHER WAY AROUND!
+function expressions can be unnamed but also named!
+from MDN: The main difference between a function expression and a function declaration is the function name, which can be omitted in function expressions to create anonymous functions.
+check function expressions and function declarations in MDN
+
+//
+
 AUTHOMATIC GLOBAL SCOPE:
 if we assign a value to a variable that has not been declared, it becomes a global variable authomatically. For example, see screenshot. So WATCH OUT! you always need to declare the variables you are using inside your functions, or they will become global variables authomatically.
 
