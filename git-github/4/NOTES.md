@@ -67,3 +67,29 @@ in the slide where there's a conflict and branches are merged after the pull, th
 
 when you git pull, you merge the remote branch into your local branch (if you git log after you pull, you will see all the commits coming from the remote branch together with your pre-existing local commits, chronologically). if there's a conflict, you will need to resolve it manually and make a commit.
 QUESTION: if there's no conflict, but the merge is not a fast-forward, does git make a merge commit? TRY IT OUT MYSELF
+
+OTHER GITHUB FEATURES:
+https://www.canva.com/design/DAEVGSMC0ew/9f6udCe20KrYAfwoD0zqHA/view?utm_content=DAEVGSMC0ew&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+in the example of inviting a collaborator in the screenshot, the repo is private. if the collaborator accepts initation, he can push to the repo, but he doesn't have access to 'settings' (he is a collaborator, not the owner), so he cannot do certain things (delete the repo, invite new collaborators or delete them, etc.). with 'enterprise' or 'team' github tiers, you can have different things, like several owners, different permissions, etc.
+
+'markdown' is a tool that generates markup, ie. you write text with some simple sintax (markdown) and then github (or other any other place that allows you to view markdown and render it yourself, like https://markdown-it.github.io/, or in vscode you can also preview it as you write it (command palette>Markdown Open Preview)) will be able to convert it to html (so you will save time since you don't need to write html):
+https://daringfireball.net/projects/markdown/
+https://markdown-it.github.io/
+
+in any github project, you can see the markdown if you click on the 'raw' tag in the readme section
+
+with gists, you can share snippets of code, solutions to problems, etc. with others without the hassle of creating new repo, pusing, etc. and it allows people to comment with suggestions, etc.
+see example of gist in screenshot: using different github accounts with ssh keys (this gist is using an markdown file). it could have been a github repo with just one file on it, but the gist format is more convenient.
+gists can be secret (hidden to search engines but visible to anyone you give the url to) or public.
+you can add several files to a gist (see screenshot, we add a js file after the md file)
+you also have other functionality like forking, stars, revisions (changes over history), etc., so it's like a mini repo.
+
+it happens quite often that in the readme of a repo, there's a link to a github page, and that page will be the documentation for that project (see, for example, faker.js github repo). or also a link to the website of the project:
+https://github.com/marak/Faker.js/
+https://github.com/ovolve/2048-AI
+
+when you are in a repo, go to 'settings'>'github pages', and select branch (you will need an index.html file in the root folder in that branch (or you can also specify the folder where the index.html file is, since it will ask you to specify the folder where the index.html file is)). what you can do is to create a separate branch (if you name it 'gh-pages', it will authomatically be detected) with an index.html file for your website (so you have the main branch for the project itself, without necessarily having an index.html file there)
+when you want to update the website, the only thing you do is to push code to the branch that is used for the website
+
+USE GITHUB PAGES TO LINK THE WEBSITE FOR MY FUTURE PROJECTS IN GITHUB
