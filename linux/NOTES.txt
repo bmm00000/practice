@@ -1,0 +1,12 @@
+with cli you can do, not only what you do in the gui, but much more: there are many things you can only do with the command line (change permissions, view hidden files, interact with databases, start servers, manage processes, etc.). you can also automate many tasks (for example, create 1000 files with unique names using a single command). and also you can work much faster! also, most cloud services are operated via a cli
+
+there are a ton of operating systems:
+https://eylenburg.github.io/os_familytree.htm
+
+the commands that we are going to learn work in any OS that is descendant of Unix (eg. Ubuntu, Fedora, MacOSX...)
+
+people usually call 'linux' all the operating systems that descended from the Linux kernel (for example, ubuntu, fedora, etc. are also called 'linux', since they use the 'linux' kernel), but some users feel that they should be called GNU/Linux (see slide)
+
+The shell that is built-in on Windows (Powershell) doesn't use the same commands that we will be covering (so if you are using windows, you have to set up a virtual machine, so you can run Ubuntu inside of Windows)
+
+Most of the commands we will learn work on Mac's Terminal (but not all of them?)
