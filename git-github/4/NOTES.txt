@@ -53,20 +53,31 @@ relationship between a full-fledged branch and a remote tracking branch: by defa
 
 but what if we want to work with another branch in our local repo? you can 'git checkout origin/puppies', but you will end up in detached head, and even if you create a new branch called 'puppies', this branch will not be connected to origin/puppies. how to solve this? EASY! 'git switch puppies' (this command will make the 'puppies' branch in your local and connect it to 'origin/puppies')
 
-REMINDER: remote branch references (for example, 'origin/master') are in your local, not in github (see slide on 'git fetch'). the only thing that will update when you 'fetch' is the remote branch references. then, you will be able to checkout 'origin/master' without an internet connection (when you 'fetch' and update the remote branch references, these remote branches are in your computer, even though they are not in your working directory/workspace), and you can also 'git log' and see all the commits of 'origin/master'
+REMINDER: remote tracking branches (for example, 'origin/master') are in your local, not in github (see slide on 'git fetch'). the only thing that will update when you 'fetch' are the remote tracking branches. then, you will be able to checkout 'origin/master' without an internet connection (you will get into detached head, and check it out) (when you 'fetch' and update the remote tracking branches, these are in your computer, even though they are not in your working directory/workspace).
 
-after you create new commits on github, when you 'git status' in your local, it will still tell you that 'your branch is up to date with 'origin/movies', because you are up to date with WHAT YOUR LOCAL REPO KNOWS 'ORIGIN/MOVIES' WAS (from last time you connected to the remote repo), NOT EXACTLY WHAT IT IS AT THIS MOMENT IN TIME (your repo is not constantly updating from the repo on github; you have to do that with 'git fetch' (see screenshot))
+after you create new commits on github, when you 'git status' in your local, it will still tell you that 'your branch is up to date with 'origin/movies', because you are up to date with WHAT YOUR LOCAL REPO KNOWS 'ORIGIN/MOVIES' WAS (from last time you connected to the remote repo), NOT EXACTLY WHAT IT IS AT THIS MOMENT IN TIME (your local repo is not constantly updating from the repo on github; THE WAY TO ACHIEVE THIS IS WITH 'git fetch' (see screenshot))
 
-'git fetch' is not only about updating origin branches that were already in your local, also it will show you new branches that were created in your github
+'git fetch' is not only about updating remote tracking branches that were already in your local, but it will also show you new branches that were created in your github, but you didn't have them in your local yet as remote tracking branches (you cannot see them when you 'git branch -r', but you will see them when you 'git branch -r' after you 'git fetch')
 
-REPEAT GIT FETCH VIDEOS?
+when you 'git fetch' and the remote branch references get updated, if you 'git log', you won't see the remote branch references (you will only see them if the remote branch reference is pointing to a commit that is part of the history of your current head branch). but if you 'git status', you will see if the remote tracking branch is ahead, etc. then, you can 'git checkout origin/master' and you will go into detached head mode, and see what's going on in the remote tracking branch. if you 'git log' while you are checking out the remote tracking branch, you will see all the commits from the remote tracking branch.
+
+corner case: when you have a remote tracking branch, and you 'git switch' to this branch for the first time, as we have seen, git sets up this branch in your local, USING THE LATEST INFO THAT IT HAS FROM THE LAST TIME IT CONNECTED TO ORIGIN (from the last time that you fetched) (ie. when you 'git switch', it doesn't connect to origin. you need to 'git fetch' to connect to origin)
+
+git pull = git fetch (update remote tracking branch) + git merge (merge remote tracking branch into HEAD)
+
+IT MATTERS FROM WHERE YOU 'GIT PULL': for example, 'git pull origin master' will update the remote tracking master branch, and then merge that branch into our current branch, WHATEVER THAT HAPPENS TO BE! 
+
+QUESTION: if we 'git log' after pulling, will wee see a new merge commit IF IT WAS NOT A FAST FORWARD merge AND ALSO THERE WAS NOT A CONFLICT?? YESSS!
 
 as a good practice, before you push anything to github, you want to pull down and merge if any conflicts, (if there are conflicts and you make a commit to resolve them, then your local branch will be ahead respective the remote) and then you push (the only problem you may run into is that someone pushes something to github in the 30 seconds or so between the moment when you pull, and then push with your changes).
+IN SHORT: MERGES ARE DONE WHEN PULLING, CANNOT BE DONE WHEN PUSHING!
 
-in the slide where there's a conflict and branches are merged after the pull, the yellow circle is at the end because it was done in local after the green ones were done in the remote repo, so the resulting order is chronological.
+in the slide where there's a conflict and branches are merged after the pull, the yellow circle is at the end because it was done in local after the green ones were done in the remote repo, so the resulting order is chronological. KEEP IN MIND THAT THERE'S ONE COMMIT MISSING ON THE DIAGRAM! local must be 2 commits ahead of the remote (one is the yellow circle and the other one is the new merge commit done in local).
 
 when you git pull, you merge the remote branch into your local branch (if you git log after you pull, you will see all the commits coming from the remote branch together with your pre-existing local commits, chronologically). if there's a conflict, you will need to resolve it manually and make a commit.
-QUESTION: if there's no conflict, but the merge is not a fast-forward, does git make a merge commit? TRY IT OUT MYSELF
+QUESTION: if there's no conflict, but the merge is not a fast-forward, does git make a merge commit? YES!!!
+
+MY OBSERVATION: you can establish a tracking connection between a remote branch and a local branch in two ways: 'git switch' to a branch with the name of a remote tracking branch (this is after you have cloned or fetched, but you don't have that branch in local yet), or you can also set the upstream with 'git push -u <remote> <local-branch-name>'
 
 OTHER GITHUB FEATURES:
 https://www.canva.com/design/DAEVGSMC0ew/9f6udCe20KrYAfwoD0zqHA/view?utm_content=DAEVGSMC0ew&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
