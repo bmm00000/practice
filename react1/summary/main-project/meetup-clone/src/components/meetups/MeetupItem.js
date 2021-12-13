@@ -6,7 +6,7 @@ import classes from './MeetupItem.module.css';
 import FavoritesContext from '../../store/favorites.context';
 
 function MeetupItem(props) {
-	// we call useContext() and pass the the context object that we were exporting in the other file, ie. the context object that we want to connect, and this will return that 'context' objected that we created in the other file, which we were distributing through the 'value' prop to all the components (now we call it 'favoritesCtx'):
+	// we call useContext() and pass the the context object that we were exporting in the other file, ie. the context object that we want to connect, and this will return that 'context' object that we created in the other file, which we were distributing through the 'value' prop to all the components (now we call it 'favoritesCtx'):
 	const favoritesCtx = useContext(FavoritesContext);
 	// 'favoritesCtx' is an object with the data from the 'context' object now accessible in this component.
 

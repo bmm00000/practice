@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 // 'createContext' is a function exposed by the react library
 
-// 'createContext' will return a js object that will contain a React component, that's why we name it in capital letter. 'createContext' takes an argument: the initial values for the context, ie. the initial state of the application wide state, as follows (in out case, it's an object, but it could be anything):
+// 'createContext' will return a js object that will contain a React component, that's why we name it in capital letter. 'createContext' takes an argument: the initial values for the context, ie. the initial state of the application wide state, as follows (in our case, it's an object, but it could be anything):
 const FavoritesContext = createContext({
 	favorites: [],
 	totalFavorites: 0,
@@ -11,14 +11,14 @@ const FavoritesContext = createContext({
 	// we add empty functions here in the initial context because it will give us better autocompletion in the IDE later
 });
 
-// we also need ways to add or remove values from the context (ie. ways of changing the state), that's why we use the following component. This component is a regular react component that will also provide this context to other components that need values from the context, and will also be responsible for updating the context values (through 'useState'). This component has to be wrapped around all the components that need the values from the context, that's why we use 'props.children':
+// we also need ways to add or remove values from the context (ie. ways of changing the state), that's why we use the following component. This component is a regular react component that will also provide this context to other components that need values from the context, and will also be responsible for updating the context values (through 'useState'). This component has to be wrapped around all the components that need the values from the context, that's why we use 'props.children' (THEREFORE, THIS COMPONENT HAS TWO PURPOSES):
 export function FavoritesContextProvider(props) {
 	const [userFavorites, setUserFavorites] = useState([]);
 
 	function addFavoriteHandler(favoriteMeetup) {
 		// setUserFavorites(userFavorites.concat(favoriteMeetup));
 		// 'concat' is like 'push', but it returns a new array.
-		// however, we shouldn't do it like this, because React does not process state updates instantly, but schedules them behind the scenes. Therefore, when your new state depends on your former state, there is a scenario where the last state update has not been processed yet, therefore your new state will be wrong. There is a better way to update state (you pass a function that will be executed for you by React; that function will receive the previous state snapshot, and will return the updated state; this guarantees that we have the latest state snapshot, since React executes this instantly):
+		// however, we shouldn't do it like this, because React does not process state updates instantly, but schedules them for the future behind the scenes. Therefore, when your new state depends on your former state, there is a scenario where the last state update has not been processed yet, therefore your new state will be wrong. There is a better way to update state (you pass a function that will be executed for you by React; that function will receive the previous state snapshot, and will return the updated state; this guarantees that we have the latest state snapshot, since React executes this instantly):
 		setUserFavorites((prevUserFavorites) => {
 			return prevUserFavorites.concat(favoriteMeetup);
 		});
@@ -35,7 +35,7 @@ export function FavoritesContextProvider(props) {
 		return userFavorites.some((meetup) => meetup.id === meetupId);
 	}
 
-	// these are the latest values that should be exposed to our components, and the functions to change them. we don't want only to access values from different components, but also we want to access functions from different components, to be able to change those values accessible from different components (watch out, below we don't execute the functions with '()', but we simple point at them to pass them).
+	// these are the latest values that should be exposed to our components, and the functions to change them. we don't only want to access values from different components, but also we want to access functions to change those values from different components (watch out, below we don't execute the functions with '()', but we simple point at them to pass them).
 	const context = {
 		favorites: userFavorites,
 		totalFavorites: userFavorites.length,
@@ -43,11 +43,10 @@ export function FavoritesContextProvider(props) {
 		removeFavorite: removeFavoriteHandler,
 		itemIsFavorite: itemIsFavoriteHandler,
 	};
-	// we are also adding the functions in the 'context' object, because we want to be able to modify the context values from different components, thus we need to access the functions from different components. We also add empty functions in the initial 'context', since this will help us with the autocomplettion in the IDE later.
 
 	return (
 		<FavoritesContext.Provider value={context}>
-			{/* this components wants a 'value' prop where we pass the current context value. we set the initial values when we createContext, but we can then update those values and pass the latest values with the help of the 'value' prop, and when that value changes, all the components that are listening to our context will be updated.  */}
+			{/* this component wants a 'value' prop where we pass the current context value. we set the initial values when we createContext, but we can then update those values and pass the latest values with the help of the 'value' prop, and when that value changes, all the components that are listening to our context will be updated.  */}
 			{props.children}
 		</FavoritesContext.Provider>
 		// 'FavoritesContext.Provider' is the component that 'FavoritesContext' has built-in (the component we were talking about above). this component has to be wrapped around all the components that are interested in interacting with that context. This means that this 'FavoritesContextProvider' will be wrapped around other components later (in our case, we will use it in index.js to wrap it around our whole app, so all the components in the app have access to the context.)

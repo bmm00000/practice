@@ -6,7 +6,7 @@ imperative approach: code every single action, for example, when you are coding 
 
 declarative, component-focused approach: higher level syntax that you code when using a library.
 
-build step: the code that you write is not the code that will end up in the browser. the code that you write will be transformed behind the scenes before it reaches the browser. This is what happens behind the scenes with React (the browser does not render jsx). (a big code bundle that the browser understands will be generated out of our code and the code from the third party dependencies (the dependencies are listed in package.json)) in the build steps brought by the 'react-scripts' package (listed in package.json) (this is what we do when we execute 'npm start', etc.)
+build step: the code that you write is not the code that will end up in the browser. the code that you write will be transformed behind the scenes before it reaches the browser. This is what happens behind the scenes with React (the browser does not render jsx). (a big code bundle that the browser understands will be generated out of our code and the code from the third party dependencies (the dependencies are listed in package.json)) in the build steps brought by the 'react-scripts' package (listed in package.json) (this is what we do when we execute 'npm start', 'npm build', etc.)
 also, in react, a development server hosts our application locally in our machine, and updates the page in the browser as soon as we save changes in the code (for these two functionalities, node.js will be used, that's why we need it in our system)
 that's why we use the tool create-react-app, so we can get all these functionalities. (to be able to use CRA, we need node.js in our system)
 npx create-react-app <app-name>
