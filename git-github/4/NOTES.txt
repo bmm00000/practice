@@ -82,7 +82,7 @@ MY OBSERVATION: you can establish a tracking connection between a remote branch 
 OTHER GITHUB FEATURES:
 https://www.canva.com/design/DAEVGSMC0ew/9f6udCe20KrYAfwoD0zqHA/view?utm_content=DAEVGSMC0ew&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 
-in the example of inviting a collaborator in the screenshot, the repo is private. if the collaborator accepts initation, he can push to the repo, but he doesn't have access to 'settings' (he is a collaborator, not the owner), so he cannot do certain things (delete the repo, invite new collaborators or delete them, etc.). with 'enterprise' or 'team' github tiers, you can have different things, like several owners, different permissions, etc.
+in the example of inviting a collaborator in the screenshot, the repo is private. if the collaborator accepts the invitation, he can push to the repo, but he doesn't have access to 'settings' (he is a collaborator, not the owner), so he cannot do certain things (delete the repo, invite new collaborators or delete them, etc.). with 'enterprise' or 'team' github tiers, you can have different things, like several owners, different permissions, etc.
 
 'markdown' is a tool that generates markup, ie. you write text with some simple sintax (markdown) and then github (or other any other place that allows you to view markdown and render it yourself, like https://markdown-it.github.io/, or in vscode you can also preview it as you write it (command palette>Markdown Open Preview)) will be able to convert it to html (so you will save time since you don't need to write html):
 https://daringfireball.net/projects/markdown/
@@ -91,7 +91,7 @@ https://markdown-it.github.io/
 in any github project, you can see the markdown if you click on the 'raw' tag in the readme section
 
 with gists, you can share snippets of code, solutions to problems, etc. with others without the hassle of creating new repo, pusing, etc. and it allows people to comment with suggestions, etc.
-see example of gist in screenshot: using different github accounts with ssh keys (this gist is using an markdown file). it could have been a github repo with just one file on it, but the gist format is more convenient.
+see example of gist in screenshot: using different github accounts with ssh keys (this gist is using a markdown file). it could have been a github repo with just one file on it, but the gist format is more convenient.
 gists can be secret (hidden to search engines but visible to anyone you give the url to) or public.
 you can add several files to a gist (see screenshot, we add a js file after the md file)
 you also have other functionality like forking, stars, revisions (changes over history), etc., so it's like a mini repo.
