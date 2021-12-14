@@ -24,6 +24,7 @@ function NewMeetupPage() {
 			<h1>Add New Meetup</h1>
 			<NewMeetupForm onAddMeetup={addMeetupHandler} />
 		</section>
+		// You cannot use 'onSubmit' etc. in custom components like this one, since custom components have to be completely customized, that's why we use event props (passing functions as props), so we pass the functions down until we have a built-in component, so then we can use onSubmit, and then call the function we passed.
 	);
 }
 

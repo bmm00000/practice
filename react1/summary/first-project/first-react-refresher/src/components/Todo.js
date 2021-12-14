@@ -29,6 +29,7 @@ function Todo(props) {
 				<Modal onCancel={closeModalHandler} onAccept={closeModalHandler} />
 			)}
 			{modalIsOpen && <Backdrop onCancel={closeModalHandler} />}
+			{/* working with 'event props' (passing functions as props): we do this to close the modal, because we cannot use the built-in prop 'onClick' in a custom component (we only have a few built-in props in custom components, as we will see later ). that's why we need to pass the function, so we can access the JSX built-in component, so we can use the built-in prop 'onClick' there. (we can pass functions as props because in JS functions are first class objects, and we can pass them around as values, as we do with strings, numbers, etc.) */}
 		</div>
 	);
 }
