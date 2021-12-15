@@ -6,4 +6,20 @@ feature branch workflow: there are lot of patterns that companies use to name fe
 before you create a new feature branch, you have to pull the 'main' branch to see if there are any updates.
 (btw, you don't need to always push your feature branches to github, sometimes you will end up merging them with 'main' in your local, delete the feature branch, and push 'main')
 
-if someone asks you for your opinion about their feature branch, you can either 'git fetch' and then 'git switch <feature/branch>', or 'git fetch' and then 'git checkout origin/<feature/branch>' (in the latter, you will go into detached head mode, and you won't end up with that feature branch in your local. after you checkout that branch, if you decide to make changes there, you can 'git switch <feature/branch>', and you will get the branch in your local, so you can work on it, commit and push)
+if someone asks you for your opinion about their feature branch, you can either 'git fetch' and then 'git switch <feature/branch>', or, if you want to check before creating the branch in your local, you 'git fetch' and then 'git checkout origin/<feature/branch>' (you will go into detached head mode, and you won't end up with that feature branch in your local. after you checkout that branch, if you decide to make changes there, you can 'git switch <feature/branch>', and you will get the branch in your local, so you can work on it, commit and push)
+
+every popular repo on github has a section for PRs:
+https://github.com/facebook/react/pulls
+
+in the feature branching workflow, we use PRs because you are a collaborator and have actually permission to push (push your feature branch). on the other hand, if you are working in an open source project, you usually use the fork and clone workflow: the contributors don't have permission to push changes to any of the branches. another way of making PRs is used: fork and clone workflow: common pattern to work with open source projects (eg. react) where you are not a collaborator (you don't have permission to push). there are a lot of patterns that you have to follow when contributing to an open source project (name conventions, tags, etc.)
+
+changes can be added to a PR after it has been originally created.
+
+after a PR has been approved, it's a good practice to delete the feature branch in github and also in your local.
+after a PR has been approved, developers need to pull the main branch to have the latest version.
+
+if you are a collaborator on a github repo, you have permission to approve PRs
+
+in order to resolve conflicts in PRs, you can either to it in the browser (click on 'resolve conflicts'; you can do it in the browser if it's a small change or just one file, but if there are conflicts in many files, then it's more convenient to use the cli), or in the cli (click on 'command line instructions' to see how to do it) (see screenshot):
+github still uses the older command: 'git checkout -b new-heading origin/new-heading' (make me a new branch called 'new-heading' and make it track 'origin/new-heading'), but the easier option would be to 'git switch origin/new-heading'.
+the approach is: switch to the feature branch, and then merge 'main' into the feature branch, and resolve the conflicts while doing so.
