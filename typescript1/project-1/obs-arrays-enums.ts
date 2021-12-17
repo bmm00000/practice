@@ -90,19 +90,21 @@ jobStart2.push('hello');
 // 'push' is an exception, unfortunately TS can't catch this error.
 
 // ENUM (doesn't exist in JS):
-const person1 = {
-	role: 'READ-ONLY-USER',
-};
-if (person1.role === 'READ ONLY USER') {
-}
-// to avoid this type of bugs, you can use numbers instead of long strings:
 const person3 = {
 	role: 2,
 };
 if (person3.role === 2) {
 }
-// but you may get confused about what the numbers mean, and create other bugs (does '2' mean 'AUTHOR' or 'READ-ONLY-USER?). So we need something more readable by humans.
-// in this situation, what we usually do is to use global variables, for example:
+// but you may get confused about what the numbers mean, and create bugs (does '2' mean 'AUTHOR' or 'READ-ONLY-USER?), of put in a number for which you don't have any role. So we need something more readable by humans, so we can use more humanly readible values:
+const person1 = {
+	role: 'READ-ONLY-USER',
+};
+// however, we can generate this type of bugs:
+if (person1.role === 'READ ONLY USER') {
+}
+// to avoid this type of bugs, we can use global variables, that hold numbers or strings, for example:
+const CONTRIBUTOR = 'CONTRIBUTOR-WITH-PERMISSIONS';
+// but numbers can save us extra code and a bit of memory:
 const ADMIN = 0;
 const READ_ONLY = 1;
 const AUTHOR = 2;
@@ -113,7 +115,7 @@ const person4 = {
 if (person4.role === AUTHOR) {
 }
 // THIS APPROACH IS TOTALLY FINE. however, 'role' is typed as a number, and we could store by accident any number value in there without getting any warning by TS. Also, we would need to define all the global constants and manage them.
-// THAT'S WHY, WE CAN USE ENUMS: global constants/identifiers in your app that are assigned to numbers, and you refer to them with labels:
+// THAT'S WHY, WE CAN USE ENUMS (the first custom type that we see): global constants/identifiers/labels in your app that are assigned to numbers authomatically (the point is to use numbers in a humanly readable way; ie. to use identifiers that are humanly readable and have some mapped value (not so humanly friendly) behind the scenes):
 enum Role {
 	ADMIN,
 	READ_ONLY,
@@ -133,15 +135,16 @@ enum Role1 {
 	READ_ONLY,
 	AUTHOR,
 }
-// now the values will be 5, 6, 7. Also, you can use any values, not only numbers:
+// now the values will be 5, 6, 7. Also, you can assign any values to your identifiers, not only numbers:
 enum Role2 {
 	ADMIN = 5,
 	READ_ONLY = 43,
 	AUTHOR = 'haha',
 }
-// as a result, this enum is a custom type, so it will give you a warning if you use any other number or string that is not codified in the enum.
+// as a result, this enum is a custom type, so it will give you a warning if you use any other identifier that is not codified in the enum.
 
 // ANY:
 // you want to avoid it, because you won't have with it the useful advantages of TS, it will be like vanilla JS, where everything is dynamically typed, and you have the 'any' type in everything.
 let faveActivities: any[];
 // it can be any type inside the array.
+// you can use the 'any' type if you have some data which you can't really know what type of data will be stored, and then you are maybe using some runtime checks (like we did before) to narrow down what you can do with certain values, etc. BUT in other cases, you really want to avoid the 'any' type.
