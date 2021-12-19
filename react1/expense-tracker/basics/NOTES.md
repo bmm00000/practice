@@ -14,7 +14,7 @@ WATCH OUT! default HTMLish components support className for adding css classes, 
 in the past, you needed to 'import React from 'react'' in all the files where you used JSX, but these days you don't need to anymore. But still you will see this import in older react projects.
 
 STATE/EVENTS:
-if an event is supported by the html dom element, you can access it in React using an attribute to the JSX element: 'onNameOfEvent'.
+if an event is supported by an html dom element, you can access it in React using an attribute in the equivalent built-in JSX element: 'onNameOfEvent'.
 It's a good practice that the functions attached to event listeners are called: 'somethingHandler'
 
 we have useState because when we change variables in our app, it doesn't authomatically re-render, so the new values would not be reflected on the screen. useState allows us to define values as state, where changes in these values will trigger the component function being called again. therefore, useState allows us to define 'special' variables, whose value change will trigger a call of the component function, and therefore, re-evaluation of the JSX it returns.
@@ -26,10 +26,10 @@ useState works on a per component instance basis: the data will be managed separ
 
 when you are lifting state up, you don't do it always to the App.js level, just just high enough, to the component that has access to both the component that generates data, and the component that needs data. That might be the App.js component, but can also be another component. Also, you can lift state up several levels in the component tree, as we do in our expense-tracker app.
 
-when you use two-way binding, you are controlling a component (the component that you are controlling can be built-in, like the 'input', or a custom component). CONTROLLED COMPONENT: ExpensesFilter.js is a controlled component of Expenses.js, because the value that ExpensesFilter.js receives comes from Expenses.js, and the value selected in ExpensesFilter.js goes to the parent (Expenses.js) where there is the function that will take it as an input and change it (two-way binding). both the value and the function to change the value are in the parent component.
+when you use two-way binding, you are controlling a component (the component that you are controlling can be built-in, like the 'input', or a custom component). EXAMPLE OF CUSTOM CONTROLLED COMPONENT: ExpensesFilter.js is a controlled component of Expenses.js, because the value that ExpensesFilter.js receives comes from Expenses.js, and the value selected in ExpensesFilter.js goes to the parent (Expenses.js) where there is the function that will take it as an input and change it (two-way binding). both the value and the function to change the value are in the parent component.
 
-when we have controlled components (two-way binding), we are lifting state up. but can also lift state up without having controlled components (two-way binding), ie. when we are just lifting the data to a parent component that has access to another component that needs the data (see diagram)
+when we have controlled components (two-way binding), we are lifting state up. but can also lift state up without having controlled components (two-way binding), ie. when we are just lifting the data to a parent component that has access to another component that needs the data (see diagram). therefore, when we have controlled components (two-way binding), we are lifting state up and passing the data to the same component. when we are lifting state up without controlled components, we are lifting state up and passing the data to another component.
 
-PRESENTATIONAL (OR STATELESS) VS STATEFUL COMPONENTS (OR DUMB VS SMART COMPONENTS): those that don't have internal state (just focused on outputting some data) vs those that do. in most appliations you will have more dumb components that smart components. in most applications, only a couple of components manage state, and then state is spread out and distributed through props.
+PRESENTATIONAL (OR STATELESS) VS STATEFUL COMPONENTS (OR DUMB VS SMART COMPONENTS): those that don't have internal state (just focused on outputting some data) vs those that do. in most appliations you will have more dumb components than smart components. in most applications, only a couple of components manage state, and then state is spread out and distributed through props.
 
 the value that useState receives as initial state value is optional.
