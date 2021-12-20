@@ -72,17 +72,20 @@ import styles from './CourseInput.module.css';
 
 const CourseInput = (props) => {
 	const [enteredValue, setEnteredValue] = useState('');
+	// the following state is about whether or not the user entered a valid input (or just left it empty, or with blank spaces, etc.):
 	const [isValid, setIsValid] = useState(true);
 
 	const goalInputChangeHandler = (event) => {
-		setEnteredValue(event.target.value);
-		if (enteredValue.trim().length > 0) {
+		// we do the following to reset default styles when input becomes valid:
+		if (event.target.value.trim().length > 0) {
 			setIsValid(true);
 		}
+		setEnteredValue(event.target.value);
 	};
 
 	const formSubmitHandler = (event) => {
 		event.preventDefault();
+		// we do the following to avoid that a new goal is entered when the goal is empty:
 		if (enteredValue.trim().length === 0) {
 			setIsValid(false);
 			return;
@@ -93,7 +96,7 @@ const CourseInput = (props) => {
 
 	return (
 		<form onSubmit={formSubmitHandler}>
-			{/* inline conditional styles: */}
+			{/* INLINE CONDITIONAL STYLES: */}
 			{/* <div className='form-control'>
 				<label style={{ color: !isValid ? 'red' : 'black' }}>Course Goal</label>
 				<input
@@ -105,12 +108,12 @@ const CourseInput = (props) => {
 					onChange={goalInputChangeHandler}
 				/>
 			</div> */}
-			{/* note that above, when we specify '#ccc' we are duplicating the style of our css stylesheet, that's one of the reasons why we want to avoid inline dynamic styling. That's why we can set up the style with css classes dynamically, as follows: */}
+			{/* note that above, when we set up INLINE STYLES, it has the highest priority in css, which we don't want, since you would override all other default styles with any values you put in there. also, even if you hard coded the default style '#ccc' above, we are duplicating the style of our css stylesheet, that's one of the reasons why we want to avoid inline dynamic styling. That's why we can set up the style with CSS CLASSES DYNAMICALLY, as follows: */}
 			{/* <div className={`form-control ${!isValid ? 'invalid' : ''}`}>
 				<label>Course Goal</label>
 				<input type='text' onChange={goalInputChangeHandler} />
 			</div> */}
-			{/* or, we can also use styled-components to make the div above. if we want to create a component to be used ONLY in this file, we can just write it here (otherwise, we need to write it in a separate file, as we do for every component (as we did for the Button, for example)) (you can have several components in a file, as far as these are only used in that file). look at FormControl.  */}
+			{/* or, we can also use STYLED-COMPONENTS to make the div above. if we want to create a component to be used ONLY in this file, we can just write it here (otherwise, we need to write it in a separate file, as we do for every component (as we did for the Button, for example)) (you can have several components in a file, as far as these are only used in that file). look at FormControl.  */}
 			{/* styled-components can take any prop and pass it to the underlying component, so we can pass any prop to FormControl and the underlying div will take it, for example, className: */}
 			{/* <FormControl className={!isValid && 'invalid'}>
 				<label>Course Goal</label>

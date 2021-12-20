@@ -23,6 +23,7 @@
 	border-color: #8b005d;
 }
 
+/* when we are using css classes dynamically: */
 .form-control.invalid label {
 	color: red;
 }

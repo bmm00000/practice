@@ -16,3 +16,5 @@ Answer: a .css file must be imported once, in any (one) React .js file. Then, th
 CSS modules is a feature that is only avaialble in the projects that are configured to support it because it needs a code transformation to be done before the code runs in the browser. the projects created with CRA are already configured to support CSS modules.
 
 in total, we have seen 3 approaches: css only, Styled Components library, and CSS modules.
+
+remember, the js property name of a css property is camel cased.
