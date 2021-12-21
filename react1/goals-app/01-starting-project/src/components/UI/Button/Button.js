@@ -1,9 +1,9 @@
 // if we want to use css with global scope, we import like this:
 // import './Button.css';
-// if we want to use CSS modules, we import from the css file like this:
+// CSS MODULES allows us to have css files separated from the js files, as we always had traditionally. if we want to use CSS modules, we import from the css file like this:
 import styles from './Button.module.css';
 // also, in CSS modules, for the code transformation that is needed behind the scenes, you also need to name your css files like this: Button.module.css
-// if you inspect the css classes in your dev server, you will see that CSS modules also changes the names of the classes and gives them a unique hash.
+// if you inspect the css classes in your dev server, you will see that CSS modules also changes the names of the classes and gives them a unique hash, so the names are unique.
 // but watch out! with CSS modules, you have to work only with classes in the css file, because these are the properties of the 'styles' object (eg. don't use element selectors, or other...)
 
 const Button = (props) => {

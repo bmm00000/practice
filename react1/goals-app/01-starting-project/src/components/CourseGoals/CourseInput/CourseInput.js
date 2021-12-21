@@ -128,7 +128,7 @@ const CourseInput = (props) => {
 				<input type='text' onChange={goalInputChangeHandler} />
 			</FormControl> */}
 			<div
-				// now we add dynamic classes with CSS modules:
+				// now we add dynamic classes conditionally with CSS modules:
 				className={`${styles['form-control']} ${!isValid && styles.invalid}`}
 			>
 				{/* since we have a dash in the name of the class (form-control), it's not a valid name for the traditional syntax, that's why we use styles['form-control'], this syntax is also valid to access properties in JS */}
