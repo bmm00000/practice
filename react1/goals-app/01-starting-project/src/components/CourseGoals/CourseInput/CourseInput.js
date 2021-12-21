@@ -41,8 +41,7 @@ import styles from './CourseInput.module.css';
 // 	}
 // `;
 
-// can we do conditional styling inside a component from 'styled'? of course!! see what we do:
-// we are using the 'invalid' prop here. we have to use a function that receives props as a parameter, and returns the text that should be written there:
+// now, in order to apply conditional styling, we are using the 'invalid' prop here. we have to use a function that receives props as a parameter, and returns the text that should be written there:
 // const FormControl = styled.div`
 // 	margin: 0.5rem 0;
 
@@ -113,8 +112,12 @@ const CourseInput = (props) => {
 				<label>Course Goal</label>
 				<input type='text' onChange={goalInputChangeHandler} />
 			</div> */}
-			{/* or, we can also use STYLED-COMPONENTS to make the div above. if we want to create a component to be used ONLY in this file, we can just write it here (otherwise, we need to write it in a separate file, as we do for every component (as we did for the Button, for example)) (you can have several components in a file, as far as these are only used in that file). look at FormControl.  */}
-			{/* styled-components can take any prop and pass it to the underlying component, so we can pass any prop to FormControl and the underlying div will take it, for example, className: */}
+			{/* 
+			with the former approach, we just use regular css, but the problem with larger projects is that any other developer can use, for example, a class name that has already been used, so styles will get messed up. we have two solutions for this problem: STYLED COMPONENTS package, or CSS MODULES.
+			STYLED COMPONENTS helps you build components that have certain styles attached to them, where the styles only affect the components that they were attached to. as first step, go to the website, copy the link and install the package through npm. (look at Button.js, and then look at FormControl component in this file).
+			
+			if we want to create a component to be used ONLY in this file, we can just write it here (otherwise, we need to write it in a separate file, as we do for every component (as we did for the Button, for example)) (you can have several components in a file, as far as these are only used in that file). look at FormControl.  */}
+			{/* styled-components can take any prop and pass it to the underlying component, so we can pass any prop to FormControl and the underlying div will take it. IF the prop is a keyword in the underling component, for example, className, then className will be taken as a keyword and directly used by the div, NOT AS THE FOLLOWING: props.className!!): */}
 			{/* <FormControl className={!isValid && 'invalid'}>
 				<label>Course Goal</label>
 				<input type='text' onChange={goalInputChangeHandler} />
