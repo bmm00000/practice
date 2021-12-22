@@ -7,6 +7,10 @@ the commands that we are going to learn work in any OS that is descendant of Uni
 
 people usually call 'linux' all the operating systems that descended from the Linux kernel (for example, ubuntu, fedora, etc. are also called 'linux', since they use the 'linux' kernel), but some users feel that they should be called GNU/Linux (see slide)
 
+In Mac: the terminal is called Terminal; the shell is Bash (or Zsh, Fish...).
+In Windows: the terminal is called Command Prompt; the shell is Powershell.
+but you can also download terminals, that are more customable, fancier, etc. in the past, terminals used to be a physical device, but these days, terminals are just applications that run a shell.
+
 The shell that is built-in on Windows (Powershell) doesn't use the same commands that we will be covering (so if you are using windows, you have to set up a virtual machine, so you can run Ubuntu inside of Windows)
 
 Most of the commands we will learn work on Mac's Terminal (but not all of them?)
