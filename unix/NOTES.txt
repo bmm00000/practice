@@ -13,4 +13,7 @@ but you can also download terminals, that are more customable, fancier, etc. in 
 
 The shell that is built-in on Windows (Powershell) doesn't use the same commands that we will be covering (so if you are using windows, you have to set up a virtual machine, so you can run Ubuntu inside of Windows)
 
-Most of the commands we will learn work on Mac's Terminal (but not all of them?)
+since Catalina, MacOS comes with Zsh as default shell (before, it used to be Bash). even though the vast majority of the commands of the course will work with Zsh as well, let's better change to Bash:
+
+echo $SHELL (to see what shell you have)
+chsh -s /bin/bash (to change shell to bash. then you have to open a new terminal window)
