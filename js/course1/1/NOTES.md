@@ -16,7 +16,7 @@ JS is loosely typed: don't need to declare a variable's type (JS authomatically 
 
 //
 
-this is the point of type coercion: when then operands of an operation are of different types, they can be converted into an equivalent type. we want to do an operation, but the type of the operands is different that's the point.
+this is the point of type coercion: when the operands of an operation are of different types, they can be converted into an equivalent type. we want to do an operation, but the type of the operands is different that's the point.
 
 //
 
@@ -36,7 +36,7 @@ console.log(x), x will return 2
 
 shorthand addition assignment operator: x += y (works the same with substraction, multiplication, division).
 
-comparison operators are used to compare two operand (3===3). keep in mind that that with '<=' the less or greater have to be in the left, or we will get a reference error.
+comparison operators are used to compare two operands (3===3). keep in mind that that with '<=' the less or greater have to be in the left, or we will get a reference error.
 
 arithmetic operators, for example 8 % 5 (remainder or modulo operator).
 
@@ -80,7 +80,7 @@ if you look at the precedence table, we do first the addition, then the equality
 //
 
 logical operators are typically used with boolean values, and when they are, they return a boolean value. but what is really happening is that the return value is one of the operands (this is because short-circuit evaluation). so that means that logical operators can work without boolean values as well.
-in order to save time, processing power, if js encounters something that it doesn't like, the operation stops right and there.
+in order to save time, processing power, if js encounters something that it doesn't like, the operation stops right then and there.
 
 false && (anything) // false (js will not even look at the second operand)
 true || (anything) // true (js will not even look at the second operand)
