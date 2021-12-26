@@ -4,8 +4,8 @@ import AddUser from './components/Users/AddUser';
 import UsersList from './components/Users/UsersList';
 
 const USERS_DUMMY = [
-	{ name: 'Pedro', age: 54, id: 1 },
-	{ name: 'Albert', age: 22, id: 2 },
+	{ name: 'Pedro', age: 54, id: '1' },
+	{ name: 'Albert', age: 22, id: '2' },
 ];
 
 function App() {
@@ -14,7 +14,8 @@ function App() {
 	const addUserHandler = (user) => {
 		setUsersList((prevUsers) => {
 			const updatedUsers = [...prevUsers];
-			return updatedUsers.unshift(user);
+			updatedUsers.unshift(user);
+			return updatedUsers;
 		});
 	};
 
