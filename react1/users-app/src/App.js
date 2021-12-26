@@ -3,17 +3,12 @@ import React, { useState } from 'react';
 import AddUser from './components/Users/AddUser';
 import UsersList from './components/Users/UsersList';
 
-const USERS_DUMMY = [
-	{ name: 'Pedro', age: 54, id: '1' },
-	{ name: 'Albert', age: 22, id: '2' },
-];
-
 function App() {
-	const [usersList, setUsersList] = useState(USERS_DUMMY);
+	const [usersList, setUsersList] = useState([]);
 
 	const addUserHandler = (user) => {
-		setUsersList((prevUsers) => {
-			const updatedUsers = [...prevUsers];
+		setUsersList((prevUsersList) => {
+			const updatedUsers = [...prevUsersList];
 			updatedUsers.unshift(user);
 			return updatedUsers;
 		});
