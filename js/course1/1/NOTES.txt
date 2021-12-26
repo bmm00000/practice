@@ -101,16 +101,9 @@ but if 'cow' is truthy (screenshot 24), then it still works as we want (the seco
 //
 
 "the variable double is being assigned to the returned value of this anonymous function." TYPO!! IT'S THE OTHER WAY AROUND!
+
+another typo: the return keyword, not "the return variable"!!
+
 function expressions can be unnamed but also named!
 from MDN: The main difference between a function expression and a function declaration is the function name, which can be omitted in function expressions to create anonymous functions.
 check function expressions and function declarations in MDN
-
-//
-
-AUTHOMATIC GLOBAL SCOPE:
-if we assign a value to a variable that has not been declared, it becomes a global variable authomatically. For example, see screenshot. So WATCH OUT! you always need to declare the variables you are using inside your functions, or they will become global variables authomatically.
-
-IN THE BROWSER, THE GLOBAL OBJECT IS THE WINDOW OBJECT.
-any variables we create in the global scope will be attached to the window object (see screenshot)
-
-WHEN THE KEYWORD this IS USED INSIDE OF A DELCARED OBJECT, the value of 'this' is set to the closest parent object the method is called on.
