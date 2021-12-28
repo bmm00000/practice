@@ -5,7 +5,7 @@ const me = {
 
 console.log(me.name);
 
-// when we use a JS object, it's type object in TS, but also it will tell us the object type, in this example, when we hover over 'me': const person = {name: string; age: number}. therefore, if we do the following:
+// when we use a JS object, it's type object in TS, but also it will tell us the object type, in this example, when we hover over 'me': const me = {name: string; age: number}. therefore, if we do the following:
 // console.log(me.nickname)
 // then ts will tell us that 'nickname' does not exist on our specific object type, ie. {name: string; age: number} (this is the object type that ts inferred when we initialized the object) (notice that the ts object type syntax is slightly different from js objects: it has ';' after each property. we don't have key-value pairs, but key-type pairs in ts object types)
 
@@ -82,7 +82,7 @@ const jobStart = [2002, 'cleaner'];
 // and we don't want this. Precisely, in these situations, when ts doesn't ifer correctly the types, we have to specify them. Therefore, what we do is:
 let jobStart2: [number, string];
 // we specify that we want only two elements, the first a number, and the second a string. Therefore, if you do the following, you get an error:
-jobStart2 = [];
+jobStart2 = []; // it doesn't accept an empty array, because it only accepts an array with two elements (the first a number, and the second a string)
 jobStart2[0] = 'hello';
 jobStart2 = [33, 'hi', 44];
 // BUT:
@@ -93,13 +93,14 @@ jobStart2.push('hello');
 const person3 = {
 	role: 2,
 };
-if (person3.role === 2) {
+// however, ts will take 'role' to be just a number, but you may get confused about what the numbers mean, and create bugs (does '2' mean 'AUTHOR' or 'READ-ONLY-USER?), or put in a number for which you don't have any role. for example, you intended to say 2 but end up saying 3 (ts will not complain about this):
+if (person3.role === 3) {
 }
-// but you may get confused about what the numbers mean, and create bugs (does '2' mean 'AUTHOR' or 'READ-ONLY-USER?), of put in a number for which you don't have any role. So we need something more readable by humans, so we can use more humanly readible values:
+// or when we use something more readable by humans, like strings:
 const person1 = {
 	role: 'READ-ONLY-USER',
 };
-// however, we can generate this type of bugs:
+// person1.role, will be taken by ts as just a string. therefore, we can generate this type of bugs, and ts will not complain at all:
 if (person1.role === 'READ ONLY USER') {
 }
 // to avoid this type of bugs, we can use global variables, that hold numbers or strings, for example:
@@ -114,7 +115,7 @@ const person4 = {
 };
 if (person4.role === AUTHOR) {
 }
-// THIS APPROACH IS TOTALLY FINE. however, 'role' is typed as a number, and we could store by accident any number value in there without getting any warning by TS. Also, we would need to define all the global constants and manage them.
+// THIS APPROACH IS TOTALLY FINE. however, 'role' is still typed as a number, and we could store by accident any number value in there without getting any warning by TS. Also, we would need to define all the global constants and manage them.
 // THAT'S WHY, WE CAN USE ENUMS (the first custom type that we see): global constants/identifiers/labels in your app that are assigned to numbers authomatically (the point is to use numbers in a humanly readable way; ie. to use identifiers that are humanly readable and have some mapped value (not so humanly friendly) behind the scenes):
 enum Role {
 	ADMIN,

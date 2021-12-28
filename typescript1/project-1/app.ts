@@ -2,13 +2,14 @@
 // we may have a function where we accept different types of values, as many types as you need (for example, we accept number or string or boolean => string | number | boolean):
 function combine(input1: string | number, input2: string | number) {
 	// return input1 + input2
-	// we get an error above because TS sees just union types (not the specific types that we have in our case, since in our case, + works with both numbers and strings) and is not sure that the types we are adding can be used with +. Nonetheless, we can work around that issue: we can add a runtime check:
+	// we get an error in the line above because TS sees just union types (not the specific types that we have in our case, since in our case, + works with both numbers and strings) and is not sure that the types we are adding can be used with +. Nonetheless, we can work around that issue: we can add a runtime check:
 	let result;
 	if (typeof input1 === 'number' && typeof input2 === 'number') {
 		result = input1 + input2;
 	} else {
 		result = input1.toString() + input2.toString();
-		// something that could be improved in the course: you wouldn't need to use 'toString()', since you can only have numbers or strings, so if it's not a number, it's a string for sure.
+		// for the same reason as above, we will need to specify that we convert the inputs to strings, even though both inputs might already be strings. therefore, we make clear that we works with numbers, or that we work with strings, so ts will not complain.
+
 		// THE RUNTIME CHECKED WE USED will not always be required when you work with union types, but sometimes you will need it (since you will be more flexible regarding the parameters types, but then you will have different logic and will do different things in your function depending what specific types you are getting). for example, in our example above, we accept both numbers and strings, and we combine them differently depending on whether they are numbers or strings (that's what we do in our runtime check)
 	}
 
@@ -24,6 +25,7 @@ console.log(addNames);
 // LITERAL TYPES:
 // not only you specify the type, but also the specific value of that type, for example:
 const myAge = 29;
+// this happens because you are using 'const', so ts knows it can't change!
 
 // we can use a literal type (in conjunction with a union type) with 'convertResult', the reason is that, if we type 'convertResult' just as a type string, we would have to memorize these values ('as-string' and 'as-number') and may make mistakes writing those strings when calling the function. we could use an enum, but since we only have two possible values, a literal type could be an option:
 function combine2(
