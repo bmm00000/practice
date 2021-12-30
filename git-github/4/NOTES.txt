@@ -67,12 +67,12 @@ git pull = git fetch (update remote tracking branch) + git merge (merge remote t
 
 IT MATTERS FROM WHERE YOU 'GIT PULL': for example, 'git pull origin master' will update the remote tracking master branch, and then merge that branch into our current branch, WHATEVER THAT HAPPENS TO BE! 
 
-QUESTION: if we 'git log' after pulling, will wee see a new merge commit IF IT WAS NOT A FAST FORWARD merge AND ALSO THERE WAS NOT A CONFLICT?? YESSS!
+QUESTION: if we 'git log' after pulling, will wee see a new merge commit IF IT WAS NOT A FAST FORWARD merge AND ALSO THERE WAS NOT A CONFLICT?? YESSS! (btw, the slide is wrong!)
 
 as a good practice, before you push anything to github, you want to pull down and merge if any conflicts, (if there are conflicts and you make a commit to resolve them, then your local branch will be ahead respective the remote) and then you push (the only problem you may run into is that someone pushes something to github in the 30 seconds or so between the moment when you pull, and then push with your changes).
 IN SHORT: MERGES ARE DONE WHEN PULLING, CANNOT BE DONE WHEN PUSHING!
 
-in the slide where there's a conflict and branches are merged after the pull, the yellow circle is at the end because it was done in local after the green ones were done in the remote repo, so the resulting order is chronological. KEEP IN MIND THAT THERE'S ONE COMMIT MISSING ON THE DIAGRAM! local must be 2 commits ahead of the remote (one is the yellow circle and the other one is the new merge commit done in local).
+in the slide where branches are merged after the pull, the yellow circle is at the end because it was done in local after the green ones were done in the remote repo, so the resulting order is chronological. KEEP IN MIND THAT THERE'S ONE COMMIT MISSING ON THE DIAGRAM! local must be 2 commits ahead of the remote (one is the yellow circle and the other one is the new merge commit done in local).
 
 when you git pull, you merge the remote branch into your local branch (if you git log after you pull, you will see all the commits coming from the remote branch together with your pre-existing local commits, chronologically). if there's a conflict, you will need to resolve it manually and make a commit.
 QUESTION: if there's no conflict, but the merge is not a fast-forward, does git make a merge commit? YES!!!
