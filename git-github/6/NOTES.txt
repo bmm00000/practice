@@ -8,3 +8,79 @@ when we rebase, commits are re-written: this doesn't indicate the time when comm
 as it happens in the demo, even after you have done the merge commits, you can rebase and end up with the linear structure that we want (and the merge commits will be gone)
 
 when we rebase and 're-write history', what happens is that git creates new commits on the top of the base branch (these new commits have different hashes that the original ones that we had in our original feature branch, but the original hashes from the master branch DO NOT change) 
+
+as a general principle, when to rebase: you rebase your feature branches that you have in your machine (not in github). you don't wanna rebase the master branch, since your collagues will have that branch as well in their local environments, so you don't wanna re-write history there. you can rebase your work from any feature branch onto the master branch (or other branch) in your local. doing so, you are not changing the commits of the master branch (after you rebase a feature branch onto the master branch, the hashes of the master branch are the same, you only re-write history/'create' new commits on the feature branch). long story short, you want to avoid re-writting commits that other people have.
+
+you can have a conflict when rebasing (see our example in the screenshot: our conflict is on the website.txt file; instructions on what to do next are also in screenshot)
+
+https://www.canva.com/design/DAEVkyNcwWI/qt8pRN3JA1lP9ckYeImxeQ/view?utm_content=DAEVkyNcwWI&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton#1
+
+interactive rebase: you do this to clean up your branches before your push them (not after you have pushed them and other collaborators have them)
+
+example: imagine that you are working on your own in your project, but then you want to share your project with others, and you have to confirm to some patterns/conventions of naming the commits. therefore, you want to change the names of some of your commits, or you even want to delete some commmits, or to combine two commits in one.
+https://github.com/Colt/interactive-rebase-demo
+
+example in screenshot: git rebase -i HEAD~9
+
+by default we have in all commits the 'pick' command: keep the commit as it is. then we can change them
+
+if you 'reword', you just put the command, then close the file, and another file will open up asking you to input the new message.
+
+after using 'reword', you effectively changed the commit hashes of that commit that you 'reworded' and also of every single commit that came chronologically after the one that you 'reworded' (see screenshot) (because every commit takes into account its parent commit and it's re-hashed)
+
+when using 'fixup', the commit message of the previous commit will remain (in our example, 'add bootstrap' will remain after both commits have been put together)
+after that, as a consequence, again, all the commits that come after what we modified, are going to be new (what the 'pick' command implies is to keep the name, content, etc of the commits, but we will need to re-make that commit if something changes before it)
+
+see the slide where you have two 'fixup': both commits are going to be smushed into the previous commit ('add top navbar'), both messages are going to be lost, but the contents are going to be included in 'add top navbar'
+
+keep in mind that, when you, for example, 'git rebase -i HEAD~2', you are going back to the second commit starting from the last one (HEAD~1 would be just for the last commit)
+
+when you 'drop' a commit, all the work from that commit is gone.
+
+remember, if you want to change commit message or add new things to the last commit, we can also 'git commit --ammend'
+
+https://www.canva.com/design/DAEV5aEpUOQ/lfUIjJz2atC6fGT9KOv2kg/view?utm_content=DAEV5aEpUOQ&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton#1
+
+you can tag different points, for example different releases in our history (you are marking them as important moments). this usually happens when you have a new version released when some branch is merged into the master branch (see slide). this is what usually happens but not always (you can tag any commit in any branch, not only in the master branch, and you can give them any name you want, not only the conventional version names)
+
+the most common use case for tagging is in versioning (ie. marking release points for some piece of software). 
+
+semantic versioning is a protocol, or specification, or set of rules or requirements that dictates how version numbers are assigned and incremented (basically the meaning of the three numbers with two dots betwen them):
+https://semver.org/
+
+the initial public facing release is 1.0.0
+as you add patches: 1.0.1, 1.0.2, etc.
+when you add a minor release, you have to reset the patch number back to 0.
+when you add a major release, you have to reset the minor release number and the patch number back to 0.
+
+taking a look at this numbers is important when you are relying on a piece of software or a library as a dependency for your own software that you are building, since it may affect or break your own software.
+
+a pre-release version may be denoted by appending a hyphen and a series of dot separated identifiers, for example: v5.0.0-beta2
+
+examples:
+https://getbootstrap.com/docs/versions/
+in github, you go to 'tags', and then 'releases'
+https://reactjs.org/versions/
+
+example to clone and inspect tags:
+https://github.com/facebook/react
+
+'git tag -l' gives you the same result as 'git tag'
+'-l' stands for list
+'*' means any characters 
+
+you can use 'git checkout' and 'git diff' with tag names
+
+you can also see the tags when you 'git log'
+
+git show <tag-name> (you will see the metadata of the tag)
+
+if you 'git show' on a lightweight tag, it will show you the commit that it refers to, there will not be metadata.
+
+when you force tags, you move the tag from one commit to another (and the first commit that had the tag will not have it anymore)
+
+(remember, you can put more than 1 tag to the same commit)
+
+you can push tags in two different ways:
+git push <remote> --tags (you push all your tags that are new; you don't need to include <remote> if the upstream is already set)
+git push <remote> <tag-name> (you push a single particular tag)
