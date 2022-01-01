@@ -28,3 +28,5 @@ REPLY: Absolutely you could skip that step and merge your changes into master.  
 
 --no-ff: we are indicating git not to fast forward even if it detects that it can. we do this because we want in any case a merge commit (even if it could do a fast forward) in order to be clearer about the history of our project (you don't have to do this, but this is what github recommends)
 It's just a matter of preference/style.  Many companies like to have a very explicit, clear record of the repo history.  Fast forward merges aren't easily detectable because they don't result in a new distinct commit.
+
+WATCH AGAIN 133: MERGING PULL REQUESTS WITH CONFLICTS
