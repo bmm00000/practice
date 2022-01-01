@@ -1,6 +1,6 @@
 https://www.canva.com/design/DAEP32iZwVc/4se77vKYGwT5_9NpxFbZoQ/view?utm_content=DAEP32iZwVc&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 
-the problem with the centralized workflow is that, you will always have to pull (and therefore merge) before you push your code. also, if you have changes that are not ready to be commited yet, and then someone asks you for your opinion about some mediocre code that they pushed, you have to pull that code, and therefore merge the mediocre code in your code base, and you will also probably have to stash your changes if you don't want to commit them yet (otherwise your changes might be overwritten with the pull if there are conflicts). the point is that your colleagues had to 'break' the main branch (add mediocre code) in order for them to share their work with you. therefore, the branch is 'broken', not ready for production, will need to be fixed, and will potentially cause future problems if not fixed properly.
+the problem with the centralized workflow is that, you will always have to pull (and therefore merge) before you push your code. also, if you have changes that are not ready to be commited yet, and then someone asks you for your opinion about some mediocre code that they pushed, you have to pull that code, and therefore merge the mediocre code in your code base, and you will also probably have to stash your changes if you don't want to commit them yet. the point is that your colleagues had to 'break' the main branch (add mediocre code) in order for them to share their work with you. therefore, the branch is 'broken', not ready for production, will need to be fixed, and will potentially cause future problems if not fixed properly.
 
 feature branch workflow: there are lot of patterns that companies use to name feature branches (eg. 'feat/navbar', etc.), we will not get into that.
 before you create a new feature branch, you have to pull the 'main' branch to see if there are any updates.
@@ -18,8 +18,13 @@ changes can be added to a PR after it has been originally created.
 after a PR has been approved, it's a good practice to delete the feature branch in github and also in your local.
 after a PR has been approved, developers need to pull the main branch to have the latest version.
 
-if you are a collaborator on a github repo, you have permission to approve PRs
+(look up different roles in github in public and private repos: owner, collaborator, contributor... and whether or not they can approve prs, etc.)
 
-in order to resolve conflicts in PRs, you can either to it in the browser (click on 'resolve conflicts'; you can do it in the browser if it's a small change or just one file, but if there are conflicts in many files, then it's more convenient to use the cli), or in the cli (click on 'command line instructions' to see how to do it) (see screenshot):
+in order to resolve conflicts in PRs, you can either to it in the browser (click on 'resolve conflicts' button; you can do it in the browser if it's a small change or just one file, but if there are conflicts in many files, then it's more convenient to use the cli), or in the cli (click on 'command line instructions' to see how to do it) (see screenshot):
 github still uses the older command: 'git checkout -b new-heading origin/new-heading' (make me a new branch called 'new-heading' and make it track 'origin/new-heading'), but the easier option would be to 'git switch origin/new-heading'.
 the approach is: switch to the feature branch, and then merge 'main' into the feature branch, and resolve the conflicts while doing so.
+I DON'T UNDERSTAND WHY WE HAVE TO MERGE TWICE?
+REPLY: Absolutely you could skip that step and merge your changes into master.  It's just that most people want to keep master "clean" and not deal with conflict resolution on master.  Instead, we merge master into a feature branch and deal with the conflicts on the feature branch. 
+
+--no-ff: we are indicating git not to fast forward even if it detects that it can. we do this because we want in any case a merge commit (even if it could do a fast forward) in order to be clearer about the history of our project (you don't have to do this, but this is what github recommends)
+It's just a matter of preference/style.  Many companies like to have a very explicit, clear record of the repo history.  Fast forward merges aren't easily detectable because they don't result in a new distinct commit.
