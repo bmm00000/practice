@@ -24,9 +24,20 @@ in order to resolve conflicts in PRs, you can either to it in the browser (click
 github still uses the older command: 'git checkout -b new-heading origin/new-heading' (make me a new branch called 'new-heading' and make it track 'origin/new-heading'), but the easier option would be to 'git switch origin/new-heading'.
 the approach is: switch to the feature branch, and then merge 'main' into the feature branch, and resolve the conflicts while doing so.
 I DON'T UNDERSTAND WHY WE HAVE TO MERGE TWICE?
-REPLY: Absolutely you could skip that step and merge your changes into master.  It's just that most people want to keep master "clean" and not deal with conflict resolution on master.  Instead, we merge master into a feature branch and deal with the conflicts on the feature branch. 
+REPLY: Absolutely you could skip that step and merge your changes into master.  It's just that most people want to keep master "clean" and not deal with conflict resolution on master.  Instead, we merge master into a feature branch and deal with the conflicts on the feature branch. after that, if you delete the feature branch, the conflict resolution commit will be gone, so the 'main' branch will be cleaner.
 
 --no-ff: we are indicating git not to fast forward even if it detects that it can. we do this because we want in any case a merge commit (even if it could do a fast forward) in order to be clearer about the history of our project (you don't have to do this, but this is what github recommends)
 It's just a matter of preference/style.  Many companies like to have a very explicit, clear record of the repo history.  Fast forward merges aren't easily detectable because they don't result in a new distinct commit.
 
-WATCH AGAIN 133: MERGING PULL REQUESTS WITH CONFLICTS
+another thing we can do when working with a lot of collaborators is to configure branch protection rules to establish some quality control and review/feedback process over the main branch. we go to 'settings', 'branches', there you can decide which one is your default branch. there, you also have 'branch protection rules'
+if you click on 'add', you will see 'branch name pattern' because you can add rules for sets of branches called, for example, 'feature/whatever-name'. you can also add the specific name of the branch, eg. 'main'
+see the screenshots to follow the example.
+
+after someone approves it (as we specified in our rule), then the PR also has to be merged.
+
+the fork and clone workflow allows a whole bunch of people to work on the same project without actually having permissions for the same repo.
+
+when you fork a repo, you can add your own collaborators, add branch protection rules, delete branches, etc.
+
+the upstream remote is for you to pull regularly from the original repo, so you get all updates (you cannot push because you don't have permission). in other words, your fork is frozen after you get it, it will not be updated from the original repo. the only way to get updates is by pulling from the original repo (upstream). in order to do that, you need to:
+git remote add upstream <original-repo-url>
