@@ -41,14 +41,14 @@ function App() {
 	// };
 
 	return (
-		<div>
+		<>
 			<AddUser onAddUser={addUserHandler} />
 			<UsersList users={usersList} />
 			{/* {!validInput && (
 				<ErrorModal title={'Error!'} message={content} onDelete={deleteModal} />
 				// WHY IS CONTENT UNDEFINED??
 			)} */}
-		</div>
+		</>
 	);
 }
 
