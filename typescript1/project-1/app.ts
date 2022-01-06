@@ -1,111 +1,56 @@
-// UNION TYPES:
-// we may have a function where we accept different types of values, as many types as you need (for example, we accept number or string or boolean => string | number | boolean):
-function combine(input1: string | number, input2: string | number) {
-	// return input1 + input2
-	// we get an error in the line above because TS sees just union types (not the specific types that we have in our case, since in our case, + works with both numbers and strings) and is not sure that the types we are adding can be used with +. Nonetheless, we can work around that issue: we can add a runtime check:
-	let result;
-	if (typeof input1 === 'number' && typeof input2 === 'number') {
-		result = input1 + input2;
-	} else {
-		result = input1.toString() + input2.toString();
-		// for the same reason as above, we will need to specify that we convert the inputs to strings, even though both inputs might already be strings. therefore, we make clear that we work with numbers, or that we work with strings, so ts will not complain.
+const add = (input1: number, input2: number) => {
+	return input1 + input2;
+};
 
-		// THE RUNTIME CHECKED WE USED will not always be required when you work with union types, but sometimes you will need it (since you will be more flexible regarding the parameters types, but then you will have different logic and will do different things in your function depending what specific types you are getting). for example, in our example above, we accept both numbers and strings, and we combine them differently depending on whether they are numbers or strings (that's what we do in our runtime check)
-	}
-
-	return result;
+function add1(input1: number, input2: number) {
+	return input1 + input2;
 }
 
-const addAges = combine(22, 44);
-console.log(addAges);
+// when you hover over the names of the functions above, you will see at the end the RETURN TYPE that ts has inferred ('number', in both cases) (note that the syntax differs in both examples)
 
-const addNames = combine('Jose', 'Marina');
-console.log(addNames);
+// you can specify the return type as follows:
 
-// LITERAL TYPES:
-// not only you specify the type, but also the specific value of that type, for example:
-const myAge = 29;
-// this happens because you are using 'const', so ts knows it can't change!
-
-// we can use a literal type (in conjunction with a union type) with 'convertResult', the reason is that, if we type 'convertResult' just as a type string, we would have to memorize these values ('as-string' and 'as-number') and may make mistakes writing those strings when calling the function. we could use an enum, but since we only have two possible values, a literal type could be an option:
-function combine2(
-	input1: string | number,
-	input2: string | number,
-	convertResult: 'as-number' | 'as-string'
-) {
-	let result;
-	if (
-		(typeof input1 === 'number' && typeof input2 === 'number') ||
-		convertResult === 'as-number'
-		// WATCH OUT!! don't say 'typeof convertResult === 'as-number'
-	) {
-		result = +input1 + +input2;
-	} else {
-		result = input1.toString() + input2.toString();
-	}
-	//  WHAT IF WE PASS AS ARGUMENTS TWO NUMBERS AND 'AS-STRING'??? MISTAKE IN THE COURSE!!
-
-	return result;
+function add2(input1: number, input2: number): number {
+	return input1 + input2;
 }
 
-const combine2Ages = combine2(22, 22, 'as-number');
-console.log(combine2Ages);
+const add22 = (input1: number, input2: number): number => {
+	return input1 + input2;
+};
 
-const combine22Ages = combine2('22', '22', 'as-number');
-console.log(combine2Ages);
+// as it happens with variables, it's a very good idea to let ts do its job inferring the return type. if you have no reason for explicitly setting the type, don't do it, and let ts infer the type.
 
-const combine2Names = combine2('Jose', 'Ola', 'as-string');
-console.log(combine2Names);
+// regarding return types, there's one type we haven't seen before (it doesn't exist in js): it's the 'void' type. for example:
 
-// TYPE ALIASES/CUSTOM TYPES:
-// sometimes you don't want to remember for example the different types inside the union types you are using, therefore you can define your own types, but be careful not to use reserved keywords in JS, for example Class, Date, etc.:
-
-type Combinable = number | string;
-type ConversionDescriptor = 'as-number' | 'as-string';
-
-function combine3(
-	input1: Combinable,
-	input2: Combinable,
-	convertResult: ConversionDescriptor
-) {
-	let result;
-	if (
-		(typeof input1 === 'number' && typeof input2 === 'number') ||
-		convertResult === 'as-number'
-		// WATCH OUT!! don't say 'typeof convertResult === 'as-number'
-	) {
-		result = +input1 + +input2;
-	} else {
-		result = input1.toString() + input2.toString();
-	}
-
-	return result;
+function printResult(input: number) {
+	console.log('This is the result: ' + input);
 }
 
-// Type aliases can be used to "create" your own types - you can provide an alias to a (possibly complex) object type, for example:
-// type User = { name: string; age: number };
-// const u1: User = { name: 'Max', age: 30 };
+// if you hover over the function name, you will see that the return type is 'void' because we are not returning anything (undefined is returned by default) (this function doesn't have a return statement). therefore, we get return type 'void' even though it technically returns 'undefined' (watch out! because you can have 'undefined' as a type in ts). but if you do the following, you get an error:
 
-// This allows you to avoid unnecessary repetition and manage types centrally.
-// For example, you can simplify this code:
-
-// function greet(user: { name: string; age: number }) {
-// 	console.log('Hi, I am ' + user.name);
-// }
-
-// function isOlder(user: { name: string; age: number }, checkAge: number) {
-// 	return checkAge > user.age;
-// }
-// the function name is wrong??
-
-// To:
-
-type User = { name: string; age: number };
-
-function greet(user: User) {
-	console.log('Hi, I am ' + user.name);
+function printResult1(input: number): undefined {
+	console.log('This is the result: ' + input);
 }
 
-function isOlder(user: User, checkAge: number) {
-	return checkAge > user.age;
+// this happens because in ts a function is not allowed to return undefined, even though it technically does, but ts thinks about functions a bit differently. in ts, return type will be 'void' if a function returns nothing (it doesn't have a return statement). if you set return type as 'undefined' (which you will very rarely need to do) ts will expect that you have a return statement where you don't return a value, as follows:
+
+function printResult2(input: number): undefined {
+	console.log('This is the result: ' + input);
+	return;
 }
+
+// from a js perspective, printResult1 is the same as printResult2, but ts makes a differentiation. however, you could also use 'void' as a return type even if you use a return statement where you don't return a value:
+
+function printResult3(input: number): void {
+	console.log('This is the result: ' + input);
+	return;
+}
+
+// therefore, you would by default use 'void' when you have a return statement where you don't return a value. this is what ts will infer if you don't specify it (hover over the function name):
+
+function printResult4(input: number) {
+	console.log('This is the result: ' + input);
+	return;
+}
+
+// therefore, 'void' is the standard return type that ts will infer when you have a function that doesn't return a value
