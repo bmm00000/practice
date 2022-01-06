@@ -96,6 +96,7 @@ function combine3(
 // function isOlder(user: { name: string; age: number }, checkAge: number) {
 // 	return checkAge > user.age;
 // }
+// the function name is wrong??
 
 // To:
 
