@@ -13,8 +13,6 @@ as a general principle, when to rebase: you rebase your feature branches that yo
 
 you can have a conflict when rebasing (see our example in the screenshot: our conflict is on the website.txt file; instructions on what to do next are also in screenshot)
 
-https://www.canva.com/design/DAEVkyNcwWI/qt8pRN3JA1lP9ckYeImxeQ/view?utm_content=DAEVkyNcwWI&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton#1
-
 interactive rebase: you do this to clean up your branches before your push them (not after you have pushed them and other collaborators have them)
 
 example: imagine that you are working on your own in your project, but then you want to share your project with others, and you have to confirm to some patterns/conventions of naming the commits. therefore, you want to change the names of some of your commits, or you even want to delete some commmits, or to combine two commits in one.
@@ -53,7 +51,7 @@ as you add patches: 1.0.1, 1.0.2, etc.
 when you add a minor release, you have to reset the patch number back to 0.
 when you add a major release, you have to reset the minor release number and the patch number back to 0.
 
-taking a look at this numbers is important when you are relying on a piece of software or a library as a dependency for your own software that you are building, since it may affect or break your own software.
+taking a look at these numbers is important when you are relying on a piece of software or a library as a dependency for your own software that you are building, since it may affect or break your own software.
 
 a pre-release version may be denoted by appending a hyphen and a series of dot separated identifiers, for example: v5.0.0-beta2
 
@@ -75,7 +73,7 @@ you can also see the tags when you 'git log'
 
 git show <tag-name> (you will see the metadata of the tag)
 
-if you 'git show' on a lightweight tag, it will show you the commit that it refers to, there will not be metadata.
+if you 'git show' on a lightweight tag, it will show you the commit that it refers to, there will not be any metadata.
 
 when you force tags, you move the tag from one commit to another (and the first commit that had the tag will not have it anymore)
 

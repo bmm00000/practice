@@ -17,3 +17,15 @@ since Catalina, MacOS comes with Zsh as default shell (before, it used to be Bas
 
 echo $SHELL (to see what shell you have)
 chsh -s /bin/bash (to change shell to bash. then you have to open a new terminal window)
+
+
+
+
+
+//
+
+//
+
+to open the search bar: command + space
+
+to clear the window: clear
