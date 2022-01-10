@@ -54,3 +54,52 @@ function printResult4(input: number) {
 }
 
 // therefore, 'void' is the standard return type that ts will infer when you have a function that doesn't return a value
+
+// FUNCTIONS AS TYPES:
+const addFunc = (input1: number, input2: number) => {
+	return input1 + input2;
+};
+
+// let addVar;
+
+// addVar = addFunc;
+
+// console.log(addVar(1, 2));
+
+// so far so good, but if you do the following, ts has no way to find out about the following problem:
+
+// addVar = 5;
+
+// console.log(addVar(1, 2)); // this will throw an error at runtime ("addVar is not a function"), you will not see the error before runtime neither in the IDE nor in the tsc compilation.
+
+// in order to avoid this, we need to be clar that addVar will hold a function, and we will see the error in the IDE and if we compile with tsc:
+
+let addVar: Function;
+
+addVar = addFunc;
+
+console.log(addVar(1, 2));
+
+addVar = 5;
+
+console.log(addVar(1, 2));
+
+// but there's another problem, since you can do the following and ts will not complain, you will only find out about the error at runtime:
+
+addVar = printResult4;
+
+console.log(addVar(1, 2)); // error at runtime!!
+
+// in order to solve this, we can be more precise about how the function should look like (this is when function types come into play; function types are types that describe a function, regarding parameters and return value):
+
+let addVar2: () => number;
+// funtion type of addVar2: accepts no parameters, and returns a number
+
+let addVar3: (a: number, b: number) => number;
+// function type of addVar3: accepts two numbers as arguments, and returns a number (note that 'a' and 'b' do not have to match with the name of the parameters)
+
+addVar3 = add;
+// ts doesn't complain here, because 'add' satisfies the function type of 'addVar3'
+
+addVar3 = printResult4;
+// ts complains now.
