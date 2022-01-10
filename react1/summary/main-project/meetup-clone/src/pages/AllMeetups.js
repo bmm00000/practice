@@ -27,7 +27,7 @@ function AllMeetupsPage() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [loadedMeetups, setLoadedMeetups] = useState([]);
 
-	// in order to load the meetups from the database, we want to make a GET request before anything else is rendered, that's why we could use 'fetch' here (we don't need the configuration object, since the default request of 'fetch' is a GET request, and we would get the 'response' object authomatically, since that's how 'fetch' works: it returns a promise which resolves to the actually response). however, this approach would generate an infinite loop (requests and updating state, and request again, etc.), and therefore spam our API:
+	// in order to load the meetups from the database, we want to make a GET request before anything else is rendered, that's why we could use 'fetch' here (we don't need the configuration object, since the default request of 'fetch' is a GET request, and we would get the 'response' object authomatically, since that's how 'fetch' works: it returns a promise which resolves to the actual response). however, this approach would generate an infinite loop (requests and updating state, and request again, etc.), and therefore spam our API:
 	// fetch(
 	// 	'https://react1-5c141-default-rtdb.europe-west1.firebasedatabase.app/meetups.json'
 	// )
