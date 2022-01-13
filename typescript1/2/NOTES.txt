@@ -1,0 +1,23 @@
+if you don't want to execute 'tsc app.ts' every time you want to compile, you can enter 'Watch Mode' (whenever the ts file changes and you save it, it will recompile):
+
+tsc app.ts --watch
+
+or:
+
+tsc app.ts -w
+
+but what if we have more than one ts file?
+
+tsc --init
+
+the former command will initialize this project as a whole ts project: everything in the folder in which you run this command is now managed by ts. when you run this command, it will create a tsconfig.json file in our folder (this is the indicator for ts that the project in which this file lies (and all its subfolders) should be managed by ts). after that you run in this folder the following command:
+
+tsc
+
+and ts will compile all ts files of our project.
+and of course, this can also be combined with watch mode, so we will have watch mode for all ts files of our project:
+
+tsc -w
+
+TSCONFIG.JSON file:
+it tells ts how it should compile these files.
