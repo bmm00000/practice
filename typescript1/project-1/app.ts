@@ -1,105 +1,53 @@
-const add = (input1: number, input2: number) => {
-	return input1 + input2;
-};
+// with the 'unknown' type, we don't know what type of value the user will input:
 
-function add1(input1: number, input2: number) {
-	return input1 + input2;
+let userInput: unknown;
+
+// and ts will not complain if we do the following:
+
+userInput = 5;
+userInput = 'Jose';
+
+// so far it's the same if we had not specified a type (ts would infer 'any') or if we had specified the 'any' type
+// but we will run into a problem if we do the following:
+
+let userName: string;
+userName = userInput;
+
+// since 'userInput' type is 'unknown', it could hold any type of value, it just happens to be a string now, but it could not be the case, that's why ts complains, because ts wants a string for 'userName'
+
+// WATCH OUT! if 'userInput' would be type 'any', we would not have this error, becuase 'any' is the most flexible type in ts and it basically disables all type checking. therefore, 'unknown' is a bit more restrictive than 'any'.
+
+// with 'unknown', you would need to make a type checking:
+
+if (typeof userInput === 'string') {
+	userName = userInput;
 }
 
-// when you hover over the names of the functions above, you will see at the end the RETURN TYPE that ts has inferred ('number', in both cases) (note that the syntax differs in both examples)
+// now ts doesn't complain, becuase we made sure that what userName will receive a string (userInput could be anything else, but we checked it, and now it's guaranteed that it's a string, so we can safely assign it to userName)
+// therefore, with 'unknown', you need an extra type check to be able to assign an 'unknown' value to a value with a fixed type. therefore, 'unknown' is a better choice than 'any', since there's some type checking. you use 'unknown' if, for whatever reason, you don't know yet what type you will store in a variable, but you know what you want to do with it eventually
 
-// you can specify the return type as follows:
+// 'never' is another type that functions can return.
+// for example, let's consider a utility function to throw error objects (having utility functions like this would be pretty standard in big applications where you don't want to manually throw an error in many different places of your app, but you want to reach one convenient function that build the error object):
 
-function add2(input1: number, input2: number): number {
-	return input1 + input2;
+function generateError(message: string, code: number) {
+	throw { message: message, errorCode: code };
 }
 
-const add22 = (input1: number, input2: number): number => {
-	return input1 + input2;
-};
+generateError('An error occurred', 500);
 
-// as it happens with variables, it's a very good idea to let ts do its job inferring the return type. if you have no reason for explicitly setting the type, don't do it, and let ts infer the type.
+// as a return value, you could specify 'void' (that's the return type that ts infers, since 'never' is a newer type, and it's not that bad anyways if we leave it with 'void'). but if we are completely honest, the function does not just return nothing, but it returns 'never': this function will never produce a return value, because the 'throw' keyword crashes the script, and will never execute any potential return statement that comes after the 'throw'. therefore, we should specify as follows (from a code quality perspective, it would be clearer to other developers about the purpose of the function):
 
-// regarding return types, there's one type we haven't seen before (it doesn't exist in js): it's the 'void' type. for example:
-
-function printResult(input: number) {
-	console.log('This is the result: ' + input);
+function generateError1(message: string, code: number): never {
+	throw { message: message, errorCode: code };
 }
 
-// if you hover over the function name, you will see that the return type is 'void' because we are not returning anything (undefined is returned by default) (this function doesn't have a return statement). therefore, we get return type 'void' even though it technically returns 'undefined' (watch out! because you can have 'undefined' as a type in ts). but if you do the following, you get an error:
+// another example of a function that 'never' returns is a function with an infinite loop:
 
-function printResult1(input: number): undefined {
-	console.log('This is the result: ' + input);
+function infiniteLoop(): never {
+	while (true) {}
 }
 
-// this happens because in ts a function is not allowed to return undefined, even though it technically does, but ts thinks about functions a bit differently. in ts, return type will be 'void' if a function returns nothing (it doesn't have a return statement). if you set return type as 'undefined' (which you will very rarely need to do) ts will expect that you have a return statement where you don't return a value, as follows:
+// but funtions that throw errors are the most common use cases for the 'never' return type.
 
-function printResult2(input: number): undefined {
-	console.log('This is the result: ' + input);
-	return;
-}
-
-// from a js perspective, printResult1 is the same as printResult2, but ts makes a differentiation. however, you could also use 'void' as a return type even if you use a return statement where you don't return a value:
-
-function printResult3(input: number): void {
-	console.log('This is the result: ' + input);
-	return;
-}
-
-// therefore, you would by default use 'void' when you have a return statement where you don't return a value. this is what ts will infer if you don't specify it (hover over the function name):
-
-function printResult4(input: number) {
-	console.log('This is the result: ' + input);
-	return;
-}
-
-// therefore, 'void' is the standard return type that ts will infer when you have a function that doesn't return a value
-
-// FUNCTIONS AS TYPES:
-const addFunc = (input1: number, input2: number) => {
-	return input1 + input2;
-};
-
-// let addVar;
-
-// addVar = addFunc;
-
-// console.log(addVar(1, 2));
-
-// so far so good, but if you do the following, ts has no way to find out about the following problem:
-
-// addVar = 5;
-
-// console.log(addVar(1, 2)); // this will throw an error at runtime ("addVar is not a function"), you will not see the error before runtime neither in the IDE nor in the tsc compilation.
-
-// in order to avoid this, we need to be clar that addVar will hold a function, and we will see the error in the IDE and if we compile with tsc:
-
-let addVar: Function;
-
-addVar = addFunc;
-
-console.log(addVar(1, 2));
-
-addVar = 5;
-
-console.log(addVar(1, 2));
-
-// but there's another problem, since you can do the following and ts will not complain, you will only find out about the error at runtime:
-
-addVar = printResult4;
-
-console.log(addVar(1, 2)); // error at runtime!!
-
-// in order to solve this, we can be more precise about how the function should look like (this is when function types come into play; function types are types that describe a function, regarding parameters and return value):
-
-let addVar2: () => number;
-// funtion type of addVar2: accepts no parameters, and returns a number
-
-let addVar3: (a: number, b: number) => number;
-// function type of addVar3: accepts two numbers as arguments, and returns a number (note that 'a' and 'b' do not have to match with the name of the parameters)
-
-addVar3 = add;
-// ts doesn't complain here, because 'add' satisfies the function type of 'addVar3'
-
-addVar3 = printResult4;
-// ts complains now.
+// TS DOCUMENTATION
+// https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
