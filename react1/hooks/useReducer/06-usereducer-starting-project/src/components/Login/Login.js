@@ -13,7 +13,7 @@ const emailReducer = (state, action) => {
 	}
 	return { value: '', isValid: false };
 };
-// we create the reducer function out side of the component function, because inside the function we will not need any data that is generated inside of the component function (it doesn't need to interact with anything inside of the component function). all the data that will be passed into this function will be passed by react authomatically.
+// we create the reducer function outside of the component function, because inside the function we will not need any data that is generated inside of the component function (it doesn't need to interact with anything inside of the component function). all the data that will be passed into this function will be passed by react authomatically.
 
 const passwordReducer = (state, action) => {
 	if (action.type === 'USER_INPUT') {
