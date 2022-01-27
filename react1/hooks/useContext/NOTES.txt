@@ -1,0 +1,7 @@
+with the help of context, you can not only pass down state values, but also functions (to update state)
+
+when you create the auth-context.js  file, you don't name it AuthContext.js becuase it would imply that we are creating a component, and we are not doing that.
+
+you can have multiple contexts for multiple global states, or you can use one context for a bigger state, that's up to you
+
+we can listen for context in two ways: in our case: we can use AuthContext.Consumer, or by using a the useContext hook (we will typically use the react useContext hook because the syntax is more elegant).
