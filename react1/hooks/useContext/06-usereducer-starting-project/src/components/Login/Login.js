@@ -1,106 +1,100 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
+import AuthContext from '../../store/auth-context';
+import Input from '../UI/Input/Input';
 
 const Login = (props) => {
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [emailIsValid, setEmailIsValid] = useState();
-  const [enteredPassword, setEnteredPassword] = useState('');
-  const [passwordIsValid, setPasswordIsValid] = useState();
-  const [formIsValid, setFormIsValid] = useState(false);
+	const [enteredEmail, setEnteredEmail] = useState('');
+	const [emailIsValid, setEmailIsValid] = useState();
+	const [enteredPassword, setEnteredPassword] = useState('');
+	const [passwordIsValid, setPasswordIsValid] = useState();
+	const [formIsValid, setFormIsValid] = useState(false);
 
-  useEffect(() => {
-    console.log('EFFECT RUNNING');
+	const authCtx = useContext(AuthContext);
 
-    return () => {
-      console.log('EFFECT CLEANUP');
-    };
-  }, []);
+	useEffect(() => {
+		console.log('EFFECT RUNNING');
 
-  // useEffect(() => {
-  //   const identifier = setTimeout(() => {
-  //     console.log('Checking form validity!');
-  //     setFormIsValid(
-  //       enteredEmail.includes('@') && enteredPassword.trim().length > 6
-  //     );
-  //   }, 500);
+		return () => {
+			console.log('EFFECT CLEANUP');
+		};
+	}, []);
 
-  //   return () => {
-  //     console.log('CLEANUP');
-  //     clearTimeout(identifier);
-  //   };
-  // }, [enteredEmail, enteredPassword]);
+	// useEffect(() => {
+	//   const identifier = setTimeout(() => {
+	//     console.log('Checking form validity!');
+	//     setFormIsValid(
+	//       enteredEmail.includes('@') && enteredPassword.trim().length > 6
+	//     );
+	//   }, 500);
 
-  const emailChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
+	//   return () => {
+	//     console.log('CLEANUP');
+	//     clearTimeout(identifier);
+	//   };
+	// }, [enteredEmail, enteredPassword]);
 
-    setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6
-    );
-  };
+	const emailChangeHandler = (event) => {
+		setEnteredEmail(event.target.value);
 
-  const passwordChangeHandler = (event) => {
-    setEnteredPassword(event.target.value);
+		setFormIsValid(
+			event.target.value.includes('@') && enteredPassword.trim().length > 6
+		);
+	};
 
-    setFormIsValid(
-      enteredEmail.includes('@') && event.target.value.trim().length > 6
-    );
-  };
+	const passwordChangeHandler = (event) => {
+		setEnteredPassword(event.target.value);
 
-  const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes('@'));
-  };
+		setFormIsValid(
+			enteredEmail.includes('@') && event.target.value.trim().length > 6
+		);
+	};
 
-  const validatePasswordHandler = () => {
-    setPasswordIsValid(enteredPassword.trim().length > 6);
-  };
+	const validateEmailHandler = () => {
+		setEmailIsValid(enteredEmail.includes('@'));
+	};
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    props.onLogin(enteredEmail, enteredPassword);
-  };
+	const validatePasswordHandler = () => {
+		setPasswordIsValid(enteredPassword.trim().length > 6);
+	};
 
-  return (
-    <Card className={classes.login}>
-      <form onSubmit={submitHandler}>
-        <div
-          className={`${classes.control} ${
-            emailIsValid === false ? classes.invalid : ''
-          }`}
-        >
-          <label htmlFor="email">E-Mail</label>
-          <input
-            type="email"
-            id="email"
-            value={enteredEmail}
-            onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
-          />
-        </div>
-        <div
-          className={`${classes.control} ${
-            passwordIsValid === false ? classes.invalid : ''
-          }`}
-        >
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={enteredPassword}
-            onChange={passwordChangeHandler}
-            onBlur={validatePasswordHandler}
-          />
-        </div>
-        <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} disabled={!formIsValid}>
-            Login
-          </Button>
-        </div>
-      </form>
-    </Card>
-  );
+	const submitHandler = (event) => {
+		event.preventDefault();
+		authCtx.onLogin(enteredEmail, enteredPassword);
+	};
+
+	return (
+		<Card className={classes.login}>
+			<form onSubmit={submitHandler}>
+				<Input
+					type='email'
+					id='email'
+					label='Email'
+					value={enteredEmail}
+					onChange={emailChangeHandler}
+					onBlur={validateEmailHandler}
+					inputIsValid={emailIsValid}
+				/>
+				<Input
+					type='password'
+					id='password'
+					label='Password'
+					value={enteredPassword}
+					onChange={passwordChangeHandler}
+					onBlur={validatePasswordHandler}
+					inputIsValid={passwordIsValid}
+				/>
+				<div className={classes.actions}>
+					<Button type='submit' className={classes.btn} disabled={!formIsValid}>
+						Login
+					</Button>
+				</div>
+			</form>
+		</Card>
+	);
 };
 
 export default Login;
