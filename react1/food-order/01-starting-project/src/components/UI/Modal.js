@@ -1,8 +1,32 @@
+import { Fragment } from 'react';
+import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
+
+// we will create the two components here, but different files will also be fine, depending on the characteristics of your project:
+
+const Backdrop = (props) => {
+	return <div className={classes.backdrop}></div>;
+};
+
+const ModalOverlay = (props) => {
+	return (
+		<div className={classes.modal}>
+			<div className={classes.content}>{props.children}</div>
+		</div>
+	);
+};
+
+const portalElement = document.getElementById('overlays');
 
 const Modal = (props) => {
 	return (
-		
+		<Fragment>
+			{ReactDOM.createPortal(<Backdrop />, portalElement)}
+			{ReactDOM.createPortal(
+				<ModalOverlay>{props.children}</ModalOverlay>,
+				portalElement
+			)}
+		</Fragment>
 	);
 };
 
