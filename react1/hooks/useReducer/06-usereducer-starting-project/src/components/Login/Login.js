@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useReducer } from 'react';
 
 import Card from '../UI/Card/Card';
-import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
+import classes from './Login.module.css';
 
 const emailReducer = (state, action) => {
 	if (action.type === 'USER_INPUT') {
@@ -149,7 +149,7 @@ export default Login;
 // }, [someProperty]);
 // This is a very common pattern and approach, which is why I typically use it and why I show it here (I will keep on using it throughout the course).
 
-// I just want to point out, that they key thing is NOT that we use destructuring but that we pass specific properties instead of the entire object as a dependency.
+// I just want to point out, that the key thing is NOT that we use destructuring but that we pass specific properties instead of the entire object as a dependency.
 
 // We could also write this code and it would work in the same way.
 
