@@ -102,8 +102,8 @@ const Login = (props) => {
 		} else {
 			passwordInputRef.current.focus();
 		}
-		// above, we want to focus the first input field that is not valid. in order to do that, we could go to Input.js, use useRef there and apply the focus() method on the input dom object to which we have access through the ref, when we use the ref prop in the built-in 'input' component (we could use useEffect to focus the input after it renders for the first time).
-		// But what we will do is to define the function 'activate' in Input.js, and we will invoke it from Login.js (outside of Input.js). this way, we will be able to use the focus method (we call it 'activate') on your custom Input component (the same way that the focus() method can be used in the built-in 'input' component). HOWEVER, custom components CANNOT be given refs!! ('ref' is a reserved word for built-in components) how to solve this? we will use the useImperativeHandle hook in the Input component.
+		// above, we want to focus the first input field that is not valid. in order to do that, we could go to Input.js, use useRef there and apply the focus() method that we have natively on the input dom object to which we have access through the ref, in that case we would use the ref prop in the built-in 'input' component (we could use useEffect to focus the input after it renders for the first time, but in any case we would not focus the input after we click on the button).
+		// But what we will do is to define the function 'activate' in Input, and we will invoke it from Login (outside of the Input component). this way, we will be able to use the focus method (we call it 'activate') on your custom Input component (the same way that the focus() method can be used in the built-in 'input' component). WE ARE DOING THIS BECAUSE custom components CANNOT be given refs!! ('ref' is a reserved word for built-in components) that's why we will use the useImperativeHandle hook in the Input component.
 	};
 
 	return (
@@ -117,7 +117,7 @@ const Login = (props) => {
 					value={emailState.value}
 					onChange={emailChangeHandler}
 					onBlur={validateEmailHandler}
-					inputIsValid={emailIsValid}
+					isValid={emailIsValid}
 				/>
 				<Input
 					ref={passwordInputRef}
@@ -127,10 +127,11 @@ const Login = (props) => {
 					value={passwordState.value}
 					onChange={passwordChangeHandler}
 					onBlur={validatePasswordHandler}
-					inputIsValid={passwordIsValid}
+					isValid={passwordIsValid}
 				/>
 				<div className={classes.actions}>
-					<Button type='submit' className={classes.btn} disabled={!formIsValid}>
+					<Button type='submit' className={classes.btn}>
+						{/* we deleted the 'disabled={!formIsValid}' prop from the Button, because we now want it to always be clickable, given the new logic that we have now in submitHandler */}
 						Login
 					</Button>
 				</div>

@@ -13,16 +13,16 @@ const Input = React.forwardRef((props, ref) => {
 	useImperativeHandle(ref, () => {
 		return { focus: activate };
 	});
-	// the second argument is a function that should return an object, and that object will contain all the data that you will be able to use from outside of this component (this is basically a translation object between internal functionalities and the outside world, ie. the parent component)
+	// the second argument is a function that should return an object, and that object will contain all the data that you will be able to use from outside of this component (this is basically a translation object between internal functionalities and the outside world, ie. the parent component). in our case, we will use the 'focus' key from outside this component, in order to access our internal functionality, ie. the 'activate' function ('focus' is the externally avaialable name to access the 'activate' function) (you can do this not only for functions, but also for any type of value)
 	// the first argument is the ref that we pass as a second argument to the component function
 
 	return (
 		<div
 			className={`${classes.control} ${
-				props.inputIsValid === false ? classes.invalid : ''
+				props.isValid === false ? classes.invalid : ''
 			}`}
 		>
-			<label htmlFor={props.type}>{props.label}</label>
+			<label htmlFor={props.id}>{props.label}</label>
 			<input
 				ref={inputRef}
 				type={props.type}

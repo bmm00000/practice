@@ -9,7 +9,7 @@ const AuthContext = React.createContext({
 });
 // createContext returns an object that contains a component (in the 'Provider' property), and all the components (and their children) that we wrap around using this component will have access to the context
 
-// context management component where we extract the context management logic, so our App.js is now leaner (before, we had all this logic in App.js):
+// now we create a context management component where we extract the context management logic, so our App.js is now leaner (before, we had all this logic in App.js):
 export const AuthContextProvider = (props) => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
