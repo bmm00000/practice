@@ -7,7 +7,7 @@ const MealItemForm = (props) => {
 			<Input
 				label='Amount'
 				input={{
-					id: 'amount',
+					id: 'amount_' + props.id,
 					type: 'number',
 					min: '1',
 					max: '5',
@@ -42,7 +42,7 @@ export default MealItemForm;
 
 // Screenreaders won't be able to connect labels + inputs correctly (since all labels point at the same input)
 
-// Everything shown in the videos works as shown and fixing this is optional, but since fixing this is easy, you might want to consider making the below adjustments:
+// Everything shown in the videos works as shown, and fixing this is optional, but since fixing this is easy, you might want to consider making the below adjustments:
 
 // One possible workaround is to accept an id prop on the MealItemForm component and use that to create a unique id per <Input />:
 
