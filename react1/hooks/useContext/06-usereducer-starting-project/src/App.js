@@ -34,7 +34,7 @@ function App() {
 		// <AuthContext.Provider
 		// 	value={{ isLoggedIn: isLoggedIn, onLogout: logoutHandler }}
 		// >
-		// 	{/* as 'value', we are passing an object with the key that we want and the state as a value. therefore, every time the state is updated, the new state will be able to be consumed by all components */}
+		// 	{/* as 'value', we are passing an object with the keys that we want and the state as a value. therefore, every time the state is updated, the new state will be able to be consumed by all components */}
 		<React.Fragment>
 			<MainHeader />
 			<main>

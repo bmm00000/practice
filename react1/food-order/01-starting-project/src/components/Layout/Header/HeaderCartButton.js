@@ -6,6 +6,7 @@ import classes from './HeaderCartButton.module.css';
 
 const HeaderCartButton = (props) => {
 	const cartCtx = useContext(CartContext);
+	// whenever the context changes, the HeaderCartButton component will be re-evaluated by react.
 
 	const numberOfCartItems = cartCtx.items.reduce(
 		(curNumber, item) => curNumber + item.amount,
