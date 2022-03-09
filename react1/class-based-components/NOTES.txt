@@ -1,0 +1,4 @@
+previously to react 16.8, you had to use class-based components to manage state.
+react 16.8 introduced hooks for functional components (these features were previously reserved for class-based components) (class-based components can't use react hooks)
+
+class based components can work together with functional components (a class-based component can render a functional component and viceversa; however, if you are building something from scratch, you probably will stick to one or the other).
