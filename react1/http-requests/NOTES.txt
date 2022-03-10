@@ -1,2 +1,14 @@
 you never put in your frontend facing js code private information that gives direct access to your firebase account (for example, usernames, passwords, etc.). for other data that only grant access to your api, but not to your account (eg. api keys), you might want to set up some filtering settings in firebase, so you restrict/authorize access from some ip addresses, etc. and it's not that bad. but in any case, you can always put it into the server side code, so it's not accessible at all from the frontend.
 in a nushell, is it a problem that people can read your js code in the browser dev tools sources tab? yes, they can read it, but if you do it right, they can't do anything with it. and if you are worried about people stealing your logic, yes they can do it, but the production code is very hard to read, and also, your core business logic will always be on the server.
+https://academind.com/tutorials/hide-javascript-code
+
+Using the Star Wars API (this is a backend api)
+MUST READ:
+
+In the next lecture, you will be introduced to our demo backend that will be used in this course section: The Star Wars API.
+
+I will use this page: https://swapi.dev/
+
+Loading this page (and hence accessing this backend) might fail - if that is the case for you, you can use this alternative: https://swapi.py4e.com/
+
+WHEN WE TALK ABOUT APIS IN THE CONTEXT OF HTTP REQUESTS, we typically talk about rest of graphql apis (two different standards of how a server should expose its data). for example SWAPI is a rest api, and it means that there are a couple of urls to which you can send a request to get back data in a certain format, and different urls to which you can send requests, will give you different chunks of data (you have different entry points which lead to different results)
