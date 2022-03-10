@@ -5,10 +5,23 @@ import classes from './Users.module.css';
 
 class Users extends Component {
 	constructor() {
-		// we need to call the constructor of the class that we are inheriting from, ie. 'super':
+		// we need to call the constructor of the class that we are inheriting from, ie. 'Component', that's why we call super():
 		super();
 		// when we initialize state, we have to use the property 'state', and all the state pieces have to be in an object.
 		this.state = { showUsers: true, more: 'Test' };
+	}
+
+	componentDidUpdate() {
+		// this error will bubble up the call stack: it will pass all components, and if it's not handled anywhere, it will crash your app. if you don't want your whole app to crash if this error happens, in js we use 'try' and 'catch':
+		// try {
+		// 	// someCodeWhichMightFail()
+		// } catch (err) {
+		// 	// handle error
+		// }
+		// however, if an error is generated inside of a component, and we can't handle it inside this component, but we want to handle it in a parent component instead, then we can't use 'try' and 'catch'. in that case, we can use an error boundary (see the other component called ErrorBoundary.js: this is a class-based component that implements the componentDidCatch lifecycle method)
+		if (this.props.users.length === 0) {
+			throw new Error('No users provided!');
+		}
 	}
 
 	toggleUsersHandler() {
