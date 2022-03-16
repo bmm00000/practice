@@ -1,0 +1,3 @@
+automated testing: code that tests our code.
+
+often, it's not so easy to differentiate between unit and integration tests, since very often you want to test a component that uses another component.
