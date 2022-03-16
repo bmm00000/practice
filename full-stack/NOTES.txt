@@ -19,3 +19,5 @@ Technically, www.amazon.com is called a "subdomain" of the "root domain" amazon.
 That's what many (but not all) websites do with the "www" subdomain: They register it and configure it such, that it also points at the main website.
 
 It's not required and not all websites have it. Most users also don't type "www.somewebsite.com" manually anymore - instead just the root domain is entered in many cases.
+
+the different html tags give different instructions to the browser (what content has to be a header, a paragraph, etc.)
