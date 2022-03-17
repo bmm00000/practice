@@ -51,7 +51,7 @@ describe('Greeting component', () => {
 	});
 });
 
-// even though you could test in App.js what is rendered from Greeting.js, it is a convention to write the test as close as possible to what you want to test, that's why we create 'Greeting.test.js'
+// even though you could test in App.js/App.test.js what is rendered from Greeting.js, it is a convention to write the test as close as possible to what you want to test, that's why we create 'Greeting.test.js'
 
 // the 'test()' function is globally available, you don't need to import it.
 
