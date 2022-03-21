@@ -1,0 +1,10 @@
+redux is a state management system for cross-component or app-wide state. 
+
+for cross-component and app-wide state, passing around data through props can become cumbersome. that's why we learned about react context. redux solves the same problem. so why do we need redux if we already have react context? react context has a few potential disadvantages (see screenshot), but these disadvantages might not matter for the app that you are building: depending on your app, you can use one or the other or both (typically, for application wide state you will use only one of the two, but still, you could use redux for app-wide state, but also use context for selected multicomponent states which are important in parts of your app)
+
+disadvantages: complex setup/management (if you are building a large app, for example, an enterprise-level app, if you use context, you can end up with code like in the screenshot, ie. you have different pieces of context that affect multiple components or the entire app, and multiple context provider components, so the resulting jsx code is deeply nested. on the other hand, if you decide to build just one big context and provider component for managing all the states, then you will end up with a large context provider component which manages a lot of different things, which can become difficult to maintain (see screenshot)), performance (context is great for low frequency updates (like changing a theme, authentication, etc.), but it's not that great if your data changes a lot (high frequency changes) (see screenshot: (note: redux is a flux-like state management library))). REDUX doesn't suffer from this disadvantages.
+
+components never manipulate the store data. for that, we have the reducer function.
+
+as a general concept in programming, reducer functions are functions that take some input, and then transform that input (reduce it, for example, reduce a list of numbers to the sum of those numbers)
+
