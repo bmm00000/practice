@@ -6,5 +6,7 @@ disadvantages: complex setup/management (if you are building a large app, for ex
 
 components never manipulate the store data. for that, we have the reducer function.
 
-as a general concept in programming, reducer functions are functions that take some input, and then transform that input (reduce it, for example, reduce a list of numbers to the sum of those numbers)
+as a general concept in programming, reducer functions are functions that take some input, and then transform that input (reduce it, for example, reduce a list of numbers to the sum of those numbers) and spit out a new output.
+
+an action is a simple js object that describes the kind of operation that reducers should perform.
 
