@@ -4,8 +4,10 @@ import { useState } from 'react';
 
 const SimpleInput = (props) => {
 	const [enteredName, setEnteredName] = useState('');
+	const [enteredEmail, setEnteredEmail] = useState('');
 	// const [enteredNameIsValid, setEnteredNameIsValid] = useState(false); we can simplify our code and eliminate this state with the enteredNameIsValid variable, below.
 	const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+	const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 	// we might set enteredNameIsValid to true at the begining to avoid the error message when the app loads for the first time, but this has a downside: imagine we have a useEffect as follows (the http request will be sent at the beginning with invalid data (empty data), when the app gets loaded for the first time):
 	// useEffect(() => {
 	// 	if (enteredNameIsValid) {
@@ -21,11 +23,15 @@ const SimpleInput = (props) => {
 	const enteredNameIsValid = enteredName.trim() !== '';
 	const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
+	const enteredEmailIsValid = enteredEmail.includes('@');
+	const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+
 	let formIsValid = false;
 
-	if (enteredNameIsValid) {
+	if (enteredNameIsValid && enteredEmailIsValid) {
 		formIsValid = true;
 	}
+	// if we had more inputs, we would say: if (enteredNameIsValid && enteredAgeIsValid, etc...)
 
 	const nameInputChangeHandler = (event) => {
 		setEnteredName(event.target.value);
@@ -38,6 +44,10 @@ const SimpleInput = (props) => {
 	};
 	// this is how js in the browser behaves: once we bind this function to the onChange event in the input, we authomatically get an event object (describing the event) as an argument. again, this is vanilla JS.
 
+	const emailInputChangeHandler = (event) => {
+		setEnteredEmail(event.target.value);
+	};
+
 	const nameInputBlurHandler = (event) => {
 		setEnteredNameTouched(true);
 
@@ -47,11 +57,16 @@ const SimpleInput = (props) => {
 	};
 	// we are doing this, because maybe it happens that the user inputs something, but then deletes it, and then blurs (or maybe the user blurs without giving any input), we want to give feedback also in this situation, even before the form gets submitted.
 
+	const emailInputBlurHandler = (event) => {
+		setEnteredEmailTouched(true);
+	};
+
 	const formSubmissionHandler = (event) => {
 		event.preventDefault();
 		// again, this is vanilla JS and browser behaviour: the default behaviour by the browser is that, when a form is submitted by clicking the button in the form, an http request is sent to the server that is serving this website. but here we don't have a server that wants to do anything with that request, we just have a static server that serves our js and html files, so we don't want this request to be sent. we want to do that becuase if the http request was sent, then the page would be reloaded in the end, and we don't want that, since it would re-start the whole react app, we would lose all our state, etc.
 
 		setEnteredNameTouched(true);
+		setEnteredEmailTouched(true);
 
 		// if (enteredName.trim() === '') {
 		// 	setEnteredNameIsValid(false);
@@ -59,7 +74,7 @@ const SimpleInput = (props) => {
 		// }
 		// we are making sure that we cannot send a request with empty data to the server. the exact logic that we use will depend on the input value that we are expecting (for just a name we have enough now, but for an email we might want to validate that it's an email with '@'...). but we don't have feedback for the user yet, how to do that? we will do it with state (enteredNameIsValid). however, this approach has downsides (see above)
 
-		if (!enteredNameIsValid) {
+		if (!enteredNameIsValid || !enteredEmailIsValid) {
 			return;
 		}
 		// we can do this, because the formSubmissionHandler function will be recreated every time that the component is re-evaluated, so it will have access to the updated value of enteredNameIsValid.
@@ -71,14 +86,20 @@ const SimpleInput = (props) => {
 		// refs are objects with a 'current' property, which holds the element you assigned to the ref. Since we are assigning an 'input' element, we can access its 'value', because input elements in js (the js objects representing the html input elements) always have a 'value' property which holds the value currently entered in that input.
 
 		setEnteredName('');
+		setEnteredEmail('');
 		// if you want to reset the input with ref, you could do the following and it would work:
 		// nameInputRef.current.value = ''
 		// however, this is not an ideal way to do it, because we are directly manipulating the dom (we are using some vanilla js to reach out to the dom and change it), and this is something that typically you shouldn't do, you should leave that up to react, react should be the only thing manipulating the dom.
 		setEnteredNameTouched(false);
+		setEnteredEmailTouched(false);
 		// if we don't setEnteredNameTouched back to false, we will still get feedback after submission, since we setEnteredName to an empty string just above (after we submit and reset setEnteredName, it's a brand new, untouched form)
 	};
 
 	const nameInputClasses = nameInputIsInvalid
+		? 'form-control invalid'
+		: 'form-control';
+
+	const emailInputClasses = emailInputIsInvalid
 		? 'form-control invalid'
 		: 'form-control';
 
@@ -96,6 +117,19 @@ const SimpleInput = (props) => {
 				/>
 				{nameInputIsInvalid && (
 					<p className='error-text'>Name must not be empty.</p>
+				)}
+			</div>
+			<div className={emailInputClasses}>
+				<label htmlFor='email'>Your Email</label>
+				<input
+					type='email'
+					id='email'
+					onChange={emailInputChangeHandler}
+					onBlur={emailInputBlurHandler}
+					value={enteredEmail}
+				/>
+				{emailInputIsInvalid && (
+					<p className='error-text'>Enter a valid email.</p>
 				)}
 			</div>
 			<div className='form-actions'>
