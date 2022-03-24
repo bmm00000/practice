@@ -31,7 +31,6 @@ const SimpleInput = (props) => {
 	if (enteredNameIsValid && enteredEmailIsValid) {
 		formIsValid = true;
 	}
-	// if we had more inputs, we would say: if (enteredNameIsValid && enteredAgeIsValid, etc...)
 
 	const nameInputChangeHandler = (event) => {
 		setEnteredName(event.target.value);
