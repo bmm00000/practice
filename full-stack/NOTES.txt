@@ -33,3 +33,13 @@ html attributes allow to to add extra configuration to the html element. differe
 css has properties and values for these properties.
 
 remember, we don't use an html element (eg. h1) because we want certain styling (bold letters, etc.) (with css, we could make a paragraph with bold letters, or we could make an h1 look like a paragraph, etc.). we use it html elements because we want to convey meaning to search engines, screen readers, etc.
+
+you can add the 'style' attribute to basically any html element. we say 'basically' because later we will talk about a few elements that can't be styled because they are not visible.
+
+under the 'color' property, we have some named colors (for example, 'red', 'blue' etc.) but we actually have millions of colors at our disposal. we have hex codes (three pairs of numbers that together refer to combinations of red, green and blue) for colors becase we have more than 16 million colors, and we would have very long numbers if we used the decimal system. 
+you can google 'color picker' and manually select the color that you want (vscode also gives you this possibility, and you can also see the colors in the 3 different denominations (hex code, rgb, or hsl)) (see 'colors.pdf').
+
+code formatter extension: prettier (set it under 'default formatter')
+
+if you want to find what styles are applied into an element, you could check the source code, but what about the default styles applied by the browser? you can check that in devtools. 'user agent' styles will tell you what default styles are applied by the browser, and 'element.style' will tell you what styles you applied (see screenshot)
+
