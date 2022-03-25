@@ -1,0 +1,9 @@
+we study scopes and hoisting in order to work correctly with variables and functions.
+
+scope is about accessing variables in various places in our app.
+
+local and global scopes are important when you are working with the 'var' keyword, whereas the block scope works with different keywords.
+
+in this module, we are going to talk about scope. context is a different concept, context is not about the visibility of variables in your code, but it refers to the object a function belongs to (it's a concept that explains what the 'this' keyword used in a function that is part of an object, refers to).
+
+when we assign a value to a variable, we are defining that variable (when we do it for the first time, we are initializing that variable with that value, and that means we are defining that variable). after that, if we assign a new value to that variable we would not call this definition, but we would talk about value assignment, because we are assigning a new value to an already declared and defined variable.
