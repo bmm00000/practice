@@ -1,12 +1,11 @@
 const redux = require('redux');
 
-// we need to give state a default value for the first time that counterReducer is executed (the next times it's executed, it will take the pre-existing state, but we need some state for the first time):
+// we need to give state a default value for the first time that counterReducer is executed when we initialize the store (the next times it's executed, it will take the pre-existing state, but we need some state for the first time):
 const counterReducer = (state = { counter: 0 }, action) => {
 	if (action.type === 'increment') {
 		return {
 			counter: state.counter + 1,
 		};
-		// otherwise, if a different action, like the default initialization action, was dispatched, I want to return the unchanged states:
 	}
 
 	if (action.type === 'decrement') {
@@ -14,7 +13,7 @@ const counterReducer = (state = { counter: 0 }, action) => {
 			counter: state.counter - 1,
 		};
 	}
-
+	// otherwise, if a different action (like the default initialization action) was dispatched, I want to return the unchanged state:
 	return state;
 };
 // our goal when using redux is to do different things inside of the reducer depending on the different actions that are dispatched (that's why we get the 'action' as the second argument)
