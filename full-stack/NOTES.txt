@@ -31,6 +31,7 @@ remember, browsers are very forgiving, that's why content will be displayed as p
 html attributes allow to to add extra configuration to the html element. different html elements support different attributes, for example, basically all html elements support the 'style' attribute to add css styling to an element (remember, an html atribute has a name, and a value). for example: style="font-family: sans-serif"
 
 css has properties and values for these properties.
+a css rule is a property with its value.
 
 remember, we don't use an html element (eg. h1) because we want certain styling (bold letters, etc.) (with css, we could make a paragraph with bold letters, or we could make an h1 look like a paragraph, etc.). we use it html elements because we want to convey meaning to search engines, screen readers, etc.
 
@@ -41,5 +42,6 @@ you can google 'color picker' and manually select the color that you want (vscod
 
 code formatter extension: prettier (set it under 'default formatter')
 
-if you want to find what styles are applied into an element, you could check the source code, but what about the default styles applied by the browser? you can check that in devtools. 'user agent' styles will tell you what default styles are applied by the browser, and 'element.style' will tell you what styles you applied (see screenshot)
+if you want to find what styles are applied into an element, you could check the source code, but what about the default styles applied by the browser? you can check that in devtools. 'user agent' styles will tell you what default styles are applied by the browser, and 'element.style' will tell you what styles you applied inline (see screenshot). 
 
+emmet is a built-in plug-in of vscode, that helps with autocompletion of elements.
