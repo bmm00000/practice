@@ -49,8 +49,6 @@ some people don't use stashing much, it's more of a convenient tool that can hel
 
 imagine that you have to change branches (for example, a co-worker asks for help), but you are not done with what you are doing and don't want to commit yet (you never commit unnecessarily, since commits are the history of your project). when you are trying to change branches, if there's a conflict, git will not let you change branches. how to solve this problem? you don't need to wait until you commit on your current branch, because you can stash changes (or, git lets you switch branches because there is no conflict but you don't want to bring the changes with you to the other branch)
 
-(HOW TO THINK IN VERY GENERAL TERMS, WHEN CHANGING BRANCHES: if you were merging, would it be a fast-forward? if yes, THERE IS NO problem when changing branches, you will just bring the changes with you, otherwise, git won't let you change branches if you don't commit first.)
-
 YOU CAN USE STASH TO PAUSE OR 'SAVE' YOUR CHANGES BEFORE YOU COMMIT THEM
 
 git stash pop: you can use the stashed changes in any other branch, not only to the original one. if there's conflict, the following also applies:
