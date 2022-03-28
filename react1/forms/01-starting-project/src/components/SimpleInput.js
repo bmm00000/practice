@@ -1,11 +1,8 @@
 import { useState } from 'react';
-// import {useRef} from 'react'
-// import {useEffect} from 'react'
 
 const SimpleInput = (props) => {
 	const [enteredName, setEnteredName] = useState('');
 	const [enteredEmail, setEnteredEmail] = useState('');
-	// const [enteredNameIsValid, setEnteredNameIsValid] = useState(false); we can simplify our code and eliminate this state with the enteredNameIsValid variable, below.
 	const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 	const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 
@@ -26,12 +23,6 @@ const SimpleInput = (props) => {
 
 	const nameInputChangeHandler = (event) => {
 		setEnteredName(event.target.value);
-
-		// our goal here is to make the warning disappear as soon as we do a new keystroke:
-		// if (event.target.value.trim() !== '') {
-		// 	setEnteredNameIsValid(true);
-		// 	// we use event.target.value above, not enteredName, because state updates are scheduled, so maybe it will not happen as instantly as we need, so we end up not having the updated enteredName if we try to use is in line 20 (you can change it and try it, and see how the browser behaves)
-		// }
 	};
 
 	const emailInputChangeHandler = (event) => {
@@ -52,7 +43,6 @@ const SimpleInput = (props) => {
 		if (!enteredNameIsValid || !enteredEmailIsValid) {
 			return;
 		}
-		// we can do this, because the formSubmissionHandler function will be recreated every time that the component is re-evaluated, so it will have access to the updated value of enteredNameIsValid.
 
 		setEnteredName('');
 		setEnteredEmail('');

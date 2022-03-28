@@ -1,4 +1,4 @@
-// IN STEP-2 WE ARE VALIDATING ON FORM SUBMISSION, AND ALSO WHEN INPUT LOSES FOCUS:
+// IN STEP-3 WE ARE VALIDATING ON FORM SUBMISSION, AND ALSO WHEN INPUT LOSES FOCUS, AND ALSO ON KEYSTROKE AFTER THE USER HAS ENTERED A WRONG VALUE, SO THE ERROR MESSAGE DISAPPEARS AS SOON AS THE USER ENTERS A CORRECT VALUE (note that we don't want to validate only on keystroke from the beginning, since we would be showing error messages without giving a chance to the user to provide a valid message first. only after we have given the user a chance (ie. after the user blurs or tries to submit the form), then we apply the validation on keystroke in order to make the error messages dissapear as soon as the user enters a valid value:
 
 import { useState, useRef } from 'react';
 
@@ -11,6 +11,12 @@ const SimpleInput = (props) => {
 
 	const nameInputChangeHandler = (event) => {
 		setEnteredName(event.target.value);
+
+		// our goal here is to make the warning disappear as soon as we do a new keystroke:
+		if (event.target.value.trim() !== '') {
+			setEnteredNameIsValid(true);
+		}
+		// we use event.target.value in line 16, not enteredName, because state updates are scheduled, so maybe it will not happen as instantly as we need, so we end up not having the updated enteredName (you can change it and try it, and see how the browser behaves).
 	};
 
 	const nameInputBlurHandler = (event) => {

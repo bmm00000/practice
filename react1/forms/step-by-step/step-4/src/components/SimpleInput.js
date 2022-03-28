@@ -1,13 +1,16 @@
-// IN STEP-2 WE ARE VALIDATING ON FORM SUBMISSION, AND ALSO WHEN INPUT LOSES FOCUS:
+// IN STEP-4 WE ARE GOING TO REFACTOR OUR CODE:
+// we don't need the useRef.
+// also, in the end, what we want to to find out if the input is invalid and was touched, in which case we want to show the invalid message to the user. therefore, we don't need to manage a separate enteredNameIsValid state, and we can use the enteredNameIsValid constant:
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 const SimpleInput = (props) => {
 	const [enteredName, setEnteredName] = useState('');
-	const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
+	// const [enteredNameIsValid, setEnteredNameIsValid] = useState(false); we can simplify our code and eliminate this state with the enteredNameIsValid variable, below.
 	const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
-	const nameInputRef = useRef();
+	const enteredNameIsValid = enteredName.trim() !== '';
+	const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
 	const nameInputChangeHandler = (event) => {
 		setEnteredName(event.target.value);
@@ -15,34 +18,23 @@ const SimpleInput = (props) => {
 
 	const nameInputBlurHandler = (event) => {
 		setEnteredNameTouched(true);
-
-		if (enteredName.trim() === '') {
-			setEnteredNameIsValid(false);
-		}
 	};
-	// we are doing this, because maybe it happens that the user inputs something, but then deletes it all, and then blurs (or maybe the user blurs without giving any input), we want to give feedback also in this situation, even before the form gets submitted.
 
 	const formSubmissionHandler = (event) => {
 		event.preventDefault();
 
 		setEnteredNameTouched(true);
 
-		if (enteredName.trim() === '') {
-			setEnteredNameIsValid(false);
+		if (!enteredNameIsValid) {
 			return;
 		}
-
-		setEnteredNameIsValid(true);
+		// we can do this, because the formSubmissionHandler function will be recreated every time that the component is re-evaluated, so it will have access to the updated value of enteredNameIsValid.
 
 		console.log(enteredName);
-		console.log(nameInputRef.current.value);
 
 		setEnteredName('');
-
 		setEnteredNameTouched(false);
 	};
-
-	const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
 	const nameInputClasses = nameInputIsInvalid
 		? 'form-control invalid'
@@ -58,7 +50,6 @@ const SimpleInput = (props) => {
 					onChange={nameInputChangeHandler}
 					onBlur={nameInputBlurHandler}
 					value={enteredName}
-					ref={nameInputRef}
 				/>
 				{nameInputIsInvalid && (
 					<p className='error-text'>Name must not be empty.</p>
