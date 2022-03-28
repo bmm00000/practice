@@ -12,4 +12,4 @@ ReactDOM.render(
 	</Provider>,
 	document.getElementById('root')
 );
-// you don't need to necessarily wrap the whole App with the Provider, you could also do so with any of the child components, but keep in mind that only the wrapped components (and their children) will have access to redux.
+// you don't need to necessarily wrap the whole App with the Provider, you could also do so with any of the child components, but keep in mind that only the wrapped components (and their children) will have access to the redux store.
