@@ -45,3 +45,11 @@ code formatter extension: prettier (set it under 'default formatter')
 if you want to find what styles are applied into an element, you could check the source code, but what about the default styles applied by the browser? you can check that in devtools. 'user agent' styles will tell you what default styles are applied by the browser, and 'element.style' will tell you what styles you applied inline (see screenshot). 
 
 emmet is a built-in plug-in of vscode, that helps with autocompletion of elements.
+
+revise css pseudo selectors.
+
+cascading style sheets, means that multiple different rules can affect an element at the same time. for example, see screenshot, some user agent rules (default styling by the browser) still apply to the element, but some of them some are overriden by our rules
+
+the 'link' element is an example of a 'void element' because it has no content between opening and closing tags, hence there is no closing tag. 'void elements' are configured with attributes only. when we are configuring the 'link' attribute, apart from the 'href' attribute, we also use the 'rel' attribute to specify what kind of relationship we are creating with this link.
+
+for void elements, you can use a <self closing tag />, or just <nothing>
