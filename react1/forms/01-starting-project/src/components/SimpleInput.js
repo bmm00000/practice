@@ -6,9 +6,6 @@ const SimpleInput = (props) => {
 	const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 	const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 
-	// const [formIsValid, setFormIsValid] = useState(false);
-	// in our case, we only have one input, therefore, if that input is valid, our form is valid. but if we have many inputs, then as soon as one input is invalid, the whole form is invalid (all inputs have to be valid for the form to be valid). in addition to the validity of the individual inputs, we are going to manage the validity of the whole form with the formIsValid state, and useEffect. but we don't even need this state, we can refactor and eliminate this state and the useEffect below.
-
 	const enteredNameIsValid = enteredName.trim() !== '';
 	const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
@@ -49,7 +46,6 @@ const SimpleInput = (props) => {
 
 		setEnteredNameTouched(false);
 		setEnteredEmailTouched(false);
-		// if we don't setEnteredNameTouched back to false, we will still get feedback after submission, since we setEnteredName to an empty string just above (after we submit and reset setEnteredName, it's a brand new, untouched form)
 	};
 
 	const nameInputClasses = nameInputIsInvalid
