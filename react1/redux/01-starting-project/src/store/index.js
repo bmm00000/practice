@@ -1,12 +1,31 @@
 import { createStore } from 'redux';
 
-const counterReducer = (state = { counter: 0 }, action) => {
+const initialState = { counter: 0, showCounter: true };
+
+const counterReducer = (state = initialState, action) => {
 	if (action.type === 'increment') {
-		return { counter: state.counter + 1 };
+		return { counter: state.counter + 1, showCounter: state.showCounter };
+		// remember, the objects returned as new state will not merge into the former state, but will override it! that's why we need to add all the properties of our state object in all the 'if' statements, even if we don't change them (otherwise those piece of state will be deleted).
+
+		// remember, you want to return a new object as new state. you should NEVER mutate the existing state, so you could never do this:
+		// state.counter++
+		// return state
+		// since object are reference values in js, it's easy to make this mistake, so watch out! even though it may work, it can lead to bugs, unwanted behaviours, etc.
+	}
+
+	if (action.type === 'increase') {
+		return {
+			counter: state.counter + action.amount,
+			showCounter: state.showCounter,
+		};
 	}
 
 	if (action.type === 'decrement') {
-		return { counter: state.counter - 1 };
+		return { counter: state.counter - 1, showCounter: state.showCounter };
+	}
+
+	if (action.type === 'toggle') {
+		return { showCounter: !state.showCounter, counter: state.counter };
 	}
 
 	return state;
