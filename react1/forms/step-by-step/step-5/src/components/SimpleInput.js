@@ -1,4 +1,4 @@
-// IN STEP-5 WE ARE GOING TO outsource the duplicated logic that we have (we are doing similar things for name, and email. imagine if we had more inputs...). in order to achieve this, you could create a custom Input component, with all the input logic there for validating it, touched status, etc., but in that case, to validate the whole form (by passing props, etc.) would be tricky. that's why we are going to follow another approach, we are going to use a custom hook.
+// IN STEP-5 WE ARE GOING TO outsource the duplicated logic that we have (becuase we are doing similar things for name, and email. imagine if we had more inputs...). in order to achieve this, you could create a custom Input component, with all the input logic there for validating it, touched status, etc., but in that case, to validate the whole form (by passing props, etc.) would be tricky. that's why we are going to follow another approach, we are going to use a custom hook.
 
 import useInput from '../hooks/use-input';
 
@@ -33,9 +33,10 @@ const SimpleInput = (props) => {
 		// setEnteredEmailTouched(true);
 		// we get rid of these, since the form cannot be submitted if the inputs are invalid anyways.
 
-		if (!enteredNameIsValid || !enteredEmailIsValid) {
-			return;
-		}
+		// if (!enteredNameIsValid || !enteredEmailIsValid) {
+		// 	return;
+		// }
+		// we get rid of these, since the form cannot be submitted if the inputs are invalid anyways.
 
 		console.log(enteredName, enteredEmail);
 
