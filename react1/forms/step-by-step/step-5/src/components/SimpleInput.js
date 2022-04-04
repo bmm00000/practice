@@ -1,6 +1,7 @@
 // IN STEP-5 WE ARE GOING TO outsource the duplicated logic that we have (becuase we are doing similar things for name, and email. imagine if we had more inputs...). in order to achieve this, you could create a custom Input component, with all the input logic there for validating it, touched status, etc., but in that case, to validate the whole form (by passing props, etc.) would be tricky. that's why we are going to follow another approach, we are going to use a custom hook.
 
-import useInput from '../hooks/use-input';
+// import useInput from '../hooks/use-input';
+import useInputUseReducer from '../hooks/use-input-use-reducer';
 
 const SimpleInput = (props) => {
 	const {
@@ -10,7 +11,7 @@ const SimpleInput = (props) => {
 		valueChangeHandler: nameChangedHandler,
 		inputBlurHandler: nameBlurHandler,
 		reset: resetNameInput,
-	} = useInput((value) => value.trim() !== '');
+	} = useInputUseReducer((value) => value.trim() !== '');
 
 	const {
 		value: enteredEmail,
@@ -19,7 +20,7 @@ const SimpleInput = (props) => {
 		valueChangeHandler: emailChangedHandler,
 		inputBlurHandler: emailBlurHandler,
 		reset: resetEmailInput,
-	} = useInput((value) => value.includes('@'));
+	} = useInputUseReducer((value) => value.includes('@'));
 
 	let formIsValid = false;
 	if (enteredNameIsValid && enteredEmailIsValid) {

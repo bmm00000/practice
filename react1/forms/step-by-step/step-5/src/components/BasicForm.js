@@ -1,6 +1,9 @@
 import useInput1 from '../hooks/use-input1';
 
 const BasicForm = (props) => {
+	const isNotEmpty = (value) => value.trim() !== '';
+	const isEmail = (value) => value.includes('@');
+
 	const {
 		value: firstName,
 		valueIsValid: firstNameIsValid,
@@ -8,7 +11,7 @@ const BasicForm = (props) => {
 		onInputChange: onFirstNameChange,
 		onInputBlur: onFirstNameBlur,
 		onReset: onFirstNameReset,
-	} = useInput1((value) => value.trim() !== '');
+	} = useInput1(isNotEmpty);
 	const {
 		value: lastName,
 		valueIsValid: lastNameIsValid,
@@ -16,7 +19,7 @@ const BasicForm = (props) => {
 		onInputChange: onLastNameChange,
 		onInputBlur: onLastNameBlur,
 		onReset: onLastNameReset,
-	} = useInput1((value) => value.trim() !== '');
+	} = useInput1(isNotEmpty);
 	const {
 		value: email,
 		valueIsValid: emailIsValid,
@@ -24,7 +27,7 @@ const BasicForm = (props) => {
 		onInputChange: onEmailChange,
 		onInputBlur: onEmailBlur,
 		onReset: onEmailReset,
-	} = useInput1((value) => value.includes('@'));
+	} = useInput1(isEmail);
 
 	let formIsValid = false;
 	if (firstNameIsValid && lastNameIsValid && emailIsValid) {
@@ -33,6 +36,11 @@ const BasicForm = (props) => {
 
 	const onFormSubmission = (event) => {
 		event.preventDefault();
+
+		if (!formIsValid) {
+			return;
+		}
+		// even though the submit button is disabled, the user could theoretically enable the submit button with the dev tools, that's why we also cover this situation.
 
 		console.log(firstName, lastName, email);
 
@@ -102,3 +110,6 @@ const BasicForm = (props) => {
 };
 
 export default BasicForm;
+
+// with third party packages like 'formik' you can write less state logic and only validation logic, which will save a lot of code (in a similar way to what we did with our custom hooks, but 'formik' allows us to outsource even more logic to it). if you want to dive deeper into custom hooks for forms:
+// https://academind.com/tutorials/reactjs-a-custom-useform-hook
