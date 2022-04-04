@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-// useSelector is a cumstom hook made by the react-redux team. we could also use useStore, but useSelector is more convenient, since it allows us to select a part of the state managed by the store. if we were using a class-based component, we would also need to import the 'connect' function to be used as a wrapper around the class-based component to connect that component to the store.
+// useSelector is a custom hook made by the react-redux team. we could also use useStore, but useSelector is more convenient, since it allows us to select a part of the state managed by the store. if we were using a class-based component, we would also need to import the 'connect' function to be used as a wrapper around the class-based component to connect that component to the store.
 
 import classes from './Counter.module.css';
 
