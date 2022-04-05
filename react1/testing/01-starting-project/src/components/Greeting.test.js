@@ -9,7 +9,7 @@ describe('Greeting component', () => {
 
 		// Act: in this case, nothing.
 
-		// Assert: we want to look into the simulated component content. we import the 'screen' method, which gives us access to the virtual screen that was rendered, and then we can find elements in that screen (for this, you have several functions available: get functions, query functions, and find functions, the main difference is when this functions throw errors, and if they return a promise or not. get functions will throw an error if an element is not found, but query functions won't do that, and find functions will return a promise). in our case, we will use 'getByText' (if it doesn't find the text, it will throw an error), and we can call it with a regex, or just hard code a string with the text we are looking for. you can also pass a second argument and configure that you want the exact match ({exact: true}, which is the default, or {exact: false}, in the latter, casing won't matter and it will also match sub-strings):
+		// Assert: we want to look into the simulated component content. we import the 'screen' method, which gives us access to the virtual screen that was rendered, and then we can find elements in that screen (for this, you have several functions available: get functions, query functions, and find functions, the main difference is when these functions throw errors, and if they return a promise or not. get functions will throw an error if an element is not found, but query functions won't do that, and find functions will return a promise). in our case, we will use 'getByText' (if it doesn't find the text, it will throw an error), and we can call it with a regex, or just hard code a string with the text we are looking for. you can also pass a second argument and configure that you want the exact match ({exact: true}, which is the default, or {exact: false}, in the latter, casing won't matter and it will also match sub-strings):
 		const helloWorldElement = screen.getByText('Hello World!');
 		// now we make the actual assertion, we check whether that element exists, so we use the globally available 'expect' function, to which we can pass our testing result value (it can be anything: a number, a string, or, in our case, a dom node (html element)). and then we have various matcher functions (in our case, we will use 'toBeInTheDocument'; you can also use '.not' to check by opposites, for example, '.not.toBeInTheDocument'; in this case you would need to use 'queryByText' method for the opposite to work, since 'getByText' would throw an error because it wouldn't be able to find the text):
 		expect(helloWorldElement).toBeInTheDocument();
@@ -28,7 +28,7 @@ describe('Greeting component', () => {
 		render(<Greeting />);
 
 		// Act:
-		// (since we want to click that button, we import another feature from another package (testing library/using event package) which also was installed out of the box with CRA). userEvent is an object that helps us trigger events in this virtual screen):
+		// (since we want to click that button, we import another feature from another package (testing-library/user-event package) which also was installed out of the box with CRA). userEvent is an object that helps us trigger events in this virtual screen):
 		const buttonElement = screen.getByRole('button');
 		// 'button' is a role that elements can have in the screen. that's why we can select it like that (because we have only one button) (we could also select it by the text it has, using getByText)
 		userEvent.click(buttonElement);

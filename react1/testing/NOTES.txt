@@ -1,9 +1,9 @@
-automated testing: code that tests our code (as opposed to manual testingp).
+automated testing: code that tests our code (as opposed to manual testing).
 
 often, it's not so easy to differentiate between unit and integration tests, since very often you want to test a component that uses another component.
 
-continue learning with the official documentation of jest and react testing library.
-
 keep in mind that jest is not a tool focused on only react, it's as general javascript testing tool.
 
-in the ecosystem section of react testing library, you can check extensions that you can install. some of these extensions are already part of the default set up in a react app (for example, the user-event extension), but there are other extensions of react testing library that is not mentioned in the docs, is the react hooks testing libirary, which makes testing hooks and especially custom hooks, way easier... 
+in the ecosystem section of react testing library, you can check extensions that you can install. some of these extensions are already part of the default set up in a react app (for example, the user-event extension), but there are other extensions of react testing library that are not mentioned in the docs, for example, the react hooks testing libirary, which makes testing hooks and especially custom hooks, way easier... 
+
+continue learning with the official documentation of jest and react testing library.
