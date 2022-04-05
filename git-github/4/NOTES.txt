@@ -20,7 +20,7 @@ usually, what we do is we work with different branches in our local environment,
 
 git push origin cats (if the branch 'cats' doesn't exist yet in github, it will create it when we push our local 'cats' branch). the same will happen if we 'git push origin master' when the remote repo is empty (it will create the 'master' branch, and that will be the default branch in github(see screenshot)). usually, we want to connect the remote and local branches with the same name, but we don't have to.
 
-when you follow the instructions in github to rename your local 'master' branch to 'main' (git branch -M main), it's assuming that you are checkingout the local master branch, so you rename 'master' to 'main'.
+when you follow the instructions in github to rename your local 'master' branch to 'main' (git branch -M main), it's assuming that you are checking out the local master branch, so you rename 'master' to 'main'.
 but you don't need to rename your 'master' branch. you can just 'git push origin master', and that branch will be pushed to the remote repo (and it will be the default branch)
 
 'git push -u origin dogs' will push the local branch 'dogs' to the origin 'dogs' branch (or create the origin 'dogs' branch if it doesn't exist yet), and connect these local and remote branches, so we can just use 'git push' and git will remember to what remote branch to push to, when whe push from the local 'dogs' branch.
