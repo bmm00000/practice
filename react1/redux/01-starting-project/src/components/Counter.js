@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 // useSelector is a custom hook made by the react-redux team. we could also use useStore, but useSelector is more convenient, since it allows us to select a part of the state managed by the store. if we were using a class-based component, we would also need to import the 'connect' function to be used as a wrapper around the class-based component to connect that component to the store.
 
+import { counterActions } from '../store/index-slice';
 import classes from './Counter.module.css';
 
 const Counter = () => {
@@ -11,20 +12,25 @@ const Counter = () => {
 	// we pass a function to useSelector that react-redux will execute and will determine which specific piece of data you want to extract from the whole store. when you use useSelector, react-redux will authomatically set up a subscription to the redux store for this component, so the component will be updated and will receive the latest state authomatically whenever the store data changes. if you were to unmount the Counter component, react-redux would also clear the subscription.
 
 	const incrementHandler = () => {
-		dispatch({ type: 'increment' });
+		// dispatch({ type: 'increment' });
+		dispatch(counterActions.increment());
 	};
 
 	const increaseHandler = () => {
-		dispatch({ type: 'increase', amount: 10 });
+		// dispatch({ type: 'increase', amount: 10 });
 		// we are attaching a payload to the action. in this situation, we are hard coding it as 10, but this could come from an input, for example.
+		dispatch(counterActions.increase(10));
+		// to the 'increase' method above, we pass our payload data, and the payload that we pass will be in the 'payload' key of the created action, as follows: {type: 'auto-generated identifier', payload: 10}
 	};
 
 	const decrementHandler = () => {
-		dispatch({ type: 'decrement' });
+		// dispatch({ type: 'decrement' });
+		dispatch(counterActions.decrement());
 	};
 
 	const toggleCounterHandler = () => {
-		dispatch({ type: 'toggle' });
+		// dispatch({ type: 'toggle' });
+		dispatch(counterActions.toggleCounter());
 	};
 	// for the purposes of our demo, we are going to assume that the visibility of the counter is a piece of state that would also be interesting for other hypothetical components, that's why we are going to manage it as global state, and use redux for that.
 
