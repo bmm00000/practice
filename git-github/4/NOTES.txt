@@ -63,18 +63,18 @@ when you 'git fetch' and the remote branch references get updated, if you 'git l
 
 corner case: when you have a remote tracking branch, and you 'git switch' to this branch for the first time, as we have seen, git sets up this branch in your local, USING THE LATEST INFO THAT IT HAS FROM THE LAST TIME IT CONNECTED TO ORIGIN (from the last time that you fetched) (ie. when you 'git switch', it doesn't connect to origin. you need to 'git fetch' to connect to origin)
 
-git pull = git fetch (update remote tracking branch) + git merge (merge remote tracking branch into HEAD)
+git pull = git fetch (update remote tracking branch) + git merge (merge only the remote tracking branch that is the upstream of your local HEAD, into your local HEAD)
 
 IT MATTERS FROM WHERE YOU 'GIT PULL': for example, 'git pull origin master' will update the remote tracking master branch, and then merge that branch into our current branch, WHATEVER THAT HAPPENS TO BE! 
 
-QUESTION: if we 'git log' after pulling, will wee see a new merge commit IF IT WAS NOT A FAST FORWARD merge AND ALSO THERE WAS NOT A CONFLICT?? YESSS! (btw, the slide is wrong!)
+QUESTION: if we 'git log' after pulling, will we see a new merge commit IF IT WAS NOT A FAST FORWARD merge AND ALSO THERE WAS NOT A CONFLICT?? YESSS! we will see the merge commit! (btw, the slide is wrong!)
 
 as a good practice, before you push anything to github, you want to pull down and merge if any conflicts, (if there are conflicts and you make a commit to resolve them, then your local branch will be ahead respective the remote) and then you push (the only problem you may run into is that someone pushes something to github in the 30 seconds or so between the moment when you pull, and then push with your changes).
 IN SHORT: MERGES ARE DONE WHEN PULLING, CANNOT BE DONE WHEN PUSHING!
 
 in the slide where branches are merged after the pull, the yellow circle is at the end because it was done in local after the green ones were done in the remote repo, so the resulting order is chronological. KEEP IN MIND THAT THERE'S ONE COMMIT MISSING ON THE DIAGRAM! local must be 2 commits ahead of the remote (one is the yellow circle and the other one is the new merge commit done in local).
 
-when you git pull, you merge the remote branch into your local branch (if you git log after you pull, you will see all the commits coming from the remote branch together with your pre-existing local commits, chronologically). if there's a conflict, you will need to resolve it manually and make a commit.
+when you git pull, you update your (local) remote tracking branch with the remote branch, and then merge the (local) remote tracking branch into your local branch (if you git log after you pull, you will see all the commits coming from the remote branch together with your pre-existing local commits, chronologically). if there's a conflict, you will need to resolve it manually and make a commit.
 QUESTION: if there's no conflict, but the merge is not a fast-forward, does git make a merge commit? YES!!!
 
 MY OBSERVATION: you can establish a tracking connection between a remote branch and a local branch in two ways: 'git switch' to a branch with the name of a remote tracking branch (this is after you have cloned or fetched, but you don't have that branch in local yet), or you can also set the upstream with 'git push -u <remote> <local-branch-name>'
@@ -84,13 +84,13 @@ https://www.canva.com/design/DAEVGSMC0ew/9f6udCe20KrYAfwoD0zqHA/view?utm_content
 
 in the example of inviting a collaborator in the screenshot, the repo is private. if the collaborator accepts the invitation, he can push to the repo, but he doesn't have access to 'settings' (he is a collaborator, not the owner), so he cannot do certain things (delete the repo, invite new collaborators or delete them, etc.). with 'enterprise' or 'team' github tiers, you can have different things, like several owners, different permissions, etc.
 
-'markdown' is a tool that generates markup, ie. you write text with some simple sintax (markdown) and then github (or other any other place that allows you to view markdown and render it yourself, like https://markdown-it.github.io/, or in vscode you can also preview it as you write it (command palette>Markdown Open Preview)) will be able to convert it to html (so you will save time since you don't need to write html):
+'markdown' is a tool that generates markup, ie. you write text with some simple sintax (markdown) and then github (or any other place that allows you to view markdown and render it yourself, like https://markdown-it.github.io/, or in vscode you can also preview it as you write it (command palette>Markdown Open Preview)) will be able to convert it to html (so you will save time since you don't need to write html):
 https://daringfireball.net/projects/markdown/
 https://markdown-it.github.io/
 
 in any github project, you can see the markdown if you click on the 'raw' tag in the readme section
 
-with gists, you can share snippets of code, solutions to problems, etc. with others without the hassle of creating new repo, pusing, etc. and it allows people to comment with suggestions, etc.
+with gists, you can share snippets of code, solutions to problems, etc. with others without the hassle of creating new repo, pushing, etc. and it allows people to comment with suggestions, etc.
 see example of gist in screenshot: using different github accounts with ssh keys (this gist is using a markdown file). it could have been a github repo with just one file on it, but the gist format is more convenient.
 gists can be secret (hidden to search engines but visible to anyone you give the url to) or public.
 you can add several files to a gist (see screenshot, we add a js file after the md file)
