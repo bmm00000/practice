@@ -46,7 +46,7 @@ describe('Greeting component', () => {
 		const outputElement = screen.queryByText('good to see you', {
 			exact: false,
 		});
-		// 'getByText' would fail if the element was not found, that's why we use 'queryByText' (which will return null if the text is not found).
+		// 'getByText' would throw an error if the element was not found, that's why we use 'queryByText' (which will return null if the text is not found).
 		expect(outputElement).toBeNull();
 	});
 });
