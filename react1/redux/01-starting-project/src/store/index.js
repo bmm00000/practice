@@ -1,36 +1,26 @@
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+// import { createStore } from '@reduxjs/toolkit';
 
-const initialState = { counter: 0, showCounter: true };
+import counterReducer from './counter';
+import authReducer from './auth';
 
-const counterReducer = (state = initialState, action) => {
-	if (action.type === 'increment') {
-		return { counter: state.counter + 1, showCounter: state.showCounter };
-		// remember, the objects returned as new state will not merge into the former state, but will override it! that's why we need to add all the properties of our state object in all the 'if' statements, even if we don't change them (otherwise those piece of state will be deleted).
+// const store = createStore(counterSlice.reducer);
+// when we access 'reducer', we access a big internal reducer with 'if' statements that trigger our methods that we specified in 'reducers'.
+// however, if we had a big application with multiple state slices, we would have a problem because we would have only one reducer passed to createStore. with standard redux, we could use the combineReducers function (imported from redux), but even better we can import configureStore from the redux toolkit. configureStore, like createStore, creates a store, but it makes it easier to merge multiple reducers into one reducer (it expects a configuration object, that expects a 'reducer' property; no matter if it's createStore or configureStore, redux wants one main reducer function which is responsible for the global state, and the value for the 'reducer' key can be just one reducer or an object with multiple reducers that we name as we want (we give them the key names that we want), so we are creating a map of reducers). behind the scenes, configureStore will merge all these reducers into one big reducer:
+// const store = configureStore({
+// 	reducer: { counter: counterSlice.reducer, anotherState: anotherStateSlice.reducer },
+// });
+// but in our case, we only have one reducer, so we are going to assign this reducer to the main reducer of configureStore:
+// const store = configureStore({
+// 	reducer: counterSlice.reducer,
+// });
+// but then we added more slices:
+const store = configureStore({
+	reducer: { counter: counterReducer, auth: authReducer },
+});
 
-		// remember, you want to return a new object as new state. you should NEVER mutate the existing state, so you could never do this:
-		// state.counter++
-		// return state
-		// since objects are reference values in js, it's easy to make this mistake, so watch out! even though it may work, it can lead to bugs, unwanted behaviours, etc.
-	}
-
-	if (action.type === 'increase') {
-		return {
-			counter: state.counter + action.amount,
-			showCounter: state.showCounter,
-		};
-	}
-
-	if (action.type === 'decrement') {
-		return { counter: state.counter - 1, showCounter: state.showCounter };
-	}
-
-	if (action.type === 'toggle') {
-		return { showCounter: !state.showCounter, counter: state.counter };
-	}
-
-	return state;
-};
-
-const store = createStore(counterReducer);
-// previously, we did subscribe and dispatch form the same file (in node), but now we want to connect our react app to this redux store, so that the components of our app can dispatch and listen. that's why we export the store, so that we can use it outside of this file, and then we will connect our react app to this store (we need to provide this store to the react app (since in redux we only have one store, we only need to provide it once), but what does provide mean? GO TO THE TOP OF THE COMPONENT TREE, ie. to the index.js file):
 export default store;
+
+// if our app continues to grow (if we manage more and more state), we could face several problems: if you have many action identifiers ('type' properties), you can introduce bugs when typing them, or name clashing. another problem: the more data we manage, the bigger our state object becomes, and since we have to copy the whole object with every action type, the reducer function will become longer and longer, so you will end up with an unmaintainably big redux file (so we would have the same disadvantage that 'react context' has, ie. to put all in one long context provider file). another problem: you cannot mutate the existing state object, but you may accidentally mutate it if we have more complex data with nested objects, arrays, etc. For all these problems, in the past, we used different solutions. for example, defining and exporting/importing constants with the action identifiers, so the IDE will help you when using the constants, so you don't make mistakes while typing the action identifiers. for the other problems there are also solutions for splitting your reducer into other smaller reducers, and also from third party packages that ensure that you don't mutate existing state. but we don't need to do that anymore thanks to another library: redux toolkit. it will make working with redux easier and more convenient, easier to set up and maintain:
+// npm install @reduxjs/toolkit
+// when you install redux toolkit, you can uninstall redux, becuase it's already included in redux toolkit (you just remove it from package.json)

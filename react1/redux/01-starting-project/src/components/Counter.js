@@ -1,15 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux';
 // useSelector is a custom hook made by the react-redux team. we could also use useStore, but useSelector is more convenient, since it allows us to select a part of the state managed by the store. if we were using a class-based component, we would also need to import the 'connect' function to be used as a wrapper around the class-based component to connect that component to the store.
-
-import { counterActions } from '../store/index-slice';
+import { counterActions } from '../store/counter';
 import classes from './Counter.module.css';
 
 const Counter = () => {
 	const dispatch = useDispatch();
 	// the useDispatch hook will return a dispatch function that we can execute to dispatch an action against our redux store.
-	const counter = useSelector((state) => state.counter);
-	const show = useSelector((state) => state.showCounter);
+	// const counter = useSelector((state) => state.counter);
+	// const show = useSelector((state) => state.showCounter);
 	// we pass a function to useSelector that react-redux will execute and will determine which specific piece of data you want to extract from the whole store. when you use useSelector, react-redux will authomatically set up a subscription to the redux store for this component, so the component will be updated and will receive the latest state authomatically whenever the store data changes. if you were to unmount the Counter component, react-redux would also clear the subscription.
+	// after we use slices:
+	const counter = useSelector((state) => state.counter.counter);
+	const show = useSelector((state) => state.counter.showCounter);
 
 	const incrementHandler = () => {
 		// dispatch({ type: 'increment' });
