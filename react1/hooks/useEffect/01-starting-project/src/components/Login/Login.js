@@ -138,7 +138,7 @@ export default Login;
 // };
 // In this example:
 
-// timerIsActive is added as a dependency because its component state that may change when the component changes (e.g. because the state was updated)
+// timerIsActive is added as a dependency because it's component state that may change when the component changes (e.g. because the state was updated)
 
 // timerDuration is added as a dependency because it's a prop value of that component - so it may change if a parent component changes that value (causing this MyComponent component to re-render as well)
 
