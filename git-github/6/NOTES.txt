@@ -1,6 +1,13 @@
 https://www.canva.com/design/DAEVkyNcwWI/qt8pRN3JA1lP9ckYeImxeQ/view?utm_content=DAEVkyNcwWI&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton#1
 
-as you merge the master branch into your feature branch many times to keep your feature branch updated with your colleagues' work, your feature branch history gets muddied, and later, when you (and your colleagues... imagine a big open source project) eventually merge your feature branches into master, all that mud (many many merge commits) get into the history of the master branch. we are not saying that these commits are useless, but they are not informative 
+different companies use 'rebase' with different purposes: either as an alternative to merging, or as a cleanup tool.
+
+both 'git merge' and 'git rebase' help us combine changes from two branches.
+
+why we may want an alternative to merging:
+as you merge the master branch into your feature branch many times to keep your feature branch updated with your colleagues' work, your feature branch history gets muddied, and later, when you (and your colleagues... imagine a big open source project) eventually merge your feature branches into master, all that mud (many many merge commits) get into the history of the master branch. we are not saying that these commits are useless, but they are not informative
+
+ADD NOTE: USING REBASE INSTEAD OF MERGING!!!! (NOT ONLY TO CLEAN UP MERGING COMMITS)
 
 rebase: come with a new 'base' for our feature branch
 when we rebase, commits are re-written: this doesn't indicate the time when commits were created (each commit has a original date, metadata, etc. and that is preserved) but commits are moved around in order to give us a new structure, so all the commits of the feature branch begin at the tip of the master branch (so you don't have merge commits). therefore, all the work from the master branch is included in the feature branch. the feature branch has a new base (at the tip of the master branch). we end up with a structure that is linear, cleaner and other developers can understand it better (imagine a big open source project, others will be able to better understand the history of our project).

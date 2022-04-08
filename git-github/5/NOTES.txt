@@ -29,6 +29,7 @@ REPLY: Absolutely you could skip that step and merge your changes into master.  
 --no-ff: we are indicating git not to fast forward even if it detects that it can. we do this because we want in any case a merge commit (even if it could do a fast forward) in order to be clearer about the history of our project (you don't have to do this, but this is what github recommends)
 It's just a matter of preference/style.  Many companies like to have a very explicit, clear record of the repo history.  Fast forward merges aren't easily detectable because they don't result in a new distinct commit.
 
+WATCH AGAIN VIDEO 134.
 another thing we can do when working with a lot of collaborators is to configure branch protection rules to establish some quality control and review/feedback process over the main branch. we go to 'settings', 'branches', there you can decide which one is your default branch. there, you also have 'branch protection rules'
 if you click on 'add', you will see 'branch name pattern' because you can add rules for sets of branches called, for example, 'feature/whatever-name'. you can also add the specific name of the branch, eg. 'main'
 see the screenshots to follow the example.
