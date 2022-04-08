@@ -58,7 +58,7 @@ const Login = (props) => {
 		const identifier = setTimeout(() => {
 			console.log('Checking form validity!');
 			setFormIsValid(emailIsValid && passwordIsValid);
-			// in this case, setFormIsValid will run with the latest state values (emailState and passwordState). they will be updated, because we are using useEffect, and this function runs after emailState and passwordState (the dependencies) have changed. therefore, in this case, it's ok to update a state with another state (because useEffect only runs AFTER state updates (the dependencies)).
+			// in this case, setFormIsValid will run with the latest state values (emailState and passwordState). they will be updated, because we are using useEffect, and this function runs after emailState and passwordState (the dependencies) have changed. therefore, in this case, it's ok to update a state with another state (because useEffect only runs AFTER the state updates (the dependencies)).
 		}, 500);
 
 		return () => {
@@ -66,7 +66,7 @@ const Login = (props) => {
 			clearTimeout(identifier);
 		};
 	}, [emailIsValid, passwordIsValid]);
-	// if we add as dependencies emailState and passwordState, the problem we will have is that this useEffect will run too often, since it will run even when emailState.val or passwordState.val change, and we are not interested in that, we are only interested in changes of emailState.isValid and passwordState.isValid. in order to fix this, we will use object destructuring with an alias assignment (we use aliases because isValid is the same key for both states) (see above the useEffect). now, when the input changes, but the validity doesn't change, the effect will not be run. you can use this optimization also when you have props as dependency, and you want the effect to be run when some props change, not all of them
+	// if we add as dependencies emailState and passwordState, the problem we will have is that this useEffect will run too often, since it will run even when emailState.val or passwordState.val change, and we are not interested in that, we are only interested in changes of emailState.isValid and passwordState.isValid. in order to fix this, we will use object destructuring with an alias assignment (we use aliases because isValid is the same key for both states) (see above the useEffect). now, when the input changes, but the validity doesn't change, the effect will not run. you can use this optimization also when you have props as dependency, and you want the effect to be run when some props change, not all of them.
 
 	const emailChangeHandler = (event) => {
 		dispatchEmail({ type: 'USER_INPUT', val: event.target.value });
