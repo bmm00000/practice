@@ -1,0 +1,20 @@
+for the presentation, see fireship and uidotdev videos in youtube.
+
+nextjs.org: the react framework for production.
+it makes building large scale react apps easier.
+
+if you want to build large scale react projects, you will typically need to add extra libraries for routing, authentication, etc.
+
+nextjs is a framework: it offers more built-in features than a library, it gives you clear rules/guidance on how to write your code, structure your files, etc.
+it has many built-in features that you would need to add to react on your own if you didn't use nextjs. therefore, we won't have to re-invent the wheel, you won't have to add as many third party libraries to solve common problems that you have while building bigger real production apps.
+
+server-side rendering: preparing the content of a page in the server instead of in the client.
+inspect a page built with react: you have a pretty empty page, only the root div into which the react app is loaded and rendered. but all that rendering is done by react, and since react is a client side js library, all that rendering happens on the client (ie. in the browsers of your users). that's why the html code that the server sends to the client is pretty empty. why can this be a problem? if your page fetches some data that should be displayed from a server, the user might see a loading state, some flickering before the data gets loaded (example of our meetups page), because the data fetching only begins when the js code is executed on the client, and then we still have to wait for the response of the request, BECAUSE THE PAGE THAT WE REQUESTED DID NOT CONTAIN THAT DATA (it was empty).
+this can also be a SEO problem: search engine crawlers will only see that initially empty html page.
+THIS IS WHEN SERVER-SIDE RENDERING CAN HELP US: RENDER REACT COMPONENTS ON A SERVER.
+keep in mind that react alone has built-in features that allow you to add server side rendering (ReactDOMServer), but it requires extra set up from your side and it can be tricky. with nextjs, this is already built-in without any extra set up from your side (therefore, there will not be a flickering loading state when loading the side, and the search engines will see what our users see, so no problems with SEO (inspect the code of a nextjs page: everything is there in the page that we got from the server)).
+after the initial load, we still have a standard react app (spa) running in the browser: subsequent navigation actions by the user are handled by react in the browser to have the fast/reactive user experience that react gives us. we still get that with nextjs, but for the initial load, we have the pre-rendered page (that's why client side and server side is more blended with nextjs) 
+
+file-based routing: in traditional react, you don't even have a router (routing means that we give the user the illusion of having multiple pages while we navigate around, but in reality we only have a single page), typically we use 'react router' for that (this router watches the url, and when it changes, it prevents the default of sending a new http request to a server, and instead renders different content on the page). (show example of code using react router). this is a good package, but it's extra code that you have to write, and you end up storing the components that add as pages in a separate folder. with nextjs, you define pages and routes with folders and files, instead of code (show example of nextjs app, 'pages' folder, etc.): at the end, it's less code and much more understandable.
+
+with nextjs we also have standalone backend code, that for example, works with the file system, or reaches out to a database. with nextjs it's very easy to add our own backend api into our react project using node.js code.
