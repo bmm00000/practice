@@ -15,6 +15,22 @@ THIS IS WHEN SERVER-SIDE RENDERING CAN HELP US: RENDER REACT COMPONENTS ON A SER
 keep in mind that react alone has built-in features that allow you to add server side rendering (ReactDOMServer), but it requires extra set up from your side and it can be tricky. with nextjs, this is already built-in without any extra set up from your side (therefore, there will not be a flickering loading state when loading the side, and the search engines will see what our users see, so no problems with SEO (inspect the code of a nextjs page: everything is there in the page that we got from the server)).
 after the initial load, we still have a standard react app (spa) running in the browser: subsequent navigation actions by the user are handled by react in the browser to have the fast/reactive user experience that react gives us. we still get that with nextjs, but for the initial load, we have the pre-rendered page (that's why client side and server side is more blended with nextjs) 
 
-file-based routing: in traditional react, you don't even have a router (routing means that we give the user the illusion of having multiple pages while we navigate around, but in reality we only have a single page), typically we use 'react router' for that (this router watches the url, and when it changes, it prevents the default of sending a new http request to a server, and instead renders different content on the page). (show example of code using react router). this is a good package, but it's extra code that you have to write, and you end up storing the components that add as pages in a separate folder. with nextjs, you define pages and routes with folders and files, instead of code (show example of nextjs app, 'pages' folder, etc.): at the end, it's less code and much more understandable.
+file-based routing: in traditional react, you don't even have a router (routing means that we give the user the illusion of having multiple pages while we navigate around, but in reality we only have a single page), typically we use 'react router' for that (this router watches the url, and when it changes, it prevents the default of sending a new http request to a server, and instead renders different content on the page). (show example of code using react router). this is a good package, but it's extra code that you have to write, and you end up storing the components that add as pages in a separate folder. with nextjs, you define pages and routes with folders and files, instead of code (show example of nextjs app, 'pages' folder, etc.): at the end, it's less code and much more understandable (remember, this is the intitive way that we used to organize files that will be translated into pages when we started to learn web development).
 
-with nextjs we also have standalone backend code, that for example, works with the file system, or reaches out to a database. with nextjs it's very easy to add our own backend api into our react project using node.js code.
+with nextjs we also have standalone backend code, that for example, works with the file system, or reaches out to a database. with nextjs it's very easy to add our own backend api into our react project using node.js code (we won't need to build a standalone rest api project, but instead we will only work on one project, our next.js project)
+
+we need node.js to create our next.js project, and that project will also need node.js to execute it in the future (eg. server-side rendering will use node.js under the hood).
+
+if you clone a next.js project, you also need to 'npm install' the dependencies.
+
+unlike in a regular react app, in the 'public' folder you don't have an index.html file. the reason is that next.js has built-in pre-rendering, and even though we have an spa, that single page is dynamically pre-rendered when a request reaches the server (to be precise, next.js allows us to determine WHEN a page should be pre-rendered. but we are going to learn that step by step), so that you do return an initial page with content. 
+
+hence, the 'pages' folder will be the most important folder for us. the name of the file will be as the path that will be used to access that page (with the exeption of the index.js name), eg. www.domain.com/news
+
+you don't need to import React from 'react', since next.js supports the new react feature, whereby you don't need to import React to write JSX.
+
+npm run dev: start the development server.
+
+if you inspect the pages, you won't see just the skeleton (as in a react project), but you will see the actual content of the page (the html code sent by the server contains the content, so we won't have any flickering of the page, and search engines will see that content). therefore, as we can see, server side rendering and file based routing works out of the box, without installing any other package.
+
+in order to create dynamic pages, we use the [] syntax in the file name.
