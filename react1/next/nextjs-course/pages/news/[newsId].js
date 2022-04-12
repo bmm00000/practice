@@ -1,4 +1,4 @@
-// our-domain.com/something-important
+// our-domain.com/news/something-important
 
 import { useRouter } from 'next/router';
 // this is a hook built by the next.js team that will allow us to navigate programmatically
