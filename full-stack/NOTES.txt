@@ -57,3 +57,26 @@ for void elements, you can use a <self closing tag />, or just <nothing>
 the way a page is rendered on the screen is: after loading the html file, the browser requests the css file that is linked into it (it will also request js files, images, etc; all these are different request-reponse cycles). you can see all these requests in the 'network' tab of devtools, and you can even simulate that you have a slower connection to check how fast your side would load (see screenshots).
 
 when you use google fonts, you make sure that the fonts will be requested by the browsers of the visitor of your website. you also use the 'link' element and add the url in the 'href' attribute (with the 'href' attribute, we can link not only css files, but also point at google's servers, so the fonts will be downloaded by the browser when the user visits the website, and make sure that the browser will be able to use these fonts). when you add several fonts from google fonts in the css file, they are evaluated form left to right, and if some font fails (maybe because google's servers are down or similar), then you have the other backup options of your choice (typically, some font family that your browser can use, eg. sans-serif...).
+
+//
+
+How To Output Special Characters In HTML
+When writing HTML code, characters like "<" and ">" obviously have a special meaning: They mark the beginning and ending of HTML tags.
+
+But what if you would want to output the "<" and ">" characters or a complete HTML tag as text on your website? Like on this site here (yes, the site on which you currently are). You can read the code snippets above just fine - because they are output as plain text (they are NOT interpreted as HTML by the browser that loaded this page).
+
+There are two main ways of achieving this:
+
+You can use the special <pre>...</pre> tags (for "preformatted text") - these tags wrap any text (that may include HTML code) and "tell the browser" to output it as plain text (i.e. NOT interpret it as HTML code). When using <pre>, whitespace is also preserved and NOT ignored (as it normally would be)
+
+Alternatively, if you simply want to output the "<" character (e.g. in some math formula that should be shown on your page), you can use some special "shortcuts" (so-called "HTML entities") in your HTML code:
+
+E.g. if you write &gt; in your HTML code, the browser will output the ">" (greater than) symbol
+
+&lt; => "<" (lower than)
+
+//
+
+in css, 'text-align' centers not the html element, but its content (eg. it doesn't center the paragrph, but the text of the paragraph). therefore, if you want to center an image, if you apply this property to the image it will do nothing, you should apply this property to the whole body. this is something that often happens in css: you have to target the parent element.
+
+it's a good practice to structure your css code, so it comes pretty much in the same order as the html code
