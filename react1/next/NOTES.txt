@@ -34,3 +34,5 @@ npm run dev: start the development server.
 if you inspect the pages, you won't see just the skeleton (as in a react project), but you will see the actual content of the page (the html code sent by the server contains the content, so we won't have any flickering of the page, and search engines will see that content). therefore, as we can see, server side rendering and file based routing works out of the box, without installing any other package.
 
 in order to create dynamic pages, we use the [] syntax in the file name.
+
+in a next.js project, the 'pages' name for the folder with pages is reserved. the 'components' folder can be named however you want.
