@@ -5,7 +5,7 @@ function greet(name) {
 greet('Jose');
 // we don't use var, let or const for 'name'. what's its scope, global or local...?
 console.log(name);
-// nothing gets printed! this is a niche case: 'name' is a default globally available variable in the browser.
+// we should get an error but nothing gets printed instead! this is a niche case: 'name' is a default globally available variable in the browser.
 
 // let's do the same thing with a variable that is not globally available in the browser:
 function printAge(age) {

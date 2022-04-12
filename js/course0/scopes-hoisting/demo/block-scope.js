@@ -6,13 +6,12 @@ if (true) {
 	let yourAge = 27; // block scope
 	console.log(yourAge);
 }
-console.log(myAge);
+console.log(myAge); // it will work.
 // if we use 'var' inside of a block, it's global scope.
-console.log(yourAge);
+console.log(yourAge); // it will throw an error.
 // if we use 'let' or 'const' inside of a block, it's block scope.
 
 // REMEMBER! objects in js are not blocks!
-
 // but any other {} is a block. you don't see this often, but technically the following is also a block:
 
 {
@@ -27,4 +26,4 @@ console.log(myName);
 
 // WATCH OUT! the following is also technically block scope:
 const yourName = 'Ana'; // block scope, although this variable will be available everywhere in this file, so it would behave the same way as global scope.
-// it's not global scope, because it uses the 'const' keyword. therefore, every time you have 'let' or 'const', you have block scopes.
+// it's not global scope, because it uses the 'const' keyword: every time you have 'let' or 'const', you have block scopes.
