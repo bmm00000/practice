@@ -7,7 +7,7 @@ both 'git merge' and 'git rebase' help us combine changes from two branches.
 why we may want an alternative to merging:
 as you merge the master branch into your feature branch many times to keep your feature branch updated with your colleagues' work, your feature branch history gets muddied, and later, when you (and your colleagues... imagine a big open source project) eventually merge your feature branches into master, all that mud (many many merge commits) get into the history of the master branch. we are not saying that these commits are useless, but they are not informative
 
-ADD NOTE: USING REBASE INSTEAD OF MERGING!!!! (NOT ONLY TO CLEAN UP MERGING COMMITS)
+two ways of using rebase: also USING REBASE INSTEAD OF MERGING (wait until you do all your work in your feature branch, and then rebase)!!!! (NOT ONLY TO CLEAN UP MERGING COMMITS)
 
 rebase: come with a new 'base' for our feature branch
 when we rebase, commits are re-written: this doesn't indicate the time when commits were created (each commit has a original date, metadata, etc. and that is preserved) but commits are moved around in order to give us a new structure, so all the commits of the feature branch begin at the tip of the master branch (so you don't have merge commits). therefore, all the work from the master branch is included in the feature branch. the feature branch has a new base (at the tip of the master branch). we end up with a structure that is linear, cleaner and other developers can understand it better (imagine a big open source project, others will be able to better understand the history of our project).
@@ -16,9 +16,11 @@ as it happens in the demo, even after you have done the merge commits, you can r
 
 when we rebase and 're-write history', what happens is that git creates new commits on the top of the base branch (these new commits have different hashes that the original ones that we had in our original feature branch, but the original hashes from the master branch DO NOT change) 
 
+keep in mind that after you rebase, you will still have the feature branch ahead of master, so you can merge feature into master (fast forward merge) in order to update the master branch. keep in mind that what you are re-writting is the feature branch, you are not touching the master branch.
+
 as a general principle, when to rebase: you rebase your feature branches that you have in your machine (not in github). you don't wanna rebase the master branch, since your collagues will have that branch as well in their local environments, so you don't wanna re-write history there. you can rebase your work from any feature branch onto the master branch (or other branch) in your local. doing so, you are not changing the commits of the master branch (after you rebase a feature branch onto the master branch, the hashes of the master branch are the same, you only re-write history/'create' new commits on the feature branch). long story short, you want to avoid re-writting commits that other people have.
 
-you can have a conflict when rebasing (see our example in the screenshot: our conflict is on the website.txt file; instructions on what to do next are also in screenshot)
+you can have a conflict when rebasing (see our example in the screenshot: our conflict is on the website.txt file; instructions on what to do next are also in screenshot). keep in mind that you have to only 'git add' after you resolve the conflicts manually (do not commit, if you don't want to see the conflict resolution commit in your history), and then 'git rebase --continue'
 
 interactive rebase: you do this to clean up your branches before your push them (not after you have pushed them and other collaborators have them)
 
