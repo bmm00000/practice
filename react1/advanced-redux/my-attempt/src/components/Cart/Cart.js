@@ -7,14 +7,16 @@ import CartItem from './CartItem';
 const Cart = (props) => {
 	const cartItems = useSelector((state) => state.cart.products);
 
-	return (
-		<Card className={classes.cart}>
-			<h2>Your Shopping Cart</h2>
-			{cartItems.length === 0 ? <p>Your cart is empty. Add stuff now!</p> : ''}
+	let content;
+	if (cartItems.length === 0) {
+		content = <p>Your cart is empty. Add stuff now!</p>;
+	} else {
+		content = (
 			<ul>
 				{cartItems.map((item) => {
 					return (
 						<CartItem
+							key={Math.random()}
 							item={{
 								title: item.title,
 								quantity: item.quantity,
@@ -25,6 +27,13 @@ const Cart = (props) => {
 					);
 				})}
 			</ul>
+		);
+	}
+
+	return (
+		<Card className={classes.cart}>
+			<h2>Your Shopping Cart</h2>
+			{content}
 		</Card>
 	);
 };

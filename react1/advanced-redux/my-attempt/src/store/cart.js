@@ -13,16 +13,10 @@ const cartSlice = createSlice({
 			state.showCart = !state.showCart;
 		},
 		add(state, action) {
-            const productIsInCart = state.products.find((item) => item.title === action.payload.title)
-            if (productIsInCart) {
-                state.products = 
-            } else {
-                state.products = state.products.concat([action.payload]);
-            }
-			
+			state.products = state.products.concat([action.payload]);
 		},
 		subtract(state, action) {
-			state.products = state.products.filter(action.payload);
+			// state.products = state.products.filter(action.payload);
 		},
 	},
 });
