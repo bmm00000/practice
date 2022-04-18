@@ -8,8 +8,9 @@ git config --local user.name (checking your local user name)
 
 otherwise, if you don't add the '--local', you will set or check the settings in the global config file (as we saw in one of the first lessons)
 
-you can also edit the config file directly (see colors configuration in the screenshot):
+you can also edit the config file directly:
 https://git-scm.com/docs/git-config
+(see example of colors configuration in the screenshot)
 
 'refs' is where git stores all the references, ie. pointers, of branches, tags, remotes, etc. (we are talking when you have at least one commit and one branch, otherwise it's different...)
 
