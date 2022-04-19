@@ -5,7 +5,7 @@ import classes from './MeetupItem.module.css';
 
 function MeetupItem(props) {
 	const router = useRouter();
-	// this is a hook, and the rules of hooks apply: it can only be called at the root level of the component function. it returns an object that has data and methods to navigate programmatically.
+	// this is a hook, and the rules of hooks apply: it can only be called at the root level of the component function. it returns an object that has data and methods to navigate programmatically/imperatively.
 
 	function showDetailsHandler() {
 		router.push('/' + props.id);
