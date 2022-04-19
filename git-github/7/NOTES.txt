@@ -25,3 +25,4 @@ see screenshot: even though you deleted dogs.txt, you can tell git go retrieve a
 for anything we do in git, the same principle applies of compressing and encrypting all versions of our work in 'objects'
 
 note that so far we have not made a commit yet!! we have just hashed strings of text or files, stored them, and retreived them in our repo.
+
