@@ -14,14 +14,14 @@ https://git-scm.com/docs/git-config
 
 'refs' is where git stores all the references, ie. pointers, of branches, tags, remotes, etc. (we are talking when you have at least one commit and one branch, otherwise it's different...)
 
-hashes are 40 digits long (hexidecimal characters)
+hashes (from sha-1) are 40 digits long (hexidecimal characters)
 
 https://linkgod.github.io/SHA-1/
 
-echo "hello" | git hash-object --stdin can be used without a pre-existing repo (we are not storing anything in git), your computer understands it, it's like asking git 'if you were to store this, what hash would you use?'. however, if you use the flag -w, you will see a new folder in 'objects' named like the first two digits of the hash, and there will be a file named like the rest of the hash that will contain the binary code of our content (the content that we passed has been compressed and encrypted)
+echo "hello" | git hash-object --stdin (standard in) can be used without a pre-existing repo (we are not storing anything), your computer understands it, it's like asking git 'if you were to store this, what hash would you use?'. however, if you use the flag -w, you will see a new folder in 'objects' named like the first two digits of the hash, and there will be a file named like the rest of the hash that will contain the binary code of our content (the content that we passed has been compressed and encrypted). we are just storing in git manually, without any commit.
 
 see screenshot: even though you deleted dogs.txt, you can tell git go retrieve any of the older versions that are compressed and encrypted, and put any of them into a new file called dogs.txt
 
 for anything we do in git, the same principle applies of compressing and encrypting all versions of our work in 'objects'
 
-note that so far we have not made a commit yet!! we have just hashed strings of text or files, stored them, and retreived them in our repo 
+note that so far we have not made a commit yet!! we have just hashed strings of text or files, stored them, and retreived them in our repo.
