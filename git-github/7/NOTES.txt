@@ -18,7 +18,7 @@ hashes (from sha-1) are 40 digits long (hexidecimal characters)
 
 https://linkgod.github.io/SHA-1/
 
-echo "hello" | git hash-object --stdin (standard in) can be used without a pre-existing repo (we are not storing anything), your computer understands it, it's like asking git 'if you were to store this, what hash would you use?'. however, if you use the flag -w, you will see a new folder in 'objects' named like the first two digits of the hash, and there will be a file named like the rest of the hash that will contain the binary code of our content (the content that we passed has been compressed and encrypted). we are just storing in git manually, without any commit.
+echo "hello" | git hash-object --stdin (standard in) can be used without a pre-existing repo (we are not storing anything), your computer understands it, it's like asking git 'if you were to store this, what hash would you use?'. however, if you use the flag -w, you will see a new folder in 'objects' named like the first two digits of the hash, and there will be a file named like the rest of the hash that will contain the binary code of our content (the content that we passed has been compressed and encrypted in a blob). we are just storing in git manually, without any commit. the hash we get in not a commit hash, but a blob hash (as with the commith hashes, they are also the product of the sha-1 function).
 
 see screenshot: even though you deleted dogs.txt, you can tell git go retrieve any of the older versions that are compressed and encrypted, and put any of them into a new file called dogs.txt
 
@@ -26,3 +26,35 @@ for anything we do in git, the same principle applies of compressing and encrypt
 
 note that so far we have not made a commit yet!! we have just hashed strings of text or files, stored them, and retreived them in our repo.
 
+if we have one folder, and inside that folder there's a file, git will represent that with one tree, and that tree will point to one blob (for the contents of that file).
+
+the trees associate the blobs with file names (it's not storing the content in the tree, that's what the blob does: blobs are for content, trees are for structure). 
+
+remember, every tree has its own hash, it's a git object stored in the objects directory.
+
+every commit refers to a tree.
+
+if you take a blob hash, you can see the content of the blob in the temrinal doing this ('p' stands for print):
+git cat-file -p <blob-hash>
+
+if you want to find out about the type object that a hash is referring to:
+git cat-file -t <blob-or-tree-or-commit-hash> 
+(it will tell you if it's a blob, or a tree, or a commit)
+
+REMEMBER, all git objects (blobs, trees, commits, etc.) are stored in the same way in the objects folder (as we have seen before, a subfolder with the first two characters of the hash, and then a file named as the rest of the hash. that file is encrypted)
+
+if you print a commit, like this:
+git cat-file -p <commit-hash>
+it will print the contents of the commit (author, commit message, tree hash, parent commit, etc.)
+
+if you print a tree, like this:
+git cat-file -p <tree-hash>
+it will print the contents of the tree
+
+(you can create a file with content like this: echo "miaw" > cat.txt)
+
+every time you change the content of a file (or a directory) and then commit, you will have a new blob (or tree) with a new hash for that new content (or structure). therefore, git stores the different versions of the content in different blobs, and the trees will reference any of these versions depending on what commit you are in.
+
+annotated tags are pointers to a particular commit, and it includes meta-data, who made the tag, the date, tag message, etc.
+
+generally speaking, an anotated tag stores a references to a commit, a commit stores a reference to a tree, a tree stores references to blobs or other trees.
