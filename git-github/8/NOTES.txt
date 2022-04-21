@@ -1,0 +1,66 @@
+https://www.canva.com/design/DAEWorNx5_Q/piCbRO6BWwv9_ae_mahECA/view?utm_content=DAEWorNx5_Q&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+.git > logs > HEAD (each one of the entries in this file is a move of the HEAD reference)
+
+.git > logs > heads > <branch-name> (each one of the entries in this file is a move of the branch reference)
+
+when you 'git reflog show HEAD', you can see the commits that you reset, rebase, or anything, and you will still have the hashes of those commits (for example, if you do a reset the hash of the commit that you deleted is gone from 'git log', but you still have it in 'git reflog HEAD' (assuming that you did it less than 90 days ago))
+
+HEAD{0} is the most recent entry in the log
+HEAD{1} is the second most recent entry in the log, etc.
+
+ditto:
+
+<branch-name>{0}
+<branch-name>{1}
+etc.
+
+in a nutshell, 'git reflog' shows you more stuff than 'git log'
+
+git checkout HEAD{2}
+it tells you how HEAD looked like two moves ago (we might be on the same commit, but we just switched branches, or went into detached head to checkout a commit, etc.; reflog tells you about these moves)
+
+git checkout HEAD~2
+it tells you how HEAD looked like two commits ago
+
+git diff HEAD{0} HEAD{5}
+it tells you the difference between HEAD now and HEAD 5 moves ago.
+
+every ref entry has a time stamp (a unix time stamp)
+
+if you do a hard reset, but then you realize you want those commits back, you can find out about any of those commits with reflog, and then you can checkout the commit by doing 'git checkout' using the hash of the deleted commit that you want to access.
+
+if you want to make that deleted commit as the tip of your master branch, you can do the following:
+git reset --hard master{1} (assuming that's the moment you want to recover)
+or:
+git reset --hard <hash-of-that-moment>
+
+you can also use reflogs and the same commands as above, if you want to recover the commits that you cleaned up with an interactive rebase.
+
+https://www.canva.com/design/DAEWcidQeSI/m6VuuSGBgvBNsRcxfweqDA/view?utm_content=DAEWcidQeSI&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+we have seen a local git config file (settings there will apply to just one local repo). now we are going to talk about the global git config file (settings will apply to all repos). and there's even one level above that: the system-wide git config file, which applies if you have multiple users and accounts in one machine, that system-wide will apply to all those users.
+
+you can check or change your global settings the way we did it in one of the first lessons, from the command line:
+git config --global user.name
+or also you can open the global config file (located in the home directory by default). you can print the file in the terminal, like this:
+cat ~/.gitconfig
+or you can just go to the home directory and open the file, and make any changes you want there. and there you can also set the aliases that you want to apply to all your repos.
+
+you can also set an alias from the command line, like this:
+git config --global alias.showmebranches branch
+
+(if you set aliases in a local config file, they would only work for that local repo).
+
+if we want aliases that involve arguments, we can do the following:
+[alias]
+    cm = commit -m
+    a = add
+
+and now, every time we 'git cm my-message', cm will take the agument as well.
+every time we 'git a file1 file2', it will take the files as arguments.
+
+useful aliases:
+https://github.com/GitAlias/gitalias
+https://www.durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+https://gist.github.com/mwhite/6887990
