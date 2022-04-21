@@ -13,7 +13,8 @@ const CartItem = (props) => {
 	};
 
 	const addItemHandler = () => {
-		dispatch(cartActions.addItemToCart({ id, price, title }));
+		dispatch(cartActions.addItemToCart({ id, price }));
+		// we only need to pass as payload what we are going to use in the reducer (since we already know that it will be an existing item)
 	};
 
 	return (
