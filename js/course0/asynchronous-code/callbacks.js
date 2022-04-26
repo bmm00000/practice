@@ -14,9 +14,9 @@ function callItForMe(num1, num2, callbackFn) {
 	const result = num1 + num2;
 	callbackFn(result);
 }
-// esentially, a callback is a function that is passed as an argument to another function, and that will be executed by that other function. it doesn't have to involve an async operation. in a nutshell, just because you are dealing with callbacks, it doesn't mean that you are dealing with async code. callback functions are just a tool that we often use in async code situations.
+// esentially, a callback is a function that is passed as an argument to another function, and that will be executed by that other function. it doesn't have to involve an async operation. in a nutshell, just because you are dealing with callbacks, it doesn't mean that you are dealing with async code. callback functions are just a tool that we often use to deal with async operations.
 
-// what we are doing in line 15 is what the browser will tell the js engine to do after the timer expires, for example.
+// what we are doing in line 15 (non-async operation example) is what the browser will tell the js engine to do after the timer expires (async operation example), for example.
 
 // another example of a callback to deal with an async operation (callbacks don't have to be anonymous functions, they can also be named functions):
 const btn = document.querySelector('button');
