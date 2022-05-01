@@ -9,7 +9,7 @@ const DUMMY_MEETUPS = [
 		id: 'm1',
 		title: 'First meetup',
 		image:
-			'https://commons.wikimedia.org/wiki/File:Bayerische_Staatskanzlei_Munich_2014_02.jpg',
+			'https://upload.wikimedia.org/wiki/File:Bayerische_Staatskanzlei_Munich_2014_02.jpg',
 		address: '23 Harrod St',
 		description: 'Meetup in beautiful Bucharest',
 	},
@@ -51,6 +51,19 @@ function HomePage(props) {
 	);
 }
 
+// export async function getServerSideProps(context) {
+// 	const req = context.req;
+// 	const res = context.res;
+// 	// fetch data from api or file system...
+// 	return {
+// 		props: {
+// 			meetups: DUMMY_MEETUPS,
+// 		},
+// 	};
+// }
+// this function will not run during the build process, but instead always on the server after deployment. any code we write here will always run on the server, never on the client, so you can write server side code here (and also perform operations that require credentials that should not be exposed to your users). THIS FUNCTION RUNS FOR EVERY INCOMING REQUEST! (so there's no need to revalidate). you can use the 'context' paramenter, where you will be able to access the request object, and the response object that will be sent back (having access to the 'req' object can be helpful for example, when you are working with authentication and you need to check some session cookie or anyting like this; in a nutshell, you have access to the request headers and body if you need any of their data for the code that you will execute inside of getSererSideProps). and again, if you inspect the page source, you will see all the data inside of the 'ul'.
+// is getServerSideProps better than getStaticProps (since getServerSideProps runs for every request)? not always, since with getServerSideProps you will need to wait for your page to be generated with every incoming request. therefore, if you don't have data that changes all the time (like for example several times per second), or if you don't need to access the 'req' object (for example, for authentication), then getStaticProps will actually be better, because there you pre-generate an html file, that file can be stored and served by a CDN, and that's faster than pre-generating and fetching that data for every incoming request (the page can be catched and re-used instead of being pre-generated all the time). therefore, you should only use getServerSideProps if you need to use the 'req' object, or if you have data that changes several times every second, so even 'revalidate' from getStaticProps could not help you. therefore, in our meetups list, we better use getStaticProps, since our data doesn't change that often, and we don't use the incoming request 'req' object.
+
 export async function getStaticProps() {
 	// await fetch('...')
 	// fetch data from api, or from a database, or read some files from the file system, etc.
@@ -68,4 +81,6 @@ export default HomePage;
 
 // if you run 'npm run build' (this is the command that you execute in order to build your app, before you deploy it), you will see in the cli some info about the build: you will be able to check the static pages generated: the root page ('/'), the dynamic page ('[meetupId]'), the 404 page generated authomatically (for the case where the user types an incorrect url), and the newMeetup page. see the filled or empty dots: a filled dot (Static Site Generation, automatically generated as HTML + JSON (the json is used for pre-fetching data when the page is turned into an spa)). the empty dot stands for Static generation, which is almost the same as SSG, the only difference is that here we don't have initial props (we don't have inintial data that was fetched) (in our case, for the time being, only for the root page we are fetching data, that's the page where we added getStaticProps; later this will change).
 
-// a problem that we could face with getStaticProps is that the data could be outdated: this page is generated during the build process. therefore, if we add more meetups after we have already deployed the page, this pre-generated page will now know about the new meetups, so if we don't add any client side data fetching, we will only see the outdated list of meetups. we could always re-build and re-deploy our side when our data changes, and this is a possible solution for some websites where the data doesn't change very frequently (for example, personal blogs). but if the data changes more frequently, we can add a property to the returned object by getStaticProps: 'revalidate'. when we add this property we unlock a feature called 'incremental static generation': we pass a number, for example 10, this number is the number of seconds that next.js will wait until it re-generates the website again for incoming requests. therefore, the page will not only be generated during the build process (although it will also be generated during the build process), but also be re-generated at least every 10 seconds ON THE SERVER (after deployment) if there are requests. and therefore the new re-generated pages will replace the old pre-generated pages, and you will make sure that your data is never older than 10 seconds. therefore, the number of seconds that you want to use depends on your data update frequency (how often your data changes). this way, you don't have to re-build and re-deploy all the time just because some data changed.
+// a problem that we could face with getStaticProps is that the data could be outdated: this page is generated during the build process. therefore, if we add more meetups after we have already deployed the page, this pre-generated page will not know about the new meetups, so if we don't add any client side data fetching, we will only see the outdated list of meetups. we could always re-build and re-deploy our side when our data changes, and this is a possible solution for some websites where the data doesn't change very frequently (for example, personal blogs). but if the data changes more frequently, we can add a property to the returned object by getStaticProps: 'revalidate'. when we add this property we unlock a feature called 'incremental static generation': we pass a number, for example 10, this number is the number of seconds that next.js will wait until it re-generates the website again for incoming requests. therefore, the page will not only be generated during the build process (although it will also be generated during the build process), but also be re-generated at least every 10 seconds ON THE SERVER (after deployment) if there are requests. and therefore the new re-generated pages will replace the old pre-generated pages, and you will make sure that your data is never older than 10 seconds. therefore, the number of seconds that you want to use depends on your data update frequency (how often your data changes). this way, you don't have to re-build and re-deploy all the time just because some data changed.
+
+// but sometimes, even a regular update every certain number of seconds is not enough, ie. you will need to re-generate the page with every incoming request, so you want to pre-generate the page dynamically, on the fly, after deployment, on the server (not during the build process, not every couple of seconds, but for every request). in this case, we comment out getStaticProps, and export another function: getServerSideProps.
