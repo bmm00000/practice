@@ -3,10 +3,10 @@ import MeetupDetail from '../../components/meetups/MeetupDetail';
 function MeetupDetails() {
 	return (
 		<MeetupDetail
-			image='https://upload.wikimedia.org/wiki/File:Bayerische_Staatskanzlei_Munich_2014_02.jpg'
+			image='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg'
 			title='First Meetup'
-			address='Old Street, 5'
-			description='The meetup description'
+			address='23 Harrod St'
+			description='First meetup of a beautiful group...'
 		/>
 	);
 }
@@ -39,11 +39,11 @@ export async function getStaticProps(context) {
 		props: {
 			meetupData: {
 				image:
-					'https://upload.wikimedia.org/wiki/File:Bayerische_Staatskanzlei_Munich_2014_02.jpg',
+					'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg',
 				id: meetupId,
 				title: 'First Meetup',
-				address: 'Old Street, 5',
-				description: 'The meetup description',
+				address: '23 Harrod St',
+				description: 'First meetup of a beautiful group...',
 			},
 		},
 	};

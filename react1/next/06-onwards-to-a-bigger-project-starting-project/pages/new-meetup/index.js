@@ -15,6 +15,7 @@ function NewMeetupPage() {
 				'Content-Type': 'application/json',
 			},
 		});
+		// instead of using some external api (eg. 'mydomain.com/abc'), we are using the absolute path '/api/new-meetup', which is an internal api that will be hosted by the same server as is being used for serving this page (we are sending a request to the same server that is serving our page, but to a different path on this server).
 
 		const data = await response.json();
 

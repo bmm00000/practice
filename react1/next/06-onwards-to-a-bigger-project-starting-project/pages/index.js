@@ -9,25 +9,25 @@ const DUMMY_MEETUPS = [
 		id: 'm1',
 		title: 'First meetup',
 		image:
-			'https://upload.wikimedia.org/wiki/File:Bayerische_Staatskanzlei_Munich_2014_02.jpg',
+			'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg',
 		address: '23 Harrod St',
-		description: 'Meetup in beautiful Bucharest',
+		description: 'First meetup of a beautiful group...',
 	},
 	{
 		id: 'm2',
 		title: 'Second meetup',
 		image:
-			'https://commons.wikimedia.org/wiki/File:Bayerische_Staatskanzlei_Munich_2014_02.jpg',
-		address: '23 Harrod St',
-		description: 'Meetup in beautiful Bucharest',
+			'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg',
+		address: '222 Luton Rd',
+		description: 'Second meetup of a beautiful group...',
 	},
 	{
 		id: 'm3',
 		title: 'Third meetup',
 		image:
-			'https://commons.wikimedia.org/wiki/File:Bayerische_Staatskanzlei_Munich_2014_02.jpg',
-		address: '23 Harrod St',
-		description: 'Meetup in beautiful Bucharest',
+			'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg',
+		address: '11 Standstead Rd',
+		description: 'Third meetup of a beautiful group...',
 	},
 ];
 
