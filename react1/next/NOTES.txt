@@ -1,5 +1,3 @@
-for the presentation, see fireship and uidotdev videos in youtube.
-
 nextjs.org: the react framework for production.
 it makes building large scale react apps easier.
 

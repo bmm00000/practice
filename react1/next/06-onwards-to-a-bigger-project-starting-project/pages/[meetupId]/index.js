@@ -1,3 +1,5 @@
+// our-domain.com/[meetupId]
+
 import MeetupDetail from '../../components/meetups/MeetupDetail';
 
 function MeetupDetails() {
