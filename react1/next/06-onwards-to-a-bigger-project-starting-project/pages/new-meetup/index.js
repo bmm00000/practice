@@ -20,8 +20,12 @@ function NewMeetupPage() {
 		const data = await response.json();
 
 		console.log(data);
+		// { message: 'Meetup inserted' }
 
 		router.push('/');
+		// we could also use the 'replace' method to make sure that we cannot go back with the 'back' button.
+
+		// since sending the POST request could take some time, we could also show a loading spinner or similar, but that's just client side standard react, nothing specific to next.js.
 	}
 	// this will send a request to the file inside of the 'api' folder, which will trigger the 'handler' function in there.
 

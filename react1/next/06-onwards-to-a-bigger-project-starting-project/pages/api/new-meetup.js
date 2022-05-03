@@ -7,6 +7,8 @@ import { MongoClient } from 'mongodb';
 async function handler(req, res) {
 	if (req.method === 'POST') {
 		const data = req.body;
+		// remember, the fields that we expect in the 'data' object:
+		// const {title, image, address, description} = data
 
 		// now we store this data from the incoming request in a database:
 		const client = await MongoClient.connect(
