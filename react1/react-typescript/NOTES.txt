@@ -1,0 +1,13 @@
+ts is a superset to js (a programming language that builds up on js and adds more features, and very importantly, adds static typing)
+
+to install ts in a project:
+npm install typescript
+(previously, you will need to run 'npm init -y' in order to generate package.json file so you can install dependencies)
+
+to install ts globally: 
+npm install -g typescript
+
+ts does not run in the browser, therefore we need to compile ts to js, and during the compilation process, all type annotations will be removed (we will be notified about errors during this compilation step (we are also being notified in the IDE even before we compile))
+
+to invoke the compiler (it will generate a js file, even if there are errors): 
+npx tsc <name-of-file.ts>
