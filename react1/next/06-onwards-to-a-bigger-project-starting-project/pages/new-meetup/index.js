@@ -1,5 +1,7 @@
 // our-domain.com/new-meetup
 
+import { Fragment } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import NewMeetupForm from '../../components/meetups/NewMeetupForm';
@@ -29,7 +31,19 @@ function NewMeetupPage() {
 	}
 	// this will send a request to the file inside of the 'api' folder, which will trigger the 'handler' function in there.
 
-	return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
+	return (
+		<Fragment>
+			<Head>
+				<title>Add new meetup</title>
+
+				<meta
+					name='description'
+					content='Create your own meetup and generate great networking opportunities!'
+				/>
+			</Head>
+			<NewMeetupForm onAddMeetup={addMeetupHandler} />
+		</Fragment>
+	);
 }
 
 export default NewMeetupPage;

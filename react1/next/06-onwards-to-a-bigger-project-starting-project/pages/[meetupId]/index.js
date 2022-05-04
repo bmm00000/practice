@@ -2,17 +2,25 @@
 
 import { MongoClient, ObjectId } from 'mongodb';
 // since in mongodb the ids are kind of object id things, we import 'ObjectId', so we can convert the id that we got from 'context.params' (a string) into that kind of object id thing.
+import { Fragment } from 'react';
+import Head from 'next/head';
 
 import MeetupDetail from '../../components/meetups/MeetupDetail';
 
 function MeetupDetails(props) {
 	return (
-		<MeetupDetail
-			image={props.meetupData.image}
-			title={props.meetupData.title}
-			address={props.meetupData.address}
-			description={props.meetupData.description}
-		/>
+		<Fragment>
+			<Head>
+				<title>{props.meetupData.title}</title>
+				<meta name='description' content={props.meetupData.description} />
+			</Head>
+			<MeetupDetail
+				image={props.meetupData.image}
+				title={props.meetupData.title}
+				address={props.meetupData.address}
+				description={props.meetupData.description}
+			/>
+		</Fragment>
 	);
 }
 
@@ -34,7 +42,7 @@ export async function getStaticPaths() {
 	client.close();
 
 	return {
-		fallback: false,
+		fallback: 'blocking',
 		// the 'fallback' key tells next.js whether your paths array contains all supported parameter values ('false', in which case, if the user enters a non-supported value, eg. 'm4', the user will get a 404 error) or just some of them ('true', in which case, next.js will try to generate a page for 'm4' dynamically in this server for the incoming request). 'fallback' is a nice feature because it allows you to pre-generate some of your pages for specific meetupId values (for example, the pages that are visited most frequently), and then pre-generate the missing ones dynamically when requests for them are coming in.
 		// paths: [
 		// 	{ params: { meetupId: 'm1' } },
@@ -46,6 +54,7 @@ export async function getStaticPaths() {
 		paths: meetups.map((meetup) => ({
 			params: { meetupId: meetup._id.toString() },
 		})),
+		// we specify which meetup pages should be pre-generated, and we only set this at build time and never thereafter. if we set 'fallback' to false, we ensure that any request for meetups for which no page was pre-generated before, will fail! that worked as long as we don't add any new meeup, and it also works during development because during development, the 'getStaticPaths' function runs for every incoming request, but IT WILL FAIL AFTER DEPLOYMENT! in order to fix it, you can change 'fallback' to true or 'blocking' (when a request comes, nextjs will not respond with a 404 page if it can't find the page immediately, but it will generate that page on demand and then cache it, ie. it will pre-generate it when needed). the difference between 'true' and 'blocking' is that with 'true' it will immediately return an empty page and then pull down the dynamically generated content once that's done (so you need to handle the case in which the page doesn't have the data yet). with 'blocking', the user will not see anything until the page was pre-generated and the finished page will be served (we will use 'blocking', since it doesn't require any extra work from our side)
 	};
 	// in reality, you would not hard code 'm1', etc., but you would fetch your supported ids from a database or an api, and generate this array dynamically. but for the moment, we will hard code it.
 }

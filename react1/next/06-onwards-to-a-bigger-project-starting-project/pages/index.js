@@ -1,5 +1,9 @@
 // our-domain.com
+
+import { Fragment } from 'react';
 // import { useState, useEffect } from 'react';
+import Head from 'next/head';
+// this component allows you to add head elements to the head section of your page (meta data): you just add it to your returned jsx code (all the html elements that you can add in the 'head' section, you can add them under this 'Head' component)
 import { MongoClient } from 'mongodb';
 // when you import something in a page component file, and that's only used in getStaticProps/getServerSideProps, the imported package will not be part of the client side bundle, so you can import code that will only be executed on the server and next.js will detect this and not include it in your client side bundle, which is good for both bundle size considerations and security considerations. therefore, you can import both server side and client side code here, and depending on where you use it, it will be included in different bundles which are independent form each other (that's a nice feature of next.js)
 
@@ -45,11 +49,26 @@ function HomePage(props) {
 	// the way it works is: after the page is received by the browser, react will take over: the page will be hydrated with react code once the page has been loaded (react will turn this page into an spa and take over control); then useEffect will be executed, data might be fetched, and that data will be reflected in the browser, not on the server (not on the pre-rendered page, but after this page was received in the browser). but if we want to pre-render a page that already contains the data, so that the originally returned (by the server) html code already contains the data, we need to configure the pre-rendering process: next.js gives us two forms of pre-rendering that allow us to control how the page is pre-rendered: static generation (SSG), and server-side rendering (SSR) (the code runs at different points in time in these two options). (typicaly, we should use static generation).
 	// when you use 'static generation', a page component is pre-rendered when you build your app (for production: npm run build). ie. by default, your page is not pre-rendered on the fly on the server when a request reaches the server, but instead is pre-rendered when you as a developer build your site for production, and that means that after it was deployed, that pre-rendered page does not change (if you want to change the data, you need to build again and deploy again) (in some apps, data doesn't change at least that often, so this solution may be convenient). (remember, with static generation, next.js generates your pages statically in the build process, but if you need to add data fetching to a page component, you can do so by exporting a special function (getStaticProps) from your page component file: IT WORKS ONLY IN COMPONENT FILES INSIDE OF THE 'PAGES' FOLDER)
 
+	// return (
+	// 	// <Layout>
+	// 	// <MeetupList meetups={loadedMeetups} />
+	// 	<MeetupList meetups={props.meetups} />
+	// 	// </Layout>
+	// );
+
 	return (
-		// <Layout>
-		// <MeetupList meetups={loadedMeetups} />
-		<MeetupList meetups={props.meetups} />
-		// </Layout>
+		<Fragment>
+			<Head>
+				<title>React Meetups</title>
+				{/* this is the title that will appear on the tab of the browser */}
+				<meta
+					name='description'
+					content='Browse a long list of React meetups!'
+				/>
+				{/* this is the description that will be picked up by search engines, and it will show up on the page results of the search engine */}
+			</Head>
+			<MeetupList meetups={props.meetups} />
+		</Fragment>
 	);
 }
 
