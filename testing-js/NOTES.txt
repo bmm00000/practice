@@ -25,3 +25,8 @@ note that Jest is a tool that supports both test running and assertion, which is
 
 npm install --save-dev Vitest
 then you need to add the 'test' script in the package.json file, and set the value to 'vitest --globals' (see screenshot)
+
+we will be able to use ECMAScript modules in one of the node.js projects, because we are setting this in the package.json file: 
+"type": "module"
+
+in the frontend project, we have installed 'http-server' as one of our devDependencies, that's why we can run a development server.
