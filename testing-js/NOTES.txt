@@ -1,0 +1,27 @@
+with manual testing, you would need to test all features and scenarios every time you make a tiny change. that's why we need automated testing (some code that tests your code)
+
+more often than not, a unit is a function or a class.
+
+with end2end testing, you test entire flows, for example, specific user behaviours, or specific api interfaces that your application might be providing. for example, if you are building an image upload api endpoint, you will test the whole image upload workflow, which includes extracting the image from the incoming request, storing it on the file system... ie. the real things users (or programs interacting with your programs) might do.
+
+with integration testing (and even more so with e2e testing), spotting the exact root of an error (when you make a tiny change then something else breaks) might be tricky, because you are testing a combination of units (unit testing will be better to spot the exact root of an error).
+
+testing pyramid: a lot of unit tests (even multiple unit tests per unit), less integration tests, even less e2e tests (maybe just a couple, for the most important flows of your app) (note that some people disagree with the idea behind the testing pyramid, some people think that you should have more e2e tests than unit tests...)
+
+the idea behind TDD is that you don't write your application code first and then the tests, BUT before you write the app code, you write failing tests where you in the end define the expected behaviour, then you implement the code that should be tested (which should be implemented such the behaviour is met and the test succeeds), and then you refactor your existing code (to optimize your logic), and then go through the flow over and over again (write a new failing test before you code something new).
+
+AFTER THIS COURSE, GO DEEPER INTO TDD.
+
+testing environment: all the tools we need to run tests in the context of our project
+
+TESTING SETUP:
+your application setup (without the testing part), will typically come with some configuration or extra tools (eg. Webpack, Vite, Babel, etc.) to optimize and transform your code, and the exact setup depends on the project that you have (very often, you don't create that project configuration on your own, but very often you use some tool like Create React App, to create a project for you that comes with certain configuration out of the box, so you can focus on the actual code that you write).
+
+the test runner is the tool that actually executes your testing code (your testing code is not part of your main app code, you don't execute it together with your app code, you need a runner to execute it (only during development)). the test runner executes the tests, gathers the results and displays them.
+
+assertion library: tool to define expectated results, ie. what should be treated as success or failure.
+
+note that Jest is a tool that supports both test running and assertion, which is great, but it can be a bit slow, and also, if you have a project that uses ES modules (aka ECMAScript modules) (not common js ('require') but 'import', 'export' syntax), then Jest support it only experimentally, so setting it up and making it work can be annoying and you will need to install extra tools, so you set up an extra workflow for testing, where the code gets transpiled and changed behind the scenes, etc. which is a bit annoying (if your code needs some extra configuration just to make your tests work, that's not the idea behind testing: you don't want to test something different that you run in production, even though it's just a behind the scenes transpolation). that's why we are going to use Vitest (it's faster and it's compatible with Jest syntax: it has an api that allows you to write the tests the same way you would with Jest, plus some extra convenience features (it works with ES modules, also with common js,). like Jest, Vitest is a test runner and also an assertion library).
+
+npm install --save-dev Vitest
+then you need to add the 'test' script in the package.json file, and set the value to 'vitest --globals' (see screenshot)
