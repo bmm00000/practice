@@ -11,3 +11,15 @@ ts does not run in the browser, therefore we need to compile ts to js, and durin
 
 to invoke the compiler (it will generate a js file, even if there are errors): 
 npx tsc <name-of-file.ts>
+
+USING TS IN A REACT PROJECT:
+
+we need a react project that is configured to use ts instead of vanilla js. we still can use CRA for that (look at the CRA documentation on how to integrate ts: you can start a new project with ts integrated, or you can also add ts to an existing project; in either case you will get a project configured for ts).
+
+when we run the development server, under the hood, it's compiling the ts code into js code (in addition to the bundling/optimization that we also have when we are using a react project with vanilla js) (this would also happen if you build your code for production by running 'npm run build')
+
+take a look at the dependencies in our react-ts project: you have 'typescript' (the ts compiler which is installed into this project) and '@types/...' as dependencies. '@types/...' act as translation bridges between vanila js libraries and ts projects. for example, usually we use 'react' and 'reactdom' as libraries in our react projects, but these two libraries are written for just js. in order to work with them in ts, and get IDE support, autocompletion, etc, we need translations between these vanilla js libraries and the ts project (so you could say that they are extra type annotations added to these js libraries). not all libraries need such translations because some libraries already have some built-in type annotations.  
+
+in a react project with ts, the IDE warns you if you have code that you are not using, etc.
+
+you can configure how strict ts is in the tsconfig.json file.
