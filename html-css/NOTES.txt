@@ -1,0 +1,1 @@
+data structure: a particular way to organize and store data, so that a computer can quickly and efficiently access it and modify it.
