@@ -1,11 +1,15 @@
 // import React from 'react';
 // (you don't need to import React in the latest versions)
 
-const Todos: React.FC<{ items: string[] }> = (props) => {
+import Todo from '../models/todo';
+// when you define a class, it doesn't only act as a constructor function that you can call to create new objects, but also as a type! (you can use your class name as a type)
+
+// const Todos: React.FC<{ items: string[] }> = (props) => {
+const Todos: React.FC<{ items: Todo[] }> = (props) => {
 	return (
 		<ul>
 			{props.items.map((item) => (
-				<li key={item}>{item}</li>
+				<li key={item.id}>{item.text}</li>
 			))}
 		</ul>
 	);
@@ -25,6 +29,6 @@ export default Todos;
 // 	return <div>{props.children}</div>;
 // };
 
-// in the former lesson, we used <> to define a generic type. now we are not defining a generic type, but using it (FC, which internally is using <> under the hood to define this generic type). and here, when we use <>, we are not setting up a new generic type, but we are plugging in a spcecific value for that internally used generic type, ie. for the type T defined under the hood by the FC type (therefore, we are using <> differently here). therefore, we see here the other side of generic types: we are using a generic type (FC), and we also explicitly set the specific type that should be used for this usage of this generic FC type.
+// in the former lesson, we used <> to define a generic type. now we are not defining a generic type, but using it (in this case, the generic type is FC, which internally is using <> under the hood to define this generic type). and here, when we use <>, we are not setting up a new generic type, but we are plugging in a spcecific value for that internally used generic type, ie. for the type T defined under the hood by the FC type (therefore, we are using <> differently here). therefore, we see here the other side of generic types: we are using a generic type (FC), and we also explicitly set the specific type that should be used for this usage of this generic FC type.
 // by adding <> after the FC, we unlock a feature built into the FC generic type that will merge any object type (for 'props') that we define inside of the <>, with the base 'props' object type of the generic FC (ie. children property)
 // now, if you don't add the expected props in the Todos component of App.tsx, then the IDE will warn you. also, if you add '?' to the props object type ({ items?: string[] }), then you won't have an error in Todos of App.tsx, but in this case you will need to handle in this file the case in which we don't have items (otherwise, the IDE will warn you in this file). this is the advantage of using ts with react: if you don't pass the props that are expected, the ide will warn you.

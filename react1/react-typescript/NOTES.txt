@@ -7,7 +7,7 @@ npm install typescript
 to install ts globally: 
 npm install -g typescript
 
-ts does not run in the browser, therefore we need to compile ts to js, and during the compilation process, all type annotations will be removed (we will be notified about errors during this compilation step (we are also being notified in the IDE even before we compile))
+ts does not run in the browser, therefore we need to compile ts to js, and during the compilation process, all type annotations (and other ts features) will be removed (we will be notified about errors during this compilation step (we are also being notified in the IDE even before we compile))
 
 to invoke the compiler (it will generate a js file, even if there are errors): 
 npx tsc <name-of-file.ts>
@@ -18,8 +18,8 @@ we need a react project that is configured to use ts instead of vanilla js. we s
 
 when we run the development server, under the hood, it's compiling the ts code into js code (in addition to the bundling/optimization that we also have when we are using a react project with vanilla js) (this would also happen if you build your code for production by running 'npm run build')
 
-take a look at the dependencies in our react-ts project: you have 'typescript' (the ts compiler which is installed into this project) and '@types/...' as dependencies. '@types/...' act as translation bridges between vanila js libraries and ts projects. for example, usually we use 'react' and 'reactdom' as libraries in our react projects, but these two libraries are written for just js. in order to work with them in ts, and get IDE support, autocompletion, etc, we need translations between these vanilla js libraries and the ts project (so you could say that they are extra type annotations added to these js libraries). not all libraries need such translations because some libraries already have some built-in type annotations.  
+take a look at the dependencies in our react-ts project: you have 'typescript' (the ts compiler which is installed into this project) and '@types/...' as dependencies. '@types/...' act as translation bridges between vanila js libraries and ts projects. for example, usually we use 'react' and 'react-dom' as libraries in our react projects, but these two libraries are written for just js. in order to work with them in ts, and get IDE support, autocompletion, etc, we need translations between these vanilla js libraries and the ts project (so you could say that they are extra type annotations added to these js libraries). not all libraries need such translations because some libraries already have some built-in type annotations.  
 
-in a react project with ts, the IDE warns you if you have code that you are not using, etc.
+in a react project with ts, the IDE warns you if you have code (eg. props) that you are not using. it will also warn you if the 'props' are of inferred type 'any' (since there's no point of leaving them like that in a ts project), but if you specify the type as 'props: any', then the warning will disappear.
 
 you can configure how strict ts is in the tsconfig.json file.

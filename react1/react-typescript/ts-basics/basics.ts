@@ -75,7 +75,7 @@ const updatedArray = insertAtBeginning(demoArray, -1);
 updatedArray[0].split('');
 // what happens is that we cannot use ts functionality here, since ts considers that the array could contain any type of value, although in our case we only have numbers, and we cannot use 'split' on a number (but only we know that, ts doesn't know that it's a number).
 
-//to deal with this kind of situations, we have generics (we can convert the function above into a generic function: after the function name, we define a generic type which will be available only inside of the function (usually is 'T', for 'type', but any identifier of your choice will be ok)):
+// to deal with this kind of situations, we have generics (we can convert the function above into a generic function: after the function name, we define a generic type which will be available only inside of the function (usually is 'T', for 'type', but any identifier of your choice will be ok)):
 function insertAtBeginning2<T>(arr: T[], value: T) {
 	const newArr = [value, ...arr];
 	return newArr;
@@ -118,7 +118,7 @@ updatedArray2[0].split('');
 // Of course it can be a bit annoying to write this rather long and clunky type, that's why we have this alternative (syntactic sugar) for arrays:
 
 // let numbers: number[] = [1, 2, 3];
-// If we take the example from the previous lecture, we could've also set the concrete type for our placeholder T explicitly:
+// If we take the example from the previous lecture, we could've also set the specific type for our placeholder T explicitly:
 
 // const stringArray = insertAtBeginning<string>(['a', 'b', 'c'], 'd');
-// So we can not just use the angle brackets to define a generic type but also to USE a generic type and explicitly set the placeholder type that should be used - sometimes this is required if TypeScript is not able to infer the (correct) type. We'll see this later in this course section!
+// So we can, not only use the angle brackets to define a generic type but also to USE a generic type and explicitly set the placeholder type that should be used - sometimes this is required if TypeScript is not able to infer the (correct) type. We'll see this later in this course section!
