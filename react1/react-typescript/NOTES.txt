@@ -14,7 +14,7 @@ npx tsc <name-of-file.ts>
 
 USING TS IN A REACT PROJECT:
 
-we need a react project that is configured to use ts instead of vanilla js. we still can use CRA for that (look at the CRA documentation on how to integrate ts: you can start a new project with ts integrated, or you can also add ts to an existing project; in either case you will get a project configured for ts).
+we need a react project that is configured to use ts instead of vanilla js. we still can use CRA for that (look at the CRA documentation on how to integrate ts: you can start a new project with ts integrated, or you can also add ts to an existing project; in either case you will get a project configured for ts). (in the CRA documentation, you also have more resources on how to get started with React and TS).
 
 when we run the development server, under the hood, it's compiling the ts code into js code (in addition to the bundling/optimization that we also have when we are using a react project with vanilla js) (this would also happen if you build your code for production by running 'npm run build')
 
@@ -23,3 +23,10 @@ take a look at the dependencies in our react-ts project: you have 'typescript' (
 in a react project with ts, the IDE warns you if you have code (eg. props) that you are not using. it will also warn you if the 'props' are of inferred type 'any' (since there's no point of leaving them like that in a ts project), but if you specify the type as 'props: any', then the warning will disappear.
 
 you can configure how strict ts is in the tsconfig.json file.
+
+the tsconfig.json file will configure the compilation from ts to js. in our react-ts project, the compiler is invoked authomatically when we start the development server or when we build the project for production (we are using a behind-the-scenes build workflow set up where the ts compiler is integrated):
+target: constrols which js version to which your code will be transformed (depending on your setup, the 'target' option might not be the only thing that influences the output: there also can be project setups where your ts code might be compiled to js, and then you might have yet another compilation step with other tools like Babel that take that output js code and transform it even more. therefore, the 'target' might not be the last step, but it will often be).
+lib: default ts libraries that are included, which influence which kind of types are known out of the box by our ts code (these libraries are built into ts, so we don't need to install any extra packages here, but in order to unlock them in our project we still need to list them under 'lib'). for example, 'dom' refers to types like the HTMLInputElement that we used.
+allowJs: whether or not we can include plain .js files (if we want to mix ts with js files in our project)
+strict: if true, we have the strictest possible setting in our project (eg. the non-implicit 'any' type: if you don't give types to parameters and infers 'any', it will give you an error)
+jsx: controls that jsx code is supported and which output code should be generated.
