@@ -1,0 +1,14 @@
+if we make an http request to load a new page, we have to wait for the response, and we lose any state that we might have (imagine, if we are managing a shopping cart, we shouldn't be losing state when we are navigating between pages)
+
+react-router provides routing functionalities in our client side react app (routing means that different paths in the url load different pages)
+
+there are two versions of react router: 5 and 6; 6 is the newest one but 5 is used is most projects. therefore, we will start with version 5 and then we will see how to upgrade to version 6 (everything in version 5 will apply to version 6 as well).
+
+installing version 5:
+npm install react-router-dom@5
+
+routing is like conditionally rendering components, depending on the path of the url.
+
+under the hood, react-router checks the url, sets the state, listens to clicks on links, prevents browser default of sending a request, and changes state to render something on the screen, etc. we could code all that ourselves, but react-router has already done it for us. 
+
+it's quite common that, since we use the Welcome and Products components as pages, we create a 'pages' or 'screens' folder to store them.
