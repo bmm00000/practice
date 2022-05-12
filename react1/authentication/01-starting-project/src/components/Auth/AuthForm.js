@@ -1,12 +1,18 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
+import AuthContext from '../../store/auth-context';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
-	const [isLogin, setIsLogin] = useState(true);
-
+	const history = useHistory();
 	const emailInputRef = useRef();
 	const passwordInputRef = useRef();
+
+	const authCtx = useContext(AuthContext);
+
+	const [isLogin, setIsLogin] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const switchAuthModeHandler = () => {
 		setIsLogin((prevState) => !prevState);
@@ -20,31 +26,51 @@ const AuthForm = () => {
 
 		// we could add some validation here (check if fields are empty, etc.), but for the sake of simplicity, we are not going to do it now.
 
+		setIsLoading(true);
+		let url;
 		if (isLogin) {
+			url =
+				'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBT8Uuc_bI2KgAF6-pZSOU7Q-QaLwAroOI';
 		} else {
-			fetch(
-				'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBT8Uuc_bI2KgAF6-pZSOU7Q-QaLwAroOI',
-				{
-					method: 'POST',
-					body: JSON.stringify({
-						email: enteredEmail,
-						password: enteredPassword,
-						returnSecureToken: true,
-					}),
-					headers: { 'Content-Type': 'application/json' },
-				}
-			).then((res) => {
+			url =
+				'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBT8Uuc_bI2KgAF6-pZSOU7Q-QaLwAroOI';
+		}
+		fetch(url, {
+			method: 'POST',
+			body: JSON.stringify({
+				email: enteredEmail,
+				password: enteredPassword,
+				returnSecureToken: true,
+			}),
+			headers: { 'Content-Type': 'application/json' },
+		})
+			.then((res) => {
+				setIsLoading(false);
 				if (res.ok) {
-					// do something
+					return res.json();
+					// we will get here the idToken, which is what the client will need to make subsequent requests.
 				} else {
 					// we are returning a nested promise chain:
 					return res.json().then((data) => {
-						// we could show an error modal, etc.
-						console.log(data);
+						// console.log(data);
+						// we could show an error modal, etc:
+						let errorMessage = 'Authentication failed!';
+						// if (data && data.error && data.error.message) {
+						// 	message = data.error.message;
+						// }
+						throw new Error(errorMessage);
 					});
 				}
+			})
+			.then((data) => {
+				// we will get here the idToken, which is what the client will need to make subsequent requests:
+				authCtx.login(data.idToken);
+				history.replace('/');
+				// 'replace' will redirect the user, without allowing to press the 'back' button.
+			})
+			.catch((err) => {
+				alert(err.message);
 			});
-		}
 	};
 
 	return (
@@ -65,7 +91,10 @@ const AuthForm = () => {
 					/>
 				</div>
 				<div className={classes.actions}>
-					<button>{isLogin ? 'Login' : 'Create Account'}</button>
+					{!isLoading && (
+						<button>{isLogin ? 'Login' : 'Create Account'}</button>
+					)}
+					{isLoading && <p>Loading...</p>}
 					<button
 						type='button'
 						className={classes.toggle}
