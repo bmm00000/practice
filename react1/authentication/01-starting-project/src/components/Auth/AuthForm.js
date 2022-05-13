@@ -63,8 +63,12 @@ const AuthForm = () => {
 				}
 			})
 			.then((data) => {
+				// expiresIn (received in the response) is the number of seconds in which the token expires. we receive it as a string (see the firebase docs), that's why we convert it to a number below, so we can transform it from seconds to milliseconds:
+				const expirationTime = new Date(
+					new Date().getTime() + +data.expiresIn * 1000
+				);
 				// we will get here the idToken, which is what the client will need to make subsequent requests:
-				authCtx.login(data.idToken);
+				authCtx.login(data.idToken, expirationTime.toISOString());
 				history.replace('/');
 				// 'replace' will redirect the user, without allowing to press the 'back' button.
 			})
