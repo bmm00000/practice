@@ -19,14 +19,44 @@ your application setup (without the testing part), will typically come with some
 
 the test runner is the tool that actually executes your testing code (your testing code is not part of your main app code, you don't execute it together with your app code, you need a runner to execute it (only during development)). the test runner executes the tests, gathers the results and displays them.
 
-assertion library: tool to define expectated results, ie. what should be treated as success or failure.
+assertion library: tool to define expected results, ie. what should be treated as success or failure.
 
-note that Jest is a tool that supports both test running and assertion, which is great, but it can be a bit slow, and also, if you have a project that uses ES modules (aka ECMAScript modules) (not common js ('require') but 'import', 'export' syntax), then Jest support it only experimentally, so setting it up and making it work can be annoying and you will need to install extra tools, so you set up an extra workflow for testing, where the code gets transpiled and changed behind the scenes, etc. which is a bit annoying (if your code needs some extra configuration just to make your tests work, that's not the idea behind testing: you don't want to test something different that you run in production, even though it's just a behind the scenes transpolation). that's why we are going to use Vitest (it's faster and it's compatible with Jest syntax: it has an api that allows you to write the tests the same way you would with Jest, plus some extra convenience features (it works with ES modules, also with common js,). like Jest, Vitest is a test runner and also an assertion library).
+note that Jest is a tool that supports both test running and assertion, which is great, but it can be a bit slow, and also, if you have a project that uses ES modules (aka ECMAScript modules) (not common js ('require') but 'import', 'export' syntax), then Jest supports it only experimentally, so setting it up and making it work can be annoying and you will need to install extra tools, so you set up an extra workflow for testing, where the code gets transpiled and changed behind the scenes, etc. which is a bit annoying (if your code needs some extra configuration just to make your tests work, that's not the idea behind testing: you don't want to test something different than what you run in production, even though it's just a behind the scenes transpolation). that's why we are going to use Vitest (it's faster and it's compatible with Jest syntax: it has an api that allows you to write the tests the same way you would with Jest, plus some extra convenience features (it works with ES modules, also with common js,). like Jest, Vitest is a test runner and also an assertion library).
+
+certain types of projects that might have been created with tools such as React projects created with CRA, already have a full testing configuration and workflow built-in, so you can directly start writting tests without any extra set up, but the main idea behind of writing tests is pretty much always the same.  
+
+like jest, vitest is both a test runner and an assertion library.
 
 npm install --save-dev Vitest
-then you need to add the 'test' script in the package.json file, and set the value to 'vitest --globals' (see screenshot)
+then you need to add the 'test' script in the package.json file, and set the value to 'vitest --globals' (see screenshot) ('--globals' will allow you to use special functions like 'it' or 'expect'...)
 
-we will be able to use ECMAScript modules in one of the node.js projects, because we are setting this in the package.json file: 
+in one of the backend projects, we will be able to use ECMAScript modules, because we are setting this in the package.json file: 
 "type": "module"
 
+in the frontend project, the browser supports ECMAScript modules out of the box if you import your main script like this:
+		<script type="module" defer src="app.js"></script>
+
 in the frontend project, we have installed 'http-server' as one of our devDependencies, that's why we can run a development server.
+
+as you units, you want functions that are the smallest units (ie. not functions that call other functions, etc.)
+
+vitest also supports writing your tests in the same file as your main code is (see docs: in-source testing), but for the moment we will ignore this feature, because jest does not have it. therefore, we will create new files for our tests (apart from '.test.js', '.spec.js' also works with vitest; your test runner (vitest or jest) will identify those files as test files and will execute the tests inside those files)
+
+if you add in the package.json file '--globals' at the end of the test script, you will be able to use key functions like 'test', etc. without the need to importing them, since they will be available globally. however, we are not going to do this, and we will import these key functions in the frontend project, because that gives you better support and autocompletion in the IDE.
+
+the 'test' and 'it' functions are synonyms.
+
+if you are using native ES modules without any transpiler or any build tool like webpack, then in your main code, you have to add the file extension in your import statements, eg. import {add} from './math.js'. that's how ECMAScript modules work if you are not having any special tool like webpack that is getting rid of the extensions. vitest acts like such a build tool, so you can ommit the file extensions in your import statements.
+
+when asserting with the 'expect' function, you can chain many methods (the ide will show them to you when you are typing) (you can also check all these methods in the vitest docs)
+
+if you remove '--reporter verbose' from the test script of the package.json file, the test report in the terminal will be much shorter.
+
+the '--run' flag in the test script of the package.json file, means that it's only executed once.
+the alternative is 'npm run test:watch', you will enter the watch mode (it will keep watching our test files for changes, so the tests will be executed again if you save any changes)
+
+when working in a big project, if someone changes some tiny part of the code, the tests will run authomatically and will report if the change caused the tests to fail.
+
+typically, you should write several tests for each unit
+
+writing tests is an iterative process: afer you write tests for the first time, then you think about a new scenario to cover, so you write more tests, and then you have to change something form the main code, and then you write more tests to cover an additional scenario that comes to mind, etc. in general, you want to be as thorough as possible, and think about the behaviours that you expect from your code.
