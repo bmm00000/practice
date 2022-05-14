@@ -60,3 +60,9 @@ when working in a big project, if someone changes some tiny part of the code, th
 typically, you should write several tests for each unit
 
 writing tests is an iterative process: afer you write tests for the first time, then you think about a new scenario to cover, so you write more tests, and then you have to change something form the main code, and then you write more tests to cover an additional scenario that comes to mind, etc. in general, you want to be as thorough as possible, and think about the behaviours that you expect from your code.
+in a nutshell, testing and code improvements work together iteratively: as our app evolves, we also need to evolve our tests.
+
+if you have several units (eg. functions) in the same file, you will have several tests in the same '.test.js' file. in the report that will appear on the terminal, it will not be clear to which unit each test belongs. that's why we organize the tests into test suits (created by the 'describe' function). also, you could add more 'describe' functions nested, to have more granular descriptions of the suit (so you would end up with more indentations of your output, which would make it more understandable)
+
+you can copy and paste the same test files that we used in the frontend project and use them in the backend projects, it will work the same: npm test. keep in mind that some of the backend tests will fail, since we changed some of the functions of the frontend project, but we have not changed any function in the backend projects.
+(note that, in the backend projects, the vitest script in the package.json file may be configured to remain in watch mode when you run the tests, but you can change this and copy the same script that you are using in the frontend package.json file)
