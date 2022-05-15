@@ -1,43 +1,18 @@
-import { extractNumbers } from './src/parser.js';
-import {
-	validateStringNotEmpty,
-	validateNumber,
-} from './src/util/validation.js';
-import { add } from './src/math.js';
-import { transformToNumber } from './src/util/numbers.js';
+import { extractEnteredNumberValues } from './src/parser.js';
+import { calculateResult } from './src/math.js';
+import { generateResultText, outputResult } from './src/output.js';
+// include '.js' in the import statements, it gave me problems when I didn't do so!!
 
 const form = document.querySelector('form');
-const output = document.getElementById('result');
 
 function formSubmitHandler(event) {
 	event.preventDefault();
-	const formData = new FormData(form);
-	const numberInputs = extractNumbers(formData);
+	const numberValues = extractEnteredNumberValues(form);
 
-	let result = '';
+	const result = calculateResult(numberValues);
+	const resultText = generateResultText(result);
 
-	try {
-		const numbers = [];
-		for (const numberInput of numberInputs) {
-			validateStringNotEmpty(numberInput);
-			const number = transformToNumber(numberInput);
-			validateNumber(number);
-			numbers.push(number);
-		}
-		result = add(numbers).toString();
-	} catch (error) {
-		result = error.message;
-	}
-
-	let resultText = '';
-
-	if (result === 'invalid') {
-		resultText = 'Invalid input. You must enter valid numbers.';
-	} else if (result !== 'no-calc') {
-		resultText = 'Result: ' + result;
-	}
-
-	output.textContent = resultText;
+	outputResult(resultText);
 }
 
 form.addEventListener('submit', formSubmitHandler);
@@ -52,6 +27,6 @@ form.addEventListener('submit', formSubmitHandler);
 
 // if you have many assertions in the same test, chances are that you are not testing just one thing.
 
-// since we are doing many things in the formSubmitHandler function that we have here, testing all the things that it's doing in one test would be tricky, because, even though we might want to test just one behaviour, we would execute all the code inside of the function, so if our test fails, even though we are testing just one behaviour, it could fail because any part of the function failed, so finding out why the test failed would be challenging. therefore, we might want to split it up into multiple functions. if you do that, the function will become more readable and maintainable and the tests will become more managable as well, and you will be able to have more granular tests (therefore, writing tests helps you to write better code in your appliation, since you are forced to write cleaner code).
+// since we are doing many things in the formSubmitHandler function that we have here, testing all the things that it's doing in one test would be tricky, because, even though we might want to test just one behaviour, we would execute all the code inside of the function, so if our test fails, even though we are testing just one behaviour, it could fail because any part of the function failed, so finding out why the test failed would be challenging. therefore, we might want to split it up into multiple functions. if you do that, the formSubmitHandler function will become more readable and maintainable and the tests will become more managable as well, and you will be able to have more granular tests (therefore, writing tests helps you to write better code in your appliation, since you are forced to write cleaner code).
 
 // what we are doing in the formSubmitHandler function is: getting the input from the user, validating and transforming it, calculating the result, deriving the output text that we want to render (based on the result that we calculated), and outputing the output text in the dom

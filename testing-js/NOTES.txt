@@ -66,3 +66,10 @@ if you have several units (eg. functions) in the same file, you will have severa
 
 you can copy and paste the same test files that we used in the frontend project and use them in the backend projects, it will work the same: npm test. keep in mind that some of the backend tests will fail, since we changed some of the functions of the frontend project, but we have not changed any function in the backend projects.
 (note that, in the backend projects, the vitest script in the package.json file may be configured to remain in watch mode when you run the tests, but you can change this and copy the same script that you are using in the frontend package.json file)
+
+A Word About Code Coverage:
+An important aspect of testing is to achieve good code coverage. This means, that you want to write tests for the majority of your code (both code files and line of code).
+There are tools that help you measure your code coverage - actually Vitest comes with a built-in functionality: https://vitest.dev/guide/features.html#coverage
+It is worth noting though, that the goal is not necessarily 100% coverage. There always can be some code that doesn't need any tests (e.g., because it merely calls other functions that are tested already).
+In addition, achieving (close to) full code coverage also isn't any guarantee that you wrote good tests. You could cover 100% of your code with meaningless tests after all. Or you could missing important tests (that should test important behaviors). The code would still technically be covered by tests in such scenarios.
+So don't see a high amount of code coverage as the ultimate goal!
