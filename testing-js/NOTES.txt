@@ -74,4 +74,4 @@ It is worth noting though, that the goal is not necessarily 100% coverage. There
 In addition, achieving (close to) full code coverage also isn't any guarantee that you wrote good tests. You could cover 100% of your code with meaningless tests after all. Or you could missing important tests (that should test important behaviors). The code would still technically be covered by tests in such scenarios.
 So don't see a high amount of code coverage as the ultimate goal!
 
-with spies and mocks, we are going to be dealing with side effects.
+with spies and mocks, we are going to be dealing with side effects and external dependencies
