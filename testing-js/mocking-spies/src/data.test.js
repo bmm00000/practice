@@ -17,7 +17,7 @@ describe('generateReportData()', () => {
 
 		expect(logger).toBeCalled();
 		// toBeCalled and toHaveBeenCalled are equivalent methods.
-		// the test will only pass if logger was called. if some of your colleagues deleted the 'if (logFn) {logFn(data)' part of the generateReportData function, then the test would fail, so we would find out about the problem.
+		// the test will only pass if logger was called. if some of your colleagues deleted 'if (logFn) {logFn(data)' from the generateReportData function, then the test would fail, so we would find out about the problem.
 	});
 	// we won't import the logFn function, we just want to find out if it was called, so we can create such a spy replacement object (the logFn also has a side effect: interacts with the system console, which is an external system, so you want to get rid of it (you don't want to test whether or not console.log works well))
 });
