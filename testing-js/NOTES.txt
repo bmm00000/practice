@@ -75,3 +75,4 @@ In addition, achieving (close to) full code coverage also isn't any guarantee th
 So don't see a high amount of code coverage as the ultimate goal!
 
 with spies and mocks, we are going to be dealing with side effects and external dependencies
+

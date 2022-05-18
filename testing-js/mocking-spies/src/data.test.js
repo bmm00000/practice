@@ -12,7 +12,7 @@ describe('generateReportData()', () => {
 		// logger.mockImplementationOnce(() => {
 		// 	// our implementation...
 		// });
-		// my understanding is that, with mockImplementation, the replacement persists. is this true?
+		// with mockImplementation, the replacement will persist for all subsequent calls.
 
 		generateReportData(logger);
 
