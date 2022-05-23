@@ -33,7 +33,18 @@ const Search = React.memo((props) => {
 
 				// onLoadIngredients(loadedIngredients);
 
-				// my solution for filtering:
+				// we also have the change the following in the rules of firebase:
+				// {
+				//   "rules": {
+				//     ".read": true,  // 2022-6-22
+				//     ".write": true, // 2022-6-22
+				//       "ingredients": {
+				//         ".indexOn": ["title"]
+				//       }
+				//   }
+				// }
+
+				// my solution for filtering (without using filtering functionality from firebase):
 				// const filteredIngredients = [];
 				// for (let ingredient of loadedIngredients) {
 				// 	if (ingredient.title.includes(enteredFilter)) {
