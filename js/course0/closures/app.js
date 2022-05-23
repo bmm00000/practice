@@ -71,7 +71,7 @@ for (var i = 0; i < 5; i++) {
 		console.log(i);
 	}, 500);
 }
-// keep in mind what we learned about closures: they lock it the name of the variable, not the value. what happens here is that we are setting 5 timers, and for every timer we create a new anonymous function, and in every anonymous function we lock in the surrounding lexical context. in that lexical context we got a global 'i' variable (it's globally available because it's not inside of some function and 'var' doesn't have block scope), but it's locked in only the variable name (not the value). since the timers expire after the loop has been fully processed (the loop will take much less than 500 milliseconds). therefore, when the timers expire, then they look at the value of 'i' (they didn't lock in the value, only the name of the variable). the closure here (the callback function inside of setTimeout) looks up the concrete value of 'i' when it executes, not when it's declared
+// keep in mind what we learned about closures: they lock in the name of the variable, not the value. what happens here is that we are setting 5 timers, and for every timer we create a new anonymous function, and in every anonymous function we lock in the surrounding lexical context. in that lexical context we got a global 'i' variable (it's globally available because it's not inside of some function and 'var' doesn't have block scope), but it's locked in only the variable name (not the value). since the timers expire after the loop has been fully processed (the loop will take much less than 500 milliseconds). therefore, when the timers expire, then they look at the value of 'i' (they didn't lock in the value, only the name of the variable). the closure here (the callback function inside of setTimeout) looks up the concrete value of 'i' when it executes, not when it's declared
 
 // another interview question is how you could console.log values of 0 to 4. you have two solutions:
 
@@ -92,6 +92,4 @@ for (let i = 0; i < 5; i++) {
 		console.log(i);
 	}, 500);
 }
-// it works because with 'let' we crate block scope, and a new block scope is created for every iteration.
-
-// WATCH AGAIN the video 'a special case'
+// it works because with 'let' we crate block scope, and a new block scope is created for every iteration. you could challenge this thought process and say the following: we have just one variable which is created ('i'), which simply receives a different value for every iteration, and if that would be the case, we would have the same output as we had at the beginning (console log 5, 5, 5, 5, 5), BUT THAT'S NOT HOW JS WORKS INTERNALLY! THIS IS KIND OF AN EDGE CASE THAT WE HAVE HERE: inside of the 'for' loop, a new variable is created for every iteration in its own block scope, and this variable copies over the old variable value plus 1.
