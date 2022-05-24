@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Card from '../UI/Card';
+import LoadingIndicator from '../UI/LoadingIndicator';
 import './IngredientForm.css';
 
 const IngredientForm = React.memo((props) => {
@@ -59,6 +60,9 @@ const IngredientForm = React.memo((props) => {
 					</div>
 					<div className='ingredient-form__actions'>
 						<button type='submit'>Add Ingredient</button>
+						{/* {props.loading ? <LoadingIndicator /> : null} */}
+						{/* the following is equivalent to the line above: */}
+						{props.loading && <LoadingIndicator />}
 					</div>
 				</form>
 			</Card>
@@ -71,5 +75,3 @@ export default IngredientForm;
 // when state is updated, the component function is re-executed, but when the useState line of code is executed, react internally will not re-initialize the state, but instead useState manages the state independently from the component, so that the state survives re-renders of the component.
 
 // the first value returned by useState is the current state snapshot for this re-render cycle of the component, meaning that when you update the state, you get the updated state as the first value.
-
-// WATCH AGAIN VIDEOS TO FOLLOW AL THE CHANGES?

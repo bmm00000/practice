@@ -1,6 +1,6 @@
 setTimeout(function () {
 	console.log('This will be executed AFTER');
-	// this is a callback function, because it's passed as an argument to another function (the setTimeout function), so that internally that api which is exposed by the browser, is able to call the function that we passed at a later point in time.
+	// this is a callback function, because it's passed as an argument to another function (the setTimeout function), so that internally that api which is exposed by the browser, is able to call the function that we passed, at a later point in time.
 }, 2000);
 
 console.log('This will be executed BEFORE');
@@ -14,7 +14,7 @@ function callItForMe(num1, num2, callbackFn) {
 	const result = num1 + num2;
 	callbackFn(result);
 }
-// esentially, a callback is a function that is passed as an argument to another function, and that will be executed by that other function. it doesn't have to involve an async operation. in a nutshell, just because you are dealing with callbacks, it doesn't mean that you are dealing with async code. callback functions are just a tool that we often use to deal with async operations.
+// essentially, a callback is a function that is passed as an argument to another function, and that will be executed by that other function. it doesn't have to involve an async operation. in a nutshell, just because you are dealing with callbacks, it doesn't mean that you are dealing with async code. callback functions are just a tool that we often use to deal with async operations.
 
 // what we are doing in line 15 (non-async operation example) is what the browser will tell the js engine to do after the timer expires (async operation example), for example.
 
