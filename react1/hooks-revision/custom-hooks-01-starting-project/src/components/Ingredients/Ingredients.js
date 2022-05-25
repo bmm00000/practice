@@ -6,7 +6,6 @@ import IngredientList from './IngredientList';
 import ErrorModal from '../UI/ErrorModal';
 import Search from './Search';
 
-// we define the reducer function outside of the component, so it's not re-created every time that the component is re-rendered (you could also have the reducer inside the component, in case you used props in your reducer. but if you don't use props in your reducer, it's better to put it outside of the component to avoid unnecessary re-creations of the reducer):
 const ingredientReducer = (currentIngredients, action) => {
 	switch (action.type) {
 		case 'SET':
@@ -20,33 +19,13 @@ const ingredientReducer = (currentIngredients, action) => {
 	}
 };
 
-const httpReducer = (currentHttpState, action) => {
-	switch (action.type) {
-		case 'SEND':
-			return { loading: true, error: null };
-		case 'RESPONSE':
-			// return {loading: false, error: null}
-			// or the following (you want to modify only something from the pre-existing state: you specify what you want to replace, and it will be overriten in the spread pre-existing state):
-			return { ...currentHttpState, loading: false };
-		case 'ERROR':
-			return { loading: false, error: action.errorMessage };
-		case 'CLEAR':
-			return { ...currentHttpState, error: null };
-		default:
-			throw new Error('We should not get here');
-	}
-};
-
 function Ingredients() {
 	// const [userIngredients, setUserIngredients] = useState([]);
 	// const [isLoading, setIsLoading] = useState(false);
 	// const [error, setError] = useState();
 	// the three states above are related to us interacting with an http request. therefore, we can manage them with useReducer (because sometimes, we even update them at the same time, eg. setIsLoading and setError) (we use useReducer when we have more complex state, ie. multiple ways of changing a state and some of these ways depend on the previous state or on other states; in our case, we could also use just useState, but useReducer is cleaner, because we have all our updating logic in the reducer):
 	const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
-	const [httpState, dispatchHttp] = useReducer(httpReducer, {
-		loading: false,
-		error: null,
-	});
+
 	// when working with useReducer, react will re-render the component whenever your reducer returns the new state.
 
 	// we don't need the following useEffect, becuase we already make the same http request in Search.js when the app is loaded for the first time (and there are no filter criteria in Search.js):
@@ -118,28 +97,7 @@ function Ingredients() {
 	// we will also avoid an unnecessary re-render here, as we did before in 'addIngredientHandler'. we could also use React.memo in IngredientList, but we also have another alternative: useMemo. useCallback is a hook to save a function that doesn't change, so that the function is not re-created; and useMemo is a hook to save a value which is saved, so that the value is not re-created (we are going to use useMemo in IngredientList below):
 	const removeIngredientHandler = useCallback((ingredientId) => {
 		dispatchHttp({ type: 'SEND' });
-		fetch(
-			`https://hooks-revision-a65e1-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json	`,
-			{
-				method: 'DELETE',
-			}
-		)
-			.then((response) => {
-				dispatchHttp({ type: 'RESPONSE' });
-				// setUserIngredients((prevUserIngredients) =>
-				// 	prevUserIngredients.filter(
-				// 		(ingredient) => ingredient.id !== ingredientId
-				// 	)
-				// );
-				dispatch({ type: 'DELETE', id: ingredientId });
-			})
-			.catch((error) => {
-				// setError(error.message)
-				// there's a message property in the error object that we receive from firebase. we can also update our error state with any other message:
-				dispatchHttp({ type: 'ERROR', errorMessage: 'Something went wrong!' });
-				// setError('Something went wrong!');
-				// setIsLoading(false);
-			});
+
 		// remember, react batches mutiple state updates together in order to avoid unnecessary render cycles. therefore, for example, if you have handler function where you update several states, right in the next line where you update a single state, you can't immediately use the new state if you are not using the function form to update state! (because react will batch all state updates and schedule them to be executed together). THEREFORE, ALL STATE UPDATES FROM ONE AND THE SAME SYNCHRONOUS EVENT HANDLER ARE BATCHED TOGETHER. for example, in the former catch block, the two updates are executed synchronously after each other, so react will batch the two state updates together. as a result, each state update will not cause a render cycle, and we will only have one render cycle that reflects both state updates (see a more detailed explanation at the bottom of this file).
 	}, []);
 
