@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-// we define the reducer outside of the hook, because it doesn't need to re-run with every re-render cycle (and our custom hook will run with every re-render cycle (your hook will be called whenever the component that uses the hook gets re-executed)).
+// we define the reducer outside of the hook, because it doesn't need to re-run (and be re-created) with every re-render cycle (and our custom hook will run with every re-render cycle (your hook will be called whenever the component that uses the hook gets re-executed, and then you can use techniques in your hook in order to make sure that nothing happens to the state or does something does happen, depending on what you want, etc.)).
 const httpReducer = (currentHttpState, action) => {
 	switch (action.type) {
 		case 'SEND':
@@ -22,10 +22,11 @@ const useHttp = () => {
 	const [httpState, dispatchHttp] = useReducer(httpReducer, {
 		loading: false,
 		error: null,
+	});
 
-        // the http request should not be send every time that the useHttp hook is called (every time that the component that uses the hook is run). that's why we assign the function to a constant.
-        const sendRequest = (ingredientId) => {
-            fetch(
+	// the http request should not be send every time that the useHttp hook is called (every time that the component that uses the hook is run). that's why we assign the function to a constant.
+	const sendRequest = (ingredientId) => {
+		fetch(
 			`https://hooks-revision-a65e1-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json`,
 			{
 				method: 'DELETE',
@@ -36,14 +37,9 @@ const useHttp = () => {
 				dispatch({ type: 'DELETE', id: ingredientId });
 			})
 			.catch((error) => {
-
 				dispatchHttp({ type: 'ERROR', errorMessage: 'Something went wrong!' });
-				
-			}); 
-        }
-
-       
-	});
+			});
+	};
 };
 
 export default useHttp;

@@ -41,7 +41,7 @@ function Ingredients() {
 	// const [userIngredients, setUserIngredients] = useState([]);
 	// const [isLoading, setIsLoading] = useState(false);
 	// const [error, setError] = useState();
-	// the three states above are related to us interacting with an http request. therefore, we can manage them with useReducer (because sometimes, we even update them at the same time, eg. setIsLoading and setError) (we use useReducer when we have more complex state, ie. multiple ways of changing a state and some of these ways depend on the previous state or on other states; in our case, we could also use just useState, but useReducer is cleaner, because we have all our updating logic in the reducer):
+	// the two last states above are related to us interacting with an http request. therefore, we can manage them with useReducer (because sometimes, we even update them at the same time, eg. setIsLoading and setError) (we use useReducer when we have more complex state, ie. multiple ways of changing a state and some of these ways depend on the previous state or on other states; in our case, we could also use just useState, but useReducer is cleaner, because we have all our updating logic in the reducer):
 	const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
 	const [httpState, dispatchHttp] = useReducer(httpReducer, {
 		loading: false,
@@ -74,7 +74,7 @@ function Ingredients() {
 	// the function that we pass to useEffect will be executed AFTER and FOR EVERY (if there's no dependencies array) render cycle (by external dependencies we mean variables or data that we are using in the useEffect function, which we define in our component outside of the useEffect function)
 
 	useEffect(() => {
-		console.log('rendering ingredients', userIngredients);
+		console.log('rendering re-newed set of ingredients', userIngredients);
 	}, [userIngredients]);
 	// according to the course, you can use useEffect as many times as you want. is this best practice?
 	// the effect function will only run after a render cycle, IF userIngredients changed.
@@ -140,12 +140,12 @@ function Ingredients() {
 				// setError('Something went wrong!');
 				// setIsLoading(false);
 			});
-		// remember, react batches mutiple state updates together in order to avoid unnecessary render cycles. therefore, for example, if you have handler function where you update several states, right in the next line where you update a single state, you can't immediately use the new state if you are not using the function form to update state! (because react will batch all state updates and schedule them to be executed together). THEREFORE, ALL STATE UPDATES FROM ONE AND THE SAME SYNCHRONOUS EVENT HANDLER ARE BATCHED TOGETHER. for example, in the former catch block, the two updates are executed synchronously after each other, so react will batch the two state updates together. as a result, each state update will not cause a render cycle, and we will only have one render cycle that reflects both state updates (see a more detailed explanation at the bottom of this file).
+		// remember, react batches mutiple state updates together in order to avoid unnecessary render cycles. therefore, for example, if you have a handler function where you update several states, right in the next line where you update a single state, you can't immediately use the new state if you are not using the function form to update state! (because react will batch all state updates and schedule them to be executed together). THEREFORE, ALL STATE UPDATES FROM ONE AND THE SAME SYNCHRONOUS EVENT HANDLER ARE BATCHED TOGETHER. for example, in the former catch block, the two updates are executed synchronously after each other, so react will batch the two state updates together. as a result, each state update will not cause a render cycle, and we will only have one render cycle that reflects both state updates (see a more detailed explanation at the bottom of this file).
 	}, []);
 
-	const closeModalHandler = React.memo(() => {
+	const closeModalHandler = useCallback(() => {
 		dispatchHttp({ type: 'CLEAR' });
-	});
+	}, []);
 
 	// when using useMemo, you have to pass a function (that react will execute for you) that should return the value that you want to memorize.
 	const ingredientList = useMemo(() => {
@@ -158,7 +158,8 @@ function Ingredients() {
 	}, [userIngredients, removeIngredientHandler]);
 	// the array of dependencies tells react when it should re-run the function to create a new object that it should memorize.
 	// useMemo is an alternative to React.memo. if we are talking about storing whole components, you probably want to use React.memo, but keep in mind that, with useMemo, you can store any data which you don't want to re-create on every render cycle of the component (eg. for an operation that calculates a complex value and it takes some time, then you may want to consider useMemo).
-	// by the way, with all these optimizations that we did with React.memo, useMemo, and useCallback, when we talked about re-rendering, we meant re-render in the virtual dom, not in the real dom. but if you have very trivial components, it might even be worth not adding React.memo (or useMemo) becuase react will then always needs to check whether props changed, and if it's as super small component, re-rendering it might even be faster than performing that check, so you need to evaluate if this is really needed at all (for example, in our ErrorModal, we could even get away without using React.memo and it would be fine).
+	// by the way, with all these optimizations that we did with React.memo, useMemo, and useCallback, when we talked about re-rendering, we meant re-render in the virtual dom, not in the real dom.
+	// but if you have very trivial components, it might even be worth not adding React.memo (or useMemo) becuase react will then always needs to check whether props changed, and if it's as super small component, re-rendering it might even be faster than performing that check, so you need to evaluate if this is really needed at all (for example, in our ErrorModal, we could even get away without using React.memo and it would be fine).
 
 	return (
 		<div className='App'>

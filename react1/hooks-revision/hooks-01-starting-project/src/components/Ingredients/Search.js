@@ -40,7 +40,7 @@ const Search = React.memo((props) => {
 
 						onLoadIngredients(loadedIngredients);
 
-						// we also have the change the following in the rules in firebase:
+						// we also have to change the following in the rules in firebase:
 						// {
 						//   "rules": {
 						//     ".read": true,  // 2022-6-22
