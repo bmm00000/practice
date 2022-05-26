@@ -1,14 +1,14 @@
-import { useReducer } from 'react';
+import { useReducer, useCallback } from 'react';
 
 // we define the reducer outside of the hook, because it doesn't need to re-run (and be re-created) with every re-render cycle (and our custom hook will run with every re-render cycle (your hook will be called whenever the component that uses the hook gets re-executed, and then you can use techniques in your hook in order to make sure that nothing happens to the state or does something does happen, depending on what you want, etc.)).
 const httpReducer = (currentHttpState, action) => {
 	switch (action.type) {
 		case 'SEND':
-			return { loading: true, error: null };
+			return { loading: true, error: null, data: null };
 		case 'RESPONSE':
 			// return {loading: false, error: null}
 			// or the following (you want to modify only something from the pre-existing state: you specify what you want to replace, and it will be overriten in the spread pre-existing state):
-			return { ...currentHttpState, loading: false };
+			return { ...currentHttpState, loading: false, data: action.responseData };
 		case 'ERROR':
 			return { loading: false, error: action.errorMessage };
 		case 'CLEAR':
@@ -22,24 +22,37 @@ const useHttp = () => {
 	const [httpState, dispatchHttp] = useReducer(httpReducer, {
 		loading: false,
 		error: null,
+		data: null,
 	});
 
-	// the http request should not be send every time that the useHttp hook is called (every time that the component that uses the hook is run). that's why we assign the function to a constant.
-	const sendRequest = (ingredientId) => {
-		fetch(
-			`https://hooks-revision-a65e1-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json`,
-			{
-				method: 'DELETE',
-			}
-		)
+	// the http request should not be send every time that the useHttp hook is called (every time that the component that uses the hook is run). that's why we assign the function expression to a constant, so we can call the function later as we wish.
+	const sendRequest = useCallback((url, method, body) => {
+		dispatchHttp({ type: 'SEND' });
+		fetch(url, {
+			method: method,
+			body: body,
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
 			.then((response) => {
-				dispatchHttp({ type: 'RESPONSE' });
-				dispatch({ type: 'DELETE', id: ingredientId });
+				return response.json();
+			})
+			.then((responseData) => {
+				dispatchHttp({ type: 'RESPONSE', responseData: responseData });
 			})
 			.catch((error) => {
 				dispatchHttp({ type: 'ERROR', errorMessage: 'Something went wrong!' });
 			});
+	}, []);
+
+	return {
+		isLoading: httpState.loading,
+		data: httpState.data,
+		error: httpState.error,
+		sendRequest: sendRequest,
 	};
+	// you can return anything you want in your custom hook, an array, an object, or whatever.
 };
 
 export default useHttp;
