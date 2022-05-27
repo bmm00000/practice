@@ -1,7 +1,7 @@
 // OBJECT ORIENTED PROGRAMMING:
-// look up oop in google.
+// watch Mosh video on youtube
 
-// we can create an object with the so-called object literal notation (this s great when you want to create an object on the fly, just put together some data on the go):
+// we can create an object with the so-called object literal notation (this is great when you want to create an object on the fly, just put together some data, on the go):
 
 const person = {
 	name: 'Jose',
@@ -34,14 +34,14 @@ const employee2 = new Employee('Alana', 2);
 console.log(employee1);
 console.log(employee2);
 
-// js also have some built-in constructor functions, for example, the Object constructor function:
+// js also has some built-in constructor functions, for example, the Object constructor function:
 const objectA = new Object();
 // we can't pass in any specific data, so this creates an empty object, so this is just a longer form of using the object literal notation (in reality, when you use the object literal notation, you are calling behind the scenes the Object constructor function)
 
 // ditto with the built-in Array constructor function:
 const arrayA = new Array();
 
-// however, other programming languages don't have this constructor functions approach, and that's why it might seem confusing if you are coming from another programming language. that's why, in modern js, you have another syntax for creating these blueprints for objects (use the class keyword, with a constructor function for initialization):
+// however, other programming languages don't have this constructor functions approach, and that's why it might seem confusing if you are coming from another programming language. that's why, in modern js, you have another syntax for creating these blueprints for objects (the 'class' keyword, with a constructor function for initialization):
 
 class Person {
 	constructor(name, age) {
@@ -49,12 +49,12 @@ class Person {
 		this.age = age;
 	}
 }
-// // the former, is syntactic sugar for the following:
+// // the former is syntactic sugar for the following:
 // function Person(name, age) {
 // 	this.name = name;
 // 	this.age = age;
 // }
-// // this syntactic sugar was added to js because other programming languages have a feature called 'classes' to create such object blueprints.
+// // this syntactic sugar was added to js because other programming languages have a feature called 'class' to create such object blueprints.
 
 class Student {
 	constructor(name, age) {
@@ -66,7 +66,7 @@ class Student {
 	greet() {
 		console.log('Hello, I am a student');
 	}
-	// every object that we create has this method, regardless of the initialization data that we pass as arguments (in the console of the browser, we will see this method in the __proto__ property, not as a property of the object per se)
+	// every object that we create has this method, regardless of the initialization data that we pass as arguments (in the console of the browser, we will see this method in the __proto__ property, not as a property of the object per se) (note that __proto__ is not really a property, the console of the browser displays it as a property just to make things visually understandable, but it's not really a property)
 
 	hometown = 'Alicante';
 	// however, this property will be a property of every object that we create (not in __proto__)
@@ -110,7 +110,7 @@ const owner = {
 // employee.greet();
 // console.log(owner.company);
 
-// the former is the 'worse' way to do it, because __proto__ is not an official property. most browsers support it, but you don't have any guarantee for that (microsoft borwsers used to not support it).
+// the former is the 'worse' way to do it, because __proto__ is not an official property. most browsers support it, but you don't have any guarantee for that (microsoft browsers used to not support it).
 
 // WATCH OUT: when we say that we set the prototype of an object, it sounds like we set the blueprint for this object, but a better mental model to think about it is: you are basically setting up a fallback object that you are connecting your main object to (that's the so called 'prototype chain'). only at the end of the prototype chain, if js couldn't find certain method or property that you are specifying, then it will show undefined or throw an error.
 
@@ -120,7 +120,7 @@ console.log(companyMember.__proto__);
 // and at the end of the prototype chain we will get 'null':
 console.log(companyMember.__proto__.__proto__);
 
-// therefore, you can link objects with prototypes as you wish, but ultimately you will get to the default prototype that every js object has, and the prototype of that object will be 'null'. and if js can't find the method or property that you are looking for at that point, it will throw an error (if what's you're looking for is a method) or 'undefined' (if what you're looking for is a property).
+// therefore, you can link objects with prototypes as you wish, but ultimately you will get to the default prototype that every js object has, and the prototype of that object will be 'null'. and if js can't find the method or property that you are looking for at that point, it will throw an error (if what you're looking for is a method) or 'undefined' (if what you're looking for is a property).
 
 // however, remember, we said before that overriding the default prototype is not the best way to do it. what's a better way to do it?
 Object.setPrototypeOf(employee, companyMember);
@@ -129,7 +129,7 @@ Object.setPrototypeOf(owner, companyMember);
 employee.greet();
 console.log(owner.company);
 
-// the former is the best way to change the prototype of an object that was already created. but we can also change the prototype by changing it when (or before) the object is created:
+// the former is the best way to change the prototype of an object that was already created. but we can also change the prototype by changing it at the time when the object is created:
 
 const employeeAlt = Object.create(companyMember);
 // as we have seen before, Object is a built-in constructor function. since functions are, at the end, objects, this object has also methods, and we are going to use the 'create' method.
