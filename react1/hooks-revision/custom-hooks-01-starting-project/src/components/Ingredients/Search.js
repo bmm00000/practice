@@ -21,7 +21,7 @@ const Search = React.memo((props) => {
 						: `?orderBy="title"&equalTo="${enteredFilter}"`;
 				// this doesn't work. is it because anything changed with firebase?
 				fetch(
-					'https://hooks-revision-a65e1-default-rtdb.firebaseio.com/ingredients.json' +
+					'https://custom-hooks-revision-default-rtdb.europe-west1.firebasedatabase.app/ingredients.json' +
 						query
 				)
 					.then((response) => {
