@@ -34,3 +34,5 @@ const useHttp = () => {
 };
 
 export default useHttp;
+
+// this custom hook should not only be dealing with fetching tasks, because in that case this hook would not be very re-usable. instead, this hook should be able to send any kind of request to any kind of url, and to do any kind of data transformation.
