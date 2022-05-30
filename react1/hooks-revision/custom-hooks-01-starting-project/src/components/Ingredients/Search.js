@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import Card from '../UI/Card';
+import ErrorModal from '../UI/ErrorModal';
+import useHttp from '../../hooks/http';
 import './Search.css';
 
 const Search = React.memo((props) => {
 	const { onLoadIngredients } = props;
 	const [enteredFilter, setEnteredFilter] = useState('');
 	const inputRef = useRef();
+	const { isLoading, data, error, clear, sendRequest } = useHttp();
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -20,59 +23,40 @@ const Search = React.memo((props) => {
 						? ''
 						: `?orderBy="title"&equalTo="${enteredFilter}"`;
 				// this doesn't work. is it because anything changed with firebase?
-				fetch(
+				sendRequest(
 					'https://custom-hooks-revision-default-rtdb.europe-west1.firebasedatabase.app/ingredients.json' +
-						query
-				)
-					.then((response) => {
-						return response.json();
-					})
-					.then((responseData) => {
-						const loadedIngredients = [];
-
-						for (let key in responseData) {
-							loadedIngredients.push({
-								id: key,
-								title: responseData[key].title,
-								amount: responseData[key].amount,
-							});
-						}
-
-						onLoadIngredients(loadedIngredients);
-
-						// we also have the change the following in the rules in firebase:
-						// {
-						//   "rules": {
-						//     ".read": true,  // 2022-6-22
-						//     ".write": true, // 2022-6-22
-						//       "ingredients": {
-						//         ".indexOn": ["title"]
-						//       }
-						//   }
-						// }
-
-						// my solution for filtering (without using filtering functionality from firebase):
-						// const filteredIngredients = [];
-						// for (let ingredient of loadedIngredients) {
-						// 	if (ingredient.title.includes(enteredFilter)) {
-						// 		filteredIngredients.push(ingredient);
-						// 	}
-						// }
-						// onLoadIngredients(filteredIngredients);
-					});
+						query,
+					'GET'
+				);
 			}
 		}, 500);
 
 		return () => {
 			clearTimeout(timer);
 		};
-	}, [enteredFilter, onLoadIngredients, inputRef]);
+	}, [enteredFilter, inputRef, sendRequest]);
+
+	useEffect(() => {
+		if (!isLoading && !error && data) {
+			const loadedIngredients = [];
+			for (let key in data) {
+				loadedIngredients.push({
+					id: key,
+					title: data[key].title,
+					amount: data[key].amount,
+				});
+			}
+			onLoadIngredients(loadedIngredients);
+		}
+	}, [data, isLoading, error, onLoadIngredients]);
 
 	return (
 		<section className='search'>
+			{error && <ErrorModal onClose={clear}>{error}</ErrorModal>}
 			<Card>
 				<div className='search-input'>
 					<label>Filter by Title</label>
+					{isLoading && <span>Loading...</span>}
 					<input
 						ref={inputRef}
 						type='text'

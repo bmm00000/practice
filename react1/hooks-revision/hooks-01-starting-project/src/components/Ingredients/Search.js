@@ -12,7 +12,7 @@ const Search = React.memo((props) => {
 		const timer = setTimeout(() => {
 			// since we are using the cleanup function below, we don't need the following 'if' statement (I don't know why the course keeps it):
 			if (enteredFilter === inputRef.current.value) {
-				// due to how closures work in js, the enteredFilter variable name will have been closed when the callback was declared (ie. before the 500 milliseconds passed). after the 500 passed, when the callback is executed, js will look up the locked in value of enteredFilter, and that will be the initial value (before the 500 millisecons passed), because we are working with 'const' and therefore, the variable is in block scope. if the current value (inputRef.current.value) is equal to the value 500 millisecons ago (enteredFilter), it means that we have not typed anything new in the last 500 millisecons, so we want to make the http request.
+				// due to how closures work in js, the enteredFilter variable name will have been closed when the callback was declared (ie. before the 500 milliseconds passed). after the 500 passed, when the callback is executed, js will look up the locked in value of enteredFilter, and that will be the initial value (before the 500 millisecons passed), because we are working with 'const' and therefore, the variable is in block scope. if the current value (inputRef.current.value) is equal to the value 500 millisecons ago (enteredFilter), it means that we have not typed anything new in the last 500 milliseconds, so we want to make the http request.
 
 				// firebase supports filtering (we can append some query params):
 				const query =

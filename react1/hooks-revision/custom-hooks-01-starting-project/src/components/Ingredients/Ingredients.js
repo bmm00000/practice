@@ -23,15 +23,23 @@ const ingredientReducer = (currentIngredients, action) => {
 
 function Ingredients() {
 	const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
-	const { isLoading, data, error, sendRequest, reqExtra } = useHttp();
+	const {
+		isLoading,
+		data,
+		error,
+		sendRequest,
+		reqExtra,
+		reqIdentifier,
+		clear,
+	} = useHttp();
 
 	useEffect(() => {
-		if (reqExtra) {
+		if (!isLoading && !error && reqIdentifier === 'REMOVE_INGREDIENT') {
 			dispatch({ type: 'DELETE', id: reqExtra });
-		} else {
-			// dispatch({ type: 'ADD', ingredient: {id: data.name, ...ingredient} });
+		} else if (!isLoading && !error && reqIdentifier === 'ADD_INGREDIENT') {
+			dispatch({ type: 'ADD', ingredient: { id: data.name, ...reqExtra } });
 		}
-	}, [data, reqExtra]);
+	}, [data, reqExtra, reqIdentifier, isLoading, error]);
 	// it might look strange that we are sending the http request somewhere (see removeIngredientHanlder function below) and we are handling the response somewhere else (in useEffect here). another option would be to set up the sendRequest function of the useHttp custom hook (eg. returning a promise, so then you can do all the response handling logic inside this component) such that you can send the dispatch of line 29 inside of the removeIngredientHandler function (after you receive the data). however, this approach that we are using (splitting the sending of the request, and the handling of the response) leads to cleaner code, since you are using the custom hook to its fullest potential.
 
 	const filteredIngredientsHandler = useCallback((filteredIngredients) => {
@@ -43,28 +51,10 @@ function Ingredients() {
 			sendRequest(
 				'https://custom-hooks-revision-default-rtdb.europe-west1.firebasedatabase.app/ingredients.json',
 				'POST',
-				JSON.stringify(ingredient)
+				JSON.stringify(ingredient),
+				ingredient,
+				'ADD_INGREDIENT'
 			);
-
-			// dispatchHttp({ type: 'SEND' });
-			// fetch(
-			// 	'https://hooks-revision-a65e1-default-rtdb.firebaseio.com/ingredients.json',
-			// 	{
-			// 		method: 'POST',
-			// 		body: JSON.stringify(ingredient),
-			// 		headers: { 'Content-Type': 'application/json' },
-			// 	}
-			// )
-			// 	.then((response) => {
-			// 		dispatchHttp({ type: 'RESPONSE' });
-			// 		return response.json();
-			// 	})
-			// 	.then((responseData) => {
-			// 		dispatch({
-			// 			type: 'ADD',
-			// 			ingredient: { id: responseData.name, ...ingredient },
-			// 		});
-			// 	});
 		},
 		[sendRequest]
 	);
@@ -75,15 +65,12 @@ function Ingredients() {
 				`https://custom-hooks-revision-default-rtdb.europe-west1.firebasedatabase.app/ingredients/${ingredientId}.json`,
 				'DELETE',
 				null,
-				ingredientId
+				ingredientId,
+				'REMOVE_INGREDIENT'
 			);
 		},
 		[sendRequest]
 	);
-
-	const closeModalHandler = React.memo(() => {
-		// dispatchHttp({ type: 'CLEAR' });
-	});
 
 	const ingredientList = useMemo(() => {
 		return (
@@ -96,7 +83,7 @@ function Ingredients() {
 
 	return (
 		<div className='App'>
-			{error && <ErrorModal onClose={closeModalHandler}>{error}</ErrorModal>}
+			{error && <ErrorModal onClose={clear}>{error}</ErrorModal>}
 			<IngredientForm
 				onAddIngredient={addIngredientHandler}
 				loading={isLoading}

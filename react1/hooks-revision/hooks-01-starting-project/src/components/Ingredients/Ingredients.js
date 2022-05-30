@@ -47,7 +47,7 @@ function Ingredients() {
 		loading: false,
 		error: null,
 	});
-	// when working with useReducer, react will re-render the component whenever your reducer returns the new state.
+	// equivalent to what happens when we use useState, when we work with useReducer, react will re-render the component whenever your reducer returns the new state.
 
 	// we don't need the following useEffect, becuase we already make the same http request in Search.js when the app is loaded for the first time (and there are no filter criteria in Search.js):
 	// useEffect(() => {
@@ -113,7 +113,7 @@ function Ingredients() {
 				});
 			});
 	}, []);
-	// the dependencies array is empty, becuase, for the dispatch functions, as it happens with the updating functions of useState, it's guaranteed by react to not change between render cycles. also 'ingredient' is a local argument that we are getting in the function, not an external dependency, so we don't need to add it either. therefore, we don't have any external dependencies: this function should never be re-built.
+	// the dependencies array is empty, becuase, for the dispatch functions, as it happens with the updating functions of useState, it's guaranteed by react to not change between render cycles. also, 'ingredient' is a local argument that we are getting in the function, not an external dependency, so we don't need to add it either. therefore, we don't have any external dependencies: this function should never be re-built.
 
 	// we will also avoid an unnecessary re-render here, as we did before in 'addIngredientHandler'. we could also use React.memo in IngredientList, but we also have another alternative: useMemo. useCallback is a hook to save a function that doesn't change, so that the function is not re-created; and useMemo is a hook to save a value which is saved, so that the value is not re-created (we are going to use useMemo in IngredientList below):
 	const removeIngredientHandler = useCallback((ingredientId) => {
@@ -136,11 +136,11 @@ function Ingredients() {
 			.catch((error) => {
 				// setError(error.message)
 				// there's a message property in the error object that we receive from firebase. we can also update our error state with any other message:
-				dispatchHttp({ type: 'ERROR', errorMessage: 'Something went wrong!' });
 				// setError('Something went wrong!');
 				// setIsLoading(false);
+				dispatchHttp({ type: 'ERROR', errorMessage: 'Something went wrong!' });
 			});
-		// remember, react batches mutiple state updates together in order to avoid unnecessary render cycles. therefore, for example, if you have a handler function where you update several states, right in the next line where you update a single state, you can't immediately use the new state if you are not using the function form to update state! (because react will batch all state updates and schedule them to be executed together). THEREFORE, ALL STATE UPDATES FROM ONE AND THE SAME SYNCHRONOUS EVENT HANDLER ARE BATCHED TOGETHER. for example, in the former catch block, the two updates are executed synchronously after each other, so react will batch the two state updates together. as a result, each state update will not cause a render cycle, and we will only have one render cycle that reflects both state updates (see a more detailed explanation at the bottom of this file).
+		// remember, react batches mutiple state updates together in order to avoid unnecessary render cycles. therefore, for example, if you have a handler function where you update several states, right in the next line where you update a single state, you can't immediately use the new state if you are not using the function form to update state! (because react will batch all state updates and schedule them to be executed together). THEREFORE, ALL STATE UPDATES FROM ONE AND THE SAME SYNCHRONOUS EVENT HANDLER ARE BATCHED TOGETHER. for example, in the former catch block, the two updates are executed synchronously after each other (in the former version, when we used useState), so react will batch the two state updates together. as a result, each state update will not cause a render cycle, and we will only have one render cycle that reflects both state updates (see a more detailed explanation at the bottom of this file).
 	}, []);
 
 	const closeModalHandler = useCallback(() => {
@@ -159,7 +159,7 @@ function Ingredients() {
 	// the array of dependencies tells react when it should re-run the function to create a new object that it should memorize.
 	// useMemo is an alternative to React.memo. if we are talking about storing whole components, you probably want to use React.memo, but keep in mind that, with useMemo, you can store any data which you don't want to re-create on every render cycle of the component (eg. for an operation that calculates a complex value and it takes some time, then you may want to consider useMemo).
 	// by the way, with all these optimizations that we did with React.memo, useMemo, and useCallback, when we talked about re-rendering, we meant re-render in the virtual dom, not in the real dom.
-	// but if you have very trivial components, it might even be worth not adding React.memo (or useMemo) becuase react will then always needs to check whether props changed, and if it's as super small component, re-rendering it might even be faster than performing that check, so you need to evaluate if this is really needed at all (for example, in our ErrorModal, we could even get away without using React.memo and it would be fine).
+	// but if you have very trivial components, it might even be worth not adding React.memo (or useMemo) becuase react will then always need to check whether props changed, and if it's as super small component, re-rendering it might even be faster than performing that check, so you need to evaluate if this is really needed at all (for example, in our ErrorModal, we could even get away without using React.memo and it would be fine).
 
 	return (
 		<div className='App'>

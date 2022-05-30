@@ -26,6 +26,7 @@ const useHttp = () => {
 		}
 		setIsLoading(false);
 	}, []);
+	// THE FOLLOWING NOTE IS FROM AN OLDER VERSION:
 	// watch out! requestConfig is an object, and applyData, as a function, is also an object. therefore, in the App component we have to make sure that these objects are not recreated every time App is re-evaluated. that's why we have to useCallback in the App component as well.
 
 	// return { isLoading: isLoading, error: error, sendRequest: sendRequest };
