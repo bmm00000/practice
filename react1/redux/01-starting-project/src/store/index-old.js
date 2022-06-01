@@ -5,7 +5,7 @@ const initialState = { counter: 0, showCounter: true };
 const counterReducer = (state = initialState, action) => {
 	if (action.type === 'increment') {
 		return { counter: state.counter + 1, showCounter: state.showCounter };
-		// remember, the objects returned as new state will not merge into the former state, but will override it! that's why we need to add all the properties of our state object in all the 'if' statements, even if we don't change them (otherwise those piece of state will be deleted).
+		// remember, the objects returned as new state will not merge into the former state, but will override it! that's why we need to add all the properties of our state object in all the 'if' statements, even if we don't change them (otherwise those pieces of state will be deleted).
 
 		// remember, you want to return a new object as new state. you should NEVER mutate the existing state, so you could never do this:
 		// state.counter++

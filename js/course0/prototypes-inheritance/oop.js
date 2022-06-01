@@ -1,5 +1,6 @@
 // OBJECT ORIENTED PROGRAMMING:
 // watch Mosh video on youtube
+// compare with other programming paradigms (functional, etc.)
 
 // we can create an object with the so-called object literal notation (this is great when you want to create an object on the fly, just put together some data, on the go):
 

@@ -19,6 +19,7 @@ function App() {
 
 	useEffect(() => {
 		dispatch(fetchCartData());
+		// we could add this custom action creator in the other useEffect, inside the 'if (isInitial)' block, but we will do it here separately, so it looks cleaner, and we don't have any non-related dependencies to what we want to do here.
 	}, [dispatch]);
 
 	// THE FIRST OPTION IS TO PUT SIDE EFFECTS AND ASYNC TASKS INSIDE ANY COMPONENT, FOR EXAMPLE, APP.JS:
@@ -87,7 +88,12 @@ function App() {
 			isInitial = false;
 			return;
 		}
-		dispatch(sendCartData(cart));
+
+		if (cart.changed) {
+			dispatch(sendCartData(cart));
+			// we use this 'if' statement to avoid sending back a PUT request to firebase right after we make the GET request to fetch the data when we load the app in the beginning (if we don't add this 'if' statement, since 'cart' will change after the GET request, we will also make a PUT request).
+		}
+
 		// this might look strange, becuase what we dispatched before were just action creators that returned an action object. however, now we are dispatching a function that returns another function (sendCartData returns another function), but the great thing about redux when using redux-toolkit is that it's prepared for that: it doesn't accept only action objects (with a type property), but it also accepts action creators that return functions => if it detects that you are dispatching a function, it will execute that function and will give us the 'dispatch' argument authomatically, so that in the returned function we can dispatch again. therefore, we have action creators that can perform side effects, and can then dispatch other actions which eventually reach the reducers as part of a flow of steps that should be taken.
 	}, [cart, dispatch]);
 

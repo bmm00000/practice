@@ -19,7 +19,13 @@ export const fetchCartData = () => {
 
 		try {
 			const cartData = await fetchData();
-			dispatch(cartActions.replaceCart(cartData));
+			dispatch(
+				cartActions.replaceCart({
+					items: cartData.items || [],
+					// we do this in order to avoid an error in the following situation: we clear our cart entirely, then we reload the app, and then there's no array of 'items' when we fetch data again (since there's no 'items' key in firebase). therefore, we have to ensure that we always have an array, so we don't get an error.
+					totalQuantity: cartData.totalQuantity,
+				})
+			);
 			// the data we get back from firebase is already formatted correctly so we don't need to transform it, so we can pass it directly to 'replaceCart' (because it already has the format that we sent to firebase in the PUT request). if we had used the POST method instead of the PUT method, firebase would have created a list of data (it would be an object), and we would have had to transform the data we get from firebase in the GET request.
 		} catch (error) {
 			dispatch(
@@ -51,7 +57,11 @@ export const sendCartData = (cart) => {
 				// you can modify the line above to introduce an error and test that the error notification appears as expected.
 				{
 					method: 'PUT',
-					body: JSON.stringify(cart),
+					body: JSON.stringify({
+						items: cart.items,
+						totalQuantity: cart.totalQuantity,
+						// we send this object, and not the whole 'cart' in order to avoid sending the 'changed' property to firebase, since we don't need to store it there.
+					}),
 				}
 			);
 
