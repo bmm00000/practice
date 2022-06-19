@@ -1,0 +1,39 @@
+docker is a platform for building, running, and shipping apps in a consistent manner, so your app will work not only in your development machine, but also in other machines.
+
+if the app works in your dev machine, but not in other machines it may be due to the folowing reasons:
+- one or more files are missing (not included as part of the deployment)
+- if the target machine is running a different version of some software that your app needs (software version mismatch)
+- different configuration settings (like the environment variables) are different across these machines.
+
+with docker, we can package our app with everything it needs and run it anywhere (see example of slide), on any machine that runs docker docker. therefore, if your app works in your development machine, it will definitely work in your test and production machines.
+
+furthermore, if someone joins your team, they don't have to spend time setting up a new machine to run the app (the don't have to install and configure all these dependencies. this will be done by docker inside of an isolated environemnt called 'container'). therfore, different apps with different dependencies will be able to run on the same machine without messing with each other.
+
+also, if you don't want to work with an app anymore, you can just remove the app with all its dependencies in one go. without docker, as we work with different projects, our development machine gets cluttered with so many libraries and tools used by so many different applications and after a while, we don't know if you can remove one or more of these tools because we are afraid that we will mess up with some application. with docker, we don't have to worry about this, because each application runs with its dependencies inside of an isolated environment.
+
+we can run several virtual machines on a real physical machine. for example, in my mac, I can run two different virtual machines, one running windows, and the other one running linux. how do we do that? using a tool called hypervisor (software we use to create and manage virtual machines) (virtualBox, vmware are cros-platform, while hyper-v is for windows only).
+
+what is the benefit of building virtual machines? we can run an app in insolation inside of a virtual machine: on the same physical machine, we can have two different virtual machines, each one running a completely different app, and each app has the exact dependencies that it needs.
+
+but there are some problems with using virtual machines:
+- each virtual machine needs a full copy of an operating system that needs to be licensed, patched and monitored.
+- that's why virtual machines are slow to start, because the entire OS has to be loaded, just like starting a computer.
+- these virtual machines are resource intensive, because each one takes a slice of the physical hardware resources, like cpu, memory, and disk space. therefore, we will have a limit on how many VMs we can run on a physical machine.
+
+the solution to these issues is containers:
+- containers give us the same kind of isolation, so we can run multiple apps in isolation
+- and there are more lightweight (they don't need a full operating system, since all containers in a machine share the OS of the host. therefore you will only need to license, patch and monitor a single OS).
+- as a result, the container will be able to start up quickly, usually in a second, sometimes less.
+- also containers don't need a slice of hardware resources from the host, so we don't need to give them a specific slice of CPU, memory, or disk space (as we had to do with virtual machines).
+- therefore, with a single host, we can run tens or even hundreds of containers side by side.
+
+the arquitecture of docker is as follows:
+it uses a client-server architecture, so it has a client component that talks to a server component using a restful api. the server, also called the docker engine, sits in the background and takes care of building and running docker containers.
+technically, a container is just a process, like other processes running on your computer, but it's a special kind of process. as we said before, all containers share the OS of the host, more specifically they share the kernel (the core of the OS; the kernel manages applications and hardware resources, like memory and cpu. it's like the engine of the car) of the host. every OS has its own kernel, and these kernels have different apis. that's why we cannot run a windows app on linux, because this app under the hood needs to talk with the kernel of the underlying OS. therefore, in a linux machine, we can only run linux containers; on a windows machine, we can run both windows and linux containers (because windows 10 is now shipped with a custom built linux kernel in addition to the windows kernel (therefore, we can run linux apps natively on windows)). mac os has its own kernel different from linux and windows kernels and this kernel does not have native support for containers. therefore, docker on mac uses a lightweight linux virtual machine to run linux containers.
+
+when you go to the docker website to install it, you will see that for mac and windows we have also available docker desktop, which is the combination of the docker engine plus other tools.
+
+make sure that the docker engine is running (the docker logo has to appear in the bar at the top of your screen, and when you use the command 'docker version' in the cli, the server info will appear there (if the server is not running, you are not going to see the server info the cli))
+
+development workflow when using docker:
+you take an application, and dockerize it (you make a small change, so it can be run by docker: you just add a docker file to it. a docker file is a plain text file that includes instructions that docker uses to package this app into an image (this image contains everything our app needs to run)). once we have an image, we tell docker to start the container using that image. the container is just a process, but it's a special kind of process because it has its own file system which is provided by the image. watch again videos: 6-development workflow, 7-docker in action.
