@@ -137,10 +137,12 @@ const employeeAlt = Object.create(companyMember);
 // as we have seen before, Object is a built-in constructor function. since functions are, at the end, objects, this object has also methods, and we are going to use the 'create' method.
 // the create method creates a new object: it takes an object as an argument and that's the prototype of the newly created object.
 employeeAlt.greet();
-// and you can also add some properties and methods manually after the object was created:
+// and you can also add some properties and methods manually after the object was created (if the property that you are accessing didn't exist before, it will create it):
 employeeAlt.name = 'JoseVi';
 employeeAlt.shout = () => {
 	console.log('wow!');
 };
 employeeAlt.shout();
 console.log(employeeAlt);
+
+// but there's also another way to do it: we can also look at constructor functions or classes (classes are just syntactic sugar for constructor functions): see oop-proto.js
