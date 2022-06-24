@@ -6,7 +6,7 @@ import Button from '../UI/Button';
 import classes from './ErrorModal.module.css';
 
 const ErrorModal = (props) => {
-	// we want to tell react that the backdrop should be portaled somewhere. in order to do that, we create a new component, and we add it in this file, because in this app we only use the Backdrop component in conjunction with the modal (but you could put it in a different file, especially if you would need to use the Backdrop component in conjunction with other components as well):
+	// we want to tell react that the backdrop should be portaled somewhere. in order to do that, we create a new component. we add the new component in this file, because in this app we only use the Backdrop component in conjunction with the modal (but you could put it in a different file, especially if you would need to use the Backdrop component in conjunction with other components as well):
 
 	const Backdrop = (props) => {
 		return <div className={classes.backdrop} onClick={props.onConfirm} />;
@@ -52,6 +52,6 @@ export default ErrorModal;
 // if you trigger the modal manually and inspect in the browser, you will see that the modal is rendered next to the input form (at the same level), this is semantically incorrect, since the modal should refer to the whole page. in order to make it semantically correct, you may want to have the modal as a direct child of the body, next to the 'root' div that holds the rest of our app. (you can try this out by dragging and dropping the dom elements when you inspect in the browser)
 // portals need two things: you need a place you want to port the component to (we include a div in the html file), and then you need to let the component know that it should have a portal to that place => you add divs with ids in the html file (you can add different such roots for different kinds of components that should be portaled there, or you can just add an id='overlay-root' which will hold all sorts of overlays, not only modals, but also side-drawers, etc.)
 
-// you can think of the 'react' library as having all the react features, and the 'react-dom' library uses the 'react' library to bring these features into the web browser (to make them compatible with the DOM) (in other words, the 'react' library doesn't have if you run it in an environment that has a dom, or if you would use it to build a native app, ie. you can use 'react native' in conjunction with 'react' to build a mobile app). therefore, 'react-dom' is the adaptor of 'react' to the browser.
+// you can think of the 'react' library as having all the react features, and the 'react-dom' library uses the 'react' library to bring these features into the web browser (to make them compatible with the DOM) (in other words, the 'react' library doesn't care if you run it in an environment that has a dom, or if you would use it to build a native app, ie. you can use 'react native' in conjunction with 'react' to build a mobile app). therefore, 'react-dom' is the adaptor of 'react' to the browser.
 
 // in summary, fragments and portals are two features that help us write cleaner html code (the app worked the same way before we added those features, but now our code is semantically better).
