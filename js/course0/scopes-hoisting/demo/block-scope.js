@@ -26,4 +26,4 @@ console.log(myName);
 
 // WATCH OUT! the following is also technically block scope:
 const yourName = 'Ana'; // block scope, although this variable will be available everywhere in this file, so it would behave the same way as global scope.
-// it's not global scope, because it uses the 'const' keyword: every time you have 'let' or 'const', you have block scopes.
+// it's not global scope, because it uses the 'const' keyword: every time you have 'let' or 'const', you have block scopes (you can imagine a pair of {} around your entire script)
