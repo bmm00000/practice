@@ -1,0 +1,11 @@
+in the example of the first slide, it would create an infinite loop, but it's just to illustrate the idea of recursion.
+
+in js, recursion works because the js engine parses and understands the entire function before it starts to execute it. therefore, when you call the function from inside the function, js already knows about that function, because it doesn't start executing and know the entire function after is done, but instead first understands and memorizes the function, and then starts to execute it. this is why we can call the function from inside of it.
+
+why to use recursion? because sometimes it allows us to write less code, but another reason for using recursion is that you are also able to solve problems which are impossible or very hard to solve in other ways.
+
+watch A Look Under The Hood
+in the slide, 'execution context stack' is the same as 'call stack'
+the important thing about js code execution is that the value is only returned by the return statement once it has been calculated.
+
+watch Analyzing Recursion with the Browser DevTools
