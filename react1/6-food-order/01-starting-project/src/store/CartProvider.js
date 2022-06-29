@@ -76,6 +76,7 @@ const CartProvider = (props) => {
 		addItem: addItemHandler,
 		removeItem: removeItemHandler,
 	};
+	// why do we use 'totalAmount' here, but 'amount' in cart-context.js?
 
 	return (
 		<CartContext.Provider value={context}>
