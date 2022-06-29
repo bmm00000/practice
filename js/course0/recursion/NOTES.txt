@@ -9,3 +9,4 @@ in the slide, 'execution context stack' is the same as 'call stack'
 the important thing about js code execution is that the value is only returned by the return statement once it has been calculated.
 
 watch Analyzing Recursion with the Browser DevTools
+watch  Where Recursion Shines
