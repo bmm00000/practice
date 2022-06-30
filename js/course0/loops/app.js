@@ -11,7 +11,7 @@ for (var i = 0; i < 5; i++) {
 	console.log(i);
 }
 console.log(i); // 5
-// var creates a variable (i) that is not only available inside of the loop, but GLOBALLY (GLOBAL SCOPE). that's why 'i' is avaialble outside of the loop ('var' knows two kinds of scope: function scope and global scope; function scope only applies if you are creating a variable using 'var' inside of a function)
+// var creates a variable (i) that is not only available inside of the loop, but GLOBALLY (GLOBAL SCOPE). that's why 'i' is avaialble outside of the loop ('var' knows two kinds of scope: function scope and global scope; function scope only applies if you are creating a variable using 'var' inside of a function). note that, in this case, the value of 'i' after the loop is 5.
 
 for (let i = 0; i < 5; i++) {
 	console.log(i);
@@ -24,3 +24,9 @@ for (const i = 0; i < 5; i++) {
 	console.log(i);
 }
 // this would print 0, and then error (after the first iteration).
+
+// in the course, max uses 'const' for 'for... of' and 'for... in' loops.
+
+// watch The "for ... in ..." Loop
+// watch The "for ... of ..." Loop
+// watch Using forEach()
