@@ -16,3 +16,9 @@ global object or global context in which our script runs (this is something char
 
 watch again How Scope Works
 watch again Scope Overview
+watch again The Global Object
+
+to see how multiple scripts work together, see one.js and two.js
+
+watch Modules & Scope
+watch Variable Shadowing

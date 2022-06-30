@@ -32,7 +32,7 @@ console.log(i); // it will throw an error. with 'let', 'i' is defined (and re-de
 try {
 	// code that could fail. here, we are going to deliberately trigger an error:
 	throw new Error();
-	// 'Error' is a built-in constructor function. with the 'new' keyword, we can build an object based of that constructor function.
+	// 'Error' is a built-in constructor function. with the 'new' keyword, we can build an object based on that constructor function.
 } catch (err) {
 	var test = 'Does this work?';
 	const test2 = 'Does this work?';
