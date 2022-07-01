@@ -1,0 +1,29 @@
+https://www.canva.com/design/DAFE2GNggKU/PVn7Jgvav6LeSalJj4R3OQ/view?utm_content=DAFE2GNggKU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton#18
+
+watch 4-the case for typescript
+
+ts does something called 'static checking': ts detects errors in our code without running it.
+
+specifically, ts is a static type checker: ts does this error checking on the basis of the 'kinds of data' in our program, aka types! it does it before the code runs in the browser (it does it during development)
+
+workflow we use in ts: we write our ts code, we fix any errors that ts identifies, and then the code is compiled to regular js that can run on the browser, or that node.js can work with. therefore, ts is there for development purposes.
+
+watch 5-ts overview
+
+installation for a specific project:
+npm install typescript --save-dev
+
+installation globally:
+npm install -g typescript
+(this way, you will have access to the 'tsc' command anywhere in your computer, not only in a specific project)
+
+to compile ts on the browser (for example, when you are reading the docs and you want to experiement with some features, but you don't want to create a new project, etc.), go to https://www.typescriptlang.org/ and then, go to 'playground'.
+in the 'playground', you can go to 'examples' if you are trying to understand any ts concept.
+in the 'playground', you can also go to 'ts config' to change settings.
+
+if you are using react, you can use the '.tsx' termination in the file name, so you can write jsx syntax with typescript
+
+watch 13-compiling ts
+watch 16-delayed initialization and implicit any
+
+by default, ts gives the type 'any' to the parameters of a function, that's why you have to specify the types of the parameters.
