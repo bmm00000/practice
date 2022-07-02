@@ -27,3 +27,6 @@ watch 13-compiling ts
 watch 16-delayed initialization and implicit any
 
 by default, ts gives the type 'any' to the parameters of a function, that's why you have to specify the types of the parameters.
+
+watch 39-narrowing with union types
+
