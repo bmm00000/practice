@@ -1,5 +1,4 @@
 // interfaces allow us to describe the shape of objects, AND ONLY OBJECTS!
-var _this = this;
 // nickName is an optional property
 // sayHi must be a method that returns a string (it cannot be just a string, it has to be a method that returns a string)
 var thomas = {
@@ -16,9 +15,10 @@ var shoes = {
     name: 'blue shoes',
     price: 22,
     applyDiscount: function (amount) {
-        var newPrice = _this.price * (1 - amount);
-        _this.price = newPrice;
-        return _this.price;
+        var newPrice = this.price * (1 - amount);
+        this.price = newPrice;
+        return this.price;
     }
 };
 console.log(shoes.applyDiscount(0.4));
+// THIS FAILS!!
