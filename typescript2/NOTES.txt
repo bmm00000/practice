@@ -51,3 +51,5 @@ watch 61, 62, 63, 64-outdir option, target option, strict option, compiler optio
 watch out! with json, you always need double quotes, not single quotes!
 
 watch whole section 11: mini project: dom, type assertions and more
+
+watch section 14: generics
