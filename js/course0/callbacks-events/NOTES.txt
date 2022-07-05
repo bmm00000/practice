@@ -1,3 +1,5 @@
+direct vs indrect function execution (callbacks and events):
+
 direct execution: when the js engine reaches the line of code that has a function call, it executes it (for example, line 11 of our project)
 
 indirect execution: (for example, line 9 of our project) if you passed the function with parenthesis ('defuse()'), it would be executed directly as soon as the js engine reaches that line of code (in that case, what would be passed as second argument to addEventListener is the returned value of the function, which in this case is 'undefined'; if 'defuse' returned an anonymous function, then that anonymous function would be passed as a second argument to the event listener, so we may have the behaviour that we want if that anonymous function did what our 'defuse' function is doing). 

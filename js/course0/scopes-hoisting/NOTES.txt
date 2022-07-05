@@ -22,3 +22,7 @@ to see how multiple scripts work together, see one.js and two.js
 
 watch Modules & Scope
 watch Variable Shadowing
+
+watch the whole section on hoisting
+hoisting precedence:
+variable assignment beats the function declaration, but the function declaration beats the variable declaration
