@@ -2,6 +2,8 @@ with manual testing, you would need to test all features and scenarios every tim
 
 more often than not, a unit is a function or a class.
 
+apart from unit, integration and end2end, there's also accessibility testing.
+
 with end2end testing, you test entire flows, for example, specific user behaviours, or specific api interfaces that your application might be providing. for example, if you are building an image upload api endpoint, you will test the whole image upload workflow, which includes extracting the image from the incoming request, storing it on the file system... ie. the real things users (or programs interacting with your programs) might do.
 
 with integration testing (and even more so with e2e testing), spotting the exact root of an error (when you make a tiny change then something else breaks) might be tricky, because you are testing a combination of units (unit testing will be better to spot the exact root of an error).
@@ -25,10 +27,12 @@ note that Jest is a tool that supports both test running and assertion, which is
 
 certain types of projects that might have been created with tools such as React projects created with CRA, already have a full testing configuration and workflow built-in, so you can directly start writting tests without any extra set up, but the main idea behind of writing tests is pretty much always the same.  
 
+when you type 'npm test', jest or vitest start as a test runner, and while evaluating the test files, their assertion library features will be used.
+
 like jest, vitest is both a test runner and an assertion library.
 
 npm install --save-dev Vitest
-then you need to add the 'test' script in the package.json file, and set the value to 'vitest --globals' (see screenshot) ('--globals' will allow you to use special functions like 'it' or 'expect'...)
+then you need to add the 'test' script in the package.json file, and set the value to 'vitest --globals' (see screenshot) ('--globals' will allow you to use special functions like 'it' or 'expect'... without any extra imports)
 
 in one of the backend projects, we will be able to use ECMAScript modules, because we are setting this in the package.json file: 
 "type": "module"
