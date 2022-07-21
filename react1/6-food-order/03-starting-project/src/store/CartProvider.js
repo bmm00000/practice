@@ -25,18 +25,27 @@ const cartReducer = (state, action) => {
 	}
 
 	if (action.type === 'REMOVE') {
-		const updatedItems = [...state.items];
-		const existingMealIndex = updatedItems.findIndex(
+		let updatedItems;
+		const updatingItems = [...state.items];
+		const existingMealIndex = updatingItems.findIndex(
 			(item) => item.id === action.id
 		);
 
-		if (updatedItems[existingMealIndex].amount > 0) {
-			updatedItems[existingMealIndex].amount--;
-			const updatedTotalPrice =
-				state.totalPrice - updatedItems[existingMealIndex].price;
-
-			return { items: updatedItems, totalPrice: updatedTotalPrice };
+		if (updatingItems[existingMealIndex].amount > 0) {
+			updatingItems[existingMealIndex].amount--;
+			updatedItems = updatingItems;
 		}
+
+		if (updatingItems[existingMealIndex].amount === 0) {
+			updatedItems = updatingItems.filter((item) => {
+				return item.id !== action.id;
+			});
+		}
+
+		const updatedTotalPrice =
+			state.totalPrice - updatingItems[existingMealIndex].price;
+
+		return { items: updatedItems, totalPrice: updatedTotalPrice };
 	}
 
 	return cartDefaultState;
