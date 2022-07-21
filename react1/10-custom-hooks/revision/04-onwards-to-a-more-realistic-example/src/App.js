@@ -1,31 +1,32 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import useHttp from './hooks/use-http';
 import Tasks from './components/Tasks/Tasks';
 import NewTask from './components/NewTask/NewTask';
-import useHttp from './hooks/use-http';
 
 function App() {
 	const [tasks, setTasks] = useState([]);
 
-	const { isLoading, error, sendRequest } = useHttp();
+	const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
 	useEffect(() => {
-		const applyGetReqData = (data) => {
+		const transformTasks = (tasksObj) => {
 			const loadedTasks = [];
 
-			for (const taskKey in data) {
-				loadedTasks.push({ id: taskKey, text: data[taskKey].text });
+			for (const taskKey in tasksObj) {
+				loadedTasks.push({ id: taskKey, text: tasksObj[taskKey].text });
 			}
 
 			setTasks(loadedTasks);
 		};
-		sendRequest(
+
+		fetchTasks(
 			{
 				url: 'https://custom-hooks-b5e68-default-rtdb.europe-west1.firebasedatabase.app/tasks.json',
 			},
-			applyGetReqData
+			transformTasks
 		);
-	}, [sendRequest]);
+	}, [fetchTasks]);
 
 	const taskAddHandler = (task) => {
 		setTasks((prevTasks) => prevTasks.concat(task));
@@ -38,7 +39,7 @@ function App() {
 				items={tasks}
 				loading={isLoading}
 				error={error}
-				onFetch={sendRequest}
+				onFetch={fetchTasks}
 			/>
 		</React.Fragment>
 	);

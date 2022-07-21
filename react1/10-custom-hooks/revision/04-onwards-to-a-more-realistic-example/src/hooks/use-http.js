@@ -4,14 +4,14 @@ const useHttp = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
 
-	const sendRequest = useCallback(async (reqConfig, applyData) => {
+	const sendRequest = useCallback(async (config, applyData) => {
 		setIsLoading(true);
 		setError(null);
 		try {
-			const response = await fetch(reqConfig.url, {
-				method: reqConfig.method ? reqConfig.method : 'GET',
-				body: reqConfig.body ? JSON.stringify(reqConfig.body) : {},
-				headers: reqConfig.headers ? reqConfig.headers : null,
+			const response = await fetch(config.url, {
+				method: config.method ? config.method : 'GET',
+				body: config.body ? JSON.stringify(config.body) : null,
+				headers: config.headers ? config.headers : {},
 			});
 
 			if (!response.ok) {
