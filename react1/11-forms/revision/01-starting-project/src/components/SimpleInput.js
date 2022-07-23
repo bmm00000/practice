@@ -1,44 +1,31 @@
-import { useState } from 'react';
+import useInput from '../hooks/use-input';
 
 const SimpleInput = (props) => {
-	const [nameInput, setNameInput] = useState('');
-	const [nameInputTouched, setNameInputTouched] = useState(false);
+	const {
+		inputValue: nameInput,
+		inputContentValid: nameInputValid,
+		inputHasError: nameInputIsInValid,
+		onInputChangeHandler: onNameInputChangeHandler,
+		onInputBlurHandler: onNameInputBlurHandler,
+		reset: resetName,
+	} = useInput((value) => value.trim() !== '');
 
-	const [emailInput, setEmailInput] = useState('');
-	const [emailInputTouched, setEmailInputTouched] = useState(false);
-
-	const nameInputValid = nameInput.trim() !== '';
-	const nameInputIsInValid = !nameInputValid && nameInputTouched;
-
-	const emailInputValid = emailInput.includes('@');
-	const emailInputIsInvalid = !emailInputValid && emailInputTouched;
+	const {
+		inputValue: emailInput,
+		inputContentValid: emailInputValid,
+		inputHasError: emailInputIsInvalid,
+		onInputChangeHandler: onEmailInputChangeHandler,
+		onInputBlurHandler: onEmailInputBlurHandler,
+		reset: resetEmail,
+	} = useInput((value) => value.includes('@'));
 
 	let formIsValid = false;
 	if (nameInputValid && emailInputValid) {
 		formIsValid = true;
 	}
 
-	const onNameInputChangeHandler = (event) => {
-		setNameInput(event.target.value);
-	};
-
-	const onNameInputBlurHandler = (event) => {
-		setNameInputTouched(true);
-	};
-
-	const onEmailInputChangeHandler = (event) => {
-		setEmailInput(event.target.value);
-	};
-
-	const onEmailInputBlurHandler = (event) => {
-		setEmailInputTouched(true);
-	};
-
 	const onFormSubmit = (event) => {
 		event.preventDefault();
-
-		setNameInputTouched(true);
-		setEmailInputTouched(true);
 
 		if (!nameInputValid || !emailInputValid) {
 			return;
@@ -47,11 +34,8 @@ const SimpleInput = (props) => {
 		console.log(nameInput);
 		console.log(emailInput);
 
-		setNameInput('');
-		setNameInputTouched(false);
-
-		setEmailInput('');
-		setEmailInputTouched(false);
+		resetName();
+		resetEmail();
 	};
 
 	const nameInputClasses = nameInputIsInValid
