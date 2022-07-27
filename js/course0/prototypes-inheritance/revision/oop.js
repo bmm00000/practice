@@ -58,22 +58,49 @@
 // italian.country = 'Italy';
 // console.log(italian);
 
-const homoSapiens = {
-	planet: 'Earth',
-	sayHi() {
-		return 'Hello my name is ' + this.name;
-	},
-};
+// const homoSapiens = {
+// 	name: 'proto',
+// 	planet: 'Earth',
+// 	sayHi() {
+// 		return 'Hello my name is ' + this.name;
+// 	},
+// };
 
-function Person(name, age) {
-	this.name = name;
-	this.age = age;
-	// this.greet = () => {
-	// 	return 'Hello, my name is ' + this.name;
-	// };
+// function Person(name, age) {
+// 	// this.name = name;
+// 	this.age = age;
+// 	// this.greet = () => {
+// 	// 	return 'Hello, my name is ' + this.name;
+// 	// };
+// }
+
+// Person.prototype = homoSapiens;
+
+// const person1 = new Person('Carlos', 43);
+// console.log(person1.sayHi());
+
+// Person.prototype.sayBye = function () {
+// 	console.log('Goodbye!');
+// };
+
+// Person.prototype = {};
+
+// console.log(person1.sayBye());
+
+class Human {
+	laugh = function () {
+		console.log('haha');
+	};
 }
 
-Person.prototype = homoSapiens;
+class Spanish extends Human {
+	constructor() {
+		super();
+		this.language = 'Spanish';
+	}
+}
 
-const person1 = new Person('Carlos', 43);
-console.log(person1.sayHi());
+// const spaniard1 = new Spanish();
+// console.log(spaniard1);
+const human1 = new Human();
+console.log(human1);
