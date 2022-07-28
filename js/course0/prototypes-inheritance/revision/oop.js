@@ -100,7 +100,7 @@ class Spanish extends Human {
 	}
 }
 
-// const spaniard1 = new Spanish();
-// console.log(spaniard1);
-const human1 = new Human();
-console.log(human1);
+const spaniard1 = new Spanish();
+console.log(spaniard1);
+// const human1 = new Human();
+// console.log(human1);
