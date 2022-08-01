@@ -40,7 +40,7 @@ if you don't use atomic commits, and then need to undo a commit, you can lose a 
 when we need to include a long message in the commit, we cannot use the -m flag. we need to open an editor. by default, VIM is very annoying. that's why we can configure any editor that will pop up by default when we 'git commit':
 https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config
 
-when we 'git log' and we want to avoid to see very long commit messages and commit codes, we use:
+when we 'git log' and we want to avoid to see very long commit messages and commit hashes, we use:
 git log --oneline
 
 that's why, when we use long messages, we have to summarize the commit IN THE FIRST LINE, then leave an empty line, and add the rest of the long message.
