@@ -28,3 +28,12 @@ it('should throw if a string with blanks is provided as text', () => {
 		expect(err).toBeDefined();
 	}
 });
+
+it('should throw an error with the provided error message', () => {
+	const testText = '';
+	const testError = 'test-error';
+
+	const validateFn = () => validateNotEmpty(testText, testError);
+
+	expect(validateFn).toThrow(testError);
+});
