@@ -64,4 +64,4 @@ when you merge a branch into master, and then git log on master, you will see al
 
 if you merge two branches with commits in different files, there will not be conflict for sure, but even if they were in the same file, it doesn't necessarily mean that there would be a conflict (I need to understand under what circumstances there are no conflict if both commits are in the same file): if changes are in the same file, but the master branch just has to fast forward (catch up with the incoming branch), there will be no conflict.
 
-(REWATCH DEMOS AND REDO EXERCISES FROM SECTION 7?)
+(REWATCH DEMOS AND REDO EXERCISES FROM SECTIONS 6 AND 7)
