@@ -18,9 +18,7 @@ WATCH OUT! when you create a new file in the working directory, it's untracked (
 when you 'git add' the new file for the first time, and then you 'git diff' it will appear nothing (no difference between current working directory and staging area). but when you 'git add' the new file for the first time (now it's tracked), and then you 'git diff HEAD', it appears what you get in the screenshot: (when we create a new file, git will tell us like this: --- /dev/null (see screenshot)).
 rule of thumb: 'git status' shows you the new files, but 'git diff' shows you the difference between existing files in different moments.
 
-IN A NUTSHELL, 'git diff' tells us only unstaged changes (difference between working directory and staging area). 'git diff HEAD' tells us all uncommited channges currently in the working directory (unstaged and staged: difference between working directory and last commit in current branch (HEAD))
-
-(VIEW AGAIN VIDEO 65, REPEAT THE DEMO)
+IN A NUTSHELL, 'git diff' tells us only unstaged changes (difference between working directory and staging area). 'git diff HEAD' tells us all uncommited changes currently in the working directory (unstaged and staged: difference between working directory and last commit in current branch (HEAD))
 
 'git diff --staged' will show you only the staged changes.
 'git diff' will show you only the unstaged changes.
@@ -29,7 +27,7 @@ IN A NUTSHELL, 'git diff' tells us only unstaged changes (difference between wor
 when you diff specific files, you can add several files, eg: git diff HEAD index.html app.css
 you can also just 'git diff <file-name>' (this option is not included in the slides, but it works as well)
 
-when you are comparing branches, you can separate them by .. or just a space. the order that you type the branches matters for what the result of the comparison (it doesn't matter which branch you are in at the moment)
+when you are comparing branches, you can separate them by .. or just a space. the order that you type the branches matters for what the result of the comparison is (it doesn't matter which branch you are in at the moment)
 
 to compare commits, you only need the oneline hashes (short version, or you can also copy part of the complete hash) that you get when you 'git log --oneline' (the order also matters, the same as with comparing branches). I have tried, and it is also POSSIBLE TO COMPARE COMMITS FROM DIFFERENT BRANCHES.
 
@@ -77,6 +75,8 @@ git restore --source HEAD~2 cat.txt dog.txt
 git reset: with a basic or plain reset, the commits are eliminated but the content of your files remains the same as before the reset (the files remain as changed in the working directory). this is useful when you don't want to lose that work, eg. you made some commits on the wrong branch, you want to keep that work, but commit it to another branch.
 
 sometimes, git revert can result in conflicts, where you need to go to the file and decide what to keep, like any other conflict when you merge. this happens if you revert not the latest commit but a former one.
+
+DO AGAIN THE EXERCISES FOR THE SECTIONS ABOVE
 
 QUESTIONS:
 
