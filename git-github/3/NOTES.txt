@@ -76,8 +76,6 @@ git reset: with a basic or plain reset, the commits are eliminated but the conte
 
 sometimes, git revert can result in conflicts, where you need to go to the file and decide what to keep, like any other conflict when you merge. this happens if you revert not the latest commit but a former one.
 
-DO AGAIN THE EXERCISES FOR THE SECTIONS ABOVE
-
 QUESTIONS:
 
 1. The message says you can make commits in detached state. What I understand from the lecture is that, if you want to make commits, you have to create a new branch in that past commit, and then you can commit in that branch, but then you are not on detached head state anymore. Why does the message say that you can commit in detached head state?
@@ -96,3 +94,5 @@ You can keep the commits if you create a new branch while in detached HEAD, as t
 This is an issue with whitespace changes and line endings in Git. In the first version, the file ends with "indigo". In the second version, you added a return or some whitespaces after "indigo" (even though we can't see it), so Git thinks it changed. You can prevent this behavior by running this in your terminal:
 
 git config --global core.autocrlf true
+
+DO AGAIN THE EXERCISES FOR THE SECTIONS ABOVE
