@@ -39,3 +39,53 @@ const admin1 = new AdminPlayer('josh', 'kon');
 console.log(admin1);
 admin1.changeScore();
 console.log(admin1);
+
+interface Colorful {
+	color: string;
+}
+
+interface Printable {
+	print(): void;
+}
+
+class Car implements Colorful {
+	constructor(public color: string) {}
+}
+
+const car1 = new Car('red');
+
+class Jacket implements Colorful, Printable {
+	constructor(public brand: string, public color: string) {}
+
+	print() {
+		console.log(`this is my ${this.color} jacket`);
+	}
+}
+
+const jacket1 = new Jacket('prada', 'red');
+
+//
+
+abstract class Employee {
+	constructor(public name: string, public surname: string) {}
+	abstract getPaid(): number;
+	sayHello() {
+		console.log('hello');
+	}
+}
+
+class PartTimeEmployee extends Employee {
+	constructor(
+		public first: string,
+		public last: string,
+		private hourlyRate: number
+	) {
+		super(first, last);
+	}
+	getPaid(): number {
+		return this.hourlyRate;
+	}
+}
+
+const emp1 = new PartTimeEmployee('jose', 'boix', 22);
+console.log(emp1.getPaid());
