@@ -30,3 +30,44 @@ interface Length {
 function getLength(len: Length): number {
 	return len.num;
 }
+
+interface Video {
+	title: string;
+	resolution: number;
+}
+
+interface Song {
+	title: string;
+	tempo: number;
+}
+
+class Playlist<T> {
+	public queue: T[] = [];
+	add(element: T) {
+		this.queue.push(element);
+	}
+}
+
+const playlist1 = new Playlist<Song>();
+
+//
+
+interface Cat {
+	name: string;
+	numLives: number;
+}
+
+interface Dog {
+	name: string;
+	breed: string;
+}
+
+const isCat = (animal: Cat | Dog): boolean => {
+	return (animal as Cat).numLives !== undefined;
+};
+
+function makeNoise(animal: Cat | Dog): string {
+	if (isCat(animal)) {
+		return 'miau';
+	}
+}
