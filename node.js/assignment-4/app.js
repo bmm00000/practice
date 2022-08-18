@@ -3,8 +3,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const adminData = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
+const userRouter = require('./routes/user.js');
 
 const app = express();
 
@@ -14,11 +13,9 @@ app.set('views', 'views');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/admin', adminData.router);
-app.use(shopRoutes);
-
+app.use(userRouter);
 app.use((req, res) => {
-	res.status(404).render('404', { pageTitle: 'Page Not Found!' });
+	res.status(404).render('404', { pageTitle: 'Page not found!!' });
 });
 
 app.listen(3000);
