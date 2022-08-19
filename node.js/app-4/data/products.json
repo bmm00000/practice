@@ -1,0 +1,9 @@
+[
+	{
+		"id": "12345",
+		"title": "firstBook",
+		"imageURL": "https://unsplash.com/photos/lUaaKCUANVI",
+		"price": "11",
+		"description": "A very interesting book."
+	}
+]
