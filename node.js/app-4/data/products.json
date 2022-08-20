@@ -1,16 +1,23 @@
 [
 	{
-		"title": "a",
+		"title": "My first product",
 		"imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Australia_Tasmania_location_map.svg/420px-Australia_Tasmania_location_map.svg.png",
 		"price": "11",
-		"description": "aa",
-		"id": "0.8176904289697065"
+		"description": "My first product here...",
+		"id": "0.9373008969769641"
 	},
 	{
-		"title": "b",
+		"title": "My second product",
 		"imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Australia_Tasmania_location_map.svg/420px-Australia_Tasmania_location_map.svg.png",
 		"price": "22",
-		"description": "bb",
-		"id": "0.9441248885940623"
+		"description": "My second product here...",
+		"id": "0.19265403594291475"
+	},
+	{
+		"title": "third product",
+		"imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Australia_Tasmania_location_map.svg/420px-Australia_Tasmania_location_map.svg.png",
+		"price": "33",
+		"description": "My third product here...",
+		"id": "0.21066872785055457"
 	}
 ]
