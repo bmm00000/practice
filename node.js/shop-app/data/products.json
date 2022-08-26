@@ -1,16 +1,1 @@
-[
-	{
-		"id": "12345",
-		"title": "First product",
-		"imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Australia_Tasmania_location_map.svg/420px-Australia_Tasmania_location_map.svg.png",
-		"price": "22.99",
-		"description": "This is the first product..."
-	},
-	{
-		"title": "Second product",
-		"imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Australia_Tasmania_location_map.svg/420px-Australia_Tasmania_location_map.svg.png",
-		"price": "11.22",
-		"description": "This is the second product...",
-		"id": "0.5036296317811053"
-	}
-]
+[]
