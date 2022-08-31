@@ -106,21 +106,84 @@
 // const inputEl = document.querySelector<HTMLInputElement>('#input')!;
 // inputEl.value = 'hacked!';
 
-function identity<T>(element: T): T {
-	return element;
+// function identity<T>(element: T): T {
+// 	return element;
+// }
+
+// console.log(identity<number>(3));
+
+// identity<number>(2);
+
+// function getRandomElement<T>(array: T[]): T {
+// 	const index = Math.floor(Math.random() * array.length);
+// 	return array[index];
+// }
+
+// console.log(getRandomElement<number>([1, 2, 4, 5, 6]));
+
+// let x = 23;
+
+// getRandomElement([1, 2, 3]);
+
+function merge<T extends object, U extends object>(obj1: T, obj2: U): T & U {
+	return { ...obj1, ...obj2 };
 }
 
-console.log(identity<number>(3));
+merge({ x: 1 }, { r: [1, 2] });
 
-identity<number>(2);
+const merge2 = <T extends object, U extends object>(
+	obj1: T,
+	obj2: U
+): T & U => {
+	return { ...obj1, ...obj2 };
+};
 
-function getRandomElement<T>(array: T[]): T {
-	const index = Math.floor(Math.random() * array.length);
-	return array[index];
+interface Coords {
+	alt: number;
+	long: number;
 }
 
-console.log(getRandomElement<number>([1, 2, 4, 5, 6]));
+function printAltitude<T extends Coords>(coords: T): number {
+	console.log(coords.alt);
+	return coords.alt;
+}
 
-let x = 23;
+const printAltitude2 = <T extends Coords>(coords: T): number => {
+	console.log(coords.alt);
+	return coords.alt;
+};
 
-getRandomElement([1, 2, 3]);
+printAltitude({ alt: 2, long: 3, new: 5 });
+
+function makeEmptyArr<T = boolean>(): T[] {
+	return [];
+}
+
+const bools = makeEmptyArr();
+const strings = makeEmptyArr<string>();
+
+//
+
+interface Video {
+	creator: string;
+}
+
+interface Song {
+	singer: string;
+}
+
+class PlayList<T> {
+	public list: T[] = [];
+
+	add(el: T): void {
+		this.list.push(el);
+	}
+}
+
+const songsPlaylist = new PlayList<Song>();
+const list1 = songsPlaylist.list;
+
+const videoPlayslist = new PlayList<Video>();
+const list2 = videoPlayslist.list;
+
+songsPlaylist.add({ singer: 'haha' });
