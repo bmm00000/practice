@@ -125,65 +125,86 @@
 
 // getRandomElement([1, 2, 3]);
 
-function merge<T extends object, U extends object>(obj1: T, obj2: U): T & U {
-	return { ...obj1, ...obj2 };
+// function merge<T extends object, U extends object>(obj1: T, obj2: U): T & U {
+// 	return { ...obj1, ...obj2 };
+// }
+
+// merge({ x: 1 }, { r: [1, 2] });
+
+// const merge2 = <T extends object, U extends object>(
+// 	obj1: T,
+// 	obj2: U
+// ): T & U => {
+// 	return { ...obj1, ...obj2 };
+// };
+
+// interface Coords {
+// 	alt: number;
+// 	long: number;
+// }
+
+// function printAltitude<T extends Coords>(coords: T): number {
+// 	console.log(coords.alt);
+// 	return coords.alt;
+// }
+
+// const printAltitude2 = <T extends Coords>(coords: T): number => {
+// 	console.log(coords.alt);
+// 	return coords.alt;
+// };
+
+// printAltitude({ alt: 2, long: 3, new: 5 });
+
+// function makeEmptyArr<T = boolean>(): T[] {
+// 	return [];
+// }
+
+// const bools = makeEmptyArr();
+// const strings = makeEmptyArr<string>();
+
+// //
+
+// interface Video {
+// 	creator: string;
+// }
+
+// interface Song {
+// 	singer: string;
+// }
+
+// class PlayList<T> {
+// 	public list: T[] = [];
+
+// 	add(el: T): void {
+// 		this.list.push(el);
+// 	}
+// }
+
+// const songsPlaylist = new PlayList<Song>();
+// const list1 = songsPlaylist.list;
+
+// const videoPlayslist = new PlayList<Video>();
+// const list2 = videoPlayslist.list;
+
+// songsPlaylist.add({ singer: 'haha' });
+
+interface Cat {
+	name: string;
+	numLives: number;
 }
 
-merge({ x: 1 }, { r: [1, 2] });
-
-const merge2 = <T extends object, U extends object>(
-	obj1: T,
-	obj2: U
-): T & U => {
-	return { ...obj1, ...obj2 };
-};
-
-interface Coords {
-	alt: number;
-	long: number;
+interface Dog {
+	name: string;
+	breed: string;
 }
 
-function printAltitude<T extends Coords>(coords: T): number {
-	console.log(coords.alt);
-	return coords.alt;
+function isCat(animal: Cat | Dog): animal is Cat {
+	return (animal as Cat).numLives !== undefined;
 }
 
-const printAltitude2 = <T extends Coords>(coords: T): number => {
-	console.log(coords.alt);
-	return coords.alt;
-};
-
-printAltitude({ alt: 2, long: 3, new: 5 });
-
-function makeEmptyArr<T = boolean>(): T[] {
-	return [];
-}
-
-const bools = makeEmptyArr();
-const strings = makeEmptyArr<string>();
-
-//
-
-interface Video {
-	creator: string;
-}
-
-interface Song {
-	singer: string;
-}
-
-class PlayList<T> {
-	public list: T[] = [];
-
-	add(el: T): void {
-		this.list.push(el);
+function saySomething(animal: Cat | Dog): string {
+	if (isCat(animal)) {
+		return 'miauuu!';
 	}
+	return 'guauu';
 }
-
-const songsPlaylist = new PlayList<Song>();
-const list1 = songsPlaylist.list;
-
-const videoPlayslist = new PlayList<Video>();
-const list2 = videoPlayslist.list;
-
-songsPlaylist.add({ singer: 'haha' });
