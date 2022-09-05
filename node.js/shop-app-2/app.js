@@ -36,7 +36,7 @@ mongoose
 	.connect(
 		'mongodb+srv://firstUser:xxlCBsJnaZCKCUh4@cluster0.ojn1l.mongodb.net/?retryWrites=true&w=majority'
 	)
-	.then(() => {
+	.then((result) => {
 		app.listen(3000);
 	})
 	.catch((err) => console.log(err));
