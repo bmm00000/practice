@@ -11,6 +11,10 @@ const todolist = document.getElementById('todolist') as HTMLUListElement;
 const todos: Todo[] = readTodos();
 todos.forEach(createTodo);
 
+function saveTodos() {
+	localStorage.setItem('todos', JSON.stringify(todos));
+}
+
 function readTodos(): Todo[] {
 	const todosJSON = localStorage.getItem('todos');
 	if (todosJSON === null) return [];
@@ -25,6 +29,7 @@ function createTodo(todo: Todo): void {
 	checkbox.checked = todo.completed;
 	checkbox.addEventListener('change', () => {
 		todo.completed = checkbox.checked;
+		saveTodos();
 	});
 	li.append(checkbox);
 	todolist.appendChild(li);
@@ -37,7 +42,7 @@ const submitHandler = (e: SubmitEvent) => {
 		completed: false,
 	};
 	todos.push(todo);
-	localStorage.setItem('todos', JSON.stringify(todos));
+	saveTodos();
 	todoInput.value = '';
 	createTodo(todo);
 };
