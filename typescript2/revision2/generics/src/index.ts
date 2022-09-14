@@ -80,7 +80,12 @@ interface Cow {
 	kind: 'cow';
 }
 
-type FarmAnimal = Horse | Cow;
+interface Sheep {
+	name: string;
+	kind: 'sheep';
+}
+
+type FarmAnimal = Horse | Cow | Sheep;
 
 const getAnimalSound = (animal: FarmAnimal): string => {
 	switch (animal.kind) {
@@ -88,8 +93,14 @@ const getAnimalSound = (animal: FarmAnimal): string => {
 			return 'heheheh';
 		case 'cow':
 			return 'muuuu';
+		case 'sheep':
+			return 'baaa';
+		default:
+			const _exhaustiveCheck: never = animal;
+			return _exhaustiveCheck;
 	}
 };
 
 const george: Horse = { name: 'George', kind: 'horse' };
-console.log(getAnimalSound(george));
+const lola: Sheep = { name: 'Lola', kind: 'sheep' };
+console.log(getAnimalSound(lola));
