@@ -1,0 +1,12 @@
+<%- include('partials/head') %> 
+	<body>
+		<h1>This is the <%= name %> subreddit</h1>
+		<p>Wew have <%= subscribers %> subscribers</p>
+		<% for (let post of posts ) { %>
+		<h2><%= post.title %></h2>
+		<h3>the author is <%= post.author %></h3>
+		<% if (post.img) { %>
+		<img src="<%= post.img %>" alt="<%= post.title %>" />
+		<% } %> <% } %>
+	</body>
+</html>
