@@ -2,6 +2,7 @@ const path = require('path');
 
 const express = require('express');
 const { urlencoded } = require('body-parser');
+const methodOverride = require('method-override');
 
 // const dataJSON = require('./data.json');
 
@@ -17,8 +18,9 @@ app.set('views', path.join(__dirname, '/views'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(methodOverride('_method'));
 
-const comments = [
+let comments = [
 	{ id: '1', user: 'Helen', text: 'Hello, Im Helen' },
 	{ id: '2', user: 'Juan', text: 'Hello, Im Juan' },
 	{ id: '3', user: 'Elena', text: 'Hello, Im Elena' },
@@ -43,6 +45,26 @@ app.get('/comments/:id', (req, res, next) => {
 	const id = req.params.id;
 	const comment = comments.find((c) => c.id === id);
 	res.render('comments/show', { comment });
+});
+
+app.get('/comments/:id/edit', (req, res, next) => {
+	const id = req.params.id;
+	const comment = comments.find((c) => c.id === id);
+	res.render('comments/edit', { comment });
+});
+
+app.patch('/comments/:id', (req, res, next) => {
+	const id = req.params.id;
+	const newText = req.body.text;
+	const existingComment = comments.find((c) => c.id === id);
+	existingComment.text = newText;
+	res.redirect('/comments');
+});
+
+app.delete('/comments/:id', (req, res, next) => {
+	const id = req.params.id;
+	comments = comments.filter((c) => c.id !== id);
+	res.redirect('/comments');
 });
 
 app.listen(3000, () => {
