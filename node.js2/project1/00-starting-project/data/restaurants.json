@@ -1,0 +1,18 @@
+[
+	{
+		"id": "r1",
+		"name": "indian restaurant",
+		"address": "greenfield st",
+		"cuisine": "indian",
+		"website": "http://www.indianres.com",
+		"description": "fantastic indian restaurant..."
+	},
+	{
+		"id": "r2",
+		"name": "Second res",
+		"address": "second res address",
+		"cuisine": "Mexican",
+		"website": "http://mexicanres.com",
+		"description": "excellent restaurant ...."
+	}
+]
