@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 
 const db = require('../data/database');
+const { localsName } = require('ejs');
 
 const router = express.Router();
 
@@ -10,11 +11,34 @@ router.get('/', function (req, res) {
 });
 
 router.get('/signup', function (req, res) {
-	res.render('signup');
+	let sessionEnteredData = req.session.enteredData;
+	if (!sessionEnteredData) {
+		sessionEnteredData = {
+			hasError: false,
+			enteredEmail: '',
+			enteredConfirmedEmail: '',
+			enteredPassword: '',
+		};
+	}
+
+	req.session.enteredData = null;
+
+	res.render('signup', { enteredData: sessionEnteredData });
 });
 
 router.get('/login', function (req, res) {
-	res.render('login');
+	let sessionEnteredData = req.session.enteredData;
+	if (!sessionEnteredData) {
+		sessionEnteredData = {
+			hasError: false,
+			enteredEmail: '',
+			enteredPassword: '',
+		};
+	}
+
+	req.session.enteredData = null;
+
+	res.render('login', { enteredData: sessionEnteredData });
 });
 
 router.post('/signup', async function (req, res) {
@@ -32,8 +56,18 @@ router.post('/signup', async function (req, res) {
 		!enteredEmail.includes('@') ||
 		enteredPassword.trim() < 6
 	) {
-		console.log('Input data is invalid!');
-		return res.redirect('/signup');
+		req.session.enteredData = {
+			hasError: true,
+			enteredEmail,
+			enteredConfirmedEmail,
+			enteredPassword,
+			message: 'Invalid data. Try again with valid data...',
+		};
+
+		req.session.save(function () {
+			res.redirect('/signup');
+		});
+		return;
 	}
 
 	const existingUser = await db
@@ -42,8 +76,18 @@ router.post('/signup', async function (req, res) {
 		.findOne({ email: enteredEmail });
 
 	if (existingUser) {
-		console.log('This user already exists');
-		return res.redirect('/signup');
+		req.session.enteredData = {
+			hasError: true,
+			enteredEmail,
+			enteredConfirmedEmail,
+			enteredPassword,
+			message: 'The user already exists...',
+		};
+
+		req.session.save(function () {
+			res.redirect('/signup');
+		});
+		return;
 	}
 
 	const user = {
@@ -67,8 +111,17 @@ router.post('/login', async function (req, res) {
 		.findOne({ email: enteredEmail });
 
 	if (!existingUser) {
-		console.log('User with that email does not exist!');
-		return res.redirect('/login');
+		req.session.enteredData = {
+			hasError: true,
+			enteredEmail,
+			enteredPassword,
+			message: 'The user does not exist...',
+		};
+
+		req.session.save(function () {
+			res.redirect('/login');
+		});
+		return;
 	}
 
 	const isPasswordCorrect = await bcrypt.compare(
@@ -77,22 +130,43 @@ router.post('/login', async function (req, res) {
 	);
 
 	if (!isPasswordCorrect) {
-		console.log('We have this user, but the password entered is not correct!');
-		return res.redirect('/login');
+		req.session.enteredData = {
+			hasError: true,
+			enteredEmail,
+			enteredPassword,
+			message: 'Password is not correct',
+		};
+
+		req.session.save(function () {
+			res.redirect('/login');
+		});
+		return;
 	}
 
 	req.session.user = { id: existingUser._id, email: existingUser.email };
 	req.session.isAuthenticated = true;
 	req.session.save(function () {
-		res.redirect('/admin');
+		res.redirect('/profile');
 	});
 });
 
-router.get('/admin', function (req, res) {
-	if (!req.session.isAuthenticated) {
+router.get('/admin', async function (req, res) {
+	if (!res.locals.isAuth) {
 		return res.status(401).render('401');
 	}
+
+	if (!res.locals.isAdmin) {
+		return res.status(403).render('403');
+	}
+
 	res.render('admin');
+});
+
+router.get('/profile', function (req, res) {
+	if (!res.locals.isAuth) {
+		return res.status(401).render('401');
+	}
+	res.render('profile');
 });
 
 router.post('/logout', function (req, res) {
