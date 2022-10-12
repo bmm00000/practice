@@ -28,23 +28,23 @@
 
 // document.body.style.backgroundColor = color1.rgb();
 
-fetch('https://jsonplaceholdeasfdsar.typicode.com/todos/1')
-	.then(
-		function (response) {
-			return response.json();
-		}
-		// function (error) {
-		// 	console.log(error);
-		// 	return 'Error handled!';
-		// }
-	)
-	.catch(function (err) {
-		console.log(err);
-		return 'Error handledddd';
-	})
-	.then(function (data) {
-		console.log(data);
-	});
+// fetch('https://jsonplaceholdeasfdsar.typicode.com/todos/1')
+// 	.then(
+// 		function (response) {
+// 			return response.json();
+// 		}
+// 		// function (error) {
+// 		// 	console.log(error);
+// 		// 	return 'Error handled!';
+// 		// }
+// 	)
+// 	.catch(function (err) {
+// 		console.log(err);
+// 		return 'Error handledddd';
+// 	})
+// 	.then(function (data) {
+// 		console.log(data);
+// 	});
 
 // const myPromise = new Promise(function (resolve, reject) {
 // 	setTimeout(function () {
@@ -78,3 +78,49 @@ fetch('https://jsonplaceholdeasfdsar.typicode.com/todos/1')
 // 	.then(function (data) {
 // 		console.log(data);
 // 	});
+
+// 'use strict';
+
+// console.log(this);
+
+// function greet() {
+// 	console.log(this);
+// }
+
+// greet();
+
+// this.age = 30;
+
+// function greet() {
+// 	console.log(`Hello I am ${this.age} years old`);
+// }
+
+// greet();
+
+// const person = {
+// 	age: 50,
+// 	greetMe: greet,
+// };
+
+// person.greetMe();
+
+class Person {
+	constructor(name) {
+		this.name = name;
+	}
+
+	greet() {
+		console.log(`My name is ${this.name}.`);
+	}
+
+	greetWithDelay() {
+		setTimeout(() => {
+			console.log(`My name is ${this.name}.`);
+		}, 2000);
+	}
+}
+
+const person1 = new Person('John');
+person1.greet();
+this.name = 'Surprise!';
+person1.greetWithDelay();
