@@ -25,3 +25,5 @@ describe('Button component', () => {
 		expect(buttonEl).toBeEnabled();
 	});
 });
+
+it('should work', () => {});
