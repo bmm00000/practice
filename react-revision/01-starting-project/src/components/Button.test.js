@@ -16,4 +16,12 @@ describe('Button component', () => {
 		expect(buttonEl).toHaveStyle({ backgroundColor: 'blue' });
 		expect(buttonEl).toHaveTextContent('Change to red');
 	});
+
+	it('should be enabled', () => {
+		render(<Button />);
+
+		const buttonEl = screen.getByRole('button');
+
+		expect(buttonEl).toBeEnabled();
+	});
 });
