@@ -27,3 +27,5 @@ describe('Button component', () => {
 });
 
 it('should work', () => {});
+
+it('should work again', () => {});
