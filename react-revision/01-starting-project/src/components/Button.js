@@ -23,7 +23,12 @@ function Button(props) {
 			>
 				Change to {nextColor}
 			</button>
-			<input type='checkbox' onChange={changeCheckboxHandler} />
+			<label htmlFor='toggle-able'>Able or disable button</label>
+			<input
+				type='checkbox'
+				onChange={changeCheckboxHandler}
+				id='toggle-able'
+			/>
 		</>
 	);
 }

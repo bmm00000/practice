@@ -28,7 +28,9 @@ describe('Button component', () => {
 	it('should be disabled when the checkbox is checked and viceversa', () => {
 		render(<Button />);
 		const buttonEl = screen.getByRole('button');
-		const checkboxEl = screen.getByRole('checkbox');
+		const checkboxEl = screen.getByRole('checkbox', {
+			name: 'Able or disable button',
+		});
 
 		fireEvent.click(checkboxEl);
 
