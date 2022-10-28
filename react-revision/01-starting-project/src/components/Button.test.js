@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import Button from './Button';
-import { changeCamelToSpaces } from './Button';
+import { changeCamelToSpaces, changeRedToBlue } from './Button';
 
 describe('Button component', () => {
 	it('should initially have red background color and text content "Change to blue", and change to blue background color and have text content "Change to red" when clicked', () => {
@@ -100,5 +100,11 @@ describe('changeCamelToSpaces', () => {
 		const result = changeCamelToSpaces(input);
 
 		expect(result).toBe('Red Light Violet');
+	});
+});
+
+describe('changeRedToBlue', () => {
+	it('should return "blue" when passed "red"', () => {
+		expect(changeRedToBlue('red')).toBe('blue');
 	});
 });

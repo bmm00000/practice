@@ -4,6 +4,10 @@ export function changeCamelToSpaces(color) {
 	return color.replace(/\B([A-Z])\B/g, ' $1');
 }
 
+export function changeRedToBlue(color) {
+	return color === 'red' ? 'blue' : undefined;
+}
+
 function Button(props) {
 	const [color, setColor] = useState('red');
 	const [disabled, setDisabled] = useState(false);
