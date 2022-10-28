@@ -1,5 +1,9 @@
 import { useState } from 'react';
 
+export function changeCamelToSpaces(color) {
+	return color.replace(/\B([A-Z])\B/g, ' $1');
+}
+
 function Button(props) {
 	const [color, setColor] = useState('red');
 	const [disabled, setDisabled] = useState(false);
