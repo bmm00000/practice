@@ -40,6 +40,36 @@ describe('Button component', () => {
 
 		expect(buttonEl).toBeEnabled();
 	});
+
+	it('should be of color grey when disabled after being of color red', () => {
+		render(<Button />);
+		const buttonEl = screen.getByRole('button');
+		const checkboxEl = screen.getByRole('checkbox', {
+			name: 'Able or disable button',
+		});
+
+		expect(buttonEl).toHaveStyle({ backgroundColor: 'red' });
+
+		fireEvent.click(checkboxEl);
+
+		expect(buttonEl).toHaveStyle({ backgroundColor: 'grey' });
+	});
+
+	it('should be of color grey when disabled after being of color blue', () => {
+		render(<Button />);
+		const buttonEl = screen.getByRole('button');
+		const checkboxEl = screen.getByRole('checkbox', {
+			name: 'Able or disable button',
+		});
+
+		fireEvent.click(buttonEl);
+
+		expect(buttonEl).toHaveStyle({ backgroundColor: 'blue' });
+
+		fireEvent.click(checkboxEl);
+
+		expect(buttonEl).toHaveStyle({ backgroundColor: 'grey' });
+	});
 });
 
 it('should work', () => {});

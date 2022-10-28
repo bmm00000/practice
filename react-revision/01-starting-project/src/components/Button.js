@@ -5,6 +5,7 @@ function Button(props) {
 	const [disabled, setDisabled] = useState(false);
 
 	const nextColor = color === 'red' ? 'blue' : 'red';
+	const buttonColor = disabled ? 'grey' : color;
 
 	function changeColorHandler() {
 		setColor(nextColor);
@@ -17,7 +18,7 @@ function Button(props) {
 	return (
 		<>
 			<button
-				style={{ backgroundColor: color }}
+				style={{ backgroundColor: buttonColor }}
 				onClick={changeColorHandler}
 				disabled={disabled}
 			>
