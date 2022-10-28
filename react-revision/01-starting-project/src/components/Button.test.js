@@ -24,6 +24,20 @@ describe('Button component', () => {
 
 		expect(buttonEl).toBeEnabled();
 	});
+
+	it('should be disabled when the checkbox is checked and viceversa', () => {
+		render(<Button />);
+		const buttonEl = screen.getByRole('button');
+		const checkboxEl = screen.getByRole('checkbox');
+
+		fireEvent.click(checkboxEl);
+
+		expect(buttonEl).toBeDisabled();
+
+		fireEvent.click(checkboxEl);
+
+		expect(buttonEl).toBeEnabled();
+	});
 });
 
 it('should work', () => {});
