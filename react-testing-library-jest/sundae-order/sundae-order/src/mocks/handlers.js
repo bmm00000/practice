@@ -2,11 +2,11 @@
 import { rest } from 'msw';
 
 export const handlers = [
-	rest.get('https://localhost:3030', (req, res, ctx) => {
+	rest.get('http://localhost:3030/scoops', (req, res, ctx) => {
 		res(
 			ctx.json([
-				{ name: 'Chocolate', imagePath: '/images/vanilla' },
-				{ name: 'Vanilla', imagePath: '/images/chocolate' },
+				{ name: 'Chocolate scoop', imagePath: '/images/vanilla' },
+				{ name: 'Vanilla scoop', imagePath: '/images/chocolate' },
 			])
 		);
 	}),
