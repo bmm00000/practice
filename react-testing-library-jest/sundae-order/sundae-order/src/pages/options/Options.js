@@ -11,7 +11,7 @@ export default function Options({ optionType }) {
 		axios
 			.get(`http://localhost:3030/${optionType}`)
 			.then((response) => setItems(response.data))
-			.catch((err) => console.log(err));
+			.catch((err) => console.log('this is the error', err));
 	}, [optionType]);
 
 	// TODO: replace 'null' with ToppingOption when we have it.
