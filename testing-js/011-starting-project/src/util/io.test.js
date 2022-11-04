@@ -1,11 +1,17 @@
+vi.mock('fs');
+vi.mock('path', () => {
+	return {
+		default: {
+			join: (...args) => args[args.length - 1],
+		},
+	};
+});
+
 import { promises as fs } from 'fs';
 
 import { it, expect, vi } from 'vitest';
 
 import writeData from './io';
-
-vi.mock('fs');
-// vi.mock('path');
 
 it('should call "writeFile"', () => {
 	const testData = 'test-data';
@@ -13,7 +19,7 @@ it('should call "writeFile"', () => {
 
 	writeData(testData, fileName);
 
-	// return expect(writeData(testData, fileName)).resolves.toBeUndefined();
-
-	expect(fs.writeFile).toHaveBeenCalled();
+	expect(fs.writeFile).toBeCalled();
+	expect(fs.writeFile).toHaveBeenCalledWith(fileName, testData);
+	return expect(writeData(testData, fileName)).resolves.toBeUndefined();
 });
