@@ -1,12 +1,12 @@
+vi.mock('fs');
+vi.mock('path');
+
 import { promises as fs } from 'fs';
 import path from 'path';
 
 import { it, expect, vi } from 'vitest';
 
 import writeData from './io';
-
-vi.mock('fs');
-vi.mock('path');
 
 it('should call "writeFile" with the right arguments', () => {
 	const testData = 'test-data';
