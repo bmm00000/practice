@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import Output from './Output';
+
 const Greeting = () => {
 	const [clicked, setClicked] = useState(false);
 
@@ -9,8 +11,8 @@ const Greeting = () => {
 
 	return (
 		<>
-			{!clicked && <p>Text1</p>}
-			{clicked && <p>Text2</p>}
+			{!clicked && <Output>Text1</Output>}
+			{clicked && <Output>Text2</Output>}
 			<h1>Hello!</h1>
 			<button onClick={buttonClickHandler}>Click here</button>
 		</>
