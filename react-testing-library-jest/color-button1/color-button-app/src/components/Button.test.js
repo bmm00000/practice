@@ -8,7 +8,7 @@ test('should have red color before clicking', () => {
 
 	const buttonEl = screen.getByRole('button');
 
-	expect(buttonEl.style.color).toBe('red');
+	expect(buttonEl).toHaveStyle({ color: 'red' });
 });
 
 test('should have text of "change to blue" before clicking', () => {
@@ -16,7 +16,7 @@ test('should have text of "change to blue" before clicking', () => {
 
 	const buttonEl = screen.getByRole('button');
 
-	expect(buttonEl.textContent).toBe('change to blue');
+	expect(buttonEl).toHaveTextContent('change to blue');
 });
 
 test('should have blue color after clicking', () => {
@@ -25,7 +25,7 @@ test('should have blue color after clicking', () => {
 	const buttonEl = screen.getByRole('button');
 	userEvent.click(buttonEl);
 
-	expect(buttonEl.style.color).toBe('blue');
+	expect(buttonEl).toHaveStyle({ color: 'blue' });
 });
 
 test('should have text of "change to red" after clicking', () => {
@@ -34,5 +34,5 @@ test('should have text of "change to red" after clicking', () => {
 	const buttonEl = screen.getByRole('button');
 	userEvent.click(buttonEl);
 
-	expect(buttonEl.textContent).toBe('change to red');
+	expect(buttonEl).toHaveTextContent('change to red');
 });
