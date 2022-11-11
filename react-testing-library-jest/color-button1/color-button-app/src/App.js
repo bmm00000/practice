@@ -1,9 +1,17 @@
+import { useState } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
 
 import Button from './components/Button';
 
 function App() {
+	const [checked, setChecked] = useState(false);
+
+	const onCheckboxChange = () => {
+		setChecked((oldChecked) => !oldChecked);
+	};
+
 	return (
 		<div className='App'>
 			<header className='App-header'>
@@ -11,7 +19,8 @@ function App() {
 				<p>
 					Edit <code>src/App.js</code> and save to reload.
 				</p>
-				<Button />
+				<Button checked={checked} />
+				<input type='checkbox' onChange={onCheckboxChange} />
 				<a
 					className='App-link'
 					href='https://reactjs.org'

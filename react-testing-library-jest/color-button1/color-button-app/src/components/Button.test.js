@@ -28,11 +28,11 @@ test('should have blue color after clicking', () => {
 	expect(buttonEl).toHaveStyle({ color: 'blue' });
 });
 
-test('should have text of "change to red" after clicking', () => {
+test('should have text of "changed to blue!" after clicking', () => {
 	render(<Button />);
 
 	const buttonEl = screen.getByRole('button');
 	userEvent.click(buttonEl);
 
-	expect(buttonEl).toHaveTextContent('change to red');
+	expect(buttonEl).toHaveTextContent('changed to blue!');
 });
