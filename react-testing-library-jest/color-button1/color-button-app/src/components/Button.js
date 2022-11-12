@@ -8,7 +8,10 @@ const Button = ({ checked }) => {
 	};
 
 	const buttonText = clicked ? 'changed to blue!' : 'change to blue';
-	const buttonColor = clicked ? 'blue' : 'red';
+	let buttonColor = clicked ? 'blue' : 'red';
+	if (checked) {
+		buttonColor = 'grey';
+	}
 
 	return (
 		<>

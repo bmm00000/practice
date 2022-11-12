@@ -20,7 +20,12 @@ function App() {
 					Edit <code>src/App.js</code> and save to reload.
 				</p>
 				<Button checked={checked} />
-				<input type='checkbox' onChange={onCheckboxChange} />
+				<label htmlFor='disable-button'>Disable the button</label>
+				<input
+					type='checkbox'
+					id='disable-button'
+					onChange={onCheckboxChange}
+				/>
 				<a
 					className='App-link'
 					href='https://reactjs.org'
