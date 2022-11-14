@@ -10,6 +10,7 @@ test('checkbox is initially unchecked and button is disabled', () => {
 	});
 	const buttonEl = screen.getByRole('button', { name: 'Submit order' });
 
+	expect(checkboxEl).not.toBeChecked();
 	expect(buttonEl).toBeDisabled();
 });
 
