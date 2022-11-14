@@ -10,11 +10,19 @@ test('checkbox is initially unchecked and button is disabled', () => {
 	});
 	const buttonEl = screen.getByRole('button', { name: 'Submit order' });
 
-	userEvent.click(checkboxEl);
-
 	expect(buttonEl).toBeDisabled();
 });
 
-test('when checkbox is checked, button is enabled', () => {});
+test('when checkbox is checked, button is enabled', () => {
+	render(<SummaryForm />);
+	const checkboxEl = screen.getByRole('checkbox', {
+		name: 'I accept terms and conditions',
+	});
+	const buttonEl = screen.getByRole('button', { name: 'Submit order' });
 
-test('when checkbox is unchecked, button is disabled', () => {});
+	userEvent.click(checkboxEl);
+
+	expect(buttonEl).toBeEnabled();
+});
+
+// test('when checkbox is unchecked, button is disabled', () => {});
