@@ -6,9 +6,9 @@ import SummaryForm from '../SummaryForm';
 test('checkbox is initially unchecked and button is disabled', () => {
 	render(<SummaryForm />);
 	const checkboxEl = screen.getByRole('checkbox', {
-		name: 'I accept terms and conditions',
+		name: /terms and conditions/i,
 	});
-	const buttonEl = screen.getByRole('button', { name: 'Submit order' });
+	const buttonEl = screen.getByRole('button', { name: /confirm order/i });
 
 	expect(checkboxEl).not.toBeChecked();
 	expect(buttonEl).toBeDisabled();
@@ -17,9 +17,9 @@ test('checkbox is initially unchecked and button is disabled', () => {
 test('when checkbox is checked, button is enabled', () => {
 	render(<SummaryForm />);
 	const checkboxEl = screen.getByRole('checkbox', {
-		name: 'I accept terms and conditions',
+		name: /terms and conditions/i,
 	});
-	const buttonEl = screen.getByRole('button', { name: 'Submit order' });
+	const buttonEl = screen.getByRole('button', { name: /confirm order/i });
 
 	userEvent.click(checkboxEl);
 
@@ -29,9 +29,9 @@ test('when checkbox is checked, button is enabled', () => {
 test('when checkbox is unchecked, button is disabled', () => {
 	render(<SummaryForm />);
 	const checkboxEl = screen.getByRole('checkbox', {
-		name: 'I accept terms and conditions',
+		name: /terms and conditions/i,
 	});
-	const buttonEl = screen.getByRole('button', { name: 'Submit order' });
+	const buttonEl = screen.getByRole('button', { name: /confirm order/i });
 
 	userEvent.click(checkboxEl);
 	userEvent.click(checkboxEl);
