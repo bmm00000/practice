@@ -25,4 +25,15 @@ test('when checkbox is checked, button is enabled', () => {
 	expect(buttonEl).toBeEnabled();
 });
 
-// test('when checkbox is unchecked, button is disabled', () => {});
+test('when checkbox is unchecked, button is disabled', () => {
+	render(<SummaryForm />);
+	const checkboxEl = screen.getByRole('checkbox', {
+		name: 'I accept terms and conditions',
+	});
+	const buttonEl = screen.getByRole('button', { name: 'Submit order' });
+
+	userEvent.click(checkboxEl);
+	userEvent.click(checkboxEl);
+
+	expect(buttonEl).toBeDisabled();
+});
