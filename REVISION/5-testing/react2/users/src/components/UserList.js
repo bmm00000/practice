@@ -1,7 +1,7 @@
 const UserList = ({ users }) => {
 	const tableContent = users.map((user) => {
 		return (
-			<tr>
+			<tr key={user.name}>
 				<td>{user.name}</td>
 				<td>{user.email}</td>
 			</tr>
@@ -16,7 +16,7 @@ const UserList = ({ users }) => {
 					<th>Email</th>
 				</tr>
 			</thead>
-			<tbody>{tableContent}</tbody>
+			<tbody data-testid='users'>{tableContent}</tbody>
 		</table>
 	);
 };
