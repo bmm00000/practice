@@ -28,3 +28,20 @@ test('calls onAddUser with the correct arguments (name, email)', () => {
 	expect(mock).toHaveBeenCalled();
 	expect(mock).toHaveBeenCalledWith({ name: 'jane', email: 'jane@gmail.com' });
 });
+
+test('clears up the inputs after the form is submitted', () => {
+	render(<UserForm onAddUser={() => {}} />);
+
+	const nameInput = screen.getByRole('textbox', { name: /name/i });
+	const emailInput = screen.getByRole('textbox', { name: /email/i });
+	const button = screen.getByRole('button');
+
+	user.click(nameInput);
+	user.keyboard('john');
+	user.click(emailInput);
+	user.keyboard('john@gmail.com');
+	user.click(button);
+
+	expect(nameInput).toHaveValue('');
+	expect(emailInput).toHaveValue('');
+});
