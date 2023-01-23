@@ -1,7 +1,7 @@
 import Todos from './components/Todos';
 import Todo from './models/todo';
 
-function App() {
+const App = (): JSX.Element => {
 	const items = [new Todo('Learn React'), new Todo('Learn TS')];
 
 	return (
@@ -9,6 +9,6 @@ function App() {
 			<Todos items={items} />
 		</div>
 	);
-}
+};
 
 export default App;
