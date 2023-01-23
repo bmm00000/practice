@@ -1,6 +1,10 @@
 import React from 'react';
 
-const TodoItem = ({ children }: any): JSX.Element => {
+interface TodoItemProps {
+	children: string;
+}
+
+const TodoItem = ({ children }: TodoItemProps): JSX.Element => {
 	return <li>{children}</li>;
 };
 
