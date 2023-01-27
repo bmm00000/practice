@@ -7,7 +7,7 @@ const renderComponent = () => {
 		full_name: 'repo-full-name',
 		language: 'Javascript',
 		description: 'repo-description',
-		owner: 'repo-owner',
+		owner: { login: 'repo-owner' },
 		name: 'repo-name',
 		html_url: 'https://github.com',
 	};
@@ -34,4 +34,15 @@ test('shows a file icon with the appropriate icon', async () => {
 
 	const icon = await screen.findByRole('img', { name: 'Javascript' });
 	expect(icon).toHaveClass('js-icon');
+});
+
+test('shows a link to the code editor page', async () => {
+	const { repository } = renderComponent();
+
+	await screen.findByRole('img', { name: 'Javascript' });
+
+	const link = await screen.findByRole('link', {
+		name: new RegExp(repository.owner.login),
+	});
+	expect(link).toHaveAttribute('href', `/repositories/${repository.full_name}`);
 });
