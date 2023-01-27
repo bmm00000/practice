@@ -10,48 +10,48 @@ import SignOutRoute from './routes/SignOutRoute';
 import TestRoute from './routes/TestRoute';
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootRoute />,
-    children: [
-      {
-        path: 'test',
-        element: <TestRoute />,
-      },
-      {
-        path: 'signout',
-        element: <SignOutRoute />,
-      },
-      {
-        path: 'signup',
-        element: <SignUpRoute />,
-      },
-      {
-        path: 'signin',
-        element: <SignInRoute />,
-      },
-      {
-        path: '',
-        element: <HomeRoute />,
-      },
-      {
-        path: 'repositories/:owner/:repoName/*',
-        element: <EditorRoute />,
-      },
-      {
-        path: 'repositories',
-        element: <RepositoriesSearchRoute />,
-      },
-      {
-        path: '*',
-        element: <NotFoundRoute />,
-      },
-    ],
-  },
+	{
+		path: '/',
+		element: <RootRoute />,
+		children: [
+			{
+				path: 'test',
+				element: <TestRoute />,
+			},
+			{
+				path: 'signout',
+				element: <SignOutRoute />,
+			},
+			{
+				path: 'signup',
+				element: <SignUpRoute />,
+			},
+			{
+				path: 'signin',
+				element: <SignInRoute />,
+			},
+			{
+				path: '',
+				element: <HomeRoute />,
+			},
+			{
+				path: 'repositories/:owner/:repoName/*',
+				element: <EditorRoute />,
+			},
+			{
+				path: 'repositories',
+				element: <RepositoriesSearchRoute />,
+			},
+			{
+				path: '*',
+				element: <NotFoundRoute />,
+			},
+		],
+	},
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+	return <RouterProvider router={router} />;
 }
 
 export default App;
