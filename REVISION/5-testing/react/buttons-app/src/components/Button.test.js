@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 // import { logRoles } from '@testing-library/react';
 import Button from './Button';
 
@@ -15,9 +16,23 @@ test('initially, has background color of blue', () => {
 
 	const buttonElement = screen.getByRole('button');
 
-	expect(buttonElement).toHaveStyle({ backgroundColor: 'red' });
+	expect(buttonElement).toHaveStyle({ backgroundColor: 'blue' });
 });
 
-test('when clicked, has the text "Change to blue"', () => {});
+test('when clicked, has the text `Change to blue`', () => {
+	render(<Button />);
 
-test('when clicked, has background color of red', () => {});
+	const buttonElement = screen.getByRole('button');
+	user.click(buttonElement);
+
+	expect(buttonElement).toHaveTextContent(/change to blue/i);
+});
+
+test('when clicked, has background color of red', () => {
+	render(<Button />);
+
+	const buttonElement = screen.getByRole('button');
+	user.click(buttonElement);
+
+	expect(buttonElement).toHaveStyle({ backgroundColor: 'red' });
+});
