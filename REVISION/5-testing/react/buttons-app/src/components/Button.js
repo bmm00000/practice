@@ -23,7 +23,12 @@ const Button = () => {
 			>
 				Change to {nextColor}
 			</button>
-			<input type='checkbox' onClick={clickCheckboxHandler} />
+			<label htmlFor='disable-button'>Disable button</label>
+			<input
+				type='checkbox'
+				onClick={clickCheckboxHandler}
+				id='disable-button'
+			/>
 		</>
 	);
 };

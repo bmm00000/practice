@@ -50,7 +50,9 @@ test('initially, the checkbox is unchecked, and the button is enabled', () => {
 test('when the checkbox gets checked, the button gets disabled; and when the checkbox gets unchecked, the button gets enabled', () => {
 	render(<Button />);
 
-	const checkboxElement = screen.getByRole('checkbox');
+	const checkboxElement = screen.getByRole('checkbox', {
+		name: /disable button/i,
+	});
 	const buttonElement = screen.getByRole('button');
 
 	user.click(checkboxElement);
