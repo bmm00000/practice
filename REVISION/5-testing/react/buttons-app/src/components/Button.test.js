@@ -10,7 +10,13 @@ test('initially, has the text `Change to red`', () => {
 	expect(buttonElement).toHaveTextContent(/change to red/i);
 });
 
-test('initially, has background color of blue', () => {});
+test('initially, has background color of blue', () => {
+	render(<Button />);
+
+	const buttonElement = screen.getByRole('button');
+
+	expect(buttonElement).toHaveStyle({ backgroundColor: 'red' });
+});
 
 test('when clicked, has the text "Change to blue"', () => {});
 
