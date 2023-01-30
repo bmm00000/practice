@@ -46,3 +46,18 @@ test('initially, the checkbox is unchecked, and the button is enabled', () => {
 	expect(checkboxElement).not.toBeChecked();
 	expect(buttonElement).toBeEnabled();
 });
+
+test('when the checkbox gets checked, the button gets disabled; and when the checkbox gets unchecked, the button gets enabled', () => {
+	render(<Button />);
+
+	const checkboxElement = screen.getByRole('checkbox');
+	const buttonElement = screen.getByRole('button');
+
+	user.click(checkboxElement);
+
+	expect(buttonElement).toBeDisabled();
+
+	user.click(checkboxElement);
+
+	expect(buttonElement).toBeEnabled();
+});
