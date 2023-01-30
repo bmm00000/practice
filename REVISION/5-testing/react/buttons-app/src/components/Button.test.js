@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 // import { logRoles } from '@testing-library/react';
 import Button from './Button';
 
-test('initially, has the text "Change to red"', () => {
+test('initially, has the text `Change to red`', () => {
 	render(<Button />);
 
 	const buttonElement = screen.getByRole('button');
