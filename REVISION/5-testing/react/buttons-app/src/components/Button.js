@@ -10,9 +10,12 @@ const Button = () => {
 	};
 
 	return (
-		<button style={{ backgroundColor: color }} onClick={clickHandler}>
-			Change to {nextColor}
-		</button>
+		<>
+			<button style={{ backgroundColor: color }} onClick={clickHandler}>
+				Change to {nextColor}
+			</button>
+			<input type='checkbox' />
+		</>
 	);
 };
 

@@ -36,3 +36,13 @@ test('when clicked, has background color of red', () => {
 
 	expect(buttonElement).toHaveStyle({ backgroundColor: 'red' });
 });
+
+test('initially, the checkbox is unchecked, and the button is enabled', () => {
+	render(<Button />);
+
+	const checkboxElement = screen.getByRole('checkbox');
+	const buttonElement = screen.getByRole('button');
+
+	expect(checkboxElement).not.toBeChecked();
+	expect(buttonElement).toBeEnabled();
+});
