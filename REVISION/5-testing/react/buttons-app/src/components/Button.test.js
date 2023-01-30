@@ -63,3 +63,24 @@ test('when the checkbox gets checked, the button gets disabled; and when the che
 
 	expect(buttonElement).toBeEnabled();
 });
+
+test('when the checkbox gets checked, the button turns grey; when the checkbox gets unchecked, the button turns blue', () => {
+	render(<Button />);
+
+	const checkboxElement = screen.getByRole('checkbox', {
+		name: /disable button/i,
+	});
+	const buttonElement = screen.getByRole('button');
+
+	user.click(checkboxElement);
+
+	expect(buttonElement).toHaveStyle({ backgroundColor: 'grey' });
+
+	user.click(checkboxElement);
+
+	expect(buttonElement).toHaveStyle({ backgroundColor: 'blue' });
+});
+
+// test('after clicked on button, when the checkbox gets checked, the button turns grey; when the checkbox gets unchecked, the button turns red', () => {
+
+// })
