@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 export const handlers = [
-	rest.get('/scoops', (req, res, ctx) => {
+	rest.get('http://localhost:3000/scoop', (req, res, ctx) => {
 		return res(
 			ctx.json([
 				{
@@ -24,7 +24,7 @@ export const handlers = [
 		);
 	}),
 
-	rest.get('/toppings', (req, res, ctx) => {
+	rest.get('http://localhost:3000/topping', (req, res, ctx) => {
 		return res(
 			ctx.json([
 				{
