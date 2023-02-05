@@ -12,6 +12,17 @@ function NewPost({ onHide, onAddPost }) {
 			text: textInputRef.current.value,
 			author: nameInputRef.current.value,
 		};
+
+		fetch('http://localhost:8080/posts', {
+			method: 'POST',
+			body: JSON.stringify(post),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => console.log(data));
+
 		onAddPost(post);
 		onHide();
 	};
