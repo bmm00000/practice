@@ -3,22 +3,25 @@ const express = require('express');
 const { add } = require('./src/math');
 const { extractNumbers, extractResultQueryParam } = require('./src/parser');
 const { transformToNumber } = require('./src/util/numbers');
-const { validateNumber, validateStringNotEmpty } = require('./src/util/validation');
+const {
+	validateNumber,
+	validateStringNotEmpty,
+} = require('./src/util/validation');
 
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
-  const result = extractResultQueryParam(req);
-  let resultText = '';
+	const result = extractResultQueryParam(req);
+	let resultText = '';
 
-  if (result === 'invalid') {
-    resultText = 'Invalid input. You must enter valid numbers.';
-  } else if (result !== 'no-calc') {
-    resultText = 'Result: ' + result;
-  }
-  const htmlContent = `
+	if (result === 'invalid') {
+		resultText = 'Invalid input. You must enter valid numbers.';
+	} else if (result !== 'no-calc') {
+		resultText = 'Result: ' + result;
+	}
+	const htmlContent = `
     <html>
       <head>
         <title>Testing Basics</title>
@@ -56,27 +59,27 @@ app.get('/', (req, res) => {
     </html>
   `;
 
-  res.send(htmlContent);
+	res.send(htmlContent);
 });
 
 app.post('/calculate', (req, res) => {
-  let result = '';
+	let result = '';
 
-  const numberInputs = extractNumbers(req);
-  const numbers = [];
-  try {
-    for (const numberInput of numberInputs) {
-      validateStringNotEmpty(numberInput);
-      const number = transformToNumber(numberInput);
-      validateNumber(number);
-      numbers.push(number);
-    }
-    result = add(numbers).toString();
-  } catch (error) {
-    result = error.message;
-  }
+	const numberInputs = extractNumbers(req);
+	const numbers = [];
+	try {
+		for (const numberInput of numberInputs) {
+			validateStringNotEmpty(numberInput);
+			const number = transformToNumber(numberInput);
+			validateNumber(number);
+			numbers.push(number);
+		}
+		result = add(numbers).toString();
+	} catch (error) {
+		result = error.message;
+	}
 
-  res.redirect('/?result=' + result);
+	res.redirect('/?result=' + result);
 });
 
 app.listen(3000);
