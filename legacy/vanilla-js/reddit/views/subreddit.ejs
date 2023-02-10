@@ -1,9 +1,0 @@
-<%- include('partials/head') %> <%- include('partials/navbar') %>
-<h1>This is the subreddit about <%= name %></h1>
-<p>We have <%= subscribers %> subscribers</p>
-<p>This is the description: <%= description %></p>
-<% for(let post of posts) {%>
-<h2><%= post.title %></h2>
-<p><%= post.author %></p>
-<img src="<%= post.img %> " alt="" />
-<% } %> <%- include('partials/footer') %>
