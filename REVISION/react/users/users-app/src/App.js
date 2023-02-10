@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import InputUser from './components/InputUser';
 import UserList from './components/UserList';
@@ -25,8 +26,13 @@ function App() {
 			<h1>Our users app</h1>
 			<InputUser onAddUser={addUserHandler} />
 			<UserList users={users} />
-			{errorMessage && <Backdrop />}
-			{errorMessage && <Modal errorMessage={errorMessage} />}
+			{errorMessage &&
+				createPortal(<Backdrop />, document.getElementById('backdrop'))}
+			{errorMessage &&
+				createPortal(
+					<Modal errorMessage={errorMessage} />,
+					document.getElementById('modal')
+				)}
 		</>
 	);
 }
