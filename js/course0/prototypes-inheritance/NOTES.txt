@@ -1,1 +1,0 @@
-prototypes and inheritance: how objects are linked together.

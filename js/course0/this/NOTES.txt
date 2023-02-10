@@ -1,5 +1,0 @@
-in js, we have execution context, and when your script executes, you can also have multiple contexts. in js, we also have environment, and you can also have multiple environments during your script execution
-
-the execution context is a meta thing, managed behind the scenes by the js engine, and it basically contains the current evaluation state of your code (info about your code and where js execution is at), it contains a reference to the code, eg. the function you are currently in, and it also contains a reference to all the environments that belong to a given context (you can have more than one environment per context).
-
-an environemnt is a thing inside of a context, and it stores information about the variables that belong to that environment, and also to any other environments that might be part of this environment...

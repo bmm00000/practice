@@ -1,9 +1,0 @@
-immutable non-object values: 'immutable' means that you cannot change these data types: the values based on those data types cannot be changed. 'non-object' means that values of those data types don't have methods or properties by default (although js has a special way of working with these data types as we will see, so that we actually have methods).
-
-technically, primitive values are stored a bit differently in memory, though how they are stored in memory depends on the js engine that is being used.
-
-'mutable' means that you can edit it. for primitive values, eg. when you create a new value, you cannot edit it.
-
-with primitive values, when you create a new variable and point its value to a previously created variable (that stores a primitive value), a copy of this primitive value is created and stored. therefore, you can think of variables that store/contain primitive values as places in memory that store/contain those primitive values.
-on the other hand, if you create a new variable and point its value to a previously created variable (that stores a reference value), that reference value (ie, array or object) will not be copied. insted it's stored only once in memory and js saves a pointer to that object in the variable.
-therefore, for primitive values, the value itself is stored in the variable so to speak, while for reference values, the variable does know directly know the object or array, but instead just knows the address of that object or array in memory (in the variable, we just store a pointer to this address in memory). one of the reasons for that is the primitive values are cheaper (easier to manage, optimize, cleanup in memory) than reference values. reference values are a bit more complex to manage in memory, therefore they are not copied all the time, but instead a pointer to the same address is shared around.
