@@ -3,7 +3,7 @@ space rep/interleaving
 bigger chunks
 ellaboration/generation
 
-1- build projects to re-build
+1- build projects to re-build (compare with original projects on github)
 
 2- take notes to re-read
 
