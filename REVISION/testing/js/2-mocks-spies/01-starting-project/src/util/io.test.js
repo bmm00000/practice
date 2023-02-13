@@ -1,22 +1,24 @@
 import { it, expect, vi } from 'vitest';
-vi.mock('fs', () => {
-	return {
-		promises: {
-			writeFile: vi.fn((storagePath, data) => {
-				return new Promise((resolve, reject) => resolve());
-			}),
-		},
-	};
-});
-vi.mock('path', () => {
-	return {
-		default: {
-			join: vi.fn((...args) => {
-				return args[args.length - 1];
-			}),
-		},
-	};
-});
+// vi.mock('fs', () => {
+// 	return {
+// 		promises: {
+// 			writeFile: vi.fn((storagePath, data) => {
+// 				return new Promise((resolve, reject) => resolve());
+// 			}),
+// 		},
+// 	};
+// });
+vi.mock('fs');
+// vi.mock('path', () => {
+// 	return {
+// 		default: {
+// 			join: vi.fn((...args) => {
+// 				return args[args.length - 1];
+// 			}),
+// 		},
+// 	};
+// });
+vi.mock('path');
 import writeData from './io';
 import { promises as fs } from 'fs';
 import path from 'path';
