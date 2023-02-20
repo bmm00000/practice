@@ -4,12 +4,12 @@ import { it, expect, vi, beforeEach } from 'vitest';
 import { Window } from 'happy-dom';
 import { showError } from './dom';
 
-const htmlFilePath = path.join(process.cwd(), 'index.html');
-const htmlContent = fs.readFileSync(htmlFilePath).toString();
 const window = new Window();
 const document = window.document;
 vi.stubGlobal('document', document);
 
+const htmlFilePath = path.join(process.cwd(), 'index.html');
+const htmlContent = fs.readFileSync(htmlFilePath).toString();
 beforeEach(() => {
 	document.body.innerHTML = '';
 	document.write(htmlContent);
