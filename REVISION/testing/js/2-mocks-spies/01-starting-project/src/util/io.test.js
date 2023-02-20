@@ -19,16 +19,9 @@ vi.mock('fs');
 // 	};
 // });
 vi.mock('path');
-import writeData from './io';
 import { promises as fs } from 'fs';
 import path from 'path';
-
-it('should resolve the promise from the writeFile method in the fs module', () => {
-	const data = 'data';
-	const fileName = 'file-name.txt';
-
-	return expect(writeData(data, fileName)).resolves.toBeUndefined();
-});
+import writeData from './io';
 
 it('should call the writeFile method from the fs module', () => {
 	const data = 'data';
@@ -37,6 +30,13 @@ it('should call the writeFile method from the fs module', () => {
 	writeData(data, fileName);
 
 	expect(fs.writeFile).toHaveBeenCalled();
+});
+
+it('should resolve the promise from the writeFile method in the fs module', () => {
+	const data = 'data';
+	const fileName = 'file-name.txt';
+
+	return expect(writeData(data, fileName)).resolves.toBeUndefined();
 });
 
 it('should call the writeFile method from the fs module with fileName and data as arguments', () => {
