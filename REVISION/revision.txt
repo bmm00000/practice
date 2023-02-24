@@ -3,11 +3,8 @@ space rep/interleaving
 bigger chunks
 ellaboration/generation
 
-1- build projects to re-build (compare with original projects on github)
+1- SAME DAY: build projects to re-build in the future, take notes to re-read, take note of videos or sections to re-watch
 
-2- take notes to re-read
-slides:
+2- ANOTHER DAY: re-build, and then compare with code and slides:
 https://github.com/academind/react-complete-guide-code
 https://github.com/academind/js-testing-practical-guide-code/tree/main
-
-3- take note of videos or sections to re-watch
