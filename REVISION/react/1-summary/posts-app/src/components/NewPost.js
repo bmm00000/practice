@@ -15,9 +15,6 @@ function NewPost({ onAdd }) {
 		};
 
 		onAdd(post);
-
-		nameInputRef.current.value = '';
-		bodyInputRef.current.value = '';
 	};
 
 	return (
