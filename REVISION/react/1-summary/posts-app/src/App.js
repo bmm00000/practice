@@ -24,12 +24,20 @@ function App() {
 	return (
 		<>
 			<MainHeader onCreatePost={openModalHandler} />
-			{modalIsVisible && (
-				<Modal onClose={closeModalHandler}>
-					<NewPost onAdd={addPostHandler} />
-				</Modal>
-			)}
-			<PostsList posts={posts} />
+			<main>
+				{modalIsVisible && (
+					<Modal onClose={closeModalHandler}>
+						<NewPost onAdd={addPostHandler} onClose={closeModalHandler} />
+					</Modal>
+				)}
+				{posts.length === 0 && (
+					<div style={{ textAlign: 'center', color: 'white' }}>
+						<h2>No posts yet</h2>
+						<p>Start adding some?</p>
+					</div>
+				)}
+				{posts.length > 0 && <PostsList posts={posts} />}
+			</main>
 		</>
 	);
 }

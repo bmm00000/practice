@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import classes from './NewPost.module.css';
 
-function NewPost({ onAdd }) {
+function NewPost({ onAdd, onClose }) {
 	const bodyInputRef = useRef();
 	const nameInputRef = useRef();
 
@@ -26,6 +26,12 @@ function NewPost({ onAdd }) {
 			<p>
 				<label htmlFor='name'>Your name</label>
 				<input type='text' id='name' required ref={nameInputRef} />
+			</p>
+			<p className={classes.actions}>
+				<button type='button' onClick={onClose}>
+					Close
+				</button>
+				<button>Add</button>
 			</p>
 		</form>
 	);
